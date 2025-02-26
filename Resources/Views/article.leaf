@@ -32,7 +32,7 @@
         
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 1rem;
         }
@@ -97,49 +97,41 @@
             transform: translateY(-2px);
         }
         
-        .articles-section {
-            padding: 3rem 0;
-        }
-        
-        .articles-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-        
-        .article-card {
+        .article-container {
             background-color: var(--card-bg);
+            padding: 2rem;
             border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-            border-left: 4px solid var(--yellow-accent);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            margin: 3rem 0;
+            border-left: 6px solid var(--yellow-accent);
         }
         
-        .article-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .article-content {
-            padding: 1.5rem;
+        .article-header {
+            margin-bottom: 2rem;
         }
         
         .article-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.75rem;
+            font-size: 2.5rem;
             color: var(--yellow-accent);
+            margin-bottom: 0.5rem;
         }
         
         .article-date {
             color: var(--text-secondary);
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
+            font-size: 0.9rem;
         }
         
-        .article-excerpt {
-            color: var(--text-secondary);
+        .article-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .article-content p {
             margin-bottom: 1.5rem;
+        }
+        
+        .back-button {
+            margin-top: 2rem;
         }
         
         footer {
@@ -162,8 +154,8 @@
                 justify-content: center;
             }
             
-            .articles-grid {
-                grid-template-columns: 1fr;
+            .article-title {
+                font-size: 2rem;
             }
         }
     </style>
@@ -172,7 +164,7 @@
 <body>
     <header>
         <div class="container header-container">
-            <h1 class="site-title">#(title)</h1>
+            <h1 class="site-title">ByteShutter</h1>
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
@@ -185,24 +177,20 @@
     </header>
 
     <main class="container">
-        <section class="articles-section">
-            <h2>Latest Articles</h2>
+        <article class="article-container">
+            <header class="article-header">
+                <h1 class="article-title">#(article.title)</h1>
+                <p class="article-date">#date(article.createdAt, "MMM d, yyyy")</p>
+            </header>
             
-            <div class="articles-grid">
-                #for(article in articles):
-                    <article class="article-card">
-                        <div class="article-content">
-                            <h3 class="article-title">
-                                <a href="/articles/#(article.slug)">#(article.title)</a>
-                            </h3>
-                            <p class="article-date">#date(article.createdAt, "MMM d, yyyy")</p>
-                            <p class="article-excerpt">#(article.excerpt)</p>
-                            <a href="/articles/#(article.slug)" class="btn">Read More</a>
-                        </div>
-                    </article>
-                #endfor
+            <div class="article-content">
+                #(article.content)
             </div>
-        </section>
+            
+            <div class="back-button">
+                <a href="/articles" class="btn">← Back to Articles</a>
+            </div>
+        </article>
     </main>
 
     <footer class="container">
