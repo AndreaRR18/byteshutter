@@ -6,32 +6,33 @@ import Vapor
 
 // configures your application
 public func configure(_ app: Application) async throws {
-  // uncomment to serve files from /Public folder
-  // app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
+  // serve files from /Public folder
+  app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
   
   if app.environment == .production {
       try AppEnvironment.validateRequiredVariables()
   }
   
+  // Configure database using environment variables from .env
   app.databases.use(DatabaseConfigurationFactory.postgres(configuration: .init(
     hostname: Environment.get("DATABASE_HOST") ?? "localhost",
     port: Environment.get("DATABASE_PORT").flatMap(Int.init(_:)) ?? SQLPostgresConfiguration.ianaPortNumber,
-    username: Environment.get("DATABASE_USERNAME") ?? "vapor_username",
-    password: Environment.get("DATABASE_PASSWORD") ?? "vapor_password",
-    database: Environment.get("DATABASE_NAME") ?? "vapor_database",
+    username: Environment.get("DATABASE_USERNAME") ?? "",
+    password: Environment.get("DATABASE_PASSWORD") ?? "",
+    database: Environment.get("DATABASE_NAME") ?? "",
     tls: .prefer(try .init(configuration: .clientDefault)))
   ), as: .psql)
   
   
+  // Add database migrations
   app.migrations.add(CreateArticle())
   app.migrations.add(SeedArticles())
   
   app.views.use(.leaf)
   
   // Configure server settings from environment if needed
-   if let port = Environment.get("SERVER_PORT").flatMap(Int.init) {
-       app.http.server.configuration.port = port
-   }
+   // Use a non-default port for development to avoid conflicts
+   app.http.server.configuration.port = Environment.get("SERVER_PORT").flatMap(Int.init) ?? 9000
    
    if let hostname = Environment.get("SERVER_HOSTNAME") {
        app.http.server.configuration.hostname = hostname
