@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>#import("title")</title>
+    <style>
+        :root {
+            /* Color palette */
+            --petrol-blue: #0A3A40;
+            --petrol-blue-light: #1A4A50;
+            --petrol-blue-dark: #052A30;
+            --yellow-accent: #FFD700;
+            --yellow-hover: #FFE55C;
+            --text-primary: #F5F5F5;
+            --text-secondary: #BBBBBB;
+            --card-bg: #0F454B;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--petrol-blue);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+        
+        header {
+            padding: 2rem 0;
+            border-bottom: 2px solid var(--yellow-accent);
+        }
+        
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .site-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--yellow-accent);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            color: var(--yellow-accent);
+            background-color: var(--petrol-blue-light);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--yellow-accent);
+            color: var(--petrol-blue-dark);
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: var(--yellow-hover);
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            margin-top: 4rem;
+            padding: 2rem 0;
+            border-top: 2px solid var(--yellow-accent);
+            text-align: center;
+            color: var(--text-secondary);
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+        }
+        
+        /* Import page-specific styles */
+        #import("styles")
+    </style>
+</head>
+
+<body>
+    <!-- Import header partial -->
+    #import("header")
+    
+    <main class="container">
+        <!-- Main content will be inserted here -->
+        #import("content")
+    </main>
+
+    <!-- Import footer partial -->
+    #import("footer")
+</body>
+</html>
