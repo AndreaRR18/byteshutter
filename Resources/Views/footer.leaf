@@ -1,1 +1,3 @@
-#extend("partials/footer")
+<footer class="container">
+    <p>&copy; 2025 ByteShutter. All rights reserved.</p>
+</footer>

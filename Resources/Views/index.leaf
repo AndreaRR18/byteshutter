@@ -2,12 +2,12 @@
     #export("title", "ByteShutter")
     
     #export("header"):
-        #extend("partials/header")
+        #extend("header")
     #endexport
     
     #export("content"):
         <section class="articles-section">
-            <h2>Latest Articles</h2>
+            <h2>Latest Articles:</h2>
             
             <div class="articles-grid">
                 #for(article in articles):
@@ -82,6 +82,6 @@
     #endexport
     
     #export("footer"):
-        #extend("partials/footer")
+        #extend("footer")
     #endexport
 #endextend

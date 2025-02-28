@@ -124,15 +124,12 @@
 </head>
 
 <body>
-    <!-- Import header partial -->
     #import("header")
     
     <main class="container">
-        <!-- Main content will be inserted here -->
         #import("content")
     </main>
 
-    <!-- Import footer partial -->
     #import("footer")
 </body>
 </html>
