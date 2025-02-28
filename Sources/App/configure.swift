@@ -9,17 +9,15 @@ public func configure(_ app: Application) async throws {
   // serve files from /Public folder
   app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
   
-  if app.environment == .production {
-      try AppEnvironment.validateRequiredVariables()
-  }
+  try AppEnvironment.validateRequiredVariables()
   
   // Configure database using environment variables from .env
   app.databases.use(DatabaseConfigurationFactory.postgres(configuration: .init(
-    hostname: Environment.get("DATABASE_HOST") ?? "localhost",
-    port: Environment.get("DATABASE_PORT").flatMap(Int.init(_:)) ?? SQLPostgresConfiguration.ianaPortNumber,
-    username: Environment.get("DATABASE_USERNAME") ?? "",
-    password: Environment.get("DATABASE_PASSWORD") ?? "",
-    database: Environment.get("DATABASE_NAME") ?? "",
+    hostname: AppEnvironment.hostname,
+    port: AppEnvironment.port,
+    username: AppEnvironment.username,
+    password: AppEnvironment.password,
+    database: AppEnvironment.database,
     tls: .prefer(try .init(configuration: .clientDefault)))
   ), as: .psql)
   
@@ -27,6 +25,7 @@ public func configure(_ app: Application) async throws {
   // Add database migrations
   app.migrations.add(CreateArticle())
   app.migrations.add(SeedArticles())
+  
   
   app.views.use(.leaf)
   
