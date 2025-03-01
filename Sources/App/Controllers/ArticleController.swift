@@ -5,11 +5,9 @@ struct ArticleController: RouteCollection {
   func boot(routes: RoutesBuilder) throws {
     let articles = routes.grouped("articles")
     
-    // Public routes
     articles.get(use: index)
     articles.get(":slug", use: show)
     
-    // Admin routes - in a real app, you'd add authentication middleware here
     let admin = articles.grouped("admin")
     admin.get(use: adminIndex)
     admin.post(use: create)
@@ -19,7 +17,6 @@ struct ArticleController: RouteCollection {
     }
   }
   
-  // Public routes
   @Sendable
   func index(req: Request) async throws -> View {
     let articles = try await Article.query(on: req.db)
