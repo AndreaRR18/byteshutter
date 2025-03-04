@@ -1,0 +1,286 @@
+#extend("base"):
+    #export("title", "About Me - ByteShutter")
+    
+    #export("header"):
+        #extend("header")
+    #endexport
+    
+    #export("content"):
+        <section class="about-section">
+            <div class="about-header">
+                <h1>The Code Journey</h1>
+                <p class="subtitle">From Pascal to Swift: A Developer's Tale</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>The Digital Awakening</h3>
+                            <p>Like many great tech stories, mine begins with childhood curiosity. The first time I laid hands on a PC, something clicked. While other kids were mastering playgrounds, I was navigating through command lines and discovering the magic behind the screen.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Academic Foundations</h3>
+                            <p>High school introduced me to structured programming. I dove into the logical world of Pascal and the powerful capabilities of C++, building the foundation for what would become a lifelong passion.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>University of Possibilities</h3>
+                            <p>At UNICAS, my horizons expanded exponentially. I didn't just learn programming—I explored the mathematical principles that underpin it all. From pure mathematics to physics and probability theory, I gained the analytical thinking that separates good developers from great ones.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>First Steps in the Industry</h3>
+                            <p>My internship at Facile.it was the first taste of applying theory to practice. Working alongside seasoned developers, I contributed to private projects that taught me more about real-world coding than any textbook ever could.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Crafting Mobile Experiences in Venice</h3>
+                            <p>Venice: a city of ancient art and, for me, modern app architecture. At a dynamic Mobile Agency, I worked on numerous cutting-edge projects. Biomes stands out as a particular achievement, where we pushed the boundaries of what mobile applications could do.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Back to Facile.it</h3>
+                            <p>Returning to Facile.it as a mobile developer, I specialized in internal applications for their store network. This role taught me the delicate balance between user experience and business requirements—creating tools that were both powerful and intuitive.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Scaling Up at Job&Talent</h3>
+                            <p>At Job&Talent, my work reached thousands of users. Creating public-facing applications with this level of reach came with new challenges and responsibilities, teaching me about performance optimization, user feedback loops, and iterative improvement.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Today: 6+ Years of Digital Craftsmanship</h3>
+                            <p>With over six years of professional experience, I've evolved from a curious kid to a seasoned developer. Each line of code I write carries the lessons of this journey. My passion for clean, efficient solutions is matched only by my enthusiasm for what's coming next in our rapidly evolving tech landscape.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skills-container">
+                    <h2>Tech Stack Highlights</h2>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <h4>Swift & iOS Development</h4>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <h4>Server-Side Swift (Vapor)</h4>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <h4>UI/UX Design Principles</h4>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <h4>App Architecture</h4>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <h4>Performance Optimization</h4>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <h4>C++ & Low-level Programming</h4>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="philosophy-section">
+                    <h2>Development Philosophy</h2>
+                    <blockquote>
+                        <p>"Code is read more often than it is written. I believe in crafting solutions that not only work today but can be understood and built upon tomorrow."</p>
+                    </blockquote>
+                    <p>My approach to development combines technical excellence with a deep appreciation for the human element of software. Every application is ultimately about people—whether they're users navigating an interface or developers maintaining code.</p>
+                </div>
+            </div>
+        </section>
+    #endexport
+    
+    #export("styles"):
+        <style>
+            .about-section {
+                padding: 3rem 0;
+            }
+            
+            .about-header {
+                text-align: center;
+                margin-bottom: 4rem;
+            }
+            
+            .about-header h1 {
+                font-size: 3rem;
+                color: var(--yellow-accent);
+                margin-bottom: 0.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+                color: var(--text-secondary);
+            }
+            
+            .about-content {
+                background-color: var(--card-bg);
+                border-radius: 8px;
+                padding: 2rem;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+                border-left: 6px solid var(--yellow-accent);
+            }
+            
+            /* Timeline styles */
+            .timeline {
+                position: relative;
+                max-width: 1200px;
+                margin: 0 auto 4rem auto;
+            }
+            
+            .timeline::after {
+                content: '';
+                position: absolute;
+                width: 6px;
+                background-color: var(--yellow-accent);
+                top: 0;
+                bottom: 0;
+                left: 50px;
+                margin-left: -3px;
+            }
+            
+            .timeline-item {
+                padding: 10px 40px;
+                position: relative;
+                margin-bottom: 2rem;
+            }
+            
+            .timeline-marker {
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                background-color: var(--yellow-accent);
+                border-radius: 50%;
+                left: 50px;
+                top: 15px;
+                margin-left: -10px;
+                z-index: 1;
+                box-shadow: 0 0 0 4px var(--petrol-blue-light);
+            }
+            
+            .timeline-content {
+                margin-left: 30px;
+                background-color: var(--petrol-blue-light);
+                padding: 1.5rem;
+                border-radius: 8px;
+            }
+            
+            .timeline-content h3 {
+                color: var(--yellow-accent);
+                margin-bottom: 1rem;
+            }
+            
+            /* Skills styles */
+            .skills-container {
+                margin-bottom: 4rem;
+            }
+            
+            .skills-container h2 {
+                color: var(--yellow-accent);
+                margin-bottom: 1.5rem;
+                text-align: center;
+            }
+            
+            .skills-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 1.5rem;
+            }
+            
+            .skill-item h4 {
+                margin-bottom: 0.5rem;
+                color: var(--text-primary);
+            }
+            
+            .skill-bar {
+                height: 10px;
+                background-color: var(--petrol-blue-dark);
+                border-radius: 5px;
+                overflow: hidden;
+            }
+            
+            .skill-level {
+                height: 100%;
+                background-color: var(--yellow-accent);
+            }
+            
+            /* Philosophy section */
+            .philosophy-section {
+                padding: 1rem 0;
+            }
+            
+            .philosophy-section h2 {
+                color: var(--yellow-accent);
+                margin-bottom: 1.5rem;
+                text-align: center;
+            }
+            
+            blockquote {
+                border-left: 4px solid var(--yellow-accent);
+                padding-left: 1.5rem;
+                margin: 2rem 0;
+                font-style: italic;
+                font-size: 1.2rem;
+            }
+            
+            @media (max-width: 768px) {
+                .timeline::after {
+                    left: 31px;
+                }
+                
+                .timeline-marker {
+                    left: 31px;
+                }
+                
+                .skills-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    #endexport
+    
+    #export("footer"):
+        #extend("footer")
+    #endexport
+#endextend

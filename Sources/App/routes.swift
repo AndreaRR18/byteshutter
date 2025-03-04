@@ -18,6 +18,10 @@ func routes(_ app: Application) throws {
     )
   }
   
+  app.get("about") { req -> View in
+    return try await req.view.render("about")
+  }
+  
   try app.register(collection: ArticleController())
 }
 
