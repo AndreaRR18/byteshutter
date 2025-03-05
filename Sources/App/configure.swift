@@ -7,7 +7,6 @@ import Vapor
 public func configure(_ app: Application) async throws {
   app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
   
-  // Configure database using environment variables from .env
   app.databases.use(DatabaseConfigurationFactory.postgres(configuration: .init(
     hostname: AppEnvironment.hostname,
     port: AppEnvironment.port,
@@ -17,8 +16,6 @@ public func configure(_ app: Application) async throws {
     tls: .prefer(try .init(configuration: .clientDefault)))
   ), as: .psql)
   
-  
-  // Add database migrations
   app.migrations.add(CreateArticle())
   app.migrations.add(SeedArticles())
   
