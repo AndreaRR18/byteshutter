@@ -23,6 +23,8 @@ func routes(_ app: Application) throws {
   }
   
   try app.register(collection: ArticleController())
+  
+  try app.register(collection: ContactController())
 }
 
 struct IndexContext: Encodable {

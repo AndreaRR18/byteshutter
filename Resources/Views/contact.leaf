@@ -1,0 +1,200 @@
+#extend("base"):
+    #export("title", "Contact Us - ByteShutter")
+    
+    #export("header"):
+        #extend("header")
+    #endexport
+    
+    #export("content"):
+        <section class="contact-section">
+            <div class="contact-header">
+                <h1>Get in Touch</h1>
+                <p class="subtitle">Have a question or want to collaborate? Reach out to us!</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    <div class="info-item">
+                        <h3>Email</h3>
+                        <p>contact@byteshutter.example</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Response Time</h3>
+                        <p>We typically respond within 24-48 hours on business days.</p>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h2>Send a Message</h2>
+                    
+                    #if(success):
+                        <div class="success-message">
+                            <p>Your message has been sent successfully! We'll get back to you soon.</p>
+                        </div>
+                    #endif
+                    
+                    #if(error):
+                        <div class="error-message">
+                            <p>Error: #(errorMessage)</p>
+                        </div>
+                    #endif
+                    
+                    <form method="POST" action="/contact">
+                        <div class="form-group">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="Your email address">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject <span class="required">*</span></label>
+                            <input type="text" id="subject" name="subject" required placeholder="Message subject">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message <span class="required">*</span></label>
+                            <textarea id="message" name="message" rows="6" required placeholder="Your message"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    #endexport
+    
+    #export("styles"):
+        <style>
+            .contact-section {
+                padding: 3rem 0;
+            }
+            
+            .contact-header {
+                text-align: center;
+                margin-bottom: 3rem;
+            }
+            
+            .contact-header h1 {
+                font-size: 3rem;
+                color: var(--yellow-accent);
+                margin-bottom: 0.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+                color: var(--text-secondary);
+            }
+            
+            .contact-container {
+                display: grid;
+                grid-template-columns: 1fr 2fr;
+                gap: 2rem;
+                background-color: var(--card-bg);
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+                border-left: 6px solid var(--yellow-accent);
+            }
+            
+            .contact-info {
+                padding: 2rem;
+                background-color: var(--petrol-blue-dark);
+            }
+            
+            .contact-info h2 {
+                color: var(--yellow-accent);
+                margin-bottom: 1.5rem;
+                font-size: 1.5rem;
+            }
+            
+            .info-item {
+                margin-bottom: 1.5rem;
+            }
+            
+            .info-item h3 {
+                color: var(--yellow-accent);
+                margin-bottom: 0.5rem;
+                font-size: 1.2rem;
+            }
+            
+            .info-item p {
+                color: var(--text-secondary);
+            }
+            
+            .contact-form {
+                padding: 2rem;
+            }
+            
+            .contact-form h2 {
+                color: var(--yellow-accent);
+                margin-bottom: 1.5rem;
+                font-size: 1.5rem;
+            }
+            
+            .form-group {
+                margin-bottom: 1.5rem;
+            }
+            
+            label {
+                display: block;
+                margin-bottom: 0.5rem;
+                font-weight: 500;
+            }
+            
+            .required {
+                color: var(--yellow-accent);
+            }
+            
+            input, textarea {
+                width: 100%;
+                padding: 0.75rem;
+                border-radius: 4px;
+                border: 1px solid var(--petrol-blue-dark);
+                background-color: var(--petrol-blue);
+                color: var(--text-primary);
+            }
+            
+            input:focus, textarea:focus {
+                outline: none;
+                border-color: var(--yellow-accent);
+                box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+            }
+            
+            .submit-btn {
+                width: 100%;
+                padding: 0.75rem;
+                font-size: 1.1rem;
+            }
+            
+            .success-message {
+                background-color: rgba(46, 204, 64, 0.2);
+                border-left: 4px solid rgb(46, 204, 64);
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+                border-radius: 4px;
+            }
+            
+            .error-message {
+                background-color: rgba(255, 65, 54, 0.2);
+                border-left: 4px solid rgb(255, 65, 54);
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+                border-radius: 4px;
+            }
+            
+            @media (max-width: 768px) {
+                .contact-container {
+                    grid-template-columns: 1fr;
+                }
+                
+                .contact-info, .contact-form {
+                    padding: 1.5rem;
+                }
+            }
+        </style>
+    #endexport
+    
+    #export("footer"):
+        #extend("footer")
+    #endexport
+#endextend
