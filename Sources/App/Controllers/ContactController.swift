@@ -12,21 +12,18 @@ struct ContactController: RouteCollection {
   func boot(routes: RoutesBuilder) throws {
     let contact = routes.grouped("contact")
     
-    // Route to display the contact form
     contact.get { req -> View in
-      return try await req.view.render("contact", [
-        "success": false,
-        "error": false
-      ])
+      return try await req.view.render(
+        "contact",
+        ContactContext(result: .none)
+      )
     }
     
-    // Route to handle the form submission
     contact.post { req -> View in
-
+      
       do {
         let form = try req.content.decode(ContactForm.self)
         
-        // Validate the form data
         try validateContactForm(form)
         
         // In a real application, you would send the email here
@@ -41,10 +38,10 @@ struct ContactController: RouteCollection {
         req.logger.info("Contact form submission saved: \(form.email), \(form.subject)")
         
         // Return the contact page with a success message
-        return try await req.view.render("contact", [
-          "success": true,
-          "error": false
-        ])
+        return try await req.view.render(
+          "contact",
+          ContactContext(result: .success)
+        )
       } catch {
         // Handle validation errors
         let errorMessage: String
@@ -55,11 +52,10 @@ struct ContactController: RouteCollection {
         }
         
         // Return the contact page with an error message
-        return try await req.view.render("contact", [
-          "success": "Success!",
-          "error": "Failure!",
-          "errorMessage": errorMessage
-        ])
+        return try await req.view.render(
+          "contact",
+          ContactContext(result: .error(errorMessage: errorMessage))
+        )
       }
     }
   }
@@ -103,5 +99,36 @@ struct ContactController: RouteCollection {
 extension ContactController {
   struct ValidationError: Error {
     let message: String
+  }
+}
+
+struct ContactContext: Encodable {
+  var success: Bool
+  var error: Bool
+  var errorMessage: String?
+  
+  init(result: Result) {
+    switch result {
+    case .none:
+      success = false
+      error = false
+      errorMessage = nil
+      
+    case .success:
+      success = true
+      error = false
+      errorMessage = nil
+      
+    case .error(let errorMessage):
+      success = false
+      error = true
+      self.errorMessage = errorMessage
+    }
+  }
+  
+  enum Result {
+    case none
+    case success
+    case error(errorMessage: String?)
   }
 }
