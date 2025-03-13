@@ -20,6 +20,8 @@ public func configure(_ app: Application) async throws {
   app.migrations.add(SeedArticles())
   
   app.views.use(.leaf)
-
+  
+  app.leaf.tags["markdown"] = MarkdownTag()
+  
   try routes(app)
 }
