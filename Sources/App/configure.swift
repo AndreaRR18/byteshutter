@@ -21,7 +21,5 @@ public func configure(_ app: Application) async throws {
   
   app.views.use(.leaf)
   
-  app.leaf.tags["markdown"] = MarkdownTag()
-  
   try routes(app)
 }
