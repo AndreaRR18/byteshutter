@@ -67,6 +67,60 @@ struct SeedArticles: AsyncMigration {
                 Now that you have a basic understanding of Vapor, you can start building your own applications. Check out the official Vapor documentation for more detailed guides and examples.
                 """,
         slug: "getting-started-with-vapor"
+      ),
+      Article(
+        title: "Swift Concurrency in Vapor",
+        excerpt: "Explore how to leverage Swift's modern concurrency features in your Vapor applications.",
+        content: "# Swift Concurrency in Vapor\n\nVapor 4 fully embraces Swift's async/await model...",
+        slug: "swift-concurrency-in-vapor"
+      ),
+      Article(
+        title: "Building RESTful APIs with Vapor",
+        excerpt: "A comprehensive guide to creating robust REST APIs using Vapor and Swift.",
+        content: "# Building RESTful APIs with Vapor\n\nThis guide covers best practices...",
+        slug: "restful-apis-with-vapor"
+      ),
+      Article(
+        title: "Authentication in Vapor",
+        excerpt: "Implement secure user authentication in your Vapor applications.",
+        content: "# Authentication in Vapor\n\nSecuring your application is critical...",
+        slug: "authentication-in-vapor"
+      ),
+      Article(
+        title: "Fluent ORM: A Deep Dive",
+        excerpt: "Master Vapor's powerful ORM system for database operations.",
+        content: "# Fluent ORM: A Deep Dive\n\nFluent is Vapor's ORM system...",
+        slug: "fluent-orm-deep-dive"
+      ),
+      Article(
+        title: "Deploying Vapor Applications",
+        excerpt: "Learn how to deploy your Vapor application to production environments.",
+        content: "# Deploying Vapor Applications\n\nThis guide covers various deployment options...",
+        slug: "deploying-vapor-applications"
+      ),
+      Article(
+        title: "Websockets with Vapor",
+        excerpt: "Implement real-time features using WebSockets in your Vapor app.",
+        content: "# Websockets with Vapor\n\nWebSockets enable bidirectional communication...",
+        slug: "websockets-with-vapor"
+      ),
+      Article(
+        title: "File Storage in Vapor",
+        excerpt: "Techniques for handling file uploads and storage in Vapor applications.",
+        content: "# File Storage in Vapor\n\nMany applications need to handle file uploads...",
+        slug: "file-storage-in-vapor"
+      ),
+      Article(
+        title: "Testing Vapor Applications",
+        excerpt: "Best practices for testing your Vapor application components.",
+        content: "# Testing Vapor Applications\n\nTesting is crucial for maintaining quality...",
+        slug: "testing-vapor-applications"
+      ),
+      Article(
+        title: "SwiftUI and Vapor Integration",
+        excerpt: "Building full-stack Swift applications with SwiftUI and Vapor.",
+        content: "# SwiftUI and Vapor Integration\n\nThe dream of full-stack Swift is here...",
+        slug: "swiftui-and-vapor-integration"
       )
     ]
     

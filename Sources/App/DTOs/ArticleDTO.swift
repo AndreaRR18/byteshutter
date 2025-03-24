@@ -2,7 +2,7 @@ import Fluent
 import Vapor
 import struct Foundation.Date
 
-struct ArticleDTO: Content {
+struct ArticleDTO: Content, Sendable {
   var id: UUID?
   var title: String
   var excerpt: String

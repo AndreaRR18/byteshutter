@@ -103,6 +103,17 @@ public struct MarkdownRenderer {
   private func processHeadings(_ text: String) -> String {
     var processed = text
     
+    // Process section headers first (Key Concepts, Routes, Models, Next Steps)
+    let sectionHeaderPattern = "^(Key Concepts|Routes|Models|Next Steps)$"
+    let sectionRegex = try? NSRegularExpression(pattern: sectionHeaderPattern, options: [.anchorsMatchLines])
+    
+    processed = sectionRegex?.stringByReplacingMatches(
+      in: processed,
+      options: [],
+      range: NSRange(processed.startIndex..., in: processed),
+      withTemplate: "<h2 class=\"section-header\">$1</h2>"
+    ) ?? processed
+    
     // Match headings (# Heading 1, ## Heading 2, etc.)
     for i in (1...6).reversed() {
       let pattern = "^#{1,\(i)}\\s+(.+)$"
@@ -212,12 +223,13 @@ public struct MarkdownRenderer {
           let language = processed[languageRange]
           let code = processed[codeRange]
           
-          var replacement = "<pre>"
-          if !language.isEmpty && options.enableCodeHighlighting {
-            replacement += "<code class=\"language-\(language)\">"
-          } else {
-            replacement += "<code>"
+          var languageClass = "language-\(language)"
+          if language.isEmpty {
+            languageClass = "language-none"
           }
+          
+          var replacement = "<pre class=\"code-block\">"
+          replacement += "<code class=\"\(languageClass)\">"
           
           // Escape HTML in code blocks
           let escapedCode = escapeHTML(String(code))
@@ -511,4 +523,49 @@ public struct MarkdownRenderer {
       .replacingOccurrences(of: "\"", with: "&quot;")
       .replacingOccurrences(of: "'", with: "&#39;")
   }
+}
+
+// Add this to your MarkdownRenderer.swift file
+
+extension MarkdownRenderer {
+    /// Process Swift code blocks with better syntax highlighting classes
+    private func enhanceSwiftCodeBlocks(_ html: String) -> String {
+        var enhancedHtml = html
+        
+        // Find all Swift code blocks
+        let pattern = "<pre><code class=\"language-swift\">(.*?)</code></pre>"
+        let regex = try? NSRegularExpression(pattern: pattern, options: [.dotMatchesLineSeparators])
+        
+        if let matches = regex?.matches(
+            in: enhancedHtml,
+            options: [],
+            range: NSRange(enhancedHtml.startIndex..., in: enhancedHtml)
+        ) {
+            for match in matches.reversed() {
+                if match.numberOfRanges >= 2,
+                   let codeRange = Range(match.range(at: 1), in: enhancedHtml) {
+                    
+                    let code = enhancedHtml[codeRange]
+                    
+                    // Add Swift-specific syntax highlighting classes
+                    // This is a simplified example - a real implementation would be more comprehensive
+                    let enhancedCode = String(code)
+                        .replacingOccurrences(of: "func ", with: "<span class=\"hljs-keyword\">func </span>")
+                        .replacingOccurrences(of: "class ", with: "<span class=\"hljs-keyword\">class </span>")
+                        .replacingOccurrences(of: "struct ", with: "<span class=\"hljs-keyword\">struct </span>")
+                        .replacingOccurrences(of: "enum ", with: "<span class=\"hljs-keyword\">enum </span>")
+                        .replacingOccurrences(of: "var ", with: "<span class=\"hljs-keyword\">var </span>")
+                        .replacingOccurrences(of: "let ", with: "<span class=\"hljs-keyword\">let </span>")
+                    
+                    let fullMatch = match.range(at: 0)
+                    if let fullRange = Range(fullMatch, in: enhancedHtml) {
+                        let replacement = "<pre><code class=\"language-swift\">\(enhancedCode)</code></pre>"
+                      enhancedHtml = enhancedHtml.replacingCharacters(in: fullRange, with: replacement)
+                    }
+                }
+            }
+        }
+        
+        return enhancedHtml
+    }
 }

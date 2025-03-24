@@ -1,7 +1,8 @@
 import Fluent
 import Vapor
 
-struct ArticleController: RouteCollection {
+struct ArticleController: RouteCollection, Sendable {
+  
   func boot(routes: RoutesBuilder) throws {
     let articles = routes.grouped("articles")
     
@@ -42,13 +43,24 @@ struct ArticleController: RouteCollection {
       throw Abort(.notFound)
     }
     
+    let markdownRenderer = MarkdownRenderer(
+      options: .init(
+        sanitize: true,
+        enableCodeHighlighting: true,
+        enableEmojis: true
+      )
+    )
+    
+    let renderedContent = markdownRenderer.renderHTML(from: article.content)
+    
     return try await req.view.render(
       "article",
-      ["article": article.toDTO()]
+      [
+        "article": renderedContent
+      ]
     )
   }
   
-  // Admin routes
   @Sendable
   func adminIndex(req: Request) async throws -> [ArticleDTO] {
     try await Article.query(on: req.db).all().map { $0.toDTO() }
@@ -89,4 +101,9 @@ struct ArticleController: RouteCollection {
     try await article.delete(on: req.db)
     return .noContent
   }
+}
+
+struct ArticleDetailContext: Encodable {
+  let article: ArticleDTO
+  let renderedContent: String
 }
