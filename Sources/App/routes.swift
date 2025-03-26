@@ -5,7 +5,7 @@ func routes(_ app: Application) throws {
   app.get { req -> View in
     let latestArticles = try await Article.query(on: req.db)
       .sort(\.$createdAt, .descending)
-      .limit(3)
+      .limit(5)
       .all()
       .map { $0.toDTO() }
     

@@ -1,6 +1,5 @@
 import Fluent
-import struct Foundation.UUID
-import struct Foundation.Date
+import Foundation
 
 final class Article: Model, @unchecked Sendable {
   static let schema = "articles"
@@ -23,9 +22,15 @@ final class Article: Model, @unchecked Sendable {
   @Field(key: "slug")
   var slug: String
   
-  init() { }
+  init() {}
   
-  init(id: UUID? = nil, title: String, excerpt: String, content: String, slug: String) {
+  init(
+    id: UUID?,
+    title: String,
+    excerpt: String,
+    content: String,
+    slug: String
+  ) {
     self.id = id
     self.title = title
     self.excerpt = excerpt

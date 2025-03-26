@@ -9,11 +9,10 @@
         <article class="article-container">
             <header class="article-header">
                 <h1 class="article-title">#(article.title)</h1>
-                <p class="article-date">#date(article.createdAt, "MMM d, yyyy")</p>
             </header>
             
             <div class="article-content">
-                #(article.content)
+                #unsafeHTML(article.content)
             </div>
             
             <div class="back-button">

@@ -55,9 +55,13 @@ struct ArticleController: RouteCollection, Sendable {
     
     return try await req.view.render(
       "article",
-      [
-        "article": renderedContent
-      ]
+      ["article": Article(
+        id: article.id,
+        title: article.title,
+        excerpt: article.excerpt,
+        content: renderedContent,
+        slug: article.slug
+      )]
     )
   }
   
@@ -101,9 +105,4 @@ struct ArticleController: RouteCollection, Sendable {
     try await article.delete(on: req.db)
     return .noContent
   }
-}
-
-struct ArticleDetailContext: Encodable {
-  let article: ArticleDTO
-  let renderedContent: String
 }
