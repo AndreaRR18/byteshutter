@@ -1,8 +1,8 @@
 import Fluent
 import Vapor
-import struct Foundation.Date
+import Foundation
 
-struct ArticleDTO: Content {
+struct ArticleDTO: Content, Sendable, Equatable {
   var id: UUID?
   var title: String
   var excerpt: String
@@ -11,24 +11,12 @@ struct ArticleDTO: Content {
   var slug: String
   
   func toModel() -> Article {
-    let model = Article()
-    
-    model.id = self.id
-    model.title = self.title
-    model.excerpt = self.excerpt
-    model.content = self.content
-    model.slug = self.slug
-    
-    return model
-  }
-}
-
-extension ArticleDTO: Equatable {
-  public static func == (lhs: Self, rhs: Self) -> Bool {
-    lhs.id == rhs.id &&
-    lhs.title == rhs.title &&
-    lhs.excerpt == rhs.excerpt &&
-    lhs.content == rhs.content &&
-    lhs.slug == rhs.slug
+    Article(
+      id: id,
+      title: title,
+      excerpt: excerpt,
+      content: content,
+      slug: slug
+    )
   }
 }

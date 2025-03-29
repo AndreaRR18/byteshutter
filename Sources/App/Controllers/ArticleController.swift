@@ -1,7 +1,9 @@
 import Fluent
 import Vapor
+import Ink
 
-struct ArticleController: RouteCollection {
+struct ArticleController: RouteCollection, Sendable {
+  
   func boot(routes: RoutesBuilder) throws {
     let articles = routes.grouped("articles")
     
@@ -44,11 +46,16 @@ struct ArticleController: RouteCollection {
     
     return try await req.view.render(
       "article",
-      ["article": article.toDTO()]
+      ["article": Article(
+        id: article.id,
+        title: article.title,
+        excerpt: article.excerpt,
+        content: MarkdownParser().parse(article.content).html,
+        slug: article.slug
+      )]
     )
   }
   
-  // Admin routes
   @Sendable
   func adminIndex(req: Request) async throws -> [ArticleDTO] {
     try await Article.query(on: req.db).all().map { $0.toDTO() }
