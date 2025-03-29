@@ -1,5 +1,6 @@
 import Fluent
 import Vapor
+import Ink
 
 struct ArticleController: RouteCollection, Sendable {
   
@@ -43,23 +44,13 @@ struct ArticleController: RouteCollection, Sendable {
       throw Abort(.notFound)
     }
     
-    let markdownRenderer = MarkdownRenderer(
-      options: .init(
-        sanitize: true,
-        enableCodeHighlighting: true,
-        enableEmojis: true
-      )
-    )
-    
-    let renderedContent = markdownRenderer.renderHTML(from: article.content)
-    
     return try await req.view.render(
       "article",
       ["article": Article(
         id: article.id,
         title: article.title,
         excerpt: article.excerpt,
-        content: renderedContent,
+        content: MarkdownParser().parse(article.content).html,
         slug: article.slug
       )]
     )

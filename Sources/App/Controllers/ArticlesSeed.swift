@@ -11,6 +11,8 @@ struct SeedArticles: AsyncMigration {
         content: """
                 Vapor is a web framework for Swift that enables you to write your backend code using the same language you use for iOS development. This provides a seamless developer experience and allows you to leverage your existing Swift knowledge.
                 
+                ![Vapor Framework](/Images/test-image.jpg)
+                
                 ## Setting Up Your Environment
                 
                 First, make sure you have Swift installed on your system. Vapor requires Swift 5.5 or higher.
