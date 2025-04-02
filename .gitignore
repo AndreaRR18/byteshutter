@@ -142,3 +142,25 @@ db.sqlite
 .env.*
 !.env.example
 .vscode
+
+# Ignore IntelliJ IDEA project files
+.idea/
+.index-build/
+
+# Ignore build directories
+out/
+build/
+target/
+
+# Ignore gradle files
+.gradle/
+
+# Ignore log files
+*.log
+
+# Ignore class files
+*.class
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
