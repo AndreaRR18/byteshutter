@@ -7,7 +7,7 @@ func routes(_ app: Application) throws {
       .sort(\.$createdAt, .descending)
       .limit(5)
       .all()
-      .map { $0.toDTO() }
+      .map { ArticleMapping.toDTO(from: $0) }
     
     return try await req.view.render(
       "index",
@@ -28,6 +28,6 @@ func routes(_ app: Application) throws {
 }
 
 struct IndexContext: Encodable {
-    let title: String
-    let articles: [ArticleDTO]
+  let title: String
+  let articles: [ArticleDTO]
 }

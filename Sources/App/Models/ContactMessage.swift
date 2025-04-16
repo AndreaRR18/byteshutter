@@ -23,7 +23,12 @@ final class ContactMessage: Model, @unchecked Sendable {
   
   init() {}
   
-  init(id: UUID? = nil, email: String, subject: String, message: String) {
+  init(
+    id: UUID? = nil,
+    email: String,
+    subject: String,
+    message: String
+  ) {
     self.id = id
     self.email = email
     self.subject = subject
