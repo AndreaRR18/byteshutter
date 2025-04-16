@@ -21,7 +21,9 @@ public func configure(_ app: Application) async throws {
   )
   
   app.migrations.add(CreateArticle())
-  app.migrations.add(SeedArticles())
+  app.migrations.add(CreateCollection())
+  app.migrations.add(CreateArticlesCollections())
+  app.migrations.add(CreateContactMessage())
   
   app.views.use(.leaf)
   

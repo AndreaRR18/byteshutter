@@ -2,7 +2,7 @@ import Fluent
 
 struct CreateContactMessage: AsyncMigration {
   func prepare(on database: Database) async throws {
-    try await database.schema("contact_messages")
+    try await database.schema(ContactMessage.schema)
       .id()
       .field("email", .string, .required)
       .field("subject", .string, .required)

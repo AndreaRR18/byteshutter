@@ -13,14 +13,23 @@ final class Article: Model, @unchecked Sendable {
   @Field(key: "excerpt")
   var excerpt: String
   
+  @Field(key: "slug")
+  var slug: String
+  
   @Field(key: "content")
   var content: String
+  
+  @Field(key: "publication_date")
+  var publicationDate: Date
+  
+  @Field(key: "is_published")
+  var isPublished: Bool
   
   @Timestamp(key: "created_at", on: .create)
   var createdAt: Date?
   
-  @Field(key: "slug")
-  var slug: String
+  @Timestamp(key: "updated_at", on: .update)
+  var updatedAt: Date?
   
   init() {}
   
@@ -28,24 +37,17 @@ final class Article: Model, @unchecked Sendable {
     id: UUID?,
     title: String,
     excerpt: String,
+    slug: String,
     content: String,
-    slug: String
+    publicationDate: Date,
+    isPublished: Bool
   ) {
     self.id = id
     self.title = title
     self.excerpt = excerpt
-    self.content = content
     self.slug = slug
-  }
-  
-  func toDTO() -> ArticleDTO {
-    .init(
-      id: self.id,
-      title: self.title,
-      excerpt: self.excerpt,
-      content: self.content,
-      createdAt: self.createdAt,
-      slug: self.slug
-    )
+    self.content = content
+    self.publicationDate = publicationDate
+    self.isPublished = isPublished 
   }
 }

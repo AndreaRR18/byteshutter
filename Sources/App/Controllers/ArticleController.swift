@@ -3,7 +3,6 @@ import Vapor
 import Ink
 
 struct ArticleController: RouteCollection, Sendable {
-  
   func boot(routes: RoutesBuilder) throws {
     let articles = routes.grouped("articles")
     
@@ -24,7 +23,7 @@ struct ArticleController: RouteCollection, Sendable {
     let articles = try await Article.query(on: req.db)
       .sort(\.$createdAt, .descending)
       .all()
-      .map { $0.toDTO() }
+      .map { ArticleMapping.toDTO(from: $0) }
     
     return try await req.view.render(
       "articles",
@@ -44,47 +43,41 @@ struct ArticleController: RouteCollection, Sendable {
       throw Abort(.notFound)
     }
     
+    article.content = MarkdownParser().parse(article.content).html
+    
     return try await req.view.render(
       "article",
-      ["article": Article(
-        id: article.id,
-        title: article.title,
-        excerpt: article.excerpt,
-        content: MarkdownParser().parse(article.content).html,
-        slug: article.slug
-      )]
+      ["article": article]
     )
   }
   
   @Sendable
   func adminIndex(req: Request) async throws -> [ArticleDTO] {
-    try await Article.query(on: req.db).all().map { $0.toDTO() }
+    try await Article.query(on: req.db)
+      .all()
+      .map { ArticleMapping.toDTO(from: $0) }
   }
   
   @Sendable
   func create(req: Request) async throws -> ArticleDTO {
     let articleDTO = try req.content.decode(ArticleDTO.self)
-    let article = articleDTO.toModel()
-    
-    try await article.save(on: req.db)
-    return article.toDTO()
+    try await ArticleMapping.toModel(from: articleDTO)
+      .save(on: req.db)
+    return articleDTO
   }
   
   @Sendable
   func update(req: Request) async throws -> ArticleDTO {
-    guard let article = try await Article.find(req.parameters.get("articleID"), on: req.db) else {
+    guard var article = try await Article.find(req.parameters.get("articleID"), on: req.db) else {
       throw Abort(.notFound)
     }
     
     let updated = try req.content.decode(ArticleDTO.self)
     
-    article.title = updated.title
-    article.excerpt = updated.excerpt
-    article.content = updated.content
-    article.slug = updated.slug
+    article = ArticleMapping.toModel(from: updated)
     
     try await article.save(on: req.db)
-    return article.toDTO()
+    return ArticleMapping.toDTO(from: article)
   }
   
   @Sendable
