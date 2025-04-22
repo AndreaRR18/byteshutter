@@ -28,30 +28,26 @@ struct CollectionController: RouteCollection, Sendable {
       throw Abort(.badRequest)
     }
     
-    var collection = try await Collection.query(on: req.db)
+    let collection = try await Collection.query(on: req.db)
       .filter(\.$slug == slug)
       .first()
-    
-    // Mock
-    if collection == nil {
-      collection = [Collection].mock.filter {
-        $0.slug == slug
-      }.first
-    }
     
     guard let collectionId = collection?.id else {
       throw Abort(.notFound)
     }
     
     let articlesIDs = try await ArticlesCollections.query(on: req.db)
-      .filter( \.$collectionID == collectionId)
-      .first()?
-      .articleID
+      .filter(\.$collectionID == collectionId)
+      .all()
+      .map(\.articleID)
       
+    let articles = try await Article.query(on: req.db)
+      .filter(\.$id ~~ articlesIDs)
+      .all()
     
     return try await req.view.render(
       "collection",
-      ["collection":collection]
+      ["articles":articles]
     )
   }
 }

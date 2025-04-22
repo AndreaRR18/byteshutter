@@ -15,7 +15,7 @@
                                 #(collection.name)
                             </h3>
                             <p class="collection-description">#(collection.description)</p>
-                            <a href="/collections/#(article.slug)" class="btn">See articles</a>
+                            <a href="/collections/#(collection.slug)" class="btn">See articles</a>
                         </div>
                     </article>
                 #endfor
