@@ -7,11 +7,11 @@ struct CreateContactMessage: AsyncMigration {
       .field("email", .string, .required)
       .field("subject", .string, .required)
       .field("message", .string, .required)
-      .field("created_at", .datetime)
+      .field("createdAt", .datetime)
       .create()
   }
   
   func revert(on database: Database) async throws {
-    try await database.schema("contact_messages").delete()
+    try await database.schema("contactMessages").delete()
   }
 }

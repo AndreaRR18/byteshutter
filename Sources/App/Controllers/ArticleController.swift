@@ -8,12 +8,13 @@ struct ArticleController: RouteCollection, Sendable {
     
     articles.get(use: index)
     articles.get(":slug", use: show)
+    articles.post("create", use: createArticle)
   }
   
   @Sendable
   func index(req: Request) async throws -> View {
     let articles = try await Article.query(on: req.db)
-      .sort(\.$createdAt, .descending)
+      .sort(\.$updatedAt, .descending)
       .all()
       .map { ArticleMapping.toDTO(from: $0) }
     
@@ -41,5 +42,12 @@ struct ArticleController: RouteCollection, Sendable {
       "article",
       ["article": article]
     )
+  }
+  
+  @Sendable
+  func createArticle(req: Request) async throws -> Article {
+    let article = try req.content.decode(Article.self)
+    try await article.save(on: req.db)
+    return article
   }
 }

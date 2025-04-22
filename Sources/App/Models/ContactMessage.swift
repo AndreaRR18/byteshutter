@@ -18,7 +18,7 @@ final class ContactMessage: Model, @unchecked Sendable {
   @Field(key: "message")
   var message: String
   
-  @Timestamp(key: "created_at", on: .create)
+  @Timestamp(key: "createdAt", on: .create)
   var createdAt: Date?
   
   init() {}
