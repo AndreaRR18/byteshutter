@@ -7,8 +7,6 @@
     
     #export("content"):
         <section class="articles-section">
-            <h2>All Articles</h2>
-            
             <div class="articles-grid">
                 #for(article in articles):
                     <article class="article-card">
@@ -16,7 +14,6 @@
                             <h3 class="article-title">
                                 <a href="/articles/#(article.slug)">#(article.title)</a>
                             </h3>
-                            <p class="article-date">#date(article.createdAt, "MMM d, yyyy")</p>
                             <p class="article-excerpt">#(article.excerpt)</p>
                             <a href="/articles/#(article.slug)" class="btn">Read More</a>
                         </div>

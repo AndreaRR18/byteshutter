@@ -10,6 +10,7 @@ struct ArticleDTO: Content, Sendable, Equatable {
   var content: String
   var publicationDate: Date
   var isPublished: Bool
+  var topics: [String]
   var createdAt: Date?
   var updatedAt: Date?
 }

@@ -7,7 +7,8 @@ enum ArticleMapping {
       excerpt: article.excerpt,
       content: article.content,
       publicationDate: article.publicationDate,
-      isPublished: article.isPublished
+      isPublished: article.isPublished,
+      topics: article.topics
     )
   }
   
@@ -19,7 +20,8 @@ enum ArticleMapping {
       slug: articleDTO.slug,
       content: articleDTO.content,
       publicationDate: articleDTO.publicationDate,
-      isPublished: articleDTO.isPublished
+      isPublished: articleDTO.isPublished,
+      topics: articleDTO.topics
     )
   }
 }

@@ -1,7 +1,8 @@
 import Fluent
 import Foundation
+import Vapor
 
-final class Article: Model, @unchecked Sendable {
+final class Article: Model, Content, @unchecked Sendable {
   static let schema = "articles"
   
   @ID(key: .id)
@@ -19,16 +20,19 @@ final class Article: Model, @unchecked Sendable {
   @Field(key: "content")
   var content: String
   
-  @Field(key: "publication_date")
+  @Field(key: "publicationDate")
   var publicationDate: Date
   
-  @Field(key: "is_published")
+  @Field(key: "isPublished")
   var isPublished: Bool
   
-  @Timestamp(key: "created_at", on: .create)
+  @Field(key: "topics")
+  var topics: [String]
+  
+  @Timestamp(key: "createdAt", on: .create)
   var createdAt: Date?
   
-  @Timestamp(key: "updated_at", on: .update)
+  @Timestamp(key: "updatedAt", on: .update)
   var updatedAt: Date?
   
   init() {}
@@ -40,7 +44,8 @@ final class Article: Model, @unchecked Sendable {
     slug: String,
     content: String,
     publicationDate: Date,
-    isPublished: Bool
+    isPublished: Bool,
+    topics: [String]
   ) {
     self.id = id
     self.title = title
@@ -48,6 +53,7 @@ final class Article: Model, @unchecked Sendable {
     self.slug = slug
     self.content = content
     self.publicationDate = publicationDate
-    self.isPublished = isPublished 
+    self.isPublished = isPublished
+    self.topics = topics
   }
 }
