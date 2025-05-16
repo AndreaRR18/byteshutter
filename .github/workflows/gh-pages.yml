@@ -1,0 +1,56 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      
+      - name: Set up Swift
+        uses: fwcd/swift-action@v1
+        with:
+          swift-version: "5.9"
+      
+      - name: Build
+        run: |
+          swift build -c release --product App
+      
+      - name: Install Vapor
+        run: |
+          git clone https://github.com/vapor/toolbox.git
+          cd toolbox
+          git checkout 18.7.1
+          make install
+      
+      - name: Generate static site
+        run: |
+          # Start the server in the background
+          ./.build/release/App serve --env production --hostname 127.0.0.1 --port 8080 &
+          SERVER_PID=$!
+          
+          # Wait for server to start
+          sleep 10
+          
+          # Run the static site generator
+          swift run -c release --package-path Scripts generate_static_site
+          
+          # Stop the server
+          kill $SERVER_PID
+      
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: Public/static-site
+          branch: gh-pages
+          clean: true
+          target-folder: .

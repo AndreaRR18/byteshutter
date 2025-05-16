@@ -1,6 +1,30 @@
 # ByteShutter
 
+[![Deploy to GitHub Pages](https://github.com/AndreaRR18/byteshutter/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/AndreaRR18/byteshutter/actions/workflows/gh-pages.yml)
+
 ByteShutter is a simple website built with Swift on the server-side using the Vapor framework. It demonstrates how to create web applications using Swift for backend development with Leaf templates for the frontend.
+
+## GitHub Pages Deployment
+
+This project is configured to automatically deploy to GitHub Pages when changes are pushed to the `main` branch. The static site is generated from the Vapor application and deployed to the `gh-pages` branch.
+
+### How it works
+
+1. When you push to `main`, GitHub Actions will:
+   - Build the Vapor application
+   - Start a local server
+   - Generate static HTML files for all routes
+   - Deploy the static site to the `gh-pages` branch
+   - GitHub Pages will serve the site from the `gh-pages` branch
+
+### Manual Deployment
+
+To manually trigger a deployment:
+1. Go to the [Actions](https://github.com/AndreaRR18/byteshutter/actions) tab
+2. Select the "GitHub Pages" workflow
+3. Click "Run workflow"
+4. Select the branch (usually `main`)
+5. Click "Run workflow"
 
 ## Overview
 
