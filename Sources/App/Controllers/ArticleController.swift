@@ -9,9 +9,11 @@ struct ArticleController: RouteCollection, Sendable {
   /// - Parameter routes: The routes builder to register the routes with.
   /// - Throws: An error if route registration fails.
   func boot(routes: RoutesBuilder) throws {
-    let articles = routes.grouped("articles")
+    // Register root path
+    routes.get(use: index)
     
-    articles.get(use: index)
+    // Register /articles routes
+    let articles = routes.grouped("articles")
     articles.get(":slug", use: show)
     articles.post("create", use: createArticle)
   }
@@ -22,14 +24,14 @@ struct ArticleController: RouteCollection, Sendable {
   /// - Throws: An error if database operations or view rendering fails.
   @Sendable
   func index(req: Request) async throws -> View {
-    // Remove this request to DB
     let articles = try await Article.query(on: req.db)
-      .sort(\.$updatedAt, .descending)
+      .filter(\.$isPublished == true)
+      .sort(\.$publicationDate, .descending)
       .all()
       .map { ArticleMapping.toDTO(from: $0) }
     
     return try await req.view.render(
-      "articles",
+      "index",
       ["articles": articles]
     )
   }

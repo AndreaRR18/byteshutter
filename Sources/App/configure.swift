@@ -20,8 +20,10 @@ public func configure(_ app: Application) async throws {
     as: .psql
   )
   
+  // Register migrations
   app.migrations.add(CreateArticle())
   
+  // Configure Leaf for templating
   app.views.use(.leaf)
   
   try routes(app)

@@ -6,17 +6,83 @@
     #endexport
     
     #export("content"):
-        <section class="content-section">
-            <div class="article-content">
-                #unsafeHTML(introduction)
+        <section class="articles-section">
+            <div class="articles-grid">
+                #for(article in articles):
+                    <article class="article-card">
+                        <div class="article-content">
+                            <h3 class="article-title">
+                                <a href="/articles/#(article.slug)">#(article.title)</a>
+                            </h3>
+                            <p class="article-excerpt">#(article.excerpt)</p>
+                            <a href="/articles/#(article.slug)" class="btn">Read More</a>
+                        </div>
+                    </article>
+                #endfor
             </div>
         </section>
     #endexport
     
     #export("styles"):
         <style>
-            .content-section {
+            .articles-section {
                 padding: 3rem 0;
+            }
+            
+            .articles-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+            
+            .article-card {
+                background-color: var(--card-bg);
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                transition: transform 0.3s ease;
+                border-left: 4px solid var(--yellow-accent);
+            }
+            
+            .article-card:hover {
+                transform: translateY(-5px);
+            }
+            
+            .article-content {
+                padding: 1.5rem;
+            }
+            
+            .article-title {
+                font-size: 1.5rem;
+                margin-bottom: 0.75rem;
+                color: var(--yellow-accent);
+            }
+            
+            .article-title a {
+                color: inherit;
+                text-decoration: none;
+            }
+            
+            .article-title a:hover {
+                text-decoration: underline;
+            }
+            
+            .article-date {
+                color: var(--text-secondary);
+                font-size: 0.85rem;
+                margin-bottom: 1rem;
+            }
+            
+            .article-excerpt {
+                color: var(--text-secondary);
+                margin-bottom: 1.5rem;
+            }
+            
+            @media (max-width: 768px) {
+                .articles-grid {
+                    grid-template-columns: 1fr;
+                }
             }
         </style>
     #endexport

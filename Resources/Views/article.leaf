@@ -16,7 +16,7 @@
             </div>
             
             <div class="back-button">
-                <a href="/articles" class="btn">← Back to Articles</a>
+                <a href="/" class="btn">← Back to Articles</a>
             </div>
         </article>
     #endexport
