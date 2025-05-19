@@ -22,6 +22,7 @@ struct ArticleController: RouteCollection, Sendable {
   /// - Throws: An error if database operations or view rendering fails.
   @Sendable
   func index(req: Request) async throws -> View {
+    // Remove this request to DB
     let articles = try await Article.query(on: req.db)
       .sort(\.$updatedAt, .descending)
       .all()
