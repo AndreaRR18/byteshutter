@@ -1,5 +1,4 @@
 import Vapor
-import FluentPostgresDriver
 
 /// A helper for accessing environment variables in a type-safe way
 enum AppEnvironment {

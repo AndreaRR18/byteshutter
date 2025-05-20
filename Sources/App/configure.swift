@@ -1,27 +1,9 @@
 import NIOSSL
-import Fluent
-import FluentPostgresDriver
 import Leaf
 import Vapor
 
 public func configure(_ app: Application) async throws {
   app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
-  
-  app.databases.use(
-    DatabaseConfigurationFactory.postgres(
-      configuration: .init(
-        hostname: AppEnvironment.hostname,
-        port: AppEnvironment.port,
-        username: AppEnvironment.username,
-        password: AppEnvironment.password,
-        database: AppEnvironment.database,
-        tls: .prefer(try .init(configuration: .clientDefault)))
-    ),
-    as: .psql
-  )
-  
-  // Register migrations
-  app.migrations.add(CreateArticle())
   
   // Configure Leaf for templating
   app.views.use(.leaf)

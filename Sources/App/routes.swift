@@ -2,6 +2,7 @@ import Fluent
 import Vapor
 
 func routes(_ app: Application) throws {
-  try app.register(collection: ArticleController())
+  let articleService = ArticleService()
+  try app.register(collection: ArticleController(articleService: articleService))
   try app.register(collection: AboutController())
 }
