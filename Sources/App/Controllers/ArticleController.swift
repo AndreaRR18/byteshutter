@@ -33,7 +33,6 @@ struct ArticleController: RouteCollection, Sendable {
     func index(req: Request) async throws -> View {
         let articles = try await articleService.getAllArticles()
             .filter { $0.isPublished }
-            .map { ArticleMapping.toDTO(from: $0) }
         
         return try await req.view.render(
             "index",
