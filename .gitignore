@@ -129,5 +129,10 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# Windsurf rules
+# AI agents rules
 .windsurf
+.cursor
+
+
+# IntelliJ
+.idea
