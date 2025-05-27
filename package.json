@@ -1,0 +1,38 @@
+{
+  "devDependencies": {
+    "@types/jest": "^29.5.14",
+    "gh-pages": "^6.3.0",
+    "jest": "^30.0.0-beta.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  },
+  "name": "byteshutter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreaRR18/byteshutter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreaRR18/byteshutter/issues"
+  },
+  "homepage": "https://github.com/AndreaRR18/byteshutter#readme",
+  "dependencies": {
+    "marked": "^15.0.12"
+  }
+}
