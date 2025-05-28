@@ -1,13 +1,13 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: 'src', // Relative path to the source directory
+  root: '',
   build: {
-    outDir: '../dist', // Output directory relative to the project root
+    outDir: '../dist',
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: 'index.html', // Relative to the root
+        main: 'index.html',
       },
     },
   },
