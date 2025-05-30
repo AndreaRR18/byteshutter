@@ -1,5 +1,4 @@
-import './src/ArticlesList/ArticlesList';
-import { renderArticles } from './src/ArticlesList/ArticlesList';
+import { renderArticles } from './dist/ArticlesList/ArticlesList.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('articles-list');
