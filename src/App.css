@@ -40,3 +40,124 @@
 .read-the-docs {
   color: #888;
 }
+
+:root {
+  --background-color: #FFFFFF;
+  --text-color: #121212;
+  --primary-color: #3F51B5;
+  --secondary-color: #4CAF50;
+  --accent-color: #FF5722;
+  --border-color: #E0E0E0;
+  --code-background: #F5F5F5;
+  --code-text: #333333;
+}
+
+[data-theme="dark"] {
+  --background-color: #121212;
+  --text-color: #FFFFFF;
+  --primary-color: #BB86FC;
+  --secondary-color: #03DAC6;
+  --accent-color: #FF5722;
+  --border-color: #333333;
+  --code-background: #1E1E1E;
+  --code-text: #CCCCCC;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.5;
+}
+
+.article-cell {
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.article-cell img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-right: 16px;
+}
+
+.article-cell-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.article-cell-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.article-cell-excerpt {
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--text-color);
+  margin: 8px 0;
+}
+
+.article-cell-date {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--text-color);
+}
+
+.article-detail {
+  background-color: var(--background-color);
+  padding: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.article-detail-title {
+  font-weight: 700;
+  font-size: 2.5rem;
+  margin: 0 0 16px 0;
+  color: var(--text-color);
+}
+
+.article-detail img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.article-detail-content {
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--text-color);
+  margin-bottom: 16px;
+}
+
+.article-detail-code {
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  background-color: var(--code-background);
+  color: var(--code-text);
+  padding: 16px;
+  border-radius: 4px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+
+.article-detail-photo {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
