@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
+    "convert": "tsc -b && npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts",
     "lint": "eslint .",
-    "preview": "tsc -b && vite build && vite preview"
+    "preview": "tsc -b && npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts && vite build && vite preview"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
@@ -16,12 +17,15 @@
     "react-dom": "^19.1.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.6.1",
-    "remark-gfm": "^4.0.1"
+    "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-html": "^16.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
+    "@types/node": "^22.15.30",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",
