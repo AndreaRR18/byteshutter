@@ -1,0 +1,51 @@
+{
+  "articles": [
+    {
+      "title": "Building Your First iOS App: A SwiftUI Journey",
+      "excerpt": "Learn how to create a clean, minimal iOS application using SwiftUI and Swift best practices.",
+      "created_at": "2025-06-08T00:00:00.000Z",
+      "slug": "building-your-first-ios-app-a-swiftui-journey",
+      "tags": [
+        "swift",
+        "ios",
+        "swiftui",
+        "mobile-development"
+      ]
+    },
+    {
+      "title": "Mastering SwiftUI Animations: From Simple to Stunning",
+      "excerpt": "Discover how to create beautiful, smooth animations in SwiftUI that bring your iOS apps to life with practical examples and best practices.",
+      "created_at": "2025-06-08T00:00:00.000Z",
+      "slug": "mastering-swiftui-animations-from-simple-to-stunning",
+      "tags": [
+        "swift",
+        "ios",
+        "swiftui",
+        "animations",
+        "ui-design"
+      ]
+    },
+    {
+      "title": "Building a Minimal Static Site",
+      "excerpt": "Learn how to build a clean, minimal static site with TypeScript and Markdown.",
+      "created_at": "2024-05-01T00:00:00.000Z",
+      "slug": "building-a-minimal-static-site",
+      "tags": [
+        "swift",
+        "ios",
+        "swiftui"
+      ]
+    },
+    {
+      "title": "Responsive Web Design Basics",
+      "excerpt": "A quick primer on making your site look great on any device.",
+      "created_at": "2024-05-10T00:00:00.000Z",
+      "slug": "responsive-web-design-basics",
+      "tags": [
+        "swift",
+        "ios",
+        "swiftui"
+      ]
+    }
+  ]
+}

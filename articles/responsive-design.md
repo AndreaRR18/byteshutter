@@ -1,8 +1,8 @@
 ---
 title: "Responsive Web Design Basics"
-cover_image: "minimal-static-site.jpg"
 excerpt: "A quick primer on making your site look great on any device."
-created: 2024-05-10
+created_at: 2024-05-10
+tags: ["swift", "ios", "swiftui"]
 ---
 
 # Responsive Web Design Basics
