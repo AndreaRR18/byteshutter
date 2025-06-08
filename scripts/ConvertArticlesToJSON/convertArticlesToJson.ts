@@ -40,7 +40,7 @@ function buildArticleList() {
 }
 
 function buildArticleDetailFiles() {
-    const articles = fs
+    fs
         .readdirSync(articlesDir)
         .filter(file => path.extname(file) === '.md')
         .map(file => {
@@ -61,8 +61,6 @@ function buildArticleDetailFiles() {
             JSON.stringify(article, null, 2)
         );
     })
-
-    articles;
 }
 
 buildArticleList();

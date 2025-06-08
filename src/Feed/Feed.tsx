@@ -7,8 +7,9 @@ const Feed: React.FC = () => {
   const [feed, setFeed] = useState<ArticleFeed | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const feedRepository = new FeedRepository();
+  
   useEffect(() => {
+    const feedRepository = new FeedRepository();
     const fetchArticles = async () => {
       try {
         const articles = await feedRepository.getArticles();
