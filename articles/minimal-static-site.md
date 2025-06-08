@@ -1,8 +1,8 @@
 ---
 title: "Building a Minimal Static Site"
-cover_image: "minimal-static-site.jpg"
 excerpt: "Learn how to build a clean, minimal static site with TypeScript and Markdown."
-created: 2024-05-01
+created_at: 2024-05-01
+tags: ["swift", "ios", "swiftui"]
 ---
 
 # Building a Minimal Static Site
