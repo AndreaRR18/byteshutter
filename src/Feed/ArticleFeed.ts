@@ -1,6 +1,13 @@
-export interface ArticleFeed {
+
+export interface Article {
   title: string;
-  cover_image: string;
+  created_at: string;
+  slug: string;
   excerpt: string;
-  created: string;
+  tags?: string[];
 }
+
+export interface ArticleFeed {
+  articles: Article[];
+}
+
