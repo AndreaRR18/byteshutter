@@ -5,7 +5,7 @@ import { ArticleFeedDTO } from './ArticleFeedDTO';
 import { ArticleDetailDTO } from './ArticleDetailDTO';
 
 const articlesDir = path.join(process.cwd(), 'articles');
-const outputDir = path.join(process.cwd(), 'src', 'database');
+const outputDir = path.join(process.cwd(), 'public', 'data');
 
 function buildArticleList() {
     if (!fs.existsSync(outputDir)) {
