@@ -1,0 +1,12 @@
+{
+  "title": "Building Your First iOS App: A SwiftUI Journey",
+  "created_at": "2025-06-08T00:00:00.000Z",
+  "slug": "building-your-first-ios-app-a-swiftui-journey",
+  "tags": [
+    "swift",
+    "ios",
+    "swiftui",
+    "mobile-development"
+  ],
+  "content": "\n# Building Your First iOS App: A SwiftUI Journey\n\nLearn how to create a clean, minimal iOS application using SwiftUI and Swift best practices.\n\n## Why SwiftUI for iOS Development?\n\nSwiftUI revolutionizes iOS app development by providing a declarative framework that's both powerful and intuitive. Unlike traditional UIKit approaches, SwiftUI allows you to build user interfaces with less code while maintaining excellent performance and native iOS feel.\n\nSwiftUI apps are efficient, maintainable, and leverage the full power of Swift's type system. They work exceptionally well for everything from simple utility apps to complex data-driven applications.\n\n## Getting Started with SwiftUI\n\nCreating your first SwiftUI view is straightforward. Here's a minimal example that demonstrates the declarative syntax:\n\n```swift\nimport SwiftUI\n\nstruct ContentView: View {\n    var body: some View {\n        VStack {\n            Text(\"Hello, SwiftUI!\")\n                .font(.largeTitle)\n                .foregroundColor(.blue)\n            \n            Button(\"Tap Me\") {\n                print(\"Button tapped!\")\n            }\n            .padding()\n            .background(Color.blue)\n            .foregroundColor(.white)\n            .cornerRadius(10)\n        }\n        .padding()\n    }\n}"
+}
