@@ -22,23 +22,13 @@ class FeedRepository {
       if (this.indexCache != null) {
         return this.indexCache;
       } else {
-        const response = (await fetch(`${import.meta.env.BASE_URL}src/data/articles.json`));
+        const response = await fetch(`${import.meta.env.BASE_URL}data/articles.json`);
         this.indexCache = await response.json() as ArticleFeed;
         return this.indexCache;
       }
     } catch (error) {
       console.error('Failed to load article index:', error);
-      return {
-        articles: [
-          {
-            title: 'Error loading articles',
-            created_at: new Date().toISOString(),
-            slug: 'error-loading-articles',
-            excerpt: 'An error occurred while loading the articles. Please try again later.',
-            tags: []
-          }
-        ]
-      };
+      throw error;
     }
   }
 
