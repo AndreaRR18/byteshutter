@@ -1,4 +1,4 @@
-import Feed from './Feed/Feed'
+import Feed from './FeedSection/ArticleFeed/Feed'
 import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import './App.css'
