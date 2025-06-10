@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { articleDetailRepository } from './Repository/ArticleDetailRepository';
-import type { Article } from './Repository/ArticleDetailRepository';
+import { articleDetailRepository } from './BlogPostRepository';
+import type { Article } from './BlogPostRepository';
 
-export const ArticleDetail: React.FC = () => {
+export const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
