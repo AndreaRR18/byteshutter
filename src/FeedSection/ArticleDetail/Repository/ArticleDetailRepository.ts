@@ -16,13 +16,16 @@ class ArticleDetailRepository {
     }
 
     try {
-      const response = await fetch(`${import.meta.env.BASE_URL}data/articles.json`);
+      const response = await fetch(`${import.meta.env.BASE_URL}data/${slug}.json`);
+      if (!response.ok) {
+        return null;
+      }
       const article = await response.json();
       this.articleCache.set(slug, article);
       return article;
     } catch (error) {
       console.error(`Failed to load article ${slug}:`, error);
-      throw error;
+      return null;
     }
   }
 }
