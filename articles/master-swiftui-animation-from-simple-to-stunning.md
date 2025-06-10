@@ -5,8 +5,6 @@ created_at: 2025-06-08
 tags: ["swift", "ios", "swiftui", "animations", "ui-design"]
 ---
 
-# Mastering SwiftUI Animations: From Simple to Stunning
-
 Animations are what transform good iOS apps into great ones. SwiftUI makes creating smooth, delightful animations surprisingly straightforward, allowing you to add polish and personality to your user interfaces with minimal code.
 
 ## Why Animations Matter in iOS Apps

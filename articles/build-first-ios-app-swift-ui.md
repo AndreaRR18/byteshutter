@@ -5,8 +5,6 @@ created_at: 2025-06-08
 tags: ["swift", "ios", "swiftui", "mobile-development"]
 ---
 
-# Building Your First iOS App: A SwiftUI Journey
-
 Learn how to create a clean, minimal iOS application using SwiftUI and Swift best practices.
 
 ## Why SwiftUI for iOS Development?

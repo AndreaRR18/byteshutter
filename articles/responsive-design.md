@@ -5,8 +5,6 @@ created_at: 2024-05-10
 tags: ["swift", "ios", "swiftui"]
 ---
 
-# Responsive Web Design Basics
-
 Making your site look great on any device is essential.
 
 ## Key Principles

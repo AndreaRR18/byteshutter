@@ -19,13 +19,13 @@ class FeedRepository {
     }
 
     try {
-      if (this.indexCache != null) {
-        return this.indexCache;
-      } else {
-        const response = await fetch(`${import.meta.env.BASE_URL}data/articles.json`);
-        this.indexCache = await response.json() as ArticleFeed;
-        return this.indexCache;
+      const url = `${import.meta.env.BASE_URL}data/articles.json`;
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch articles: ${response.status} ${response.statusText}`);
       }
+      this.indexCache = await response.json() as ArticleFeed;
+      return this.indexCache;
     } catch (error) {
       console.error('Failed to load article index:', error);
       throw error;
