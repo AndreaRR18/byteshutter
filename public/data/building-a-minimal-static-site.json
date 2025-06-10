@@ -7,5 +7,5 @@
     "ios",
     "swiftui"
   ],
-  "content": "\n# Building a Minimal Static Site\n\nWelcome to this guide on building a minimal static website using HTML, CSS, and TypeScript.\n\n## Why Static Sites?\n\nStatic sites are fast, secure, and easy to deploy. They work great for blogs, portfolios, and documentation.\n\n## Example Code\n\n```html\n<div>Hello static world!</div>\n```\n\n## Adding Images\n\n![Sample Image](minimal-static-site.jpg)\n\nThat's it!\n"
+  "content": "\nWelcome to this guide on building a minimal static website using HTML, CSS, and TypeScript.\n\n## Why Static Sites?\n\nStatic sites are fast, secure, and easy to deploy. They work great for blogs, portfolios, and documentation.\n\n## Example Code\n\n```html\n<div>Hello static world!</div>\n```\n\n## Adding Images\n\n![Sample Image](minimal-static-site.jpg)\n\nThat's it!\n"
 }

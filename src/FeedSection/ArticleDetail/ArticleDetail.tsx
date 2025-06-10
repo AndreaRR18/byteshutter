@@ -1,6 +1,8 @@
 // src/components/ArticleDetail.tsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { articleDetailRepository } from './Repository/ArticleDetailRepository';
 import type { Article } from './Repository/ArticleDetailRepository';
 
@@ -24,15 +26,16 @@ export const ArticleDetail: React.FC = () => {
     <article className="article-detail">
       <header>
         <h1>{article.title}</h1>
-        <time dateTime={article.date}>
-          {new Date(article.date).toLocaleDateString()}
+        <time dateTime={article.created_at}>
+          {new Date(article.created_at).toLocaleDateString()}
         </time>
       </header>
       
-      <div 
-        className="article-content"
-        dangerouslySetInnerHTML={{ __html: article.contentHtml }}
-      />
+      <div className="article-content">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          {article.content}
+        </ReactMarkdown>
+      </div>
       
       {article.tags && (
         <footer className="article-tags">

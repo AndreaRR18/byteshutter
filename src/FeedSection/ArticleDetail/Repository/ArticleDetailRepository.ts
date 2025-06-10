@@ -1,10 +1,9 @@
 export interface Article {
   title: string;
-  date: string;
+  created_at: string;
   slug: string;
   tags?: string[];
   content: string;
-  contentHtml: string;
 }
 
 class ArticleDetailRepository {

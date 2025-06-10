@@ -5,8 +5,6 @@ created_at: 2024-05-01
 tags: ["swift", "ios", "swiftui"]
 ---
 
-# Building a Minimal Static Site
-
 Welcome to this guide on building a minimal static website using HTML, CSS, and TypeScript.
 
 ## Why Static Sites?

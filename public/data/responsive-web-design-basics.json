@@ -7,5 +7,5 @@
     "ios",
     "swiftui"
   ],
-  "content": "\n# Responsive Web Design Basics\n\nMaking your site look great on any device is essential.\n\n## Key Principles\n\n- Use flexible grid layouts\n- Make images responsive\n- Avoid fixed widths\n\n## Example CSS\n\n```css\nbody { max-width: 100vw; }\n```\n\n## More\n\nTry resizing your browser to see how the layout adapts!\n"
+  "content": "\nMaking your site look great on any device is essential.\n\n## Key Principles\n\n- Use flexible grid layouts\n- Make images responsive\n- Avoid fixed widths\n\n## Example CSS\n\n```css\nbody { max-width: 100vw; }\n```\n\n## More\n\nTry resizing your browser to see how the layout adapts!\n"
 }
