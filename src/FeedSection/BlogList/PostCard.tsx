@@ -13,7 +13,7 @@ interface PostCardProps {
   featured?: boolean;
   onClick?: () => void;
 }
-
+ 
 export const PostCard: React.FC<PostCardProps> = ({
   title,
   excerpt,
