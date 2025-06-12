@@ -5,11 +5,11 @@
   "type": "module",
   "scripts": {
     "test": "vitest",
-    "convert": "tsc -b && npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts",
+    "convert": "npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts",
     "dev": "vite",
-    "build": "tsc -b && vite build && npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts",
+    "build": "npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts && vite build",
     "lint": "eslint .",
-    "preview": "tsc -b && npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts && vite build && vite preview"
+    "preview": "npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts && vite build && vite preview"
   },
   "dependencies": {
     "react": "^19.1.0",
