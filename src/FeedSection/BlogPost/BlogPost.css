@@ -90,7 +90,6 @@
 .article-header {
   margin-bottom: 3rem;
   padding-bottom: 2rem;
-  border-bottom: 1px solid var(--border);
 }
 
 .article-title {
@@ -136,7 +135,7 @@
 .tag {
   font-size: 0.75rem;
   color: var(--accent);
-  background: var(--bg-primary);
+  background: transparent;
   border: 1px solid var(--accent);
   border-radius: 6px;
   padding: 0.25rem 0.5rem;
@@ -470,7 +469,7 @@
   }
   
   .article-title {
-    color: #000;
+    color: #000000;
   }
   
   .content-h1,
