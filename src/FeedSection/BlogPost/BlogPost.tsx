@@ -84,10 +84,6 @@ export const BlogPost: React.FC = () => {
         ></div>
       </div>
 
-      <Link to="/articles" className="back-navigation">
-        ← Back to Articles
-      </Link>
-
       <article className="article-detail">
         <header className="article-header">
           <h1 className="article-title">{article.title}</h1>
@@ -155,7 +151,7 @@ export const BlogPost: React.FC = () => {
           </div>
           
           <div className="article-actions">
-            <Link to="/articles" className="back-to-articles">
+            <Link to="/" className="back-to-articles">
               ← More Articles
             </Link>
           </div>

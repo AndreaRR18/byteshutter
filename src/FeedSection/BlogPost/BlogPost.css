@@ -481,4 +481,11 @@
   .content-li {
     color: #000;
   }
+}
+
+/* Images within article content */
+.article-content img {
+  border-radius: var(--radius-lg);
+  margin: var(--space-2xl) 0;
+  box-shadow: var(--shadow-lg);
 } 

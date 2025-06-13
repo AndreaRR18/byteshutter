@@ -19,6 +19,6 @@ Static sites are fast, secure, and easy to deploy. They work great for blogs, po
 
 ## Adding Images
 
-![Sample Image](minimal-static-site.jpg)
+![Sample Image](/images/minimal-static-site.jpg)
 
 That's it!
