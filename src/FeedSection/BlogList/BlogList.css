@@ -36,27 +36,6 @@
   }
 }
 
-/* Header Styles */
-.blog-list-header {
-  margin-bottom: 4rem;
-  text-align: center;
-}
-
-.blog-list-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--text-primary);
-  margin: 0 0 1rem 0;
-}
-
-.blog-list-description {
-  font-size: 1.125rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin: 0;
-}
-
 /* Grid Layout */
 .articles-grid {
   display: grid;
@@ -221,14 +200,6 @@
 
 /* Mobile optimizations */
 @media (max-width: 767px) {
-  .blog-list-header h1 {
-    font-size: 2rem;
-  }
-  
-  .blog-list-description {
-    font-size: 1rem;
-  }
-  
   .article-content {
     padding: 1.5rem;
   }
@@ -237,38 +208,3 @@
     font-size: 1.25rem;
   }
 }
-
-/* Enhanced hover effects for desktop */
-@media (min-width: 1024px) {
-  .article-card {
-    cursor: pointer;
-  }
-  
-  .article-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-  }
-  
-  @media (prefers-color-scheme: dark) {
-    .article-card:hover {
-      box-shadow: 0 12px 32px rgba(255, 255, 255, 0.15);
-    }
-  }
-}
-
-/* Accessibility improvements */
-.article-link:focus {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-  border-radius: 12px;
-}
-
-.article-link:focus-visible {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
-}
-
-/* Smooth transitions for theme changes */
-* {
-  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-} 
