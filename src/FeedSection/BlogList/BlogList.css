@@ -101,6 +101,7 @@
   color: var(--text-primary);
   margin: 0 0 1rem 0;
   transition: color 0.2s ease;
+  text-align: left;
 }
 
 .article-card:hover .article-title {
@@ -122,6 +123,7 @@
   line-height: 1.6;
   color: var(--text-secondary);
   margin: 0 0 1.5rem 0;
+  text-align: left;
 }
 
 .article-tags {
