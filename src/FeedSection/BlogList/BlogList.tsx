@@ -65,13 +65,6 @@ const BlogList: React.FC = () => {
 
   return (
     <div className="blog-list-container">
-      <header className="blog-list-header">
-        <h1>Articles</h1>
-        <p className="blog-list-description">
-          Thoughts on code, design, and building things that matter
-        </p>
-      </header>
-      
       <div className="articles-grid">
         {feed.articles.map((article) => (
           <article key={article.slug} className="article-card">
