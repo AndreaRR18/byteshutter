@@ -6,7 +6,7 @@ export interface Article {
   content: string;
 }
 
-class ArticleDetailRepository {
+class BlogPostRepository {
   private articleCache: Map<string, Article> = new Map();
 
   async getArticleBySlug(slug: string): Promise<Article | null> {
@@ -29,4 +29,4 @@ class ArticleDetailRepository {
   }
 }
 
-export const articleDetailRepository = new ArticleDetailRepository();
+export const articleDetailRepository = new BlogPostRepository();

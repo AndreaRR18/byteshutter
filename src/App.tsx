@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Feed from './FeedSection/ArticleFeed/Feed'
-import { ArticleDetail } from './FeedSection/ArticleDetail/ArticleDetail'
+import BlogList from './FeedSection/BlogList/BlogList'
+import { BlogPost } from './FeedSection/BlogPost/BlogPost'
 import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import './App.css'
@@ -10,8 +10,8 @@ function App() {
     <Router basename="/byteshutter">
       <Header />
       <Routes>
-        <Route path="/" element={<Feed />} />
-        <Route path="/articles/:slug" element={<ArticleDetail />} />
+        <Route path="/" element={<BlogList />} />
+        <Route path="/articles/:slug" element={<BlogPost />} />
       </Routes>
       <Footer />
     </Router>
