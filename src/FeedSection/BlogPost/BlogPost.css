@@ -66,8 +66,10 @@
 /* Article Header */
 .article-header {
   margin-bottom: 3rem;
-  padding-bottom: 2rem;
-  background: transparent;
+  padding: 2rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border);
 }
 
 .article-title {
@@ -262,8 +264,10 @@
 /* Article Footer */
 .article-footer {
   margin-top: 4rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border);
+  padding: 2rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  border: 1px solid var(--border);
 }
 
 .footer-tags {
