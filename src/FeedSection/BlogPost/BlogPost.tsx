@@ -136,6 +136,13 @@ export const BlogPost: React.FC = () => {
                   {children}
                 </a>
               ),
+              img: ({ src, alt }) => (
+                <img 
+                  src={`/byteshutter${src}`} 
+                  alt={alt} 
+                  className="content-img"
+                />
+              ),
             }}
           >
             {article.content}

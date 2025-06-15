@@ -1,54 +1,99 @@
-# React + TypeScript + Vite
+# ByteShutter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+ByteShutter is a modern, responsive blog website built with React, TypeScript, and Vite. The site features articles about web development, iOS development, Swift, SwiftUI, and responsive design principles.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Modern Tech Stack**: Built with React 19, TypeScript, and Vite for fast development and optimal performance
+- **Markdown-Powered**: Articles are written in Markdown format and automatically converted to JSON for the frontend
+- **Responsive Design**: Fully responsive layout that works seamlessly on desktop and mobile devices
+- **Dark/Light Theme**: Built-in theme switching capability
+- **Fast Navigation**: Client-side routing with React Router for smooth page transitions
+- **Type-Safe**: Full TypeScript implementation for better developer experience and code reliability
 
-## Expanding the ESLint configuration
+## Running Locally
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Make sure you have Node.js installed on your system.
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd byteshutter
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
+```bash
+npm install
+```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Development
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+To run the website in development mode with hot reloading:
+
+```bash
+npm run dev
+```
+
+The site will be available at `http://localhost:5173` (or the next available port).
+
+### Building for Production
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+This command will:
+1. Convert all markdown articles in the `articles/` folder to JSON format
+2. Build the React application for production
+3. Output the built files to the `dist/` directory
+
+### Preview Production Build
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
+
+### Other Available Scripts
+
+- `npm test` - Run the test suite with Vitest
+- `npm run lint` - Check code quality with ESLint
+- `npm run convert` - Manually convert markdown articles to JSON format
+
+## Project Structure
+
+```
+byteshutter/
+├── articles/          # Markdown articles
+├── src/              # React application source code
+├── scripts/          # Build scripts for article conversion
+├── public/           # Static assets and generated JSON data
+└── dist/             # Production build output
+```
+
+## Adding New Articles
+
+1. Create a new `.md` file in the `articles/` directory
+2. Include frontmatter with title, excerpt, created_at, and tags
+3. Write your article content in Markdown format
+4. Run `npm run convert` to generate the JSON files
+5. The article will automatically appear on the website
+
+Example article format:
+```markdown
+---
+title: "Your Article Title"
+excerpt: "A brief description of your article"
+created_at: 2024-01-01
+tags: ["tag1", "tag2"]
+---
+
+Your article content here...
 ```
