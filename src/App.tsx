@@ -5,35 +5,50 @@ import { BlogPost } from './FeedSection/BlogPost/BlogPost'
 import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import { useTheme } from './hooks/useTheme'
-import './styles/global.css'
 import './App.css'
+
+// Simple test component for article route
+function TestArticle() {
+  return (
+    <div style={{ padding: '2rem', textAlign: 'center' }}>
+      <h1>Article Page Test</h1>
+      <p>Article component would go here</p>
+    </div>
+  )
+}
 
 function AppContent() {
   return (
-    <>
+    <div className="app">
       <Header />
-      <Routes>
-        <Route path="/" element={<BlogList />} />
-        <Route path="/articles/:slug" element={<BlogPost />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<BlogList />} />
+          <Route path="/articles/:slug" element={<BlogPost />} />
+        </Routes>
+      </main>
       <Footer />
-    </>
+    </div>
   )
 }
 
 function App() {
-  // Initialize theme on app start
+  // Initialize theme following guidelines
   const { theme } = useTheme();
   
   useEffect(() => {
-    // Ensure theme is applied on initial load
+    // Apply theme with smooth transitions as per guidelines
     document.documentElement.setAttribute('data-theme', theme);
-    document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(theme);
+    
+    // Respect user's system preference by default
+    if (!localStorage.getItem('theme')) {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+    }
   }, [theme]);
 
   return (
-    <Router basename="/byteshutter">
+    <Router basename={import.meta.env.PROD ? "/byteshutter" : ""}>
       <AppContent />
     </Router>
   )

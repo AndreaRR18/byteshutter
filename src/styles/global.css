@@ -1,93 +1,6 @@
 /* src/styles/globals.css */
-@import './variable.css';
 
-/* CSS Reset and Base Styles */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  font-family: var(--font-sans);
-  font-size: var(--font-size-base);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-primary);
-  background-color: var(--color-bg-primary);
-  transition: background-color var(--transition-base), color var(--transition-base);
-}
-
-/* Theme Support - Manual override takes precedence over system preference */
-[data-theme="dark"] {
-  --color-primary: #3b82f6;
-  --color-primary-dark: #2563eb;
-  --color-primary-light: #60a5fa;
-  --color-secondary: #a855f7;
-  --color-accent: #06b6d4;
-  
-  --color-text-primary: #f8fafc;
-  --color-text-secondary: #cbd5e1;
-  --color-text-tertiary: #94a3b8;
-  --color-text-inverse: #1e293b;
-  
-  --color-bg-primary: #0f172a;
-  --color-bg-secondary: #1e293b;
-  --color-bg-tertiary: #334155;
-  --color-bg-code: #1e293b;
-  
-  --color-border: #334155;
-  --color-border-light: #1e293b;
-  
-  /* Legacy variable support for existing components */
-  --bg-primary: #0f172a;
-  --bg-secondary: #1e293b;
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --accent: #3b82f6;
-  --border: #334155;
-  --code-bg: #1e293b;
-  --code-border: #334155;
-}
-
-[data-theme="light"] {
-  --color-primary: #2563eb;
-  --color-primary-dark: #1d4ed8;
-  --color-primary-light: #3b82f6;
-  --color-secondary: #7c3aed;
-  --color-accent: #06b6d4;
-  
-  --color-text-primary: #1e293b;
-  --color-text-secondary: #475569;
-  --color-text-tertiary: #64748b;
-  --color-text-inverse: #f8fafc;
-  
-  --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f8fafc;
-  --color-bg-tertiary: #f1f5f9;
-  --color-bg-code: #1e293b;
-  
-  --color-border: #e2e8f0;
-  --color-border-light: #f1f5f9;
-  
-  /* Legacy variable support for existing components */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f8fafc;
-  --text-primary: #1e293b;
-  --text-secondary: #475569;
-  --accent: #2563eb;
-  --border: #e2e8f0;
-  --code-bg: #f1f5f9;
-  --code-border: #e2e8f0;
-}
+/* Additional base styles for the blog */
 
 /* Smooth scrolling */
 @media (prefers-reduced-motion: no-preference) {
@@ -98,25 +11,25 @@ body {
 
 /* Selection styles */
 ::selection {
-  background-color: var(--color-primary);
-  color: var(--color-text-inverse);
+  background-color: var(--accent);
+  color: var(--bg-primary);
 }
 
 /* Focus styles */
 :focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
 /* Links */
 a {
-  color: var(--color-primary);
+  color: var(--accent);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: var(--color-primary-dark);
+  color: var(--text-primary);
   text-decoration: underline;
 }
 
@@ -160,17 +73,17 @@ code {
 
 /* Blockquotes */
 blockquote {
-  border-left: 4px solid var(--color-primary);
+  border-left: 4px solid var(--accent);
   padding-left: var(--space-lg);
   margin: var(--space-xl) 0;
   font-style: italic;
-  color: var(--color-text-secondary);
+  color: var(--text-secondary);
 }
 
 /* Horizontal rules */
 hr {
   border: none;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--border);
   margin: var(--space-2xl) 0;
 }
 
@@ -198,8 +111,8 @@ main {
   left: -9999px;
   z-index: 999;
   padding: var(--space-md) var(--space-lg);
-  background-color: var(--color-bg-primary);
-  color: var(--color-text-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   text-decoration: none;
   border-radius: var(--radius-md);
 }
@@ -213,7 +126,7 @@ main {
 @supports (scrollbar-width: thin) {
   * {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-border) transparent;
+    scrollbar-color: var(--border) transparent;
   }
 }
 
@@ -228,10 +141,106 @@ main {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: var(--border);
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-tertiary);
+  background: var(--text-secondary);
+}
+
+/* Global styles and utilities for minimalist blog */
+
+/* Utility classes following guidelines */
+
+/* Layout utilities */
+.container {
+  width: 100%;
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+  padding: 0 var(--padding-horizontal-desktop);
+}
+
+@media (max-width: 1023px) {
+  .container {
+    padding: 0 var(--padding-horizontal-mobile);
+  }
+}
+
+/* Content width utilities */
+.content-width {
+  max-width: var(--max-width-article);
+  margin: 0 auto;
+}
+
+/* Spacing utilities */
+.section-spacing {
+  margin-bottom: var(--section-spacing);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+/* Accessibility utilities */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus utilities */
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Loading states */
+.pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Smooth scrolling for in-page links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Print styles */
+@media print {
+  .header,
+  .footer,
+  .reading-progress-bar,
+  .theme-toggle {
+    display: none !important;
+  }
+  
+  .article-container,
+  .article-content {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+  
+  * {
+    color: #000 !important;
+    background: #fff !important;
+  }
 }
