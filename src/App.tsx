@@ -7,16 +7,6 @@ import Footer from './Footer/Footer'
 import { useTheme } from './hooks/useTheme'
 import './App.css'
 
-// Simple test component for article route
-function TestArticle() {
-  return (
-    <div style={{ padding: '2rem', textAlign: 'center' }}>
-      <h1>Article Page Test</h1>
-      <p>Article component would go here</p>
-    </div>
-  )
-}
-
 function AppContent() {
   return (
     <div className="app">
@@ -35,11 +25,11 @@ function AppContent() {
 function App() {
   // Initialize theme following guidelines
   const { theme } = useTheme();
-  
+
   useEffect(() => {
     // Apply theme with smooth transitions as per guidelines
     document.documentElement.setAttribute('data-theme', theme);
-    
+
     // Respect user's system preference by default
     if (!localStorage.getItem('theme')) {
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
