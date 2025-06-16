@@ -2,9 +2,11 @@ import React from 'react';
 import './Footer.css';
 
 const Footer: React.FC = () => (
-  <footer>
+  <footer className="footer">
     <div className="footer-content">
-      <p>&copy; {new Date().getFullYear()} byteshutter. All rights reserved.</p>
+      <p className="footer-text">
+        &copy; {new Date().getFullYear()} byteshutter. All rights reserved.
+      </p>
     </div>
   </footer>
 );

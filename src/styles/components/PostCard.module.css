@@ -11,6 +11,7 @@
   cursor: pointer;
   text-decoration: none;
   color: inherit;
+  margin-bottom: var(--space-xl);
 }
 
 .card:hover {
@@ -87,6 +88,7 @@
   font-weight: 700;
   line-height: var(--line-height-tight);
   margin-bottom: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
   color: var(--color-text-primary);
   display: -webkit-box;
   line-clamp: 2;
@@ -101,6 +103,7 @@
   line-height: var(--line-height-relaxed);
   color: var(--color-text-secondary);
   margin-bottom: var(--space-lg);
+  padding: var(--space-sm) var(--space-md);
   display: -webkit-box;
   line-clamp: 3;
   -webkit-line-clamp: 3;
