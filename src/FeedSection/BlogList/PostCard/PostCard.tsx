@@ -21,7 +21,13 @@ export const PostCard: React.FC<PostCardProps> = ({
     <article className={styles.card} onClick={onClick}>
       <div className={styles.content}>
         {date && (
-          <time className={styles.date}>{date}</time>
+          <time className={styles.date}>
+            {new Date(date).toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </time>
         )}
         
         <h2 className={styles.title}>{title}</h2>
