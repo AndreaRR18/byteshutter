@@ -10,7 +10,7 @@ html, body {
 /* Container */
 .blogContainer {
   max-width: 768px;
-  margin: 0 auto;
+  margin: 0;
   padding: 0 4px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   line-height: 1.6;
@@ -92,7 +92,7 @@ html, body {
 /* Article content wrapper */
 .articleContent {
   max-width: var(--max-width-article);
-  margin: 0 auto;
+  margin: 0;
   padding: var(--space-3xl) 0;
   text-align: left !important;
   overflow-wrap: break-word;
@@ -126,11 +126,12 @@ html, body {
 .articleMeta {
   display: flex;
   justify-content: flex-start;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
   gap: var(--space-md);
   color: var(--text-secondary);
   font-size: var(--font-size-small);
+  padding-bottom: var(--space-md);
 }
 
 .articleDate,
@@ -164,6 +165,7 @@ html, body {
   margin: 0;
   padding: var(--space-sm, 0.75rem) var(--space-md, 1rem);
   max-width: var(--max-width-article, 100%);
+  text-align: left;
 }
 
 .articleLink {
@@ -321,7 +323,7 @@ html, body {
 
 .backToArticles {
   display: inline-flex;
-  align-items: center;
+  align-items: flex-start;
   color: var(--accent);
   text-decoration: none;
   font-weight: 500;
@@ -335,7 +337,7 @@ html, body {
 /* Loading skeleton */
 .loadingSkeleton {
   max-width: var(--max-width-article);
-  margin: 0 auto;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -358,7 +360,7 @@ html, body {
   height: 2.5rem;
   background-color: var(--bg-secondary, #f3f4f6);
   border-radius: var(--radius-sm);
-  margin: 0 auto var(--space-lg) auto;
+  margin: 0 0 var(--space-lg) 0;
   width: 80%;
   animation: pulse 1.5s ease-in-out infinite;
 }
@@ -375,7 +377,7 @@ html, body {
   height: 1rem;
   background-color: var(--bg-secondary, #f3f4f6);
   border-radius: var(--radius-sm);
-  margin: 0 auto;
+  margin: 0;
   width: 200px;
   animation: pulse 1.5s ease-in-out infinite;
 }
@@ -430,7 +432,7 @@ html, body {
 }
 
 .errorState {
-  text-align: center;
+  text-align: left;
   padding: var(--space-3xl, 3rem) 0;
 }
 
@@ -442,7 +444,7 @@ html, body {
 .errorState p {
   color: var(--text-secondary, #6b7280);
   max-width: 400px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .backLink {

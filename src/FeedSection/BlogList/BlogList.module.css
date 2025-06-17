@@ -134,7 +134,7 @@
 /* Error and empty states */
 .errorState,
 .emptyState {
-  text-align: center;
+  text-align: left;
   padding: var(--space-3xl, 3rem) 0;
 }
 
@@ -148,7 +148,7 @@
 .emptyState p {
   color: var(--text-secondary, #6b7280);
   max-width: 400px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 /* Responsive design */
