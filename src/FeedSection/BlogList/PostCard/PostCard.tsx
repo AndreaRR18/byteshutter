@@ -34,8 +34,6 @@ export const PostCard: React.FC<PostCardProps> = ({
         
         <p className={styles.excerpt}>
           {excerpt}
-          {' '}
-          <span className={styles.readMore}>Read more »</span>
         </p>
         
         {tags && tags.length > 0 && (
