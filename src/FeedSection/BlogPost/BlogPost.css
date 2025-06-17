@@ -79,26 +79,7 @@ html, body {
   min-height: 100vh;
 }
 
-/* Reading progress bar */
-.reading-progress-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background-color: var(--bg-secondary);
-  z-index: 101;
-  pointer-events: none;
-  contain: layout;
-}
 
-.reading-progress {
-  height: 100%;
-  background-color: var(--accent);
-  will-change: width;
-  transform: translateZ(0);
-  transition: none;
-}
 
 /* Article content wrapper */
 .article-content {

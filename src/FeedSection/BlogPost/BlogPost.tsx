@@ -12,7 +12,7 @@ export const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
-  const [readingProgress, setReadingProgress] = useState(0);
+
 
   useEffect(() => {
     if (slug) {
@@ -22,56 +22,11 @@ export const BlogPost: React.FC = () => {
     }
   }, [slug]);
 
-  useEffect(() => {
-    let animationFrameId: number | null = null;
-    let lastProgress = 0;
-    
-    const updateReadingProgress = () => {
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-      
-      animationFrameId = requestAnimationFrame(() => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        
-        if (docHeight > 0) {
-          const progress = Math.min(100, Math.max(0, (scrollTop / docHeight) * 100));
-          
-          // Only update if progress has changed significantly to reduce re-renders
-          if (Math.abs(progress - lastProgress) > 0.1) {
-            setReadingProgress(Math.round(progress * 10) / 10); // Round to 1 decimal place
-            lastProgress = progress;
-          }
-        }
-        
-        animationFrameId = null;
-      });
-    };
 
-    // Initial calculation with a small delay to ensure DOM is ready
-    const initialTimeout = setTimeout(updateReadingProgress, 100);
-    
-    window.addEventListener('scroll', updateReadingProgress, { passive: true });
-    window.addEventListener('resize', updateReadingProgress, { passive: true });
-    
-    return () => {
-      clearTimeout(initialTimeout);
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-      window.removeEventListener('scroll', updateReadingProgress);
-      window.removeEventListener('resize', updateReadingProgress);
-    };
-  }, []);
 
   if (loading) {
     return (
       <div className="article-container">
-        <div className="reading-progress-bar">
-          <div className="reading-progress" style={{ width: '0%' }}></div>
-        </div>
-        
         <div className="article-content">
           <div className="loading-skeleton">
             <div className="skeleton-header">
@@ -113,13 +68,6 @@ export const BlogPost: React.FC = () => {
 
   return (
     <div className="article-container">
-      <div className="reading-progress-bar">
-        <div 
-          className="reading-progress" 
-          style={{ width: `${readingProgress}%` }}
-        ></div>
-      </div>
-
       <div className="article-content">
         <article className="article">
           <header className="article-header">
