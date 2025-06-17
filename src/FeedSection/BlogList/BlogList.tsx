@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import type { ArticleFeed } from './BlogListRepository';
 import { feedRepository } from './BlogListRepository';
-import './BlogList.css';
+import './BlogList.module.css';
 
 const BlogList: React.FC = () => {
   const [feed, setFeed] = useState<ArticleFeed | null>(null);

@@ -21,46 +21,6 @@
   text-decoration: none;
 }
 
-.imageContainer {
-  position: relative;
-  width: 100%;
-  padding-top: 56.25%; /* 16:9 aspect ratio */
-  overflow: hidden;
-  background-color: var(--color-bg-secondary);
-}
-
-.image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--transition-slow);
-}
-
-.card:hover .image {
-  transform: scale(1.05);
-}
-
-.imagePlaceholder {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  color: var(--color-text-inverse);
-}
-
-.imagePlaceholderIcon {
-  width: 48px;
-  height: 48px;
-  opacity: 0.5;
-}
 
 .content {
   flex: 1;
@@ -181,11 +141,6 @@
   box-shadow: var(--shadow-xl);
 }
 
-.cardFeatured .imageContainer {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
 .cardFeatured .content {
   padding: 0;
   justify-content: center;
@@ -229,66 +184,7 @@
   color: var(--color-text-inverse);
 }
 
-/* Skeleton loading state */
-.skeleton {
-  background-color: var(--color-bg-secondary);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  position: relative;
-}
 
-.skeleton::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 100%
-  );
-  animation: shimmer 1.5s infinite;
-}
-
-.skeletonImage {
-  height: 200px;
-  background-color: var(--color-bg-tertiary);
-}
-
-.skeletonContent {
-  padding: var(--space-xl);
-}
-
-.skeletonTitle {
-  height: 24px;
-  background-color: var(--color-bg-tertiary);
-  border-radius: var(--radius-sm);
-  margin-bottom: var(--space-md);
-  width: 80%;
-}
-
-.skeletonExcerpt {
-  height: 16px;
-  background-color: var(--color-bg-tertiary);
-  border-radius: var(--radius-sm);
-  margin-bottom: var(--space-sm);
-}
-
-.skeletonExcerpt:last-child {
-  width: 60%;
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
 
 /* Responsive */
 @media (max-width: 768px) {

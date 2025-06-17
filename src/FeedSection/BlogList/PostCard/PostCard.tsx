@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../../styles/components/PostCard.module.css';
+import styles from './PostCard.module.css';
 
 interface PostCardProps {
   title: string;
@@ -8,7 +8,6 @@ interface PostCardProps {
   author?: string;
   date?: string;
   readTime?: string;
-  image?: string;
   tags?: string[];
   featured?: boolean;
   onClick?: () => void;
@@ -21,7 +20,6 @@ export const PostCard: React.FC<PostCardProps> = ({
   author,
   date,
   readTime,
-  image,
   tags,
   featured = false,
   onClick
@@ -30,20 +28,6 @@ export const PostCard: React.FC<PostCardProps> = ({
 
   return (
     <article className={cardClass} onClick={onClick}>
-      <div className={styles.imageContainer}>
-        {image ? (
-          <img
-            src={image}
-            alt={title}
-            className={styles.image}
-            loading="lazy"
-          />
-        ) : (
-          <div className={styles.imagePlaceholder}>
-            <div className={styles.imagePlaceholderIcon}>📄</div>
-          </div>
-        )}
-      </div>
       
       <div className={styles.content}>
         <header className={styles.header}>
