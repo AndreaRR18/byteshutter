@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { Tag } from '../../components/Tag/Tag';
 import { articleDetailRepository } from './BlogPostRepository';
 import type { Article } from './BlogPostRepository';
 import './BlogPost.css';
@@ -137,6 +138,14 @@ export const BlogPost: React.FC = () => {
               </time>
               <span className="read-time">{estimatedReadTime} min read</span>
             </div>
+
+            {article.tags && article.tags.length > 0 && (
+              <div className="article-tags">
+                {article.tags.map((tag, index) => (
+                  <Tag key={index} text={tag} />
+                ))}
+              </div>
+            )}
           </header>
           
           <div className="article-body">

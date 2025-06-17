@@ -1,4 +1,5 @@
 import React from 'react';
+import { Tag } from '../../../components/Tag/Tag';
 import styles from './PostCard.module.css';
 
 interface PostCardProps {
@@ -30,6 +31,14 @@ export const PostCard: React.FC<PostCardProps> = ({
           {' '}
           <span className={styles.readMore}>Read more »</span>
         </p>
+        
+        {tags && tags.length > 0 && (
+          <div className={styles.tags}>
+            {tags.map((tag, index) => (
+              <Tag key={index} text={tag} />
+            ))}
+          </div>
+        )}
       </div>
     </article>
   );

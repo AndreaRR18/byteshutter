@@ -154,6 +154,14 @@ html, body {
   margin-right: var(--space-sm);
 }
 
+/* Article tags */
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-lg);
+}
+
 /* Article body with typography */
 .article-body {
   line-height: var(--line-height-body);
