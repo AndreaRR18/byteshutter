@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import type { ArticleFeed } from './BlogListRepository';
 import { feedRepository } from './BlogListRepository';
 import './BlogList.module.css';
+import { PostCard } from './PostCard/PostCard';
 
 const BlogList: React.FC = () => {
   const [feed, setFeed] = useState<ArticleFeed | null>(null);
@@ -74,29 +75,14 @@ const BlogList: React.FC = () => {
       <section className="content-section">
         <div className="articles-list">
           {feed.articles.map((article) => (
-            <article key={article.slug} className="article-card">
-              <Link to={`/articles/${article.slug}`} className="article-link">
-                <div className="article-header">
-                  <h2 className="article-title">{article.title}</h2>
-                  <div className="article-meta">
-                    <time 
-                      className="article-date" 
-                      dateTime={article.created_at}
-                    >
-                      {new Date(article.created_at).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
-                      })}
-                    </time>
-                  </div>
-                </div>
-                
-                {article.excerpt && (
-                  <p className="article-excerpt">{article.excerpt}</p>
-                )}
+            <Link to={`/articles/${article.slug}`} key={article.slug}>
+              <PostCard
+                title={article.title}
+                excerpt={article.excerpt}
+                date={article.created_at}
+                tags={article.tags}
+              />
               </Link>
-            </article>
           ))}
         </div>
       </section>
