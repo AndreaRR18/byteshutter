@@ -1,24 +1,26 @@
-.about-container {
+/* About Page Styles - CSS Modules */
+
+.aboutContainer {
   min-height: 100vh;
   padding: 2rem 1rem;
   background: var(--bg-primary);
   color: var(--text-primary);
 }
 
-.about-content {
+.aboutContent {
   max-width: 800px;
   margin: 0;
   padding: 0 1rem;
   text-align: left;
 }
 
-.about-header {
+.aboutHeader {
   text-align: left;
   margin-bottom: 3rem;
   padding: 2rem 0;
 }
 
-.about-header h1 {
+.aboutHeader h1 {
   font-size: 3rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -29,23 +31,23 @@
   -webkit-text-fill-color: transparent;
 }
 
-.about-subtitle {
+.aboutSubtitle {
   font-size: 1.25rem;
   color: var(--text-secondary);
   font-weight: 400;
   opacity: 0.8;
 }
 
-.about-body {
+.aboutBody {
   line-height: 1.7;
 }
 
-.about-section {
+.aboutSection {
   margin-bottom: 3rem;
   padding: 1.5rem 0;
 }
 
-.about-section h2 {
+.aboutSection h2 {
   font-size: 1.8rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -54,7 +56,7 @@
   padding-bottom: 0.5rem;
 }
 
-.about-section h2::after {
+.aboutSection h2::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -65,27 +67,27 @@
   border-radius: 1px;
 }
 
-.about-section h3 {
+.aboutSection h3 {
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--text-primary);
   margin: 0 0 0.75rem 0;
 }
 
-.about-section p {
+.aboutSection p {
   font-size: 1.1rem;
   color: var(--text-secondary);
   margin: 0 0 1.5rem 0;
 }
 
-.skills-grid {
+.skillsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin: 2rem 0;
 }
 
-.skill-category {
+.skillCategory {
   background: var(--bg-secondary);
   padding: 1.5rem;
   border-radius: 12px;
@@ -93,24 +95,24 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.skill-category:hover {
+.skillCategory:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.skill-category h3 {
+.skillCategory h3 {
   color: var(--accent-primary);
   margin-bottom: 1rem;
   font-size: 1.2rem;
 }
 
-.skill-category ul {
+.skillCategory ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.skill-category li {
+.skillCategory li {
   padding: 0.4rem 0;
   color: var(--text-secondary);
   font-size: 0.95rem;
@@ -118,7 +120,7 @@
   padding-left: 1rem;
 }
 
-.skill-category li::before {
+.skillCategory li::before {
   content: '▸';
   position: absolute;
   left: 0;
@@ -126,7 +128,7 @@
   font-weight: bold;
 }
 
-blockquote {
+.aboutSection blockquote {
   background: var(--bg-secondary);
   border-left: 4px solid var(--accent-primary);
   margin: 2rem 0;
@@ -138,7 +140,7 @@ blockquote {
   position: relative;
 }
 
-blockquote::before {
+.aboutSection blockquote::before {
   content: '"';
   font-size: 3rem;
   color: var(--accent-primary);
@@ -149,14 +151,14 @@ blockquote::before {
   opacity: 0.3;
 }
 
-.contact-links {
+.contactLinks {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   margin-top: 1.5rem;
 }
 
-.contact-link {
+.contactLink {
   display: inline-flex;
   align-items: flex-start;
   padding: 0.75rem 1.5rem;
@@ -171,7 +173,7 @@ blockquote::before {
   overflow: hidden;
 }
 
-.contact-link::before {
+.contactLink::before {
   content: '';
   position: absolute;
   top: 0;
@@ -182,63 +184,65 @@ blockquote::before {
   transition: left 0.5s ease;
 }
 
-.contact-link:hover {
+.contactLink:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   border-color: var(--accent-primary);
   color: var(--accent-primary);
 }
 
-.contact-link:hover::before {
+.contactLink:hover::before {
   left: 100%;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .about-container {
+  .aboutContainer {
     padding: 1rem 0.5rem;
   }
-  
-  .about-header h1 {
+
+  .aboutHeader h1 {
     font-size: 2.5rem;
   }
-  
-  .about-subtitle {
+
+  .aboutSubtitle {
     font-size: 1.1rem;
   }
-  
-  .skills-grid {
+
+  .skillsGrid {
     grid-template-columns: 1fr;
     gap: 1.5rem;
   }
-  
-  .contact-links {
-    justify-content: flex-start;
+
+  .contactLinks {
+    justify-content: center;
   }
-  
-  .contact-link {
+
+  .contactLink {
+    flex: 1;
+    justify-content: center;
     min-width: 120px;
   }
 }
 
 @media (max-width: 480px) {
-  .about-header h1 {
+  .aboutHeader h1 {
     font-size: 2rem;
   }
-  
-  .about-section h2 {
+
+  .aboutSection h2 {
     font-size: 1.5rem;
   }
-  
-  .about-section p {
+
+  .aboutSection p {
     font-size: 1rem;
   }
-  
-  .skill-category {
+
+  .skillCategory {
     padding: 1rem;
   }
-  
-  blockquote {
+
+  .aboutSection blockquote {
     padding: 1rem;
     font-size: 1rem;
   }

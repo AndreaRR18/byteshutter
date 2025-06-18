@@ -1,19 +1,19 @@
 import React from 'react';
-import './About.css';
+import styles from './About.module.css';
 
 const About: React.FC = () => {
   return (
-    <div className="about-container">
-      <div className="about-content">
-        <div className="about-header">
+    <div className={styles.aboutContainer}>
+      <div className={styles.aboutContent}>
+        <div className={styles.aboutHeader}>
           <h1>About Me</h1>
-          <div className="about-subtitle">
+          <div className={styles.aboutSubtitle}>
             Developer, Creator, Problem Solver
           </div>
         </div>
 
-        <div className="about-body">
-          <div className="about-section">
+        <div className={styles.aboutBody}>
+          <div className={styles.aboutSection}>
             <h2>Hello, I'm Andrea!</h2>
             <p>
               Welcome to my digital space where I share my journey through the ever-evolving 
@@ -22,7 +22,7 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          <div className="about-section">
+          <div className={styles.aboutSection}>
             <h2>What I Do</h2>
             <p>
               I specialize in full-stack development, with a particular focus on modern web 
@@ -31,8 +31,8 @@ const About: React.FC = () => {
               reality through clean, efficient code.
             </p>
             
-            <div className="skills-grid">
-              <div className="skill-category">
+            <div className={styles.skillsGrid}>
+              <div className={styles.skillCategory}>
                 <h3>Frontend</h3>
                 <ul>
                   <li>React & Next.js</li>
@@ -42,7 +42,7 @@ const About: React.FC = () => {
                 </ul>
               </div>
               
-              <div className="skill-category">
+              <div className={styles.skillCategory}>
                 <h3>Backend</h3>
                 <ul>
                   <li>Node.js & Express</li>
@@ -52,7 +52,7 @@ const About: React.FC = () => {
                 </ul>
               </div>
               
-              <div className="skill-category">
+              <div className={styles.skillCategory}>
                 <h3>Tools & Platforms</h3>
                 <ul>
                   <li>Git & GitHub</li>
