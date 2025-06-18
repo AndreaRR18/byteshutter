@@ -9,7 +9,7 @@ const BlogList: React.FC = () => {
   const [feed, setFeed] = useState<ArticleFeed | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
+
   useEffect(() => {
     const fetchArticles = async () => {
       try {
@@ -43,7 +43,7 @@ const BlogList: React.FC = () => {
       </div>
     );
   }
-  
+
   if (error) {
     return (
       <div className="blog-container">
@@ -56,7 +56,7 @@ const BlogList: React.FC = () => {
       </div>
     );
   }
-  
+
   if (!feed || feed.articles.length === 0) {
     return (
       <div className="blog-container">
@@ -82,7 +82,7 @@ const BlogList: React.FC = () => {
                 date={article.created_at}
                 tags={article.tags}
               />
-              </Link>
+            </Link>
           ))}
         </div>
       </section>

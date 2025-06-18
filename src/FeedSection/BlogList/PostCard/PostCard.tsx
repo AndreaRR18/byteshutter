@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tag } from '../../../components/Tag/Tag';
 import styles from './PostCard.module.css';
+import { Divider } from '../../../components/Divider/Divider';
 
 interface PostCardProps {
   title: string;
@@ -9,7 +10,7 @@ interface PostCardProps {
   tags?: string[];
   onClick?: () => void;
 }
- 
+
 export const PostCard: React.FC<PostCardProps> = ({
   title,
   excerpt,
@@ -29,13 +30,13 @@ export const PostCard: React.FC<PostCardProps> = ({
             })}
           </time>
         )}
-        
+
         <h2 className={styles.title}>{title}</h2>
-        
+
         <p className={styles.excerpt}>
           {excerpt}
         </p>
-        
+
         {tags && tags.length > 0 && (
           <div className={styles.tags}>
             {tags.map((tag, index) => (
@@ -43,6 +44,12 @@ export const PostCard: React.FC<PostCardProps> = ({
             ))}
           </div>
         )}
+
+        <Divider
+          thickness="medium"
+          spacing="large"
+          color={styles.divider}
+        />
       </div>
     </article>
   );
