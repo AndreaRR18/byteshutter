@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
 import BlogList from './FeedSection/BlogList/BlogList'
 import { BlogPost } from './FeedSection/BlogPost/BlogPost'
+import About from './About/About'
 import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import { useTheme } from './hooks/useTheme'
@@ -15,6 +16,7 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<BlogList />} />
           <Route path="/articles/:slug" element={<BlogPost />} />
+          <Route path="/about" element={<About />} />
         </Routes>
       </main>
       <Footer />

@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import type { ArticleFeed } from './BlogListRepository';
 import { feedRepository } from './BlogListRepository';
-import './BlogList.css';
+import './BlogList.module.css';
+import { PostCard } from './PostCard/PostCard';
 
 const BlogList: React.FC = () => {
   const [feed, setFeed] = useState<ArticleFeed | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  
+
   useEffect(() => {
     const fetchArticles = async () => {
       try {
@@ -42,7 +43,7 @@ const BlogList: React.FC = () => {
       </div>
     );
   }
-  
+
   if (error) {
     return (
       <div className="blog-container">
@@ -55,7 +56,7 @@ const BlogList: React.FC = () => {
       </div>
     );
   }
-  
+
   if (!feed || feed.articles.length === 0) {
     return (
       <div className="blog-container">
@@ -74,29 +75,14 @@ const BlogList: React.FC = () => {
       <section className="content-section">
         <div className="articles-list">
           {feed.articles.map((article) => (
-            <article key={article.slug} className="article-card">
-              <Link to={`/articles/${article.slug}`} className="article-link">
-                <div className="article-header">
-                  <h2 className="article-title">{article.title}</h2>
-                  <div className="article-meta">
-                    <time 
-                      className="article-date" 
-                      dateTime={article.created_at}
-                    >
-                      {new Date(article.created_at).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
-                      })}
-                    </time>
-                  </div>
-                </div>
-                
-                {article.excerpt && (
-                  <p className="article-excerpt">{article.excerpt}</p>
-                )}
-              </Link>
-            </article>
+            <Link to={`/articles/${article.slug}`} key={article.slug}>
+              <PostCard
+                title={article.title}
+                excerpt={article.excerpt}
+                date={article.created_at}
+                tags={article.tags}
+              />
+            </Link>
           ))}
         </div>
       </section>
