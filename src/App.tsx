@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
+import Landing from './components/Landing/Landing'
 import BlogList from './FeedSection/BlogList/BlogList'
 import { BlogPost } from './FeedSection/BlogPost/BlogPost'
 import About from './About/About'
@@ -10,11 +11,12 @@ import './App.css'
 
 function AppContent() {
   return (
-    <div className="app">
+    <div className="app min-h-screen bg-background text-text-primary">
       <Header />
       <main>
         <Routes>
-          <Route path="/" element={<BlogList />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/articles" element={<BlogList />} />
           <Route path="/articles/:slug" element={<BlogPost />} />
           <Route path="/about" element={<About />} />
         </Routes>
@@ -25,18 +27,13 @@ function AppContent() {
 }
 
 function App() {
-  // Initialize theme following guidelines
+  // Initialize theme using theme hook
   const { theme } = useTheme();
 
   useEffect(() => {
-    // Apply theme with smooth transitions as per guidelines
+    // Theme is automatically handled by the useTheme hook
+    // Apply theme with smooth transitions
     document.documentElement.setAttribute('data-theme', theme);
-
-    // Respect user's system preference by default
-    if (!localStorage.getItem('theme')) {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
-    }
   }, [theme]);
 
   return (
