@@ -1,24 +1,26 @@
-.landing-container {
+/* Landing Page Styles - CSS Modules */
+
+.landingContainer {
   min-height: 100vh;
   padding: 2rem 1rem;
   background: var(--bg-primary);
   color: var(--text-primary);
 }
 
-.landing-content {
+.landingContent {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
 /* Hero Section */
-.landing-hero {
+.landingHero {
   text-align: center;
   margin-bottom: 4rem;
   padding: 3rem 0;
 }
 
-.landing-hero h1 {
+.landingHero h1 {
   font-size: 3.5rem;
   font-weight: 700;
   color: var(--text-primary);
@@ -29,14 +31,14 @@
   -webkit-text-fill-color: transparent;
 }
 
-.landing-subtitle {
+.landingSubtitle {
   font-size: 1.5rem;
   color: var(--text-secondary);
   font-weight: 500;
   margin-bottom: 1.5rem;
 }
 
-.landing-description {
+.landingDescription {
   font-size: 1.2rem;
   color: var(--text-secondary);
   max-width: 600px;
@@ -45,12 +47,12 @@
 }
 
 /* Section Styling */
-.landing-section {
+.landingSection {
   margin-bottom: 4rem;
   padding: 2rem 0;
 }
 
-.landing-section h2 {
+.landingSection h2 {
   font-size: 2.5rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -60,7 +62,7 @@
   padding-bottom: 1rem;
 }
 
-.landing-section h2::after {
+.landingSection h2::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -73,14 +75,14 @@
 }
 
 /* Features Grid */
-.features-grid {
+.featuresGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   gap: 2rem;
   margin: 2rem 0;
 }
 
-.feature-card {
+.featureCard {
   background: var(--bg-secondary);
   padding: 2rem;
   border-radius: 16px;
@@ -91,7 +93,7 @@
   overflow: hidden;
 }
 
-.feature-card::before {
+.featureCard::before {
   content: '';
   position: absolute;
   top: 0;
@@ -102,17 +104,17 @@
   transition: left 0.5s ease;
 }
 
-.feature-card:hover {
+.featureCard:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
   border-color: var(--accent);
 }
 
-.feature-card:hover::before {
+.featureCard:hover::before {
   left: 100%;
 }
 
-.feature-icon {
+.featureIcon {
   font-size: 3rem;
   margin-bottom: 1rem;
   display: block;
@@ -120,7 +122,7 @@
   z-index: 1;
 }
 
-.feature-card h3 {
+.featureCard h3 {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-primary);
@@ -129,7 +131,7 @@
   z-index: 1;
 }
 
-.feature-card p {
+.featureCard p {
   color: var(--text-secondary);
   line-height: 1.6;
   position: relative;
@@ -137,14 +139,14 @@
 }
 
 /* Audience Grid */
-.audience-grid {
+.audienceGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin: 2rem 0;
 }
 
-.audience-card {
+.audienceCard {
   background: var(--bg-secondary);
   padding: 2rem;
   border-radius: 16px;
@@ -152,39 +154,39 @@
   transition: all 0.3s ease;
 }
 
-.audience-card:hover {
+.audienceCard:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   border-color: var(--accent);
 }
 
-.audience-card h3 {
+.audienceCard h3 {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--accent);
   margin: 0 0 1rem 0;
 }
 
-.audience-card p {
+.audienceCard p {
   color: var(--text-secondary);
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
 
-.audience-card ul {
+.audienceCard ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.audience-card li {
+.audienceCard li {
   padding: 0.5rem 0;
   color: var(--text-secondary);
   position: relative;
   padding-left: 1.5rem;
 }
 
-.audience-card li::before {
+.audienceCard li::before {
   content: '✓';
   position: absolute;
   left: 0;
@@ -193,39 +195,39 @@
 }
 
 /* Technology Highlights */
-.tech-highlights {
+.techHighlights {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   margin: 2rem 0;
 }
 
-.tech-item {
+.techItem {
   text-align: center;
   padding: 1.5rem;
 }
 
-.tech-item h3 {
+.techItem h3 {
   font-size: 1.3rem;
   font-weight: 600;
   color: var(--text-primary);
   margin: 0 0 1rem 0;
 }
 
-.tech-item p {
+.techItem p {
   color: var(--text-secondary);
   line-height: 1.6;
 }
 
 /* Stories Section */
-.stories-container {
+.storiesContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin: 2rem 0;
 }
 
-.story-quote {
+.storyQuote {
   background: var(--bg-secondary);
   border-left: 4px solid var(--accent);
   margin: 0;
@@ -237,12 +239,12 @@
   transition: all 0.3s ease;
 }
 
-.story-quote:hover {
+.storyQuote:hover {
   transform: translateX(4px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.story-quote::before {
+.storyQuote::before {
   content: '"';
   font-size: 4rem;
   color: var(--accent);
@@ -253,7 +255,7 @@
   opacity: 0.3;
 }
 
-.story-quote cite {
+.storyQuote cite {
   display: block;
   margin-top: 1rem;
   font-style: normal;
@@ -262,7 +264,7 @@
 }
 
 /* CTA Section */
-.cta-section {
+.ctaSection {
   text-align: center;
   background: var(--bg-secondary);
   padding: 4rem 2rem;
@@ -271,25 +273,26 @@
   margin-top: 4rem;
 }
 
-.cta-section h2 {
+.ctaSection h2 {
   font-size: 2.5rem;
   margin-bottom: 1rem;
 }
 
-.cta-section p {
+.ctaSection p {
   font-size: 1.2rem;
   color: var(--text-secondary);
   margin-bottom: 2rem;
 }
 
-.cta-buttons {
+.ctaButtons {
   display: flex;
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
 }
 
-.cta-primary, .cta-secondary {
+.ctaPrimary, 
+.ctaSecondary {
   padding: 1rem 2rem;
   border-radius: 10px;
   font-size: 1.1rem;
@@ -301,24 +304,24 @@
   overflow: hidden;
 }
 
-.cta-primary {
+.ctaPrimary {
   background: var(--accent);
   color: white;
 }
 
-.cta-primary:hover {
+.ctaPrimary:hover {
   background: #1d4ed8;
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
 }
 
-.cta-secondary {
+.ctaSecondary {
   background: transparent;
   color: var(--text-primary);
   border: 2px solid var(--border);
 }
 
-.cta-secondary:hover {
+.ctaSecondary:hover {
   border-color: var(--accent);
   color: var(--accent);
   transform: translateY(-2px);
@@ -327,67 +330,69 @@
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .landing-container {
+  .landingContainer {
     padding: 1rem 0.5rem;
   }
 
-  .landing-hero h1 {
+  .landingHero h1 {
     font-size: 2.5rem;
   }
 
-  .landing-subtitle {
+  .landingSubtitle {
     font-size: 1.2rem;
   }
 
-  .landing-description {
+  .landingDescription {
     font-size: 1rem;
   }
 
-  .landing-section h2 {
+  .landingSection h2 {
     font-size: 2rem;
   }
 
-  .features-grid {
+  .featuresGrid {
     grid-template-columns: 1fr;
   }
 
-  .audience-grid {
+  .audienceGrid {
     grid-template-columns: 1fr;
   }
 
-  .tech-highlights {
+  .techHighlights {
     grid-template-columns: 1fr;
   }
 
-  .stories-container {
+  .storiesContainer {
     grid-template-columns: 1fr;
   }
 
-  .cta-buttons {
+  .ctaButtons {
     flex-direction: column;
     align-items: center;
   }
 
-  .cta-primary, .cta-secondary {
+  .ctaPrimary, 
+  .ctaSecondary {
     width: 100%;
     max-width: 300px;
   }
 }
 
 @media (max-width: 480px) {
-  .landing-hero h1 {
+  .landingHero h1 {
     font-size: 2rem;
   }
 
-  .landing-section h2 {
+  .landingSection h2 {
     font-size: 1.5rem;
   }
 
-  .feature-card, .audience-card {
+  .featureCard, 
+  .audienceCard {
     padding: 1.5rem;
   }
 
-  .cta-section {
+  .ctaSection {
     padding: 2rem 1rem;
   }
 } 
