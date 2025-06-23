@@ -37,7 +37,7 @@ function App() {
   }, [theme]);
 
   return (
-    <Router basename={""}>
+    <Router basename="/byteshutter">
       <AppContent />
     </Router>
   )
