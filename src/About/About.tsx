@@ -64,7 +64,7 @@ const About: React.FC = () => {
             </div>
           </div>
 
-          <div className="about-section">
+          <div className={styles.aboutSection}>
             <h2>My Philosophy</h2>
             <blockquote>
               "Great software isn't just about writing code—it's about understanding people, 
@@ -77,7 +77,7 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          <div className="about-section">
+          <div className={styles.aboutSection}>
             <h2>Beyond Code</h2>
             <p>
               When I'm not coding, you'll find me exploring photography (hence the name "byteshutter"), 
@@ -87,7 +87,7 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          <div className="about-section">
+          <div className={styles.aboutSection}>
             <h2>Let's Connect</h2>
             <p>
               I'm always open to interesting conversations about technology, collaboration 
@@ -95,17 +95,17 @@ const About: React.FC = () => {
               Feel free to reach out!
             </p>
             
-            <div className="contact-links">
-              <a href="mailto:hello@byteshutter.dev" className="contact-link">
+            <div className={styles.contactLinks}>
+              <a href="mailto:hello@byteshutter.dev" className={styles.contactLink}>
                 <span>Email</span>
               </a>
-              <a href="https://github.com/andrea" className="contact-link">
+              <a href="https://github.com/andrea" className={styles.contactLink}>
                 <span>GitHub</span>
               </a>
-              <a href="https://linkedin.com/in/andrea" className="contact-link">
+              <a href="https://linkedin.com/in/andrea" className={styles.contactLink}>
                 <span>LinkedIn</span>
               </a>
-              <a href="https://twitter.com/andrea" className="contact-link">
+              <a href="https://twitter.com/andrea" className={styles.contactLink}>
                 <span>Twitter</span>
               </a>
             </div>
