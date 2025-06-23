@@ -1,10 +1,10 @@
 import React from 'react';
-import './Footer.css';
+import styles from './Footer.module.css';
 
 const Footer: React.FC = () => (
-  <footer className="footer">
-    <div className="footer-content">
-      <p className="footer-text">
+  <footer className={styles.footer}>
+    <div className={styles.footerContent}>
+      <p className={styles.footerText}>
         &copy; {new Date().getFullYear()} byteshutter. All rights reserved.
       </p>
     </div>
