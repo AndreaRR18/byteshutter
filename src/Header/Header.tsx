@@ -1,5 +1,5 @@
 import React from 'react';
-import './Header.css';
+import styles from './Header.module.css';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../hooks/useTheme';
 
@@ -7,25 +7,25 @@ const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="header">
-      <nav className="nav">
-        <div className="nav-brand">
-          <Link to="/" className="brand-link">
+    <header className={styles.header}>
+      <nav className={styles.nav}>
+        <div className={styles.logo}>
+          <Link to="/" className={styles.logo}>
             byteshutter
           </Link>
         </div>
         
-        <div className="nav-links">
-          <Link to="/articles" className="nav-link">
+        <div className={styles.navLinks}>
+          <Link to="/articles" className={styles.navLink}>
             Articles
           </Link>
-          <Link to="/about" className="nav-link">
+          <Link to="/about" className={styles.navLink}>
             About
           </Link>
         </div>
         
         <button 
-          className="theme-toggle" 
+          className={styles.themeToggle} 
           aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
           onClick={toggleTheme}
         >
