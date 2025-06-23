@@ -139,7 +139,7 @@ export const BlogPost: React.FC = () => {
           </div>
 
           <footer>
-            <Link to="/" className={styles.articleLink}>
+            <Link to="/articles" className={styles.articleLink}>
               ← More Articles
             </Link>
           </footer>
