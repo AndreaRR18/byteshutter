@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Landing.module.css';
+import { getAssetPath } from '../../utils/assets';
 
 const Landing: React.FC = () => {
   return (
@@ -7,151 +8,176 @@ const Landing: React.FC = () => {
       <div className={styles.landingContent}>
         {/* Hero Section */}
         <div className={styles.landingHero}>
-          <h1>AI Coding Agent</h1>
+          <div className={styles.heroImage}>
+            <img src={getAssetPath("images/hero_image.jpg")} alt="Hero - Tech and Photography" />
+          </div>
+          <h1>My Tech & Photography Journey</h1>
           <div className={styles.landingSubtitle}>
-            Your Intelligent Development Companion
+            Exploring Code and Capturing Moments
           </div>
           <p className={styles.landingDescription}>
-            Revolutionize your coding experience with our AI-powered assistant that helps you write, 
-            debug, and optimize code faster than ever before.
+            Welcome to my blog! Here, I share my journey in programming and photography. 
+            Explore my latest projects, book recommendations, and photo highlights.
           </p>
         </div>
 
-        {/* Key Features Section */}
+        {/* About Me Section */}
         <div className={styles.landingSection}>
-          <h2>Powerful Features</h2>
-          <div className={styles.featuresGrid}>
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🚀</div>
-              <h3>Code Generation</h3>
-              <p>Generate high-quality code snippets instantly from natural language descriptions across multiple programming languages.</p>
-            </div>
-            
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🔍</div>
-              <h3>Smart Debugging</h3>
-              <p>Identify and fix syntax errors, logical bugs, and runtime issues with intelligent suggestions and explanations.</p>
-            </div>
-            
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>⚡</div>
-              <h3>Code Optimization</h3>
-              <p>Improve performance, readability, and maintainability with automated refactoring and optimization suggestions.</p>
-            </div>
-            
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>📚</div>
-              <h3>Learning & Documentation</h3>
-              <p>Get detailed explanations of complex code and automatically generate comprehensive documentation.</p>
-            </div>
-            
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🛠️</div>
-              <h3>Project Management</h3>
-              <p>Set up new projects with best practices and get suggestions for optimal project structure.</p>
-            </div>
-            
-            <div className={styles.featureCard}>
-              <div className={styles.featureIcon}>🔒</div>
-              <h3>Security Analysis</h3>
-              <p>Identify potential security vulnerabilities and get recommendations for secure coding practices.</p>
+          <h2>About Me</h2>
+          <div className={styles.aboutContent}>
+            <p>
+              Hi there! I'm a passionate developer and photography enthusiast. I love to code and capture moments. 
+              Follow my journey as I explore new technologies and photograph the world around me.
+            </p>
+          </div>
+        </div>
+
+        {/* Currently Reading Section */}
+        <div className={styles.landingSection}>
+          <h2>Currently Reading</h2>
+          <div className={styles.currentlyReading}>
+            <div className={styles.bookCard}>
+              <div className={styles.bookCover}>
+                <img src={getAssetPath("images/minimal-static-site.jpg")} alt="Current book cover" />
+              </div>
+              <div className={styles.bookInfo}>
+                <h3>Clean Code: A Handbook of Agile Software Craftsmanship</h3>
+                <p className={styles.bookAuthor}>by Robert C. Martin</p>
+                <p className={styles.bookNote}>
+                  Why I'm reading it: Essential principles for writing maintainable and clean code that every developer should know.
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Target Audience Section */}
+        {/* Recently Read Books Section */}
         <div className={styles.landingSection}>
-          <h2>Built for Every Developer</h2>
-          <div className={styles.audienceGrid}>
-            <div className={styles.audienceCard}>
-              <h3>Beginners</h3>
-              <p>Learn faster with detailed explanations and tutorials tailored to your skill level.</p>
-              <ul>
-                <li>Step-by-step guidance</li>
-                <li>Code explanations in simple terms</li>
-                <li>Interactive learning resources</li>
-              </ul>
-            </div>
-            
-            <div className={styles.audienceCard}>
-              <h3>Experienced Developers</h3>
-              <p>Boost productivity with advanced optimization and refactoring suggestions.</p>
-              <ul>
-                <li>Performance optimization</li>
-                <li>Architecture recommendations</li>
-                <li>Advanced debugging tools</li>
-              </ul>
-            </div>
-            
-            <div className={styles.audienceCard}>
-              <h3>Teams & Educators</h3>
-              <p>Enhance collaboration and streamline the learning process.</p>
-              <ul>
-                <li>Code review assistance</li>
-                <li>Team collaboration features</li>
-                <li>Educational resources</li>
-              </ul>
+          <h2>Recently Read Books</h2>
+          <div className={styles.recentlyRead}>
+            <div className={styles.bookGrid}>
+              <div className={styles.miniBookCard}>
+                <img src={getAssetPath("images/hero_image.jpg")} alt="Book cover" />
+                <h4>The Pragmatic Programmer</h4>
+                <p className={styles.miniBookAuthor}>by David Thomas & Andrew Hunt</p>
+                <p className={styles.miniBookReview}>
+                  Excellent advice for becoming a more effective programmer. Practical tips that I apply daily.
+                </p>
+              </div>
+              
+              <div className={styles.miniBookCard}>
+                <img src={getAssetPath("images/minimal-static-site.jpg")} alt="Book cover" />
+                <h4>You Don't Know JS</h4>
+                <p className={styles.miniBookAuthor}>by Kyle Simpson</p>
+                <p className={styles.miniBookReview}>
+                  Deep dive into JavaScript fundamentals. Changed how I think about JavaScript completely.
+                </p>
+              </div>
+              
+              <div className={styles.miniBookCard}>
+                <img src={getAssetPath("images/hero_image.jpg")} alt="Book cover" />
+                <h4>Design Patterns</h4>
+                <p className={styles.miniBookAuthor}>by Gang of Four</p>
+                <p className={styles.miniBookReview}>
+                  Classic book on software design patterns. Essential reading for any software architect.
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Technology Section */}
+        {/* Interesting Articles Section */}
         <div className={styles.landingSection}>
-          <h2>Cutting-Edge Technology</h2>
-          <div className={styles.techHighlights}>
-            <div className={styles.techItem}>
-              <h3>Natural Language Processing</h3>
-              <p>Advanced NLP models understand your intent and generate contextually relevant code.</p>
+          <h2>Interesting Articles</h2>
+          <div className={styles.articlesList}>
+            <ul>
+              <li>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  The Future of Web Development: Trends to Watch in 2024
+                </a>
+                <span> - An insightful look at emerging technologies shaping web development.</span>
+              </li>
+              <li>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Mastering Portrait Photography: Light and Composition
+                </a>
+                <span> - Essential techniques for capturing compelling portraits in natural light.</span>
+              </li>
+              <li>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Building Scalable React Applications with TypeScript
+                </a>
+                <span> - Best practices for structuring large React applications with TypeScript.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Highlighted Photo Section */}
+        <div className={styles.landingSection}>
+          <h2>Highlighted Photo</h2>
+          <div className={styles.highlightedPhoto}>
+            <div className={styles.photoContainer}>
+              <img src={getAssetPath("images/hero_image.jpg")} alt="Highlighted photography work" />
             </div>
-            
-            <div className={styles.techItem}>
-              <h3>Machine Learning Models</h3>
-              <p>Continuously learning from vast codebases to provide increasingly accurate suggestions.</p>
-            </div>
-            
-            <div className={styles.techItem}>
-              <h3>Multi-Language Support</h3>
-              <p>Support for JavaScript, Python, TypeScript, Java, C++, and many more languages.</p>
-            </div>
-            
-            <div className={styles.techItem}>
-              <h3>IDE Integration</h3>
-              <p>Seamless integration with popular development environments and tools.</p>
+            <div className={styles.photoInfo}>
+              <h3>Golden Hour at the Mountain Peak</h3>
+              <p>
+                Captured during a hiking trip in the Rocky Mountains. The golden hour light created this 
+                stunning silhouette effect against the dramatic sky. Shot with a Canon EOS R5 at f/8, 
+                1/250s, ISO 100. This moment reminded me why I fell in love with landscape photography.
+              </p>
             </div>
           </div>
         </div>
 
-        {/* User Stories Section */}
+        {/* Photographers I Follow Section */}
         <div className={styles.landingSection}>
-          <h2>Real Developer Stories</h2>
-          <div className={styles.storiesContainer}>
-            <blockquote className={styles.storyQuote}>
-              "As a beginner developer, the AI coding agent helps me understand complex code snippets 
-              in simple terms, making my learning journey much smoother."
-              <cite>- Junior Developer</cite>
-            </blockquote>
-            
-            <blockquote className={styles.storyQuote}>
-              "The optimization suggestions have improved my code performance significantly. 
-              It's like having a senior developer review my code 24/7."
-              <cite>- Senior Engineer</cite>
-            </blockquote>
-            
-            <blockquote className={styles.storyQuote}>
-              "Setting up new projects with best practices is now effortless. 
-              My team can start development quickly and efficiently."
-              <cite>- Project Manager</cite>
-            </blockquote>
+          <h2>Photographers I Follow</h2>
+          <div className={styles.photographersList}>
+            <ul>
+              <li>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Ansel Adams
+                </a>
+                <span> - Master of black and white landscape photography, known for his stunning wilderness images.</span>
+              </li>
+              <li>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Annie Leibovitz
+                </a>
+                <span> - Renowned portrait photographer famous for her intimate and dramatic celebrity portraits.</span>
+              </li>
+              <li>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  Henri Cartier-Bresson
+                </a>
+                <span> - Pioneer of street photography, master of capturing "decisive moments" in everyday life.</span>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className={`${styles.landingSection} ${styles.ctaSection}`}>
-          <h2>Ready to Transform Your Development Experience?</h2>
-          <p>Join thousands of developers who are already coding smarter, not harder.</p>
-          <div className={styles.ctaButtons}>
-            <button className={styles.ctaPrimary}>Get Started Free</button>
-            <button className={styles.ctaSecondary}>View Documentation</button>
+        {/* Follow Me Section */}
+        <div className={styles.landingSection}>
+          <h2>Follow Me</h2>
+          <div className={styles.socialLinks}>
+            <a href="#" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+              <span className={styles.socialIcon}>📷</span>
+              <span>Instagram</span>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+              <span className={styles.socialIcon}>🐦</span>
+              <span>Twitter</span>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+              <span className={styles.socialIcon}>💻</span>
+              <span>GitHub</span>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" className={styles.socialLink}>
+              <span className={styles.socialIcon}>💼</span>
+              <span>LinkedIn</span>
+            </a>
           </div>
         </div>
       </div>
