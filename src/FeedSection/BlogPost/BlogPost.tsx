@@ -121,17 +121,29 @@ export const BlogPost: React.FC = () => {
                     {children}
                   </a>
                 ),
-                img: ({ src, alt }) => (
-                  <img 
-                    src={src} 
-                    alt={alt || ''} 
-                    loading="lazy"
-                    onError={(e) => {
-                      console.warn('Image failed to load:', src);
-                      e.currentTarget.style.display = 'none';
-                    }}
-                  />
-                ),
+                img: ({ src, alt }) => {
+                  // Handle image paths for GitHub Pages deployment
+                  let imageSrc = src;
+                  if (src?.startsWith('/images/')) {
+                    // Convert absolute paths to work with base path
+                    imageSrc = import.meta.env.BASE_URL + src.substring(1);
+                  } else if (src?.startsWith('/')) {
+                    // Handle other absolute paths
+                    imageSrc = import.meta.env.BASE_URL + src.substring(1);
+                  }
+                  
+                  return (
+                    <img 
+                      src={imageSrc} 
+                      alt={alt || ''} 
+                      loading="lazy"
+                      onError={(e) => {
+                        console.warn('Image failed to load:', imageSrc);
+                        e.currentTarget.style.display = 'none';
+                      }}
+                    />
+                  );
+                },
               }}
             >
               {article.content}
