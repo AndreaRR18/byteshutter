@@ -37,7 +37,7 @@ function App() {
   }, [theme]);
 
   return (
-    <Router basename={import.meta.env.PROD ? "/byteshutter" : ""}>
+    <Router basename={""}>
       <AppContent />
     </Router>
   )
