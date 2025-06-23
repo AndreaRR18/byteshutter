@@ -1,14 +1,31 @@
 import React from 'react';
 import styles from './Landing.module.css';
+import { useLandingImages, preloadImages } from './imageUtils';
 
 const Landing: React.FC = () => {
+  // Get all images with proper URLs for dev and production
+  const images = useLandingImages();
+  
+  // Preload images for better performance
+  React.useEffect(() => {
+    const imageUrls = [
+      images.hero,
+      images.bookCover,
+      images.bookGrid.pragmaticProgrammer,
+      images.bookGrid.youDontKnowJs,
+      images.bookGrid.designPatterns,
+      images.highlightedPhoto
+    ];
+    preloadImages(imageUrls);
+  }, [images]);
+
   return (
     <div className={styles.landingContainer}>
       <div className={styles.landingContent}>
         {/* Hero Section */}
         <div className={styles.landingHero}>
           <div className={styles.heroImage}>
-            <img src={"images/hero_image.jpg"} alt="Hero - Tech and Photography" />
+            <img src={images.hero} alt="Hero - Tech and Photography" />
           </div>
           <h1>My Tech & Photography Journey</h1>
           <div className={styles.landingSubtitle}>
@@ -37,7 +54,7 @@ const Landing: React.FC = () => {
           <div className={styles.currentlyReading}>
             <div className={styles.bookCard}>
               <div className={styles.bookCover}>
-                <img src={"images/minimal-static-site.jpg"} alt="Current book cover" />
+                <img src={images.bookCover} alt="Current book cover" />
               </div>
               <div className={styles.bookInfo}>
                 <h3>Clean Code: A Handbook of Agile Software Craftsmanship</h3>
@@ -56,7 +73,7 @@ const Landing: React.FC = () => {
           <div className={styles.recentlyRead}>
             <div className={styles.bookGrid}>
               <div className={styles.miniBookCard}>
-                <img src={"images/hero_image.jpg"} alt="Book cover" />
+                <img src={images.bookGrid.pragmaticProgrammer} alt="Book cover" />
                 <h4>The Pragmatic Programmer</h4>
                 <p className={styles.miniBookAuthor}>by David Thomas & Andrew Hunt</p>
                 <p className={styles.miniBookReview}>
@@ -65,7 +82,7 @@ const Landing: React.FC = () => {
               </div>
               
               <div className={styles.miniBookCard}>
-                <img src={"images/minimal-static-site.jpg"} alt="Book cover" />
+                <img src={images.bookGrid.youDontKnowJs} alt="Book cover" />
                 <h4>You Don't Know JS</h4>
                 <p className={styles.miniBookAuthor}>by Kyle Simpson</p>
                 <p className={styles.miniBookReview}>
@@ -74,7 +91,7 @@ const Landing: React.FC = () => {
               </div>
               
               <div className={styles.miniBookCard}>
-                <img src={"images/hero_image.jpg"} alt="Book cover" />
+                <img src={images.bookGrid.designPatterns} alt="Book cover" />
                 <h4>Design Patterns</h4>
                 <p className={styles.miniBookAuthor}>by Gang of Four</p>
                 <p className={styles.miniBookReview}>
@@ -117,7 +134,7 @@ const Landing: React.FC = () => {
           <h2>Highlighted Photo</h2>
           <div className={styles.highlightedPhoto}>
             <div className={styles.photoContainer}>
-              <img src={"images/hero_image.jpg"} alt="Highlighted photography work" />
+              <img src={images.highlightedPhoto} alt="Highlighted photography work" />
             </div>
             <div className={styles.photoInfo}>
               <h3>Golden Hour at the Mountain Peak</h3>
