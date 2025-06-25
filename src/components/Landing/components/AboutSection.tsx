@@ -7,8 +7,7 @@ const AboutSection: React.FC = () => {
       <h2>About Me</h2>
       <div className={styles.aboutContent}>
         <p>
-          Hi there! I'm a passionate developer and photography enthusiast. I love to code and capture moments. 
-          Follow my journey as I explore new technologies and photograph the world around me.
+        By the way, I'm Andrea, nice to meet you! If you're curious about me, there's a whole section on my background. But if you're too lazy to read that, well, now you know my name!
         </p>
       </div>
     </div>

@@ -30,11 +30,10 @@ export const getImageUrl = (imageName: string): string => {
  */
 export const LANDING_IMAGES = {
   hero: 'hero_image.jpg',
-  bookCover: 'minimal-static-site.jpg',
+  bookCover: 'ai_engineer_book_cover.jpg',
   bookGrid: {
-    pragmaticProgrammer: 'hero_image.jpg',
-    youDontKnowJs: 'minimal-static-site.jpg',
-    designPatterns: 'hero_image.jpg'
+    thePragmaticProgrammerBookCover: 'the_pragmatic_programmer_book_cover.jpg',
+    philosophySoftwareDesignerBookCover: 'philosophy_software_designer_book_cover.jpg'
   },
   highlightedPhoto: 'hero_image.jpg'
 } as const;
@@ -48,9 +47,8 @@ export const useLandingImages = () => {
     hero: getImageUrl(LANDING_IMAGES.hero),
     bookCover: getImageUrl(LANDING_IMAGES.bookCover),
     bookGrid: {
-      pragmaticProgrammer: getImageUrl(LANDING_IMAGES.bookGrid.pragmaticProgrammer),
-      youDontKnowJs: getImageUrl(LANDING_IMAGES.bookGrid.youDontKnowJs),
-      designPatterns: getImageUrl(LANDING_IMAGES.bookGrid.designPatterns)
+      thePragmaticProgrammerBookCover: getImageUrl(LANDING_IMAGES.bookGrid.thePragmaticProgrammerBookCover),
+      philosophySoftwareDesignerBookCover: getImageUrl(LANDING_IMAGES.bookGrid.philosophySoftwareDesignerBookCover)
     },
     highlightedPhoto: getImageUrl(LANDING_IMAGES.highlightedPhoto)
   };

@@ -15,10 +15,10 @@ const CurrentlyReadingSection: React.FC<CurrentlyReadingSectionProps> = ({ bookC
             <img src={bookCoverImage} alt="Current book cover" />
           </div>
           <div className={styles.bookInfo}>
-            <h3>Clean Code: A Handbook of Agile Software Craftsmanship</h3>
-            <p className={styles.bookAuthor}>by Robert C. Martin</p>
+            <h3>AI Engineering: Building Applications with Foundation Models</h3>
+            <p className={styles.bookAuthor}>by Chip Huyen</p>
             <p className={styles.bookNote}>
-              Why I'm reading it: Essential principles for writing maintainable and clean code that every developer should know.
+              Why I'm reading it: We're living in the age of AI, so who am I to skip a book on the subject?
             </p>
           </div>
         </div>

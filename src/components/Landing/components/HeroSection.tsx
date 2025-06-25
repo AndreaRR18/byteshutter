@@ -11,13 +11,10 @@ const HeroSection: React.FC<HeroSectionProps> = ({ heroImage }) => {
       <div className={styles.heroImage}>
         <img src={heroImage} alt="Hero - Tech and Photography" />
       </div>
-      <h1>My Tech & Photography Journey</h1>
-      <div className={styles.landingSubtitle}>
-        Exploring Code and Capturing Moments
-      </div>
+      <h1>Hey there, web surfer! Welcome to our space.</h1>
       <p className={styles.landingDescription}>
-        Welcome to my blog! Here, I share my journey in programming and photography. 
-        Explore my latest projects, book recommendations, and photo highlights.
+        No analytics, no tracking, just a private place to explore. <br />
+        Rest, read articles, see some photos, and share your thoughts only if you want to.
       </p>
     </div>
   );
