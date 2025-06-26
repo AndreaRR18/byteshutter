@@ -14,12 +14,7 @@ const HighlightedPhotoSection: React.FC<HighlightedPhotoSectionProps> = ({ highl
           <img src={highlightedPhotoImage} alt="Highlighted photography work" />
         </div>
         <div className={styles.photoInfo}>
-          <h3>Golden Hour at the Mountain Peak</h3>
-          <p>
-            Captured during a hiking trip in the Rocky Mountains. The golden hour light created this 
-            stunning silhouette effect against the dramatic sky. Shot with a Canon EOS R5 at f/8, 
-            1/250s, ISO 100. This moment reminded me why I fell in love with landscape photography.
-          </p>
+          Orange, who will fix this mess?
         </div>
       </div>
     </div>

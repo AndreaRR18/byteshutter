@@ -35,7 +35,7 @@ export const LANDING_IMAGES = {
     thePragmaticProgrammerBookCover: 'the_pragmatic_programmer_book_cover.jpg',
     philosophySoftwareDesignerBookCover: 'philosophy_software_designer_book_cover.jpg'
   },
-  highlightedPhoto: 'hero_image.jpg'
+  highlightedPhoto: 'orange_pattern.jpg'
 } as const;
 
 /**
