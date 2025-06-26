@@ -1,0 +1,59 @@
+/* Hero Section */
+.landingHero {
+  text-align: center;
+  margin-bottom: 4rem;
+  padding: 3rem 0;
+}
+
+.heroImage {
+  margin-bottom: 2rem;
+}
+
+.heroImage img {
+  width: 100%;
+  max-width: 800px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+.landingHero h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+  background: linear-gradient(135deg, var(--accent), #3b82f6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.landingDescription {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .landingHero h1 {
+    font-size: 2.5rem;
+  }
+
+  .landingDescription {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .landingHero h1 {
+    font-size: 2rem;
+  }
+
+  .heroImage img {
+    height: 250px;
+  }
+} 
