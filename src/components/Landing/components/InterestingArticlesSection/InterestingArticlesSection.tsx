@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../Landing.module.css';
+import styles from './InterestingArticlesSection.module.css';
 
 const InterestingArticlesSection: React.FC = () => {
   return (

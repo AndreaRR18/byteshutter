@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../Landing.module.css';
+import styles from './CurrentlyReadingSection.module.css';
 
 interface CurrentlyReadingSectionProps {
   bookCoverImage: string;

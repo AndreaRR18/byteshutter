@@ -1,0 +1,80 @@
+/* Section Styling */
+.landingSection {
+  margin-bottom: 4rem;
+  padding: 2rem 0;
+}
+
+.landingSection h2 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  margin: 0 0 3rem 0;
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.landingSection h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4rem;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), #3b82f6);
+  border-radius: 2px;
+}
+
+/* Articles Section */
+.articlesList {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.articlesList ul {
+  list-style: none;
+  padding: 0;
+}
+
+.articlesList li {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  border-left: 4px solid var(--accent);
+  transition: transform 0.2s ease;
+}
+
+.articlesList li:hover {
+  transform: translateX(4px);
+}
+
+.articlesList a {
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.articlesList a:hover {
+  text-decoration: underline;
+}
+
+.articlesList span {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .landingSection h2 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .landingSection h2 {
+    font-size: 1.8rem;
+  }
+} 
