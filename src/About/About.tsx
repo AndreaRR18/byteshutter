@@ -15,36 +15,43 @@ const About: React.FC = () => {
 
         <div className={styles.aboutBody}>
           <div className={styles.aboutSection}>
-            <p>
+            <div className={styles.introSection}>
+              <div className={styles.introText}>
+                <p>
+                  If you're curious, I'll give you a brief summary, it won't take
+                  long, my story is pretty common to many others :)
+                </p>
+                <p>
+                  <strong>I was born and live in Italy</strong>, a country I adore despite
+                  its thousand pros and cons. I was lucky enough to live in Venice
+                  for a while - unforgettable!
+                </p>
+                <p>
+                  <strong>I'm a software engineer</strong>, I studied programming (and more)
+                  both in high school and university, but in the end I decided
+                  that code would accompany me throughout my career, and it
+                  continues to do so.
+                </p>
+              </div>
+              <div className={styles.introImage}>
+                <img
+                  src={getImageUrl("me_thinker.jpg")}
+                  alt="Andrea - Tech and Photography"
+                  className={styles.profileImage}
+                />
+              </div>
+            </div>
+            
+            <div className={styles.personalitySection}>
               <p>
-                If you're curious, I'll give you a brief summary, it won't take
-                long, my story is pretty common to many others :){" "}
-              </p>
-              <img
-                src={getImageUrl("me_thinker.jpg")}
-                alt="Hero - Tech and Photography"
-              />
-              <br />
-              <p>
-                <b>I was born and live in Italy</b>, a country I adore despite
-                its thousand pros and cons. I was lucky enough to live in Venice
-                for a while - unforgettable!{" "}
-              </p>
-              <p>
-                <b>I'm a software engineer</b>, I studied programming (and more)
-                both in high school and university, but in the end I decided
-                that code would accompany me throughout my career, and it
-                continues to do so.
-              </p>
-              <p>
-                <b>I'm a videogame enthusiast</b>, or rather, I was, since my
+                <strong>I'm a videogame enthusiast</strong>, or rather, I was, since my
                 kids occupy every other free moment of my day, but I love them
                 all the same, I swear! Perhaps that's exactly why I started
                 being curious about PCs since I was a child, and yes, I'm old
                 enough to remember the sound of the modem when it was turned on.
               </p>
               <p>
-                <b>I have an attraction to stories</b>, of any kind and told
+                <strong>I have an attraction to stories</strong>, of any kind and told
                 through any medium. I'm firmly convinced that this is something
                 that can significantly impact our development and is often
                 underestimated. I could spend hours listening to grandparents
@@ -53,7 +60,7 @@ const About: React.FC = () => {
                 time for, give me their number, I'll gladly keep them company.
               </p>
               <p>
-                <b>I'm also passionate about photography</b>, especially
+                <strong>I'm also passionate about photography</strong>, especially
                 documentary photography, for reasons similar to what I mentioned
                 above regarding stories.
               </p>
@@ -63,12 +70,12 @@ const About: React.FC = () => {
               <p>
                 If you're curious about where I've worked, you can ask me for a
                 connection on{" "}
-                <a href="https://www.linkedin.com/in/andrea-rinaldi-707322b7/">
+                <a href="https://www.linkedin.com/in/andrea-rinaldi-707322b7/" className={styles.inlineLink}>
                   LinkedIn
                 </a>
                 , I'll be happy to accept it.
               </p>
-            </p>
+            </div>
           </div>
 
           <div className={styles.aboutSection}>
@@ -180,16 +187,15 @@ const About: React.FC = () => {
           <div className={styles.aboutSection}>
             <h2>My Philosophy</h2>
             <blockquote>
-              <br />
               All the best things in my life started with a yes... except when I
               accepted all the changes from a coding agent and spent the next
               hours fixing bugs.
             </blockquote>
             <p>
-              Jokes aside, I really like software development; it’s full of
-              generous people ready to help, something I’ve never seen in any
+              Jokes aside, I really like software development; it's full of
+              generous people ready to help, something I've never seen in any
               other job. Each software developer has their own experience molded
-              by the product they’re building, so you can become an expert in
+              by the product they're building, so you can become an expert in
               any field while implementing the details. What more could you want
               from a job!
             </p>
@@ -199,23 +205,23 @@ const About: React.FC = () => {
             <h2>Beyond Code</h2>
             <p>
               I have two small kids. I literally do not have time for anything
-              else, really. As I said before, I’m quite a boring person, so I
+              else, really. As I said before, I'm quite a boring person, so I
               get up early in the morning to study programming before they get
               up and start their day. After work, I enjoy spending time with
-              them, and believe me, it’s the best part of the day. I can’t ask
+              them, and believe me, it's the best part of the day. I can't ask
               for anything else. Ah, I quite forgot to mention this—I studied
-              photography in my free time and do some practice. I’ve been a
+              photography in my free time and do some practice. I've been a
               mentor for a local community of photographers and would love to
-              practice more and more. It’s like my second big passion!
+              practice more and more. It's like my second big passion!
             </p>
           </div>
 
           <div className={styles.aboutSection}>
             <h2>Let's Connect</h2>
             <p>
-              Congratulations, you arrived here—I wouldn’t expect this! If
+              Congratulations, you arrived here—I wouldn't expect this! If
               you're interested in a comparison, feel free to write to me or
-              arrange an online chat; I’d be happy to compare if time allows me.
+              arrange an online chat; I'd be happy to compare if time allows me.
             </p>
 
             <div className={styles.contactLinks}>
@@ -223,19 +229,19 @@ const About: React.FC = () => {
                 href="mailto:aikido.violin6i@icloud.com"
                 className={styles.contactLink}
               >
-                <span>Email</span>
+                <span>📧 Email</span>
               </a>
               <a
                 href="https://github.com/AndreaRR18"
                 className={styles.contactLink}
               >
-                <span>GitHub</span>
+                <span>🐙 GitHub</span>
               </a>
               <a
                 href="https://www.linkedin.com/in/andrea-rinaldi-707322b7/"
                 className={styles.contactLink}
               >
-                <span>LinkedIn</span>
+                <span>💼 LinkedIn</span>
               </a>
             </div>
           </div>

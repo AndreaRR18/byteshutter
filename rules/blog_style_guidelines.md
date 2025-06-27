@@ -173,7 +173,7 @@ font-family: 'SF Mono', Monaco, 'Cascadia Code',
 - ARIA labels for interactive elements
 - Skip navigation links
 - Proper heading hierarchy
-- Color not sole information indicator
+- Color not soleinformation indicator
 
 ## Animation & Interactions
 
