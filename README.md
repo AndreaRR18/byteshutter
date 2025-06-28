@@ -1,15 +1,19 @@
 # ByteShutter
 
-ByteShutter is a modern, responsive blog website built with React, TypeScript, and Vite. The site features articles about web development, iOS development, Swift, SwiftUI, and responsive design principles.
+ByteShutter is a modern, responsive blog website built with React, TypeScript, and Vite. The site features articles about web development, iOS development, Swift, SwiftUI, and responsive design principles, along with a comprehensive landing page showcasing books, articles, and photography.
 
 ## Features
 
-- **Modern Tech Stack**: Built with React 19, TypeScript, and Vite for fast development and optimal performance
-- **Markdown-Powered**: Articles are written in Markdown format and automatically converted to JSON for the frontend
+- **Modern Tech Stack**: Built with React 19.1.0, TypeScript 5.8.3, and Vite 6.3.5 for fast development and optimal performance
+- **Comprehensive Landing Page**: Multi-section homepage with hero, about, book recommendations, featured articles, and photography showcase
+- **Markdown-Powered**: Articles are written in Markdown format with GitHub Flavored Markdown support and automatically converted to JSON for the frontend
 - **Responsive Design**: Fully responsive layout that works seamlessly on desktop and mobile devices
-- **Dark/Light Theme**: Built-in theme switching capability
-- **Fast Navigation**: Client-side routing with React Router for smooth page transitions
-- **Type-Safe**: Full TypeScript implementation for better developer experience and code reliability
+- **Advanced Theme System**: Smart dark/light theme switching with system preference detection, localStorage persistence, and smooth transitions
+- **Fast Navigation**: Client-side routing with React Router 7.6.1 for smooth page transitions
+- **Type-Safe**: Full TypeScript implementation with strict mode for better developer experience and code reliability
+- **Testing Ready**: Vitest testing framework with React Testing Library integration
+- **Code Quality**: ESLint with TypeScript rules for consistent code quality
+- **GitHub Pages Ready**: Configured for seamless deployment to GitHub Pages
 
 ## Running Locally
 
@@ -38,7 +42,7 @@ To run the website in development mode with hot reloading:
 npm run dev
 ```
 
-The site will be available at `http://localhost:5173` (or the next available port).
+The site will be available at `http://localhost:3000`.
 
 ### Building for Production
 
@@ -64,6 +68,7 @@ npm run preview
 ### Other Available Scripts
 
 - `npm test` - Run the test suite with Vitest
+- `npm run test:ui` - Run tests with Vitest UI interface
 - `npm run lint` - Check code quality with ESLint
 - `npm run convert` - Manually convert markdown articles to JSON format
 
@@ -73,8 +78,16 @@ npm run preview
 byteshutter/
 ├── articles/          # Markdown articles
 ├── src/              # React application source code
+│   ├── components/   # Reusable React components
+│   ├── pages/        # Page components
+│   ├── hooks/        # Custom React hooks
+│   ├── utils/        # Utility functions
+│   └── types/        # TypeScript type definitions
 ├── scripts/          # Build scripts for article conversion
 ├── public/           # Static assets and generated JSON data
+├── rules/            # Development guidelines and style guides
+├── tests/            # Test files
+├── resources/        # Additional resources and images
 └── dist/             # Production build output
 ```
 
@@ -92,8 +105,40 @@ Example article format:
 title: "Your Article Title"
 excerpt: "A brief description of your article"
 created_at: 2024-01-01
-tags: ["tag1", "tag2"]
+tags: ["swift", "programming", "tutorial"]
 ---
 
 Your article content here...
 ```
+
+## Development Guidelines
+
+The project includes comprehensive development guidelines in the `/rules` directory:
+- **Blog Style Guidelines**: Design philosophy and visual consistency standards
+- **React Component Guidelines**: Best practices for component development
+- **TypeScript Coding Standards**: Type safety and code quality standards
+
+## Testing
+
+The project uses **Vitest** for testing with React Testing Library integration:
+
+```bash
+# Run tests
+npm test
+
+# Run tests with UI interface
+npm run test:ui
+```
+
+## Deployment
+
+ByteShutter is configured for GitHub Pages deployment. The build process automatically optimizes the application for static hosting with the appropriate base path configuration.
+
+## Theme System
+
+The advanced theme system includes:
+- Automatic system preference detection
+- Manual theme switching capability
+- localStorage persistence across sessions
+- Smooth CSS transitions between themes
+- Support for both light and dark color schemes
