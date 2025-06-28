@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Tag } from '../../components/Tag/Tag';
+import { Tag } from '../../Components/Tag/Tag';
 import { articleDetailRepository } from './BlogPostRepository';
 import type { Article } from './BlogPostRepository';
 import styles from './BlogPost.module.css';

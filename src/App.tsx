@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
-import Landing from './components/Landing/Landing'
+import Landing from './Landing/Landing'
 import BlogList from './FeedSection/BlogList/BlogList'
 import { BlogPost } from './FeedSection/BlogPost/BlogPost'
 import About from './About/About'
@@ -37,7 +37,7 @@ function App() {
   }, [theme]);
 
   return (
-    <Router basename="/byteshutter">
+    <Router basename={import.meta.env.PROD ? "/byteshutter" : "/byteshutter"}>
       <AppContent />
     </Router>
   )
