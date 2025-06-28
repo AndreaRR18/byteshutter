@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./About.module.css";
-import { getImageUrl } from "../components/Landing/imageUtils";
+import { getImageUrl } from "../Utils/imageUtils";
 
 const About: React.FC = () => {
   return (
@@ -18,19 +18,19 @@ const About: React.FC = () => {
             <div className={styles.introSection}>
               <div className={styles.introText}>
                 <p>
-                  If you're curious, I'll give you a brief summary, it won't take
-                  long, my story is pretty common to many others :)
+                  If you're curious, I'll give you a brief summary, it won't
+                  take long, my story is pretty common to many others :)
                 </p>
                 <p>
-                  <strong>I was born and live in Italy</strong>, a country I adore despite
-                  its thousand pros and cons. I was lucky enough to live in Venice
-                  for a while - unforgettable!
+                  <strong>I was born and live in Italy</strong>, a country I
+                  adore despite its thousand pros and cons. I was lucky enough
+                  to live in Venice for a while - unforgettable!
                 </p>
                 <p>
-                  <strong>I'm a software engineer</strong>, I studied programming (and more)
-                  both in high school and university, but in the end I decided
-                  that code would accompany me throughout my career, and it
-                  continues to do so.
+                  <strong>I'm a software engineer</strong>, I studied
+                  programming (and more) both in high school and university, but
+                  in the end I decided that code would accompany me throughout
+                  my career, and it continues to do so.
                 </p>
               </div>
               <div className={styles.introImage}>
@@ -41,28 +41,30 @@ const About: React.FC = () => {
                 />
               </div>
             </div>
-            
+
             <div className={styles.personalitySection}>
               <p>
-                <strong>I'm a videogame enthusiast</strong>, or rather, I was, since my
-                kids occupy every other free moment of my day, but I love them
-                all the same, I swear! Perhaps that's exactly why I started
-                being curious about PCs since I was a child, and yes, I'm old
-                enough to remember the sound of the modem when it was turned on.
+                <strong>I'm a videogame enthusiast</strong>, or rather, I was,
+                since my kids occupy every other free moment of my day, but I
+                love them all the same, I swear! Perhaps that's exactly why I
+                started being curious about PCs since I was a child, and yes,
+                I'm old enough to remember the sound of the modem when it was
+                turned on.
               </p>
               <p>
-                <strong>I have an attraction to stories</strong>, of any kind and told
-                through any medium. I'm firmly convinced that this is something
-                that can significantly impact our development and is often
-                underestimated. I could spend hours listening to grandparents
-                telling their stories from when they were young - actually, if
-                you have a grandparent you don't hear from often and don't have
-                time for, give me their number, I'll gladly keep them company.
+                <strong>I have an attraction to stories</strong>, of any kind
+                and told through any medium. I'm firmly convinced that this is
+                something that can significantly impact our development and is
+                often underestimated. I could spend hours listening to
+                grandparents telling their stories from when they were young -
+                actually, if you have a grandparent you don't hear from often
+                and don't have time for, give me their number, I'll gladly keep
+                them company.
               </p>
               <p>
-                <strong>I'm also passionate about photography</strong>, especially
-                documentary photography, for reasons similar to what I mentioned
-                above regarding stories.
+                <strong>I'm also passionate about photography</strong>,
+                especially documentary photography, for reasons similar to what
+                I mentioned above regarding stories.
               </p>
               <p>
                 For now, I think that's all - I don't want to bore you further.
@@ -70,7 +72,10 @@ const About: React.FC = () => {
               <p>
                 If you're curious about where I've worked, you can ask me for a
                 connection on{" "}
-                <a href="https://www.linkedin.com/in/andrea-rinaldi-707322b7/" className={styles.inlineLink}>
+                <a
+                  href="https://www.linkedin.com/in/andrea-rinaldi-707322b7/"
+                  className={styles.inlineLink}
+                >
                   LinkedIn
                 </a>
                 , I'll be happy to accept it.

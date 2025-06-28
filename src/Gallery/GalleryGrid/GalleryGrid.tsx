@@ -4,7 +4,7 @@ import type { GalleryPhoto } from "./GalleryItem";
 import { PhotoDetail } from "../PhotoDetail/PhotoDetail";
 import styles from "./Gallery.module.css";
 
-const Gallery: React.FC = () => {
+const GalleryGrid: React.FC = () => {
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto | null>(null);
 
   const handlePhotoClick = (photo: GalleryPhoto) => {
@@ -63,4 +63,4 @@ const Gallery: React.FC = () => {
   );
 };
 
-export default Gallery;
+export default GalleryGrid;
