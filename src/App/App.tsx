@@ -38,8 +38,11 @@ function App() {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
+  // Use basename only in production
+  const basename = import.meta.env.PROD ? "/byteshutter" : "";
+
   return (
-    <Router basename="/byteshutter">
+    <Router basename={basename}>
       <AppContent />
     </Router>
   );
