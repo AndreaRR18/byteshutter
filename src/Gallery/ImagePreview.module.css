@@ -25,7 +25,7 @@
 }
 
 .closeButton {
-  position: absolute;
+  position: fixed;
   top: 1rem;
   right: 1rem;
   background: rgba(0, 0, 0, 0.6);
@@ -45,6 +45,53 @@
 
 .closeButton:hover {
   background: rgba(0, 0, 0, 0.8);
+}
+
+/* Image counter */
+.imageCounter {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  z-index: 1001;
+}
+
+/* Navigation buttons */
+.navButton {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.6);
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.navButton:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prevButton {
+  left: 1rem;
+}
+
+.nextButton {
+  right: 1rem;
 }
 
 .imageContainer {
@@ -146,5 +193,26 @@
   .image {
     max-width: calc(95vw - 2rem);
     max-height: calc(95vh - 250px);
+  }
+
+  .navButton {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .prevButton {
+    left: 0.5rem;
+  }
+
+  .nextButton {
+    right: 0.5rem;
+  }
+
+  .imageCounter {
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
   }
 }

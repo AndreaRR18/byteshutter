@@ -6,14 +6,27 @@ import { ImagePreview } from '../ImagePreview';
 
 const GalleryGrid: React.FC = () => {
   const images = useGalleryImages();
-  const [selectedImage, setSelectedImage] = useState<GalleryImageWithMetadata | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
 
   const handleImageClick = (image: GalleryImageWithMetadata) => {
-    setSelectedImage(image);
+    const index = images.findIndex(img => img.src === image.src);
+    setSelectedImageIndex(index);
   };
 
   const handleClosePreview = () => {
-    setSelectedImage(null);
+    setSelectedImageIndex(null);
+  };
+
+  const handlePreviousImage = () => {
+    if (selectedImageIndex !== null && selectedImageIndex > 0) {
+      setSelectedImageIndex(selectedImageIndex - 1);
+    }
+  };
+
+  const handleNextImage = () => {
+    if (selectedImageIndex !== null && selectedImageIndex < images.length - 1) {
+      setSelectedImageIndex(selectedImageIndex + 1);
+    }
   };
 
   return (
@@ -29,11 +42,19 @@ const GalleryGrid: React.FC = () => {
           ))}
         </div>
       </div>
-      <ImagePreview
-        image={selectedImage!}
-        isOpen={selectedImage !== null}
-        onClose={handleClosePreview}
-      />
+      {selectedImageIndex !== null && (
+        <ImagePreview
+          image={images[selectedImageIndex]}
+          isOpen={selectedImageIndex !== null}
+          onClose={handleClosePreview}
+          onPrevious={handlePreviousImage}
+          onNext={handleNextImage}
+          currentIndex={selectedImageIndex}
+          totalImages={images.length}
+          hasPrevious={selectedImageIndex > 0}
+          hasNext={selectedImageIndex < images.length - 1}
+        />
+      )}
     </>
   );
 };

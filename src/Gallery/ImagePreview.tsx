@@ -6,12 +6,24 @@ interface ImagePreviewProps {
   image: GalleryImageWithMetadata;
   isOpen: boolean;
   onClose: () => void;
+  onPrevious: () => void;
+  onNext: () => void;
+  currentIndex: number;
+  totalImages: number;
+  hasPrevious: boolean;
+  hasNext: boolean;
 }
 
 export const ImagePreview: React.FC<ImagePreviewProps> = ({ 
   image, 
   isOpen, 
-  onClose 
+  onClose,
+  onPrevious,
+  onNext,
+  currentIndex,
+  totalImages,
+  hasPrevious,
+  hasNext
 }) => {
   if (!isOpen) return null;
 
@@ -24,26 +36,34 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       onClose();
+    } else if (e.key === 'ArrowLeft' && hasPrevious) {
+      onPrevious();
+    } else if (e.key === 'ArrowRight' && hasNext) {
+      onNext();
     }
   };
 
   React.useEffect(() => {
-    const handleEscapeKey = (e: KeyboardEvent) => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose();
+      } else if (e.key === 'ArrowLeft' && hasPrevious) {
+        onPrevious();
+      } else if (e.key === 'ArrowRight' && hasNext) {
+        onNext();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('keydown', handleEscapeKey);
+      document.addEventListener('keydown', handleGlobalKeyDown);
       document.body.style.overflow = 'hidden';
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscapeKey);
+      document.removeEventListener('keydown', handleGlobalKeyDown);
       document.body.style.overflow = 'unset';
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, onPrevious, onNext, hasPrevious, hasNext]);
 
   return (
     <div 
@@ -52,15 +72,42 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({
       onKeyDown={handleKeyDown}
       tabIndex={0}
     >
-      <div className={styles.previewContainer}>
+      {/* Controls positioned at viewport edges */}
+      <button 
+        className={styles.closeButton}
+        onClick={onClose}
+        aria-label="Close preview"
+      >
+        ×
+      </button>
+
+      {/* Image counter */}
+      <div className={styles.imageCounter}>
+        {currentIndex + 1} / {totalImages}
+      </div>
+
+      {/* Navigation buttons at viewport edges */}
+      {hasPrevious && (
         <button 
-          className={styles.closeButton}
-          onClick={onClose}
-          aria-label="Close preview"
+          className={`${styles.navButton} ${styles.prevButton}`}
+          onClick={onPrevious}
+          aria-label="Previous image"
         >
-          ×
+          ‹
         </button>
-        
+      )}
+
+      {hasNext && (
+        <button 
+          className={`${styles.navButton} ${styles.nextButton}`}
+          onClick={onNext}
+          aria-label="Next image"
+        >
+          ›
+        </button>
+      )}
+
+      <div className={styles.previewContainer}>
         <div className={styles.imageContainer}>
           <img 
             src={image.src} 
