@@ -25,8 +25,6 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({
   hasPrevious,
   hasNext
 }) => {
-  if (!isOpen) return null;
-
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (e.target === e.currentTarget) {
       onClose();
@@ -64,6 +62,8 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({
       document.body.style.overflow = 'unset';
     };
   }, [isOpen, onClose, onPrevious, onNext, hasPrevious, hasNext]);
+
+  if (!isOpen) return null;
 
   return (
     <div 
