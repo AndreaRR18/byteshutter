@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./About.module.css";
-import { getImageUrl } from "../Landing/imageUtils";
+import { getImageUrl } from "../Utils/ImageUtils";
 
 const About: React.FC = () => {
   return (

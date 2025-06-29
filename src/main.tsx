@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './styles/variable.css'
 import './index.css'
 import './styles/global.css'
-import App from './App'
+import App from './App/App'
 
 console.log('main.tsx loaded successfully');
 
