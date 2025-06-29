@@ -15,8 +15,22 @@ export const GalleryItem: React.FC<GalleryItemProps> = ({
     onClick(image);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick(image);
+    }
+  };
+
   return (
-    <div className={styles.galleryItem} onClick={handleClick}>
+    <div 
+      className={styles.galleryItem} 
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={0}
+      role="button"
+      aria-label={`View ${image.title || 'image'} details`}
+    >
       <div className={styles.imageContainer}>
         <img 
           src={image.src} 
