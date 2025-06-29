@@ -1,12 +1,13 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useEffect } from 'react'
-import Landing from './components/Landing/Landing'
-import BlogList from './FeedSection/BlogList/BlogList'
-import { BlogPost } from './FeedSection/BlogPost/BlogPost'
-import About from './About/About'
-import Header from './Header/Header'
-import Footer from './Footer/Footer'
-import { useTheme } from './hooks/useTheme'
+import Landing from '../Landing/Landing'
+import BlogList from '../FeedSection/BlogList/BlogList'
+import { BlogPost } from '../FeedSection/BlogPost/BlogPost'
+import About from '../About/About'
+import GalleryGrid from '../Gallery/Grid/GalleryGrid'
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
+import { useTheme } from '../hooks/useTheme'
 import './App.css'
 
 function AppContent() {
@@ -18,6 +19,7 @@ function AppContent() {
           <Route path="/" element={<Landing />} />
           <Route path="/articles" element={<BlogList />} />
           <Route path="/articles/:slug" element={<BlogPost />} />
+          <Route path="/gallery" element={<GalleryGrid />} />
           <Route path="/about" element={<About />} />
         </Routes>
       </main>
@@ -36,8 +38,11 @@ function App() {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
+  // Use different basename for development vs production
+  const basename = import.meta.env.PROD ? '/byteshutter' : ''
+
   return (
-    <Router basename="/byteshutter">
+    <Router basename={basename}>
       <AppContent />
     </Router>
   )

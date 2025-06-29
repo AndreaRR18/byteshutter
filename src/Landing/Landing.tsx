@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './Landing.module.css';
-import { useLandingImages, preloadImages } from './imageUtils';
+import { useLandingImages } from './LandingImageUtils';
+import { preloadImages } from '../Utils/ImageUtils';
+
 import {
   HeroSection,
   AboutSection,

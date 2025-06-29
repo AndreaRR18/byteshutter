@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./About.module.css";
-import { getImageUrl } from "../components/Landing/imageUtils";
+import { getImageUrl } from "../Utils/ImageUtils";
 
 const About: React.FC = () => {
   return (
@@ -35,7 +35,7 @@ const About: React.FC = () => {
               </div>
               <div className={styles.introImage}>
                 <img
-                  src={getImageUrl("me_thinker.jpg")}
+                  src={getImageUrl("about/me_thinker.jpg")}
                   alt="Andrea - Tech and Photography"
                   className={styles.profileImage}
                 />
