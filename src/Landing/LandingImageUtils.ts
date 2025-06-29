@@ -5,13 +5,13 @@ import { getImageUrl } from "../Utils/ImageUtils";
  * This provides a centralized way to manage all images used in the Landing component
  */
 export const LANDING_IMAGES = {
-  hero: 'hero_image.jpg',
-  bookCover: 'ai_engineer_book_cover.jpg',
+  hero: 'highlighted/hero_image.jpg',
+  bookCover: 'book_cover/ai_engineer_book_cover.jpg',
   bookGrid: {
-    thePragmaticProgrammerBookCover: 'the_pragmatic_programmer_book_cover.jpg',
-    philosophySoftwareDesignerBookCover: 'philosophy_software_designer_book_cover.jpg'
+    thePragmaticProgrammerBookCover: 'book_cover/the_pragmatic_programmer_book_cover.jpg',
+    philosophySoftwareDesignerBookCover: 'book_cover/philosophy_software_designer_book_cover.jpg'
   },
-  highlightedPhoto: 'orange_pattern.jpg'
+  highlightedPhoto: 'highlighted/orange_pattern.jpg'
 } as const;
 
 /**
