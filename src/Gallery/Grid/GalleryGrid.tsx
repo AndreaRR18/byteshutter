@@ -1,26 +1,41 @@
-import React from 'react';
-import styles from './Gallery.module.css';
+import React, { useState } from 'react';
+import styles from './GalleryGrid.module.css';
 import { GalleryItem } from './GalleryItem';
-import { useGalleryImages } from '../GalleryUtils';
+import { useGalleryImages, type GalleryImageWithMetadata } from '../GalleryUtils';
+import { ImagePreview } from '../ImagePreview';
 
-const Gallery: React.FC = () => {
+const GalleryGrid: React.FC = () => {
   const images = useGalleryImages();
+  const [selectedImage, setSelectedImage] = useState<GalleryImageWithMetadata | null>(null);
+
+  const handleImageClick = (image: GalleryImageWithMetadata) => {
+    setSelectedImage(image);
+  };
+
+  const handleClosePreview = () => {
+    setSelectedImage(null);
+  };
 
   return (
-    <div className={styles.galleryContainer}>
-      <div className={styles.galleryContent}>
-        {images.map((image, index) => (
-          <GalleryItem
-            key={index}
-            src={image.src}
-            alt={image.alt}
-            title={image.title}
-            description={image.description}
-          />
-        ))}
+    <>
+      <div className={styles.galleryContainer}>
+        <div className={styles.galleryContent}>
+          {images.map((image, index) => (
+            <GalleryItem
+              key={index}
+              image={image}
+              onClick={handleImageClick}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+      <ImagePreview
+        image={selectedImage!}
+        isOpen={selectedImage !== null}
+        onClose={handleClosePreview}
+      />
+    </>
   );
 };
 
-export default Gallery;
+export default GalleryGrid;

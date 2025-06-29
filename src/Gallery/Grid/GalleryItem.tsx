@@ -1,35 +1,34 @@
 import React from 'react';
 import styles from './GalleryItem.module.css';
+import { type GalleryImageWithMetadata } from '../GalleryUtils';
 
 export interface GalleryItemProps {
-  src: string;
-  alt: string;
-  title?: string;
-  description?: string;
-  onClick?: () => void;
+  image: GalleryImageWithMetadata;
+  onClick: (image: GalleryImageWithMetadata) => void;
 }
 
 export const GalleryItem: React.FC<GalleryItemProps> = ({
-  src,
-  alt,
-  title,
-  description,
+  image,
   onClick
 }) => {
+  const handleClick = () => {
+    onClick(image);
+  };
+
   return (
-    <div className={styles.galleryItem} onClick={onClick}>
+    <div className={styles.galleryItem} onClick={handleClick}>
       <div className={styles.imageContainer}>
         <img 
-          src={src} 
-          alt={alt} 
+          src={image.src} 
+          alt={image.alt} 
           className={styles.image}
           loading="lazy"
         />
       </div>
-      {(title || description) && (
+      {(image.title || image.description) && (
         <div className={styles.content}>
-          {title && <h3 className={styles.title}>{title}</h3>}
-          {description && <p className={styles.description}>{description}</p>}
+          {image.title && <h3 className={styles.title}>{image.title}</h3>}
+          {image.description && <p className={styles.description}>{image.description}</p>}
         </div>
       )}
     </div>
