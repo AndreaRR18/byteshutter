@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import path from 'path'
 
 export default defineConfig(({ mode }) => {
   const isProduction = mode === 'production'
@@ -7,6 +8,12 @@ export default defineConfig(({ mode }) => {
   return {
     base: isProduction ? '/byteshutter/' : '/',
     plugins: [react()],
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, './src'),
+        '@components': path.resolve(__dirname, './src/Components')
+      }
+    },
     define: {
       __DEV__: !isProduction,
     },
