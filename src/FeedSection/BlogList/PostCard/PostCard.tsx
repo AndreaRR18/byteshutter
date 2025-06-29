@@ -1,6 +1,6 @@
 import React from 'react';
-import { Tag } from '@components/Tag/Tag';
-import { Divider } from '@components/Divider/Divider';
+import { Tag } from '@components/Tag/Tag.tsx';
+import { Divider } from '@components/Divider/Divider.tsx';
 import styles from './PostCard.module.css';
 
 interface PostCardProps {
