@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import { articleDetailRepository } from './BlogPostRepository';
 import type { Article } from './BlogPostRepository';
 import styles from './BlogPost.module.css';
+import { Tag } from '@/Components';
 
 export const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
