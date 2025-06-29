@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Tag } from '@components';
+import { Tag } from '@components/Tag/Tag';
 import { articleDetailRepository } from './BlogPostRepository';
 import type { Article } from './BlogPostRepository';
 import styles from './BlogPost.module.css';
@@ -13,7 +13,6 @@ export const BlogPost: React.FC = () => {
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
 
-
   useEffect(() => {
     if (slug) {
       articleDetailRepository.getArticleBySlug(slug)
@@ -21,8 +20,6 @@ export const BlogPost: React.FC = () => {
         .finally(() => setLoading(false));
     }
   }, [slug]);
-
-
 
   if (loading) {
     return (
@@ -122,13 +119,10 @@ export const BlogPost: React.FC = () => {
                   </a>
                 ),
                 img: ({ src, alt }) => {
-                  // Handle image paths for GitHub Pages deployment
                   let imageSrc = src;
                   if (src?.startsWith('/images/')) {
-                    // Convert absolute paths to work with base path
                     imageSrc = import.meta.env.BASE_URL + src.substring(1);
                   } else if (src?.startsWith('/')) {
-                    // Handle other absolute paths
                     imageSrc = import.meta.env.BASE_URL + src.substring(1);
                   }
                   
