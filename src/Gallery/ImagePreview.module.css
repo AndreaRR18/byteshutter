@@ -1,218 +1,220 @@
 .overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  backdrop-filter: blur(5px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
 .previewContainer {
-  position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
-  background: var(--color-surface);
-  border-radius: 12px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: var(--color-surface);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .closeButton {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(0, 0, 0, 0.6);
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 1001;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s ease;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
 }
 
 .closeButton:hover {
-  background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.8);
 }
 
 /* Image counter */
 .imageCounter {
-  position: fixed;
-  top: 1rem;
-  left: 1rem;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  z-index: 1001;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    z-index: 1001;
 }
 
 /* Navigation buttons */
 .navButton {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  border: none;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  color: white;
-  font-size: 24px;
-  cursor: pointer;
-  z-index: 1001;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .navButton:hover {
-  background: rgba(0, 0, 0, 0.8);
-  transform: translateY(-50%) scale(1.1);
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(-50%) scale(1.1);
 }
 
 .prevButton {
-  left: 1rem;
+    left: 1rem;
 }
 
 .nextButton {
-  right: 1rem;
+    right: 1rem;
 }
 
 .imageContainer {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  padding: 1rem;
-  min-height: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 1rem;
+    min-height: 0;
 }
 
 .image {
-  max-width: calc(90vw - 2rem);
-  max-height: calc(90vh - 200px);
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  border-radius: 4px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: calc(90vw - 2rem);
+    max-height: calc(90vh - 200px);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .metadata {
-  padding: 1.5rem;
-  background: var(--bg-primary);
-  border-top: 1px solid var(--border);
+    padding: 1.5rem;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border);
 }
 
 .basicInfo {
-  margin-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .title {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
+    margin: 0 0 0.5rem 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 .description {
-  margin: 0;
-  color: var(--text-secondary);
-  line-height: 1.5;
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.5;
 }
 
 .technicalInfo {
-  border-top: 1px solid var(--border);
-  padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
 }
 
 .metadataTitle {
-  margin: 0 0 1rem 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--text-primary);
+    margin: 0 0 1rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 .metadataGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
 }
 
 .metadataItem {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .metadataLabel {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.25rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
 }
 
 .metadataValue {
-  font-size: 0.95rem;
-  color: var(--text-primary);
-  font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    font-weight: 500;
 }
 
 @media (max-width: 768px) {
-  .previewContainer {
-    max-width: 95vw;
-    max-height: 95vh;
-  }
-  
-  .metadata {
-    padding: 1rem;
-  }
-  
-  .metadataGrid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 0.75rem;
-  }
-  
-  .image {
-    max-width: calc(95vw - 2rem);
-    max-height: calc(95vh - 250px);
-  }
+    .previewContainer {
+        max-width: 95vw;
+        max-height: 95vh;
+    }
 
-  .navButton {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
+    .metadata {
+        padding: 1rem;
+    }
 
-  .prevButton {
-    left: 0.5rem;
-  }
+    .metadataGrid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 0.75rem;
+    }
 
-  .nextButton {
-    right: 0.5rem;
-  }
+    .image {
+        max-width: calc(95vw - 2rem);
+        max-height: calc(95vh - 250px);
+    }
 
-  .imageCounter {
-    top: 0.5rem;
-    left: 0.5rem;
-    padding: 0.4rem 0.8rem;
-    font-size: 0.8rem;
-  }
+    .navButton {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .prevButton {
+        left: 0.5rem;
+    }
+
+    .nextButton {
+        right: 0.5rem;
+    }
+
+    .imageCounter {
+        top: 0.5rem;
+        left: 0.5rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
 }

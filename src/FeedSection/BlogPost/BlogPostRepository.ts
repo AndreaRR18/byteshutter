@@ -15,7 +15,9 @@ class BlogPostRepository {
     }
 
     try {
-      const response = await fetch(`${import.meta.env.BASE_URL}data/${slug}.json`);
+      const response = await fetch(
+        `${import.meta.env.BASE_URL}data/${slug}.json`,
+      );
       if (!response.ok) {
         return null;
       }

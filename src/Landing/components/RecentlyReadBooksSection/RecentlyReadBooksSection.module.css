@@ -1,56 +1,56 @@
 /* RecentlyReadBooksSection Component Styles */
 
 .landingSection {
-  margin-bottom: 4rem;
-  padding: 2rem 0;
+    margin-bottom: 4rem;
+    padding: 2rem 0;
 }
 
 .landingSection h2 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  text-align: center;
-  margin: 0 0 3rem 0;
-  position: relative;
-  padding-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    margin: 0 0 3rem 0;
+    position: relative;
+    padding-bottom: 1rem;
 }
 
 .landingSection h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4rem;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), #3b82f6);
-  border-radius: 2px;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4rem;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #3b82f6);
+    border-radius: 2px;
 }
 
 .recentlyRead {
-  max-width: 1000px;
-  margin: 0 auto;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 .bookGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .landingSection h2 {
-    font-size: 2rem;
-  }
+    .landingSection h2 {
+        font-size: 2rem;
+    }
 
-  .bookGrid {
-    grid-template-columns: 1fr;
-  }
+    .bookGrid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 480px) {
-  .landingSection h2 {
-    font-size: 1.8rem;
-  }
-} 
+    .landingSection h2 {
+        font-size: 1.8rem;
+    }
+}

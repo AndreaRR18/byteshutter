@@ -1,55 +1,55 @@
 /* src/styles/utilities.css */
-@import './variables.css';
+@import "./variables.css";
 
 /* Layout utilities */
 .container {
-  width: 100%;
-  max-width: var(--max-width-container);
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
+    width: 100%;
+    max-width: var(--max-width-container);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
 }
 
 .container-narrow {
-  max-width: var(--max-width-narrow);
+    max-width: var(--max-width-narrow);
 }
 
 /* Essential display utilities */
 .min-h-screen {
-  min-height: 100vh;
+    min-height: 100vh;
 }
 
 /* Essential background utilities */
 .bg-background {
-  background-color: var(--bg-primary);
+    background-color: var(--bg-primary);
 }
 
 /* Essential text utilities */
 .text-text-primary {
-  color: var(--text-primary);
+    color: var(--text-primary);
 }
 
 /* Accessibility utilities */
 .sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* Responsive utilities */
 @media (max-width: 768px) {
-  .hide-mobile {
-    display: none;
-  }
+    .hide-mobile {
+        display: none;
+    }
 }
 
 @media (min-width: 769px) {
-  .show-mobile {
-    display: none;
-  }
+    .show-mobile {
+        display: none;
+    }
 }

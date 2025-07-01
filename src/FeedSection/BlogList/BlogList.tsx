@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import type { ArticleFeed } from './BlogListRepository';
-import { feedRepository } from './BlogListRepository';
-import './BlogList.module.css';
-import { PostCard } from './PostCard/PostCard';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import type { ArticleFeed } from "./BlogListRepository";
+import { feedRepository } from "./BlogListRepository";
+import "./BlogList.module.css";
+import { PostCard } from "./PostCard/PostCard";
 
 const BlogList: React.FC = () => {
   const [feed, setFeed] = useState<ArticleFeed | null>(null);
@@ -16,7 +16,9 @@ const BlogList: React.FC = () => {
         const articles = await feedRepository.getArticles();
         setFeed(articles);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load articles');
+        setError(
+          err instanceof Error ? err.message : "Failed to load articles",
+        );
       } finally {
         setLoading(false);
       }

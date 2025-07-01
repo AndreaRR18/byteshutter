@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
-import styles from './GalleryGrid.module.css';
-import { GalleryItem } from './GalleryItem';
-import { useGalleryImages, type GalleryImageWithMetadata } from '../GalleryUtils';
-import { ImagePreview } from '../ImagePreview';
+import React, { useState } from "react";
+import styles from "./GalleryGrid.module.css";
+import { GalleryItem } from "./GalleryItem";
+import {
+  useGalleryImages,
+  type GalleryImageWithMetadata,
+} from "../GalleryUtils";
+import { ImagePreview } from "../ImagePreview";
 
 const GalleryGrid: React.FC = () => {
   const images = useGalleryImages();
-  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
+    null,
+  );
 
   const handleImageClick = (image: GalleryImageWithMetadata) => {
-    const index = images.findIndex(img => img.src === image.src);
+    const index = images.findIndex((img) => img.src === image.src);
     setSelectedImageIndex(index);
   };
 
@@ -34,11 +39,7 @@ const GalleryGrid: React.FC = () => {
       <div className={styles.galleryContainer}>
         <div className={styles.galleryContent}>
           {images.map((image, index) => (
-            <GalleryItem
-              key={index}
-              image={image}
-              onClick={handleImageClick}
-            />
+            <GalleryItem key={index} image={image} onClick={handleImageClick} />
           ))}
         </div>
       </div>

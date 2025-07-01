@@ -1,12 +1,12 @@
 import { getImageUrl } from "../Utils/ImageUtils";
 
 export interface PhotoMetadata {
-  iso?: string;
-  shutter?: string;
-  aperture?: string;
-  time?: string;
-  camera?: string;
-  lens?: string;
+  iso: string;
+  shutter: string;
+  aperture: string;
+  time: string;
+  camera: string;
+  lens: string;
 }
 
 export interface GalleryImage {
@@ -21,13 +21,13 @@ export interface GalleryImageWithMetadata extends GalleryImage {
 }
 
 export const GALLERY_IMAGES = {
-  angryOct: 'gallery/angry_oct.jpeg',
-  archWalkingMan: 'gallery/arch_walking_man.jpeg',
-  bishopShadow: 'gallery/bishop_shadow.jpeg',
-  churchBook: 'gallery/church_book.jpeg',
-  dotsBird: 'gallery/dots_bird.jpeg',
-  shadow: 'gallery/shadow.jpeg',
-  stairs: 'gallery/stairs.jpeg'
+  angryOct: "gallery/angry_oct.jpeg",
+  archWalkingMan: "gallery/arch_walking_man.jpeg",
+  bishopShadow: "gallery/bishop_shadow.jpeg",
+  churchBook: "gallery/church_book.jpeg",
+  dotsBird: "gallery/dots_bird.jpeg",
+  shadow: "gallery/shadow.jpeg",
+  stairs: "gallery/stairs.jpeg",
 } as const;
 
 export const useGalleryImages = (): GalleryImageWithMetadata[] => {
@@ -43,8 +43,8 @@ export const useGalleryImages = (): GalleryImageWithMetadata[] => {
         aperture: "5.6",
         time: "March 15, 2024",
         camera: "Canon EOS R5",
-        lens: "Canon RF 24-70mm f/2.8L"
-      }
+        lens: "Canon RF 24-70mm f/2.8L",
+      },
     },
     {
       src: getImageUrl(GALLERY_IMAGES.archWalkingMan),
@@ -57,8 +57,8 @@ export const useGalleryImages = (): GalleryImageWithMetadata[] => {
         aperture: "8.0",
         time: "March 12, 2024",
         camera: "Canon EOS R5",
-        lens: "Canon RF 16-35mm f/2.8L"
-      }
+        lens: "Canon RF 16-35mm f/2.8L",
+      },
     },
     {
       src: getImageUrl(GALLERY_IMAGES.bishopShadow),
@@ -71,8 +71,8 @@ export const useGalleryImages = (): GalleryImageWithMetadata[] => {
         aperture: "11.0",
         time: "March 10, 2024",
         camera: "Canon EOS R5",
-        lens: "Canon RF 85mm f/1.2L"
-      }
+        lens: "Canon RF 85mm f/1.2L",
+      },
     },
     {
       src: getImageUrl(GALLERY_IMAGES.churchBook),
@@ -85,8 +85,8 @@ export const useGalleryImages = (): GalleryImageWithMetadata[] => {
         aperture: "4.0",
         time: "March 8, 2024",
         camera: "Canon EOS R5",
-        lens: "Canon RF 100mm f/2.8L Macro"
-      }
+        lens: "Canon RF 100mm f/2.8L Macro",
+      },
     },
     {
       src: getImageUrl(GALLERY_IMAGES.dotsBird),
@@ -99,8 +99,8 @@ export const useGalleryImages = (): GalleryImageWithMetadata[] => {
         aperture: "2.8",
         time: "March 5, 2024",
         camera: "Canon EOS R5",
-        lens: "Canon RF 70-200mm f/2.8L"
-      }
+        lens: "Canon RF 70-200mm f/2.8L",
+      },
     },
     {
       src: getImageUrl(GALLERY_IMAGES.shadow),
@@ -113,8 +113,8 @@ export const useGalleryImages = (): GalleryImageWithMetadata[] => {
         aperture: "5.6",
         time: "March 3, 2024",
         camera: "Canon EOS R5",
-        lens: "Canon RF 24-70mm f/2.8L"
-      }
+        lens: "Canon RF 24-70mm f/2.8L",
+      },
     },
     {
       src: getImageUrl(GALLERY_IMAGES.stairs),
@@ -127,8 +127,8 @@ export const useGalleryImages = (): GalleryImageWithMetadata[] => {
         aperture: "8.0",
         time: "March 1, 2024",
         camera: "Canon EOS R5",
-        lens: "Canon RF 16-35mm f/2.8L"
-      }
-    }
+        lens: "Canon RF 16-35mm f/2.8L",
+      },
+    },
   ];
 };
