@@ -1,28 +1,28 @@
 /* Landing Page Styles - Personal Tech & Photography Blog */
 
 .landingContainer {
-  min-height: 100vh;
-  padding: 2rem 1rem;
-  background: var(--bg-primary);
-  color: var(--text-primary);
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    background: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 .landingContent {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .landingSubtitle {
-  font-size: 1.5rem;
-  color: var(--text-secondary);
-  font-weight: 500;
-  margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: 1.5rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .landingContainer {
-    padding: 1rem 0.5rem;
-  }
-} 
+    .landingContainer {
+        padding: 1rem 0.5rem;
+    }
+}

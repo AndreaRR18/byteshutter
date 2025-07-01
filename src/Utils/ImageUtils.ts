@@ -7,11 +7,11 @@
  * Images are always served from the base URL + images/
  */
 export const getImageBasePath = (): string => {
-  const base = import.meta.env.BASE_URL || '/';
-  
+  const base = import.meta.env.BASE_URL || "/";
+
   // Ensure proper path construction
   // Remove trailing slash from base to avoid double slashes
-  const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
+  const cleanBase = base.endsWith("/") ? base.slice(0, -1) : base;
   return `${cleanBase}/images/`;
 };
 
@@ -29,11 +29,14 @@ export const getImageUrl = (imageName: string): string => {
  * @param folderName - The folder name (e.g., 'images', 'photos')
  * @param imageName - The image file name
  */
-export const getImageFromFolder = (folderName: string, imageName: string): string => {
-  const base = import.meta.env.BASE_URL || '/';
-  
+export const getImageFromFolder = (
+  folderName: string,
+  imageName: string,
+): string => {
+  const base = import.meta.env.BASE_URL || "/";
+
   // Ensure proper path construction
-  const cleanBase = base.endsWith('/') ? base.slice(0, -1) : base;
+  const cleanBase = base.endsWith("/") ? base.slice(0, -1) : base;
   return `${cleanBase}/${folderName}/${imageName}`;
 };
 
@@ -42,8 +45,8 @@ export const getImageFromFolder = (folderName: string, imageName: string): strin
  * @param imageUrls - Array of image URLs to preload
  */
 export const preloadImages = (imageUrls: string[]): void => {
-  imageUrls.forEach(url => {
+  imageUrls.forEach((url) => {
     const img = new Image();
     img.src = url;
   });
-}; 
+};

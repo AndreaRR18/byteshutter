@@ -1,1 +1,1 @@
-export { default } from './HighlightedPhotoSection'; 
+export { default } from "./HighlightedPhotoSection";

@@ -1,108 +1,110 @@
 /* Section Styling */
 .landingSection {
-  margin-bottom: 4rem;
-  padding: 2rem 0;
+    margin-bottom: 4rem;
+    padding: 2rem 0;
 }
 
 .landingSection h2 {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  text-align: center;
-  margin: 0 0 3rem 0;
-  position: relative;
-  padding-bottom: 1rem;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: center;
+    margin: 0 0 3rem 0;
+    position: relative;
+    padding-bottom: 1rem;
 }
 
 .landingSection h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4rem;
-  height: 3px;
-  background: linear-gradient(90deg, var(--accent), #3b82f6);
-  border-radius: 2px;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4rem;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), #3b82f6);
+    border-radius: 2px;
 }
 
 /* Currently Reading Section */
 .currentlyReading {
-  max-width: 800px;
-  margin: 0 auto;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .bookCard {
-  display: flex;
-  gap: 2rem;
-  background: var(--bg-secondary);
-  padding: 2rem;
-  border-radius: 16px;
-  border: 1px solid var(--border);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    gap: 2rem;
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .bookCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 .bookCover img {
-  width: 200px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .bookInfo {
-  flex: 1;
+    flex: 1;
 }
 
 .bookInfo h3 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
 }
 
 .bookAuthor {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  margin-bottom: 1rem;
-  font-style: italic;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    font-style: italic;
 }
 
 .bookNote {
-  font-size: 1rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  .landingSection h2 {
-    font-size: 2rem;
-  }
+    .landingSection h2 {
+        font-size: 2rem;
+    }
 
-  .bookCard {
-    flex-direction: column;
-    text-align: center;
-  }
+    .bookCard {
+        flex-direction: column;
+        text-align: center;
+    }
 
-  .bookCover img {
-    width: 150px;
-    height: 225px;
-    margin: 0 auto;
-  }
+    .bookCover img {
+        width: 150px;
+        height: 225px;
+        margin: 0 auto;
+    }
 }
 
 @media (max-width: 480px) {
-  .landingSection h2 {
-    font-size: 1.8rem;
-  }
+    .landingSection h2 {
+        font-size: 1.8rem;
+    }
 
-  .bookCard {
-    padding: 1.5rem;
-  }
-} 
+    .bookCard {
+        padding: 1.5rem;
+    }
+}

@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './BookCard.module.css';
+import React from "react";
+import styles from "./BookCard.module.css";
 
 export interface Book {
   title: string;
@@ -18,11 +18,9 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
       <img src={book.image} alt={`${book.title} cover`} />
       <h4>{book.title}</h4>
       <p className={styles.miniBookAuthor}>by {book.author}</p>
-      <p className={styles.miniBookReview}>
-        {book.description}
-      </p>
+      <p className={styles.miniBookReview}>{book.description}</p>
     </div>
   );
 };
 
-export default BookCard; 
+export default BookCard;

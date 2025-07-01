@@ -1,231 +1,231 @@
 /* src/styles/components/Header.module.css */
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  background-color: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--border);
-  transition: all var(--transition-theme);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    transition: all var(--transition-theme);
 }
 
 [data-theme="dark"] .header {
-  background-color: rgba(10, 10, 10, 0.9);
+    background-color: rgba(10, 10, 10, 0.9);
 }
 
 .headerScrolled {
-  box-shadow: var(--shadow-md);
+    box-shadow: var(--shadow-md);
 }
 
 .container {
-  max-width: var(--max-width-container);
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
+    max-width: var(--max-width-container);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
 }
 
 .nav {
-  max-width: var(--max-width-content);
-  margin: 0 auto;
-  padding: 0 var(--padding-horizontal-desktop);
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 var(--padding-horizontal-desktop);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  font-size: var(--font-size-h4);
-  font-weight: var(--font-weight-h2);
-  color: var(--text-primary);
-  text-decoration: none;
-  transition: color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-weight-h2);
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
 }
 
 .logo:hover {
-  color: var(--accent);
-  text-decoration: none;
+    color: var(--accent);
+    text-decoration: none;
 }
 
 .logoIcon {
-  width: 32px;
-  height: 32px;
-  margin-right: var(--space-sm);
+    width: 32px;
+    height: 32px;
+    margin-right: var(--space-sm);
 }
 
 .navLinks {
-  display: flex;
-  align-items: center;
-  gap: var(--space-xl);
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
 }
 
 .navLink {
-  font-size: var(--font-size-body);
-  font-weight: var(--font-weight-body);
-  color: var(--text-secondary);
-  text-decoration: none;
-  transition: color var(--transition-fast);
-  padding: var(--space-sm) 0;
-  position: relative;
+    font-size: var(--font-size-body);
+    font-weight: var(--font-weight-body);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    padding: var(--space-sm) 0;
+    position: relative;
 }
 
 .navLink:hover,
 .navLinkActive {
-  color: var(--text-primary);
-  text-decoration: none;
+    color: var(--text-primary);
+    text-decoration: none;
 }
 
 .navLink::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--accent);
-  transition: width var(--transition-fast);
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width var(--transition-fast);
 }
 
 .navLink:hover::after,
 .navLinkActive::after {
-  width: 100%;
+    width: 100%;
 }
 
 .navLinkActive {
-  color: var(--text-primary);
+    color: var(--text-primary);
 }
 
 /* Mobile menu button */
 .menuButton {
-  display: none;
-  background: none;
-  border: none;
-  padding: var(--space-sm);
-  cursor: pointer;
-  color: var(--color-text-primary);
+    display: none;
+    background: none;
+    border: none;
+    padding: var(--space-sm);
+    cursor: pointer;
+    color: var(--color-text-primary);
 }
 
 .menuIcon {
-  width: 24px;
-  height: 24px;
-  position: relative;
+    width: 24px;
+    height: 24px;
+    position: relative;
 }
 
 .menuIcon span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: currentColor;
-  margin: 5px 0;
-  transition: all var(--transition-fast);
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+    margin: 5px 0;
+    transition: all var(--transition-fast);
 }
 
 /* Mobile menu */
 .mobileMenu {
-  display: none;
-  position: fixed;
-  top: 64px;
-  left: 0;
-  right: 0;
-  background-color: var(--color-bg-primary);
-  border-bottom: 1px solid var(--color-border);
-  box-shadow: var(--shadow-lg);
-  padding: var(--space-lg);
-  transform: translateY(-100%);
-  transition: transform var(--transition-base);
+    display: none;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background-color: var(--color-bg-primary);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-lg);
+    padding: var(--space-lg);
+    transform: translateY(-100%);
+    transition: transform var(--transition-base);
 }
 
 .mobileMenuOpen {
-  transform: translateY(0);
+    transform: translateY(0);
 }
 
 .mobileNavLinks {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-md);
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
 }
 
 .mobileNavLink {
-  display: block;
-  padding: var(--space-md);
-  color: var(--color-text-primary);
-  text-decoration: none;
-  font-weight: 500;
-  border-radius: var(--radius-md);
-  transition: background-color var(--transition-fast);
+    display: block;
+    padding: var(--space-md);
+    color: var(--color-text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast);
 }
 
 .mobileNavLink:hover {
-  background-color: var(--color-bg-secondary);
-  text-decoration: none;
+    background-color: var(--color-bg-secondary);
+    text-decoration: none;
 }
 
 /* Theme toggle button */
 .themeToggle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-full);
-  background: none;
-  border: 1px solid var(--border);
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  margin-left: var(--space-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    margin-left: var(--space-md);
 }
 
 .themeToggle:hover {
-  background-color: var(--bg-secondary);
-  color: var(--text-primary);
-  border-color: var(--accent);
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--accent);
 }
 
 .themeToggle svg {
-  width: 18px;
-  height: 18px;
+    width: 18px;
+    height: 18px;
 }
 
 /* Mobile responsive */
 @media (max-width: 767px) {
-  .nav {
-    padding: 0 var(--padding-horizontal-mobile);
-    height: 50px;
-  }
-  
-  .navLinks {
-    gap: var(--space-md);
-  }
-  
-  .navLink {
-    font-size: var(--font-size-small);
-  }
-  
-  .logo {
-    font-size: var(--font-size-xl);
-  }
-  
-  .themeToggle {
-    width: 36px;
-    height: 36px;
-    margin-left: var(--space-sm);
-  }
-  
-  .themeToggle svg {
-    width: 16px;
-    height: 16px;
-  }
+    .nav {
+        padding: 0 var(--padding-horizontal-mobile);
+        height: 50px;
+    }
+
+    .navLinks {
+        gap: var(--space-md);
+    }
+
+    .navLink {
+        font-size: var(--font-size-small);
+    }
+
+    .logo {
+        font-size: var(--font-size-xl);
+    }
+
+    .themeToggle {
+        width: 36px;
+        height: 36px;
+        margin-left: var(--space-sm);
+    }
+
+    .themeToggle svg {
+        width: 16px;
+        height: 16px;
+    }
 }
 
 /* Tablet responsive */
 @media (max-width: 1023px) and (min-width: 768px) {
-  .nav {
-    padding: 0 var(--padding-horizontal-mobile);
-  }
+    .nav {
+        padding: 0 var(--padding-horizontal-mobile);
+    }
 }

@@ -5,13 +5,15 @@ import { getImageUrl } from "../Utils/ImageUtils";
  * This provides a centralized way to manage all images used in the Landing component
  */
 export const LANDING_IMAGES = {
-  hero: 'highlighted/hero_image.jpg',
-  bookCover: 'book_cover/ai_engineer_book_cover.jpg',
+  hero: "highlighted/hero_image.jpg",
+  bookCover: "book_cover/ai_engineer_book_cover.jpg",
   bookGrid: {
-    thePragmaticProgrammerBookCover: 'book_cover/the_pragmatic_programmer_book_cover.jpg',
-    philosophySoftwareDesignerBookCover: 'book_cover/philosophy_software_designer_book_cover.jpg'
+    thePragmaticProgrammerBookCover:
+      "book_cover/the_pragmatic_programmer_book_cover.jpg",
+    philosophySoftwareDesignerBookCover:
+      "book_cover/philosophy_software_designer_book_cover.jpg",
   },
-  highlightedPhoto: 'highlighted/orange_pattern.jpg'
+  highlightedPhoto: "highlighted/orange_pattern.jpg",
 } as const;
 
 /**
@@ -23,9 +25,13 @@ export const useLandingImages = () => {
     hero: getImageUrl(LANDING_IMAGES.hero),
     bookCover: getImageUrl(LANDING_IMAGES.bookCover),
     bookGrid: {
-      thePragmaticProgrammerBookCover: getImageUrl(LANDING_IMAGES.bookGrid.thePragmaticProgrammerBookCover),
-      philosophySoftwareDesignerBookCover: getImageUrl(LANDING_IMAGES.bookGrid.philosophySoftwareDesignerBookCover)
+      thePragmaticProgrammerBookCover: getImageUrl(
+        LANDING_IMAGES.bookGrid.thePragmaticProgrammerBookCover,
+      ),
+      philosophySoftwareDesignerBookCover: getImageUrl(
+        LANDING_IMAGES.bookGrid.philosophySoftwareDesignerBookCover,
+      ),
     },
-    highlightedPhoto: getImageUrl(LANDING_IMAGES.highlightedPhoto)
+    highlightedPhoto: getImageUrl(LANDING_IMAGES.highlightedPhoto),
   };
 };

@@ -1,12 +1,14 @@
-import React from 'react';
-import styles from './RecentlyReadBooksSection.module.css';
-import BookCard, { type Book } from './BookCard';
+import React from "react";
+import styles from "./RecentlyReadBooksSection.module.css";
+import BookCard, { type Book } from "./BookCard";
 
 interface RecentlyReadBooksSectionProps {
   books: Book[];
 }
 
-const RecentlyReadBooksSection: React.FC<RecentlyReadBooksSectionProps> = ({ books }) => {
+const RecentlyReadBooksSection: React.FC<RecentlyReadBooksSectionProps> = ({
+  books,
+}) => {
   return (
     <div className={styles.landingSection}>
       <h2>Recently Read Books</h2>
@@ -21,4 +23,4 @@ const RecentlyReadBooksSection: React.FC<RecentlyReadBooksSectionProps> = ({ boo
   );
 };
 
-export default RecentlyReadBooksSection; 
+export default RecentlyReadBooksSection;

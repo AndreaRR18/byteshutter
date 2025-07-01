@@ -1,1 +1,1 @@
-export { default } from './InterestingArticlesSection'; 
+export { default } from "./InterestingArticlesSection";

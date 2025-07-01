@@ -1,35 +1,35 @@
 /* src/styles/components/Footer.module.css */
 /* Footer following minimalist blog guidelines */
 .footer {
-  border-top: 1px solid var(--border);
-  background-color: var(--bg-primary);
-  padding: var(--space-2xl) 0;
-  margin-top: auto;
-  transition: all var(--transition-theme);
+    border-top: 1px solid var(--border);
+    background-color: var(--bg-primary);
+    padding: var(--space-2xl) 0;
+    margin-top: auto;
+    transition: all var(--transition-theme);
 }
 
 .footerContent {
-  max-width: var(--max-width-content);
-  margin: 0 auto;
-  padding: 0 var(--padding-horizontal-desktop);
-  text-align: center;
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 var(--padding-horizontal-desktop);
+    text-align: center;
 }
 
 .footerText {
-  color: var(--text-secondary);
-  font-size: var(--font-size-small);
-  margin-bottom: 0;
+    color: var(--text-secondary);
+    font-size: var(--font-size-small);
+    margin-bottom: 0;
 }
 
 /* Responsive design */
 @media (max-width: 1023px) {
-  .footerContent {
-    padding: 0 var(--padding-horizontal-mobile);
-  }
+    .footerContent {
+        padding: 0 var(--padding-horizontal-mobile);
+    }
 }
 
 @media (max-width: 767px) {
-  .footer {
-    padding: var(--space-xl) 0;
-  }
+    .footer {
+        padding: var(--space-xl) 0;
+    }
 }

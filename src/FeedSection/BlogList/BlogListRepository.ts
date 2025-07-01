@@ -22,21 +22,21 @@ class FeedRepository {
       const url = `${import.meta.env.BASE_URL}data/articles.json`;
       const response = await fetch(url);
       if (!response.ok) {
-        throw new Error(`Failed to fetch articles: ${response.status} ${response.statusText}`);
+        throw new Error(
+          `Failed to fetch articles: ${response.status} ${response.statusText}`,
+        );
       }
-      this.indexCache = await response.json() as ArticleFeed;
+      this.indexCache = (await response.json()) as ArticleFeed;
       return this.indexCache;
     } catch (error) {
-      console.error('Failed to load article index:', error);
+      console.error("Failed to load article index:", error);
       throw error;
     }
   }
 
   async getArticlesByTag(tag: string): Promise<ArticleItem[]> {
     const index = await this.getArticles();
-    return index.articles.filter(article =>
-      article.tags?.includes(tag)
-    );
+    return index.articles.filter((article) => article.tags?.includes(tag));
   }
 
   async getRecentArticles(limit: number = 5): Promise<ArticleItem[]> {
@@ -48,10 +48,11 @@ class FeedRepository {
     const index = await this.getArticles();
     const lowerQuery = query.toLowerCase();
 
-    return index.articles.filter(article =>
-      article.title.toLowerCase().includes(lowerQuery) ||
-      article.excerpt?.toLowerCase().includes(lowerQuery) ||
-      article.tags?.some(tag => tag.toLowerCase().includes(lowerQuery))
+    return index.articles.filter(
+      (article) =>
+        article.title.toLowerCase().includes(lowerQuery) ||
+        article.excerpt?.toLowerCase().includes(lowerQuery) ||
+        article.tags?.some((tag) => tag.toLowerCase().includes(lowerQuery)),
     );
   }
 }
