@@ -147,13 +147,13 @@
 .metadataTitle {
     margin: 0 0 1rem 0;
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--text-primary);
 }
 
 .metadataGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
     gap: 1rem;
 }
 
