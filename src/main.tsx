@@ -5,10 +5,7 @@ import "./index.css";
 import "./styles/global.css";
 import App from "./App/App";
 
-console.log("main.tsx loaded successfully");
-
 const rootElement = document.getElementById("root");
-console.log("Root element:", rootElement);
 
 if (rootElement) {
   createRoot(rootElement).render(
@@ -16,7 +13,6 @@ if (rootElement) {
       <App />
     </StrictMode>,
   );
-  console.log("React app rendered");
 } else {
   console.error("Root element not found");
 }
