@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./ImagePreview.module.css";
-import { type GalleryImageWithMetadata } from "./GalleryUtils";
+import { type GalleryImageWithMetadata } from "../GalleryUtils";
 
 interface ImagePreviewProps {
   image: GalleryImageWithMetadata;
