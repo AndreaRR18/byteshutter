@@ -113,16 +113,20 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({
         </div>
 
         <div className={styles.metadata}>
-          <div className={styles.basicInfo}>
-            {image.title && <h2 className={styles.title}>{image.title}</h2>}
-            {image.description && (
-              <p className={styles.description}>{image.description}</p>
+          <div className={styles.leftSection}>
+            <div className={styles.basicInfo}>
+              {image.title && <h2 className={styles.title}>{image.title}</h2>}
+              {image.description && (
+                <p className={styles.description}>{image.description}</p>
+              )}
+            </div>
+            {image.metadata && (
+              <h3 className={styles.metadataTitle}>Photo Details</h3>
             )}
           </div>
 
           {image.metadata && (
             <div className={styles.technicalInfo}>
-              <h3 className={styles.metadataTitle}>Photo Details</h3>
               <div className={styles.metadataGrid}>
                 {image.metadata.iso && (
                   <div className={styles.metadataItem}>
