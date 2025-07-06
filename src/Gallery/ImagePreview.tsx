@@ -176,7 +176,7 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({
                   <div className={styles.metadataItem}>
                     <span className={styles.metadataLabel}>ev</span>
                     <span className={styles.metadataValue}>
-                      {image.metadata.ev}onClick
+                      {image.metadata.ev}
                     </span>
                   </div>
                 )}
