@@ -152,14 +152,17 @@
 }
 
 .metadataGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    display: flex;
     gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
 }
 
 .metadataItem {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
+    min-width: 80px;
 }
 
 .metadataLabel {
@@ -177,73 +180,6 @@
     font-weight: 500;
 }
 
-/* Fixed height scrollable info list at bottom */
-.infoList {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 200px;
-    background: var(--color-surface);
-    border-top: 1px solid var(--border);
-    z-index: 1000;
-    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
-}
-
-.infoListContent {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-}
-
-.infoListHeader {
-    margin-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.5rem;
-}
-
-.infoListHeader h3 {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-}
-
-.infoListItems {
-    flex: 1;
-    overflow-y: auto;
-    padding-right: 0.5rem;
-}
-
-.infoItem {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border-light);
-}
-
-.infoItem:last-child {
-    border-bottom: none;
-}
-
-.infoLabel {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    flex-shrink: 0;
-    margin-right: 1rem;
-}
-
-.infoValue {
-    font-size: 0.95rem;
-    color: var(--text-primary);
-    font-weight: 500;
-    text-align: right;
-    word-break: break-word;
-}
-
 @media (max-width: 768px) {
     .previewContainer {
         max-width: 95vw;
@@ -255,7 +191,6 @@
     }
 
     .metadataGrid {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
         gap: 0.75rem;
     }
 
@@ -283,25 +218,5 @@
         left: 0.5rem;
         padding: 0.4rem 0.8rem;
         font-size: 0.8rem;
-    }
-
-    .infoList {
-        height: 150px;
-    }
-
-    .infoListContent {
-        padding: 0.75rem;
-    }
-
-    .infoItem {
-        padding: 0.5rem 0;
-    }
-
-    .infoLabel {
-        font-size: 0.85rem;
-    }
-
-    .infoValue {
-        font-size: 0.9rem;
     }
 }
