@@ -5,7 +5,7 @@ import {
   useGalleryImages,
   type GalleryImageWithMetadata,
 } from "../GalleryUtils";
-import { ImagePreview } from "../ImagePreview";
+import { ImagePreview } from "../ImagePreview/ImagePreview";
 
 const GalleryGrid: React.FC = () => {
   const images = useGalleryImages();
