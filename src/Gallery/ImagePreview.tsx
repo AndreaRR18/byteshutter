@@ -148,14 +148,6 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({
                     </span>
                   </div>
                 )}
-                {image.metadata.time && (
-                  <div className={styles.metadataItem}>
-                    <span className={styles.metadataLabel}>Date</span>
-                    <span className={styles.metadataValue}>
-                      {image.metadata.time}
-                    </span>
-                  </div>
-                )}
                 {image.metadata.camera && (
                   <div className={styles.metadataItem}>
                     <span className={styles.metadataLabel}>Camera</span>
