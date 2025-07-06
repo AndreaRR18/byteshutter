@@ -1,4 +1,4 @@
-// src/components/ArticleDetail.tsx
+// src/FeedSection/BlogPost/BlogPost.tsx
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
