@@ -12,6 +12,8 @@ export const LANDING_IMAGES = {
       "book_cover/the_pragmatic_programmer_book_cover.jpg",
     philosophySoftwareDesignerBookCover:
       "book_cover/philosophy_software_designer_book_cover.jpg",
+    oneThousandNineHundredEightyFourBookCover:
+      "book_cover/oneThousandNineHundredEightyFourBookCover.jpg",
   },
   highlightedPhoto: "highlighted/orange_pattern.jpg",
 } as const;
@@ -30,6 +32,9 @@ export const useLandingImages = () => {
       ),
       philosophySoftwareDesignerBookCover: getImageUrl(
         LANDING_IMAGES.bookGrid.philosophySoftwareDesignerBookCover,
+      ),
+      oneThousandNineHundredEightyFourBookCover: getImageUrl(
+        LANDING_IMAGES.bookGrid.oneThousandNineHundredEightyFourBookCover,
       ),
     },
     highlightedPhoto: getImageUrl(LANDING_IMAGES.highlightedPhoto),

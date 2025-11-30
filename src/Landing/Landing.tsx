@@ -32,6 +32,13 @@ const Landing: React.FC = () => {
       description:
         "This book addresses the topic of software design: how to decompose complex software systems into modules (such as classes and methods) that can be implemented relatively independently.",
     },
+    {
+      title: "1984",
+      author: "George Orwell",
+      image: images.bookGrid.oneThousandNineHundredEightyFourBookCover,
+      description:
+        "1984 by George Orwell is a dystopian novel that explores totalitarianism and surveillance: in a world where the Party controls every aspect of life, the protagonist Winston Smith secretly rebels against the oppressive regime, only to face the crushing power of absolute authority and psychological manipulation.",
+    },
   ];
 
   // Preload images for better performance
