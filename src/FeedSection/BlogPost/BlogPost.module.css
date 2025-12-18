@@ -27,12 +27,6 @@ body {
     margin-bottom: var(--section-spacing);
 }
 
-@media (min-width: 768px) {
-    .blogContainer {
-        /* Removed padding */
-    }
-}
-
 /* iPhone specific optimizations */
 @media (max-width: 480px) {
     .blogContainer {
