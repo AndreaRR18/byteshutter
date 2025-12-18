@@ -1,3 +1,5 @@
+import { isArticleFeed } from "../../types/guards";
+
 export interface ArticleItem {
   title: string;
   created_at: string;
@@ -18,20 +20,21 @@ class FeedRepository {
       return this.indexCache;
     }
 
-    try {
-      const url = `${import.meta.env.BASE_URL}data/articles.json`;
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(
-          `Failed to fetch articles: ${response.status} ${response.statusText}`,
-        );
-      }
-      this.indexCache = (await response.json()) as ArticleFeed;
-      return this.indexCache;
-    } catch (error) {
-      console.error("Failed to load article index:", error);
-      throw error;
+    const url = `${import.meta.env.BASE_URL}data/articles.json`;
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch articles: ${response.status} ${response.statusText}`,
+      );
     }
+
+    const data = await response.json();
+    if (!isArticleFeed(data)) {
+      throw new Error("Invalid article feed structure");
+    }
+
+    this.indexCache = data;
+    return this.indexCache;
   }
 
   async getArticlesByTag(tag: string): Promise<ArticleItem[]> {

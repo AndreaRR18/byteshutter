@@ -8,7 +8,10 @@ const Header: React.FC = () => {
 
   return (
     <header className={styles.header}>
-      <nav className={styles.nav}>
+      <a href="#main-content" className={styles.skipLink}>
+        Skip to main content
+      </a>
+      <nav className={styles.nav} aria-label="Main navigation">
         <div className={styles.logo}>
           <Link to="/" className={styles.logo}>
             byteshutter

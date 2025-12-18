@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { getImageUrl } from "../Utils/ImageUtils";
 
 /**
@@ -19,24 +20,27 @@ export const LANDING_IMAGES = {
 } as const;
 
 /**
- * Hook-like function to get all Landing component images with proper URLs
- * This makes it easy to use in React components
+ * Hook to get all Landing component images with proper URLs
+ * Memoized to prevent recreating the object on every render
  */
 export const useLandingImages = () => {
-  return {
-    hero: getImageUrl(LANDING_IMAGES.hero),
-    bookCover: getImageUrl(LANDING_IMAGES.bookCover),
-    bookGrid: {
-      thePragmaticProgrammerBookCover: getImageUrl(
-        LANDING_IMAGES.bookGrid.thePragmaticProgrammerBookCover,
-      ),
-      philosophySoftwareDesignerBookCover: getImageUrl(
-        LANDING_IMAGES.bookGrid.philosophySoftwareDesignerBookCover,
-      ),
-      oneThousandNineHundredEightyFourBookCover: getImageUrl(
-        LANDING_IMAGES.bookGrid.oneThousandNineHundredEightyFourBookCover,
-      ),
-    },
-    highlightedPhoto: getImageUrl(LANDING_IMAGES.highlightedPhoto),
-  };
+  return useMemo(
+    () => ({
+      hero: getImageUrl(LANDING_IMAGES.hero),
+      bookCover: getImageUrl(LANDING_IMAGES.bookCover),
+      bookGrid: {
+        thePragmaticProgrammerBookCover: getImageUrl(
+          LANDING_IMAGES.bookGrid.thePragmaticProgrammerBookCover,
+        ),
+        philosophySoftwareDesignerBookCover: getImageUrl(
+          LANDING_IMAGES.bookGrid.philosophySoftwareDesignerBookCover,
+        ),
+        oneThousandNineHundredEightyFourBookCover: getImageUrl(
+          LANDING_IMAGES.bookGrid.oneThousandNineHundredEightyFourBookCover,
+        ),
+      },
+      highlightedPhoto: getImageUrl(LANDING_IMAGES.highlightedPhoto),
+    }),
+    [], // Empty deps - BASE_URL is constant
+  );
 };

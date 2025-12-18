@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo, useCallback } from "react";
 import styles from "./Tag.module.css";
 
 interface TagProps {
@@ -33,15 +33,26 @@ const getTextColor = (text: string): string => {
   return `hsl(${hue}, 65%, 35%)`;
 };
 
-export const Tag: React.FC<TagProps> = ({ text, onClick }) => {
-  const backgroundColor = getTagColor(text);
-  const textColor = getTextColor(text);
+export const Tag = React.memo<TagProps>(({ text, onClick }) => {
+  // Memoize color calculations
+  const backgroundColor = useMemo(() => getTagColor(text), [text]);
+  const textColor = useMemo(() => getTextColor(text), [text]);
 
-  const handleClick = () => {
+  const handleClick = useCallback(() => {
     if (onClick) {
       onClick(text);
     }
-  };
+  }, [onClick, text]);
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (onClick && (e.key === "Enter" || e.key === " ")) {
+        e.preventDefault();
+        handleClick();
+      }
+    },
+    [onClick, handleClick],
+  );
 
   return (
     <span
@@ -51,9 +62,13 @@ export const Tag: React.FC<TagProps> = ({ text, onClick }) => {
         color: textColor,
         borderColor: textColor,
       }}
-      onClick={handleClick}
+      onClick={onClick ? handleClick : undefined}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={onClick ? handleKeyDown : undefined}
+      aria-label={onClick ? `Filter by ${text} tag` : undefined}
     >
       #{text}
     </span>
   );
-};
+});

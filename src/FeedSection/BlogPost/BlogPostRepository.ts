@@ -1,17 +1,21 @@
+import { isArticle } from "../../types/guards";
+
 export interface Article {
   title: string;
   created_at: string;
   slug: string;
   tags?: string[];
   content: string;
+  excerpt?: string;
 }
 
 class BlogPostRepository {
   private articleCache: Map<string, Article> = new Map();
 
   async getArticleBySlug(slug: string): Promise<Article | null> {
-    if (this.articleCache.has(slug)) {
-      return this.articleCache.get(slug)!;
+    const cached = this.articleCache.get(slug);
+    if (cached) {
+      return cached;
     }
 
     try {
@@ -21,11 +25,15 @@ class BlogPostRepository {
       if (!response.ok) {
         return null;
       }
-      const article = await response.json();
-      this.articleCache.set(slug, article);
-      return article;
-    } catch (error) {
-      console.error(`Failed to load article ${slug}:`, error);
+
+      const data = await response.json();
+      if (!isArticle(data)) {
+        throw new Error(`Invalid article structure for slug: ${slug}`);
+      }
+
+      this.articleCache.set(slug, data);
+      return data;
+    } catch {
       return null;
     }
   }

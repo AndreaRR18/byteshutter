@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import { useEffect } from "react";
 import Landing from "../Landing/Landing";
 import BlogList from "../FeedSection/BlogList/BlogList";
@@ -7,13 +12,24 @@ import About from "../About/About";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { useTheme } from "../hooks/useTheme";
+import { ErrorBoundary } from "../components/ErrorBoundary";
 import "./App.css";
 
 function AppContent() {
+  const location = useLocation();
+
+  // Focus main content on route change for accessibility
+  useEffect(() => {
+    const mainContent = document.getElementById("main-content");
+    if (mainContent) {
+      mainContent.focus();
+    }
+  }, [location.pathname]);
+
   return (
     <div className="app min-h-screen bg-background text-text-primary">
       <Header />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/articles" element={<BlogList />} />
@@ -40,9 +56,11 @@ function App() {
   const basename = import.meta.env.PROD ? "/byteshutter" : "";
 
   return (
-    <Router basename={basename}>
-      <AppContent />
-    </Router>
+    <ErrorBoundary>
+      <Router basename={basename}>
+        <AppContent />
+      </Router>
+    </ErrorBoundary>
   );
 }
 
