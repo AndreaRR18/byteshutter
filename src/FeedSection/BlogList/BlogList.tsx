@@ -2,32 +2,32 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import type { ArticleFeed } from "./BlogListRepository";
 import { feedRepository } from "./BlogListRepository";
+import { getErrorMessage } from "../../types/errors";
 import "./BlogList.module.css";
 import { PostCard } from "./PostCard/PostCard";
 
+type FeedState =
+  | { status: "loading" }
+  | { status: "error"; error: string }
+  | { status: "success"; feed: ArticleFeed };
+
 const BlogList: React.FC = () => {
-  const [feed, setFeed] = useState<ArticleFeed | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [state, setState] = useState<FeedState>({ status: "loading" });
 
   useEffect(() => {
     const fetchArticles = async () => {
       try {
         const articles = await feedRepository.getArticles();
-        setFeed(articles);
+        setState({ status: "success", feed: articles });
       } catch (err) {
-        setError(
-          err instanceof Error ? err.message : "Failed to load articles",
-        );
-      } finally {
-        setLoading(false);
+        setState({ status: "error", error: getErrorMessage(err) });
       }
     };
 
     fetchArticles();
   }, []);
 
-  if (loading) {
+  if (state.status === "loading") {
     return (
       <div className="blog-container">
         <section className="content-section">
@@ -46,20 +46,20 @@ const BlogList: React.FC = () => {
     );
   }
 
-  if (error) {
+  if (state.status === "error") {
     return (
       <div className="blog-container">
         <section className="content-section">
           <div className="error-state">
             <h2>Unable to load articles</h2>
-            <p>{error}</p>
+            <p>{state.error}</p>
           </div>
         </section>
       </div>
     );
   }
 
-  if (!feed || feed.articles.length === 0) {
+  if (state.status === "success" && state.feed.articles.length === 0) {
     return (
       <div className="blog-container">
         <section className="content-section">
@@ -71,6 +71,9 @@ const BlogList: React.FC = () => {
       </div>
     );
   }
+
+  // TypeScript knows state.status === "success" here
+  const { feed } = state;
 
   return (
     <div className="blog-container">

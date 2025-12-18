@@ -22,6 +22,28 @@ export const BlogPost: React.FC = () => {
     }
   }, [slug]);
 
+  // Update document title and meta tags when article loads
+  useEffect(() => {
+    if (article) {
+      // Update title
+      document.title = `${article.title} | ByteShutter`;
+
+      // Update meta description
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (metaDesc) {
+        metaDesc.setAttribute(
+          "content",
+          article.excerpt || article.title,
+        );
+      }
+
+      // Cleanup on unmount
+      return () => {
+        document.title = "ByteShutter";
+      };
+    }
+  }, [article]);
+
   if (loading) {
     return (
       <div className={styles.blogContainer}>
@@ -68,9 +90,36 @@ export const BlogPost: React.FC = () => {
 
   const estimatedReadTime = Math.ceil(article.content.split(" ").length / 200);
 
+  // Structured data for SEO
+  const structuredData = article
+    ? {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        headline: article.title,
+        datePublished: article.created_at,
+        dateModified: article.created_at,
+        author: {
+          "@type": "Person",
+          name: "Andrea Rinaldi",
+        },
+        publisher: {
+          "@type": "Person",
+          name: "Andrea Rinaldi",
+        },
+        description: article.excerpt,
+        keywords: article.tags?.join(", "),
+      }
+    : null;
+
   return (
     <div className={styles.blogContainer}>
       <div className={styles.contentSection}>
+        {structuredData && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          />
+        )}
         <article className={styles.articleCard}>
           <header className={styles.articleHeader}>
             <h1 className={styles.articleTitle}>{article.title}</h1>
@@ -149,7 +198,6 @@ export const BlogPost: React.FC = () => {
                       alt={alt || ""}
                       loading="lazy"
                       onError={(e) => {
-                        console.warn("Image failed to load:", imageSrc);
                         e.currentTarget.style.display = "none";
                       }}
                     />

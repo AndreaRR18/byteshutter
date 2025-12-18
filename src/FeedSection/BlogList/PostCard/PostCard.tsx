@@ -8,18 +8,12 @@ interface PostCardProps {
   excerpt: string;
   date?: string;
   tags?: string[];
-  onClick?: () => void;
 }
 
-export const PostCard: React.FC<PostCardProps> = ({
-  title,
-  excerpt,
-  date,
-  tags,
-  onClick,
-}) => {
-  return (
-    <article className={styles.card} onClick={onClick}>
+export const PostCard = React.memo<PostCardProps>(
+  ({ title, excerpt, date, tags }) => {
+    return (
+      <article className={styles.card}>
       <div className={styles.content}>
         {date && (
           <time className={styles.date}>
@@ -47,4 +41,5 @@ export const PostCard: React.FC<PostCardProps> = ({
       </div>
     </article>
   );
-};
+},
+);

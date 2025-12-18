@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "./Landing.module.css";
 import { useLandingImages } from "./LandingImageUtils";
-import { preloadImages } from "../Utils/ImageUtils";
+import { preloadImages, getImageUrl } from "../Utils/ImageUtils";
+import { RECENTLY_READ_BOOKS } from "../data/books";
 
 import {
   HeroSection,
@@ -16,30 +17,15 @@ const Landing: React.FC = () => {
   // Get all images with proper URLs for dev and production
   const images = useLandingImages();
 
-  // Books data for Recently Read Books section
-  const books = [
-    {
-      title: "The Pragmatic Programmer",
-      author: "David Thomas & Andrew Hunt",
-      image: images.bookGrid.thePragmaticProgrammerBookCover,
-      description:
-        "The Pragmatic Programmer: From Journeyman to Master is a book about computer programming and software engineering, written by Andrew Hunt and David Thomas and published in October 1999",
-    },
-    {
-      title: "A Philosophy of Software Design",
-      author: "John Ousterhout",
-      image: images.bookGrid.philosophySoftwareDesignerBookCover,
-      description:
-        "This book addresses the topic of software design: how to decompose complex software systems into modules (such as classes and methods) that can be implemented relatively independently.",
-    },
-    {
-      title: "1984",
-      author: "George Orwell",
-      image: images.bookGrid.oneThousandNineHundredEightyFourBookCover,
-      description:
-        "1984 by George Orwell is a dystopian novel that explores totalitarianism and surveillance: in a world where the Party controls every aspect of life, the protagonist Winston Smith secretly rebels against the oppressive regime, only to face the crushing power of absolute authority and psychological manipulation.",
-    },
-  ];
+  // Map books data with proper image URLs
+  const books = useMemo(
+    () =>
+      RECENTLY_READ_BOOKS.map((book) => ({
+        ...book,
+        image: getImageUrl(book.image),
+      })),
+    [],
+  );
 
   // Preload images for better performance
   React.useEffect(() => {
