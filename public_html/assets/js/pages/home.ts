@@ -1,7 +1,7 @@
 // Home Page Script
 // Handles home page specific functionality
 
-import { dataService } from '../../services/dataService';
+import { dataService } from '../services/dataService';
 
 interface HomePageOptions {
   debug?: boolean;

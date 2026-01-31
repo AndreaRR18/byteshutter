@@ -198,6 +198,29 @@ declare global {
     pageLoad: number; // Full page load time
     memory: number; // Memory usage
   }
+
+  // Extended Browser API Types
+  interface PerformanceEntry {
+    hadRecentInput?: boolean;
+    value?: number;
+    processingStart?: number;
+  }
+  
+  interface Performance {
+    memory?: {
+      usedJSHeapSize: number;
+      totalJSHeapSize: number;
+      jsHeapSizeLimit: number;
+    };
+  }
+  
+  interface CSSStyleDeclaration {
+    fontDisplay?: string;
+  }
+  
+  interface HTMLElement {
+    loading?: string;
+  }
   
   // Accessibility Report Interface
   interface AccessibilityReport {

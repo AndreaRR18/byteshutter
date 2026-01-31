@@ -141,15 +141,15 @@ class Router {
     this.handleRoute();
   }
 
-  public async loadHomePage(path: string): Promise<void> {
+  public async loadHomePage(): Promise<void> {
     await this.loadPage('home');
   }
 
-  public async loadAboutPage(path: string): Promise<void> {
+  public async loadAboutPage(): Promise<void> {
     await this.loadPage('about');
   }
 
-  public async loadArticlesPage(path: string): Promise<void> {
+  public async loadArticlesPage(): Promise<void> {
     await this.loadPage('articles');
   }
 
@@ -218,26 +218,26 @@ class Router {
   private showError(): void {
     const pageContent = document.getElementById('page-content');
     if (pageContent) {
-      pageContent.innerHTML = '
+      pageContent.innerHTML = `
         <div class="error">
           <h2>Error Loading Page</h2>
           <p>Sorry, there was an error loading this page.</p>
           <button onclick="window.router.navigate('/')" class="btn">Go to Home</button>
         </div>
-      ';
+      `;
     }
   }
 
   private show404(): void {
     const pageContent = document.getElementById('page-content');
     if (pageContent) {
-      pageContent.innerHTML = '
+      pageContent.innerHTML = `
         <div class="error">
           <h2>404 - Page Not Found</h2>
           <p>The page you're looking for doesn't exist.</p>
           <button onclick="window.router.navigate('/')" class="btn">Go to Home</button>
         </div>
-      ';
+      `;
     }
   }
 

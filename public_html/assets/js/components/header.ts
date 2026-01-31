@@ -21,9 +21,9 @@ class HeaderComponent {
       ...options
     };
     
-    this.headerElement = document.querySelector('.site-header');
-    this.themeToggleButton = document.querySelector(this.options.themeToggleSelector);
-    this.navLinks = document.querySelectorAll(this.options.navLinkSelector);
+    this.headerElement = document.querySelector('.site-header') as HTMLElement | null;
+    this.themeToggleButton = document.querySelector(this.options.themeToggleSelector) as HTMLElement | null;
+    this.navLinks = document.querySelectorAll(this.options.navLinkSelector) as NodeListOf<HTMLElement>;
     
     this.init();
   }

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f0f0;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #4CAF50;
+    }
+    .status {
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+    }
+    .success {
+      background: #e8f5e9;
+      color: #2E7D32;
+    }
+    .error {
+      background: #ffebee;
+      color: #C62828;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>ByteShutter Simple Test</h1>
+    
+    <div id="status" class="status">
+      <p>Testing basic functionality...</p>
+    </div>
+    
+    <div class="test-section">
+      <h2>Basic Tests</h2>
+      <ul id="test-results">
+        <li>Loading tests...</li>
+      </ul>
+    </div>
+  </div>
+  
+  <script type="module">
+    // Simple test script
+    document.addEventListener('DOMContentLoaded', function() {
+      const statusEl = document.getElementById('status');
+      const resultsEl = document.getElementById('test-results');
+      
+      // Clear initial content
+      resultsEl.innerHTML = '';
+      
+      // Test 1: Basic DOM manipulation
+      try {
+        const item = document.createElement('li');
+        item.textContent = '✓ DOM manipulation works';
+        item.className = 'success';
+        resultsEl.appendChild(item);
+      } catch (error) {
+        const item = document.createElement('li');
+        item.textContent = '✗ DOM manipulation failed: ' + error.message;
+        item.className = 'error';
+        resultsEl.appendChild(item);
+      }
+      
+      // Test 2: Fetch API
+      try {
+        if (window.fetch) {
+          const item = document.createElement('li');
+          item.textContent = '✓ Fetch API available';
+          item.className = 'success';
+          resultsEl.appendChild(item);
+        }
+      } catch (error) {
+        const item = document.createElement('li');
+        item.textContent = '✗ Fetch API test failed: ' + error.message;
+        item.className = 'error';
+        resultsEl.appendChild(item);
+      }
+      
+      // Test 3: LocalStorage
+      try {
+        if (window.localStorage) {
+          const item = document.createElement('li');
+          item.textContent = '✓ localStorage available';
+          item.className = 'success';
+          resultsEl.appendChild(item);
+        }
+      } catch (error) {
+        const item = document.createElement('li');
+        item.textContent = '✗ localStorage test failed: ' + error.message;
+        item.className = 'error';
+        resultsEl.appendChild(item);
+      }
+      
+      // Test 4: Theme initialization
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const theme = savedTheme || systemTheme;
+        
+        document.documentElement.setAttribute('data-theme', theme);
+        document.documentElement.classList.add(theme);
+        
+        const item = document.createElement('li');
+        item.textContent = '✓ Theme initialization works';
+        item.className = 'success';
+        resultsEl.appendChild(item);
+      } catch (error) {
+        const item = document.createElement('li');
+        item.textContent = '✗ Theme initialization failed: ' + error.message;
+        item.className = 'error';
+        resultsEl.appendChild(item);
+      }
+      
+      // Update status
+      statusEl.textContent = 'Basic tests completed!';
+      statusEl.className = 'status success';
+    });
+  </script>
+</body>
+</html>

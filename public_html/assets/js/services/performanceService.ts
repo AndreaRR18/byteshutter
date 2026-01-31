@@ -217,7 +217,7 @@ class PerformanceService {
 
   public optimizeImages(): void {
     // Find all images and optimize them
-    const images = document.querySelectorAll('img');
+    const images = document.querySelectorAll('img') as NodeListOf<HTMLImageElement>;
     
     images.forEach(img => {
       // Add loading="lazy" if not present

@@ -1,7 +1,6 @@
 // Main Application Script
 // Initializes the HTML/CSS version of ByteShutter
 
-import { router } from './router';
 import { themeManager } from './theme';
 import { performanceService } from './services/performanceService';
 import { accessibilityService } from './services/accessibilityService';

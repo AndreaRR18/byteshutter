@@ -1,7 +1,7 @@
 // Articles Page Script
 // Handles articles page specific functionality
 
-import { dataService } from '../../services/dataService';
+import { dataService } from '../services/dataService';
 
 interface ArticlesPageOptions {
   debug?: boolean;
@@ -103,13 +103,13 @@ class ArticlesPage {
       
       const articlesGrid = document.getElementById('articles-grid');
       if (articlesGrid) {
-        articlesGrid.innerHTML = '
+        articlesGrid.innerHTML = `
           <div class="error">
             <h2>Error Loading Articles</h2>
             <p>Sorry, there was an error loading the articles.</p>
             <button onclick="window.location.reload()" class="btn">Retry</button>
           </div>
-        ';
+        `;
       }
     }
   }

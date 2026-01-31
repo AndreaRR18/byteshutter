@@ -25,12 +25,7 @@ export default defineConfig(({ mode }) => {
       minify: true,
       // Enable CSS code splitting
       cssCodeSplit: true,
-      // TypeScript support
-      lib: {
-        entry: resolve(__dirname, 'assets/js/main.ts'),
-        name: 'ByteShutter',
-        fileName: (format) => `byteshutter.${format}.js`,
-      },
+
     },
     
     server: {
@@ -52,8 +47,6 @@ export default defineConfig(({ mode }) => {
     
     // TypeScript configuration
     esbuild: {
-      jsxFactory: 'React.createElement',
-      jsxFragment: 'React.Fragment',
       // Enable TypeScript support
       loader: 'ts',
     },
