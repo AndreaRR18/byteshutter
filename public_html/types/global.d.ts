@@ -6,6 +6,8 @@ declare global {
     themeManager: import('../assets/js/theme').ThemeManager;
     app: import('../assets/js/main').App;
     performanceService: import('../assets/js/services/performanceService').PerformanceService;
+    accessibilityService: import('../assets/js/services/accessibilityService').AccessibilityService;
+    seoService: import('../assets/js/services/seoService').SEOService;
   }
 
   interface HTMLElement {
@@ -195,6 +197,20 @@ declare global {
     domContentLoaded: number; // DOMContentLoaded time
     pageLoad: number; // Full page load time
     memory: number; // Memory usage
+  }
+  
+  // Accessibility Report Interface
+  interface AccessibilityReport {
+    issues: string[];
+    warnings: string[];
+    passed: string[];
+  }
+  
+  // SEO Report Interface
+  interface SEOReport {
+    issues: string[];
+    warnings: string[];
+    passed: string[];
   }
 }
 

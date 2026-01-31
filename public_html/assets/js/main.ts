@@ -4,6 +4,8 @@
 import { router } from './router';
 import { themeManager } from './theme';
 import { performanceService } from './services/performanceService';
+import { accessibilityService } from './services/accessibilityService';
+import { seoService } from './services/seoService';
 
 interface AppOptions {
   autoInit?: boolean;
@@ -141,6 +143,12 @@ class App {
     
     // Initialize performance optimizations
     this.initPerformanceOptimizations();
+    
+    // Initialize accessibility features
+    this.initAccessibility();
+    
+    // Initialize SEO
+    this.initSEO();
   }
 
   private initLazyLoading(): void {
@@ -166,6 +174,38 @@ class App {
     
     if (this.options.debug) {
       console.log('Performance optimizations initialized');
+    }
+  }
+  
+  private initAccessibility(): void {
+    // Run accessibility checks
+    const accessibilityReport = accessibilityService.checkAccessibility();
+    
+    if (this.options.debug) {
+      console.log('Accessibility Report:', accessibilityReport);
+    }
+    
+    // Auto-fix accessibility issues
+    accessibilityService.setDebug(this.options.debug);
+    
+    if (this.options.debug) {
+      console.log('Accessibility features initialized');
+    }
+  }
+  
+  private initSEO(): void {
+    // Run SEO checks
+    const seoReport = seoService.checkSEO();
+    
+    if (this.options.debug) {
+      console.log('SEO Report:', seoReport);
+    }
+    
+    // Auto-generate SEO tags
+    seoService.setDebug(this.options.debug);
+    
+    if (this.options.debug) {
+      console.log('SEO features initialized');
     }
   }
 
