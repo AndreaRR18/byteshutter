@@ -1,0 +1,186 @@
+// Article Page Script
+// Handles individual article page functionality
+
+import { dataService } from '../../services/dataService';
+
+interface ArticlePageOptions {
+  debug?: boolean;
+}
+
+class ArticlePage {
+  private options: ArticlePageOptions;
+
+  constructor(options: ArticlePageOptions = {}) {
+    this.options = {
+      debug: false,
+      ...options
+    };
+    
+    this.init();
+  }
+
+  private init(): void {
+    if (this.options.debug) {
+      console.log('ArticlePage initialized');
+    }
+    
+    this.loadArticle();
+    
+    // Dispatch page load event
+    window.dispatchEvent(new CustomEvent('page-load', {
+      detail: { pageName: 'article' }
+    }));
+  }
+
+  private async loadArticle(): Promise<void> {
+    try {
+      // Get slug from URL
+      const pathParts = window.location.pathname.split('/');
+      const slug = pathParts[pathParts.length - 1];
+      
+      if (!slug) {
+        console.error('No article slug found in URL');
+        this.showError('Article not found');
+        return;
+      }
+      
+      // Show loading state
+      this.showLoading();
+      
+      // Fetch article data
+      const article = await dataService.fetchArticle(slug);
+      
+      if (!article) {
+        this.showError('Article not found');
+        return;
+      }
+      
+      // Render article
+      this.renderArticle(article);
+      
+      if (this.options.debug) {
+        console.log('Article loaded successfully:', article.title);
+      }
+    } catch (error) {
+      console.error('Error loading article:', error);
+      this.showError('Error loading article');
+    }
+  }
+
+  private showLoading(): void {
+    const articleTitle = document.getElementById('article-title');
+    const articleBody = document.getElementById('article-body');
+    
+    if (articleTitle) articleTitle.textContent = 'Loading...';
+    if (articleBody) articleBody.innerHTML = '<p>Loading article content...</p>';
+  }
+
+  private renderArticle(article: Article): void {
+    // Set title
+    const articleTitle = document.getElementById('article-title');
+    if (articleTitle) {
+      articleTitle.textContent = article.title;
+    }
+    
+    // Set meta information
+    const articleDate = document.getElementById('article-date');
+    const articleReadingTime = document.getElementById('article-reading-time');
+    const articleTags = document.getElementById('article-tags');
+    
+    if (articleDate) {
+      articleDate.textContent = this.formatDate(article.date);
+    }
+    
+    if (articleReadingTime) {
+      articleReadingTime.textContent = `${article.readingTime} min read`;
+    }
+    
+    if (articleTags) {
+      articleTags.innerHTML = article.tags.map(tag => 
+        `<span class="tag">${tag}</span>`
+      ).join('');
+    }
+    
+    // Render content (simple markdown-like rendering)
+    const articleBody = document.getElementById('article-body');
+    if (articleBody) {
+      articleBody.innerHTML = this.renderMarkdown(article.content);
+    }
+    
+    // Update document title
+    document.title = `${article.title} - ByteShutter`;
+  }
+
+  private renderMarkdown(content: string): string {
+    // Simple markdown rendering - in a real app, you might use a library like marked.js
+    return content
+      // Headers
+      .replace(/^#\s+(.*)$/gm, '<h2>$1</h2>')
+      .replace(/^##\s+(.*)$/gm, '<h3>$1</h3>')
+      .replace(/^###\s+(.*)$/gm, '<h4>$1</h4>')
+      // Bold and italic
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.*?)\*/g, '<em>$1</em>')
+      // Links
+      .replace(/\\[([^\\]]+)\\]\\(([^\\)]+)\\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+      // Code blocks
+      .replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      // Lists
+      .replace(/^\*\s+(.*)$/gm, '<li>$1</li>')
+      .replace(/^\d+\.\s+(.*)$/gm, '<li>$1</li>')
+      // Blockquotes
+      .replace(/^>\s+(.*)$/gm, '<blockquote>$1</blockquote>')
+      // Paragraphs
+      .replace(/\n\n/g, '</p><p>')
+      .replace(/\n/g, '<br>');
+  }
+
+  private showError(message: string): void {
+    const articleTitle = document.getElementById('article-title');
+    const articleBody = document.getElementById('article-body');
+    
+    if (articleTitle) articleTitle.textContent = 'Error';
+    if (articleBody) {
+      articleBody.innerHTML = `
+        <div class="error">
+          <h2>${message}</h2>
+          <p>Sorry, we couldn't load this article.</p>
+          <button onclick="window.router.navigate('/articles')" class="btn">Back to Articles</button>
+        </div>
+      `;
+    }
+  }
+
+  private formatDate(dateString: string): string {
+    try {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    } catch (error) {
+      console.error('Error formatting date:', error);
+      return dateString;
+    }
+  }
+
+  public destroy(): void {
+    // Clean up if needed
+  }
+
+  public getOptions(): ArticlePageOptions {
+    return this.options;
+  }
+}
+
+// Initialize article page when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  new ArticlePage({ debug: import.meta.env.DEV });
+});
+
+// Export for testing
+export { ArticlePage };
+
+export type { ArticlePageOptions };
