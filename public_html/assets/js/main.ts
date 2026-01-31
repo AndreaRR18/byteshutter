@@ -3,6 +3,7 @@
 
 import { router } from './router';
 import { themeManager } from './theme';
+import { performanceService } from './services/performanceService';
 
 interface AppOptions {
   autoInit?: boolean;
@@ -137,26 +138,35 @@ class App {
     
     // Set up error handling
     this.setupErrorHandling();
+    
+    // Initialize performance optimizations
+    this.initPerformanceOptimizations();
   }
 
   private initLazyLoading(): void {
+    // Performance service now handles lazy loading
     const lazyImages = document.querySelectorAll('img[data-src]');
+    const lazyIframes = document.querySelectorAll('iframe[data-src]');
+    const lazyVideos = document.querySelectorAll('video[data-src]');
     
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target as HTMLImageElement;
-          img.src = img.dataset.src || '';
-          img.removeAttribute('data-src');
-          observer.unobserve(img);
-        }
-      });
-    }, {
-      rootMargin: '100px',
-      threshold: 0.1
-    });
+    lazyImages.forEach(img => performanceService.lazyLoadElement(img));
+    lazyIframes.forEach(iframe => performanceService.lazyLoadElement(iframe));
+    lazyVideos.forEach(video => performanceService.lazyLoadElement(video));
+  }
+  
+  private initPerformanceOptimizations(): void {
+    // Optimize images
+    performanceService.optimizeImages();
     
-    lazyImages.forEach(img => imageObserver.observe(img));
+    // Optimize fonts
+    performanceService.optimizeFonts();
+    
+    // Optimize critical CSS (would be handled by build process)
+    performanceService.optimizeCriticalCSS();
+    
+    if (this.options.debug) {
+      console.log('Performance optimizations initialized');
+    }
   }
 
   private setupErrorHandling(): void {

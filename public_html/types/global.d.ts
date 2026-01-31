@@ -5,6 +5,7 @@ declare global {
     router: import('../assets/js/router').Router;
     themeManager: import('../assets/js/theme').ThemeManager;
     app: import('../assets/js/main').App;
+    performanceService: import('../assets/js/services/performanceService').PerformanceService;
   }
 
   interface HTMLElement {
@@ -181,6 +182,19 @@ declare global {
     set<T>(key: string, value: T, ttl?: number): Promise<void>;
     remove(key: string): Promise<void>;
     clear(): Promise<void>;
+  }
+  
+  // Performance Metrics Interface
+  interface PerformanceMetrics {
+    fcp: number; // First Contentful Paint
+    lcp: number; // Largest Contentful Paint
+    cls: number; // Cumulative Layout Shift
+    tbt: number; // Total Blocking Time
+    tti: number; // Time to Interactive
+    resourceCount: number; // Number of resources loaded
+    domContentLoaded: number; // DOMContentLoaded time
+    pageLoad: number; // Full page load time
+    memory: number; // Memory usage
   }
 }
 
