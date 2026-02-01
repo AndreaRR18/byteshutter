@@ -8,7 +8,7 @@
   "numFailedTests": 0,
   "numPendingTests": 0,
   "numTodoTests": 0,
-  "startTime": 1769963505255,
+  "startTime": 1769963599159,
   "success": true,
   "testResults": [
     {
@@ -21,7 +21,7 @@
           "fullName": " DataService should fetch data from endpoint",
           "status": "passed",
           "title": "should fetch data from endpoint",
-          "duration": 0,
+          "duration": 1,
           "failureMessages": []
         },
         {
@@ -43,7 +43,7 @@
           "fullName": " DataService should handle fetch errors gracefully",
           "status": "passed",
           "title": "should handle fetch errors gracefully",
-          "duration": 4,
+          "duration": 5,
           "failureMessages": []
         },
         {
@@ -65,7 +65,7 @@
           "fullName": " DataService should clear cache when requested",
           "status": "passed",
           "title": "should clear cache when requested",
-          "duration": 1,
+          "duration": 0,
           "failureMessages": []
         },
         {
@@ -109,12 +109,12 @@
           "fullName": " DataService should return null for non-existent article",
           "status": "passed",
           "title": "should return null for non-existent article",
-          "duration": 0,
+          "duration": 1,
           "failureMessages": []
         }
       ],
-      "startTime": 1769963505727,
-      "endTime": 1769963505732,
+      "startTime": 1769963599694,
+      "endTime": 1769963599701,
       "status": "passed",
       "message": "",
       "name": "/Users/andrea/Documents/Sites/byteshutter/public_html/tests/dataService.test.ts"
@@ -129,7 +129,7 @@
           "fullName": " Router should initialize with default routes",
           "status": "passed",
           "title": "should initialize with default routes",
-          "duration": 5,
+          "duration": 4,
           "failureMessages": []
         },
         {
@@ -140,7 +140,7 @@
           "fullName": " Router should add custom routes",
           "status": "passed",
           "title": "should add custom routes",
-          "duration": 2,
+          "duration": 1,
           "failureMessages": []
         },
         {
@@ -151,7 +151,7 @@
           "fullName": " Router should match exact routes",
           "status": "passed",
           "title": "should match exact routes",
-          "duration": 0,
+          "duration": 2,
           "failureMessages": []
         },
         {
@@ -162,7 +162,7 @@
           "fullName": " Router should match dynamic routes",
           "status": "passed",
           "title": "should match dynamic routes",
-          "duration": 1,
+          "duration": 0,
           "failureMessages": []
         },
         {
@@ -195,7 +195,7 @@
           "fullName": " Router should update active navigation",
           "status": "passed",
           "title": "should update active navigation",
-          "duration": 0,
+          "duration": 1,
           "failureMessages": []
         },
         {
@@ -210,8 +210,8 @@
           "failureMessages": []
         }
       ],
-      "startTime": 1769963505695,
-      "endTime": 1769963505706,
+      "startTime": 1769963599693,
+      "endTime": 1769963599703,
       "status": "passed",
       "message": "",
       "name": "/Users/andrea/Documents/Sites/byteshutter/public_html/tests/router.test.ts"
@@ -237,7 +237,7 @@
           "fullName": " ThemeManager should toggle theme correctly",
           "status": "passed",
           "title": "should toggle theme correctly",
-          "duration": 0,
+          "duration": 1,
           "failureMessages": []
         },
         {
@@ -296,8 +296,8 @@
           "failureMessages": []
         }
       ],
-      "startTime": 1769963505717,
-      "endTime": 1769963505725,
+      "startTime": 1769963599693,
+      "endTime": 1769963599701,
       "status": "passed",
       "message": "",
       "name": "/Users/andrea/Documents/Sites/byteshutter/public_html/tests/theme.test.ts"

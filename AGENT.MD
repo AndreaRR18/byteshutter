@@ -2,27 +2,32 @@
 
 ## Project Overview
 
-ByteShutter is a modern, responsive blog and personal website built with React, TypeScript, and Vite. The site features articles about web development, iOS development, Swift, SwiftUI, and responsive design principles, alongside sections for photography, books, and personal information.
+ByteShutter is a modern, responsive blog and personal website built with HTML, CSS, and TypeScript. The site features articles about web development, iOS development, Swift, SwiftUI, and responsive design principles, alongside sections for photography, books, and personal information.
 
 ## Tech Stack
 
-- **Framework**: React 19.2.0
 - **Language**: TypeScript 5.8.3
 - **Build Tool**: Vite 7.2.4
-- **Router**: React Router DOM 7.9.6
-- **Markdown**: react-markdown with remark-gfm
-- **Testing**: Vitest 3.1.4 with @testing-library/react
+- **Markdown**: Custom markdown processor
+- **Testing**: Vitest 3.1.4 with JSDOM
 - **Linting**: ESLint 9.25.0 with TypeScript ESLint
+- **Styling**: Pure CSS with CSS modules
+- **No Framework**: Vanilla HTML/CSS/JS implementation
 
 ## Project Structure
 
 ```
 byteshutter/
 ├── articles/          # Markdown source files for blog posts
-├── src/              # React application source code
-│   ├── Landing/      # Landing page components (Hero, About, Books, Photos, Articles)
-│   ├── Footer/       # Footer component
-│   └── ...           # Other components
+├── public_html/       # HTML/CSS/JS application source code
+│   ├── assets/        # JavaScript, CSS, and images
+│   │   ├── js/        # TypeScript/JavaScript modules
+│   │   ├── css/       # CSS styles
+│   │   └── images/    # Image assets
+│   ├── components/    # HTML components
+│   ├── pages/         # HTML pages
+│   ├── tests/         # Test suite (Vitest)
+│   └── ...           # Other assets
 ├── scripts/          # Build scripts
 │   └── ConvertArticlesToJSON/  # Markdown to JSON conversion
 ├── public/           # Static assets and generated JSON data
@@ -34,21 +39,23 @@ byteshutter/
 1. **Markdown-Powered Articles**: Blog posts are written in Markdown with frontmatter metadata and converted to JSON during build
 2. **Responsive Design**: Fully responsive layout for desktop and mobile
 3. **Theme Support**: Dark/Light theme switching
-4. **Client-Side Routing**: Fast navigation with React Router
+4. **Client-Side Routing**: Custom router implementation for smooth page transitions
 5. **Type-Safe**: Full TypeScript implementation
 6. **Personal Sections**: Books (currently reading/recently read), photography showcase, about section
+7. **No Framework Overhead**: Pure HTML/CSS/JS implementation without React or other frameworks
 
 ## Development Workflow
 
 ### Running Locally
 
 ```bash
-npm run dev          # Start development server on http://localhost:5173
-npm run build        # Convert articles + build for production
+npm run dev          # Start development server on http://localhost:3000
+npm run build        # Convert articles + build HTML version for production
 npm run preview      # Convert articles + build + preview production build
-npm test            # Run Vitest tests
+npm test            # Run Vitest tests (HTML version)
 npm run lint        # Run ESLint
 npm run convert     # Manually convert markdown articles to JSON
+npm run lint:html   # Lint only HTML version code
 ```
 
 ### Article System
@@ -77,23 +84,26 @@ Articles are managed through a markdown-to-JSON pipeline:
 
 The build process automatically:
 1. Converts all markdown articles to JSON
-2. Builds the React application with Vite
-3. Outputs everything to `dist/` for deployment
+2. Builds the HTML/CSS/JS application with Vite
+3. Outputs everything to `public_html/dist/` for deployment
 
 ## Code Conventions
 
-- **Component Structure**: Feature-based organization (Landing/, Footer/, etc.)
-- **Index Files**: Barrel exports via index.ts files
+- **Component Structure**: Feature-based organization in `public_html/`
 - **TypeScript**: Strict typing throughout
-- **File Extensions**: `.tsx` for React components, `.ts` for utilities/scripts
+- **File Extensions**: `.ts` for TypeScript modules, `.html` for components/pages
+- **CSS**: Pure CSS with CSS modules for component-specific styles
+- **No JSX**: Pure HTML templates with JavaScript/TypeScript logic
 
 ## Important Context
 
 - This is a personal blog/portfolio website
 - Content includes technical articles, book reviews, and photography
 - The landing page consists of multiple sections (Hero, About, Articles, Books, Photos)
-- Articles use GitHub Flavored Markdown (GFM) via remark-gfm
+- Articles use GitHub Flavored Markdown (GFM)
 - The build script must be run before deployment to convert articles
+- **No React**: This is now a pure HTML/CSS/JS implementation
+- **No Framework**: Vanilla JavaScript/TypeScript implementation
 
 ## Current Git Status
 
@@ -102,7 +112,7 @@ The build process automatically:
 - Current branch: `pedantic-lichterman`
 - Main branch: `main`
 - Status: Clean working tree
-- Recent commits focus on preview fixes, package updates, favicon, and CI configuration
+- Recent commits focus on React removal, HTML implementation, and test fixes
 
 ## Common Tasks
 
@@ -114,8 +124,8 @@ The build process automatically:
 5. Article appears automatically on the website
 
 ### Making Component Changes
-1. Navigate to appropriate directory in `src/`
-2. Edit `.tsx` files
+1. Navigate to appropriate directory in `public_html/`
+2. Edit `.html` and `.ts` files
 3. TypeScript will catch type errors
 4. Test with `npm run dev`
 5. Verify with `npm run lint`
@@ -123,7 +133,7 @@ The build process automatically:
 ### Deployment
 1. Ensure all markdown articles are written
 2. Run `npm run build` to create production build
-3. Deploy contents of `dist/` directory
+3. Deploy contents of `public_html/dist/` directory
 
 ## Notes for Claude
 
@@ -132,5 +142,7 @@ The build process automatically:
 - Follow existing component structure patterns
 - Run the markdown converter when working with articles
 - Test changes with `npm run dev` before building
-- Respect the existing code organization (index files, feature folders)
+- Respect the existing code organization (feature folders)
 - This is a personal project, so changes should align with the existing personal/portfolio nature
+- **Important**: This is now a pure HTML/CSS/JS project - no React components or JSX
+- Focus on `public_html/` directory for all development work
