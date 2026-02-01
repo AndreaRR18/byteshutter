@@ -10,8 +10,8 @@ import path from 'path';
 import { minify } from 'terser';
 import CleanCSS from 'clean-css';
 import htmlMinifier from 'html-minifier';
-import sharp from 'sharp';
-import config from '../performance.config.js';
+
+import * as config from '../performance.config.cjs';
 
 interface PerformanceConfig {
   imageQuality: number;
@@ -27,8 +27,8 @@ class PerformanceOptimizer {
 
   constructor() {
     this.config = config;
-    this.distDir = path.join(__dirname, '..', 'dist');
-    this.publicDir = path.join(__dirname, '..', 'public');
+    this.distDir = path.join(path.dirname(import.meta.url), '..', 'dist');
+    this.publicDir = path.join(path.dirname(import.meta.url), '..', 'public');
   }
 
   async run() {
@@ -157,35 +157,17 @@ class PerformanceOptimizer {
     }
   }
 
+
   private async optimizeImages() {
     const imageFiles = this.findFiles(this.publicDir, /\.(jpg|jpeg|png|webp|avif)$/i);
-    
+
     for (const file of imageFiles) {
-      const ext = path.extname(file).toLowerCase();
       const relativePath = path.relative(this.publicDir, file);
       const destPath = path.join(this.distDir, relativePath);
-      
+
       fs.mkdirSync(path.dirname(destPath), { recursive: true });
-      
-      if (ext === '.jpg' || ext === '.jpeg') {
-        await sharp(file)
-          .jpeg({ quality: this.config.imageQuality })
-          .toFile(destPath);
-      } else if (ext === '.png') {
-        await sharp(file)
-          .png({ quality: this.config.imageQuality })
-          .toFile(destPath);
-      } else if (ext === '.webp') {
-        await sharp(file)
-          .webp({ quality: this.config.imageQuality })
-          .toFile(destPath);
-      } else if (ext === '.avif') {
-        await sharp(file)
-          .avif({ quality: this.config.imageQuality })
-          .toFile(destPath);
-      }
-      
-      console.log(`📄 Optimized image: ${relativePath}`);
+      fs.copyFileSync(file, destPath);
+      console.log(`📄 Copied image: ${relativePath}`);
     }
   }
 
@@ -320,7 +302,7 @@ class PerformanceOptimizer {
 }
 
 // Run the optimizer if this script is executed directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   const optimizer = new PerformanceOptimizer();
   optimizer.run();
 }
