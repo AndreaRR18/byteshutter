@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "build:optimized": "vite build && npx tsx scripts/optimizePerformance.ts",
     "preview": "vite preview",
+    "optimize": "npx tsx scripts/optimizePerformance.ts",
     "type-check": "tsc --noEmit",
     "lint": "eslint . --ext .ts,.js",
     "format": "prettier --write .",
