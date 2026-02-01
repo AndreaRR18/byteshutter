@@ -19,12 +19,12 @@ declare global {
     querySelectorAll(selector: string): NodeListOf<HTMLElement>;
   }
 
-  interface CustomEvent<T = any> extends Event {
+  interface CustomEvent<T = unknown> extends Event {
     detail: T;
     initCustomEvent(type: string, bubbles?: boolean, cancelable?: boolean, detail?: T): void;
   }
 
-  interface CustomEventInit<T = any> extends EventInit {
+  interface CustomEventInit<T = unknown> extends EventInit {
     detail?: T;
   }
 
@@ -33,7 +33,12 @@ declare global {
     theme: 'light' | 'dark';
   }
 
-  interface ThemeChangeEvent extends CustomEvent<ThemeChangeEventDetail> {}
+  /** Custom event type for theme changes - extends CustomEvent with specific detail type */
+  interface ThemeChangeEvent extends CustomEvent<ThemeChangeEventDetail> {
+    // This interface extends CustomEvent to provide type safety for theme change events
+    // The actual implementation comes from the CustomEvent base class
+    readonly type: 'theme-change';
+  }
 
   // Route Change Event
   interface RouteChangeEventDetail {
@@ -41,15 +46,25 @@ declare global {
     route: import('../assets/js/router').Route;
   }
 
-  interface RouteChangeEvent extends CustomEvent<RouteChangeEventDetail> {}
+  /** Custom event type for route changes - extends CustomEvent with specific detail type */
+  interface RouteChangeEvent extends CustomEvent<RouteChangeEventDetail> {
+    // This interface extends CustomEvent to provide type safety for route change events
+    // The actual implementation comes from the CustomEvent base class
+    readonly type: 'route-change';
+  }
 
   // Page Load Event
   interface PageLoadEventDetail {
     pageName: string;
-    data: Record<string, any>;
+    data: Record<string, unknown>;
   }
 
-  interface PageLoadEvent extends CustomEvent<PageLoadEventDetail> {}
+  /** Custom event type for page loads - extends CustomEvent with specific detail type */
+  interface PageLoadEvent extends CustomEvent<PageLoadEventDetail> {
+    // This interface extends CustomEvent to provide type safety for page load events
+    // The actual implementation comes from the CustomEvent base class
+    readonly type: 'page-load';
+  }
 
   // Environment Variables
   interface ImportMeta {
@@ -72,20 +87,20 @@ declare global {
   // Component Interfaces
   interface ComponentOptions {
     element?: HTMLElement | string;
-    data?: Record<string, any>;
+    data?: Record<string, unknown>;
     debug?: boolean;
   }
 
   interface Component {
     init(): void;
     destroy(): void;
-    update(data: Record<string, any>): void;
+    update(data: Record<string, unknown>): void;
   }
 
   // Utility Types
   type Nullable<T> = T | null;
   type Optional<T> = T | undefined;
-  type AsyncReturnType<T extends (...args: any) => Promise<any>> = T extends (...args: any) => Promise<infer R> ? R : any;
+  type AsyncReturnType<T> = T extends Promise<infer R> ? R : unknown;
 
   // API Response Types
   interface ApiResponse<T> {
@@ -134,7 +149,7 @@ declare global {
     'route-change': RouteChangeEvent;
     'page-load': PageLoadEvent;
     'component-ready': CustomEvent<{ component: string }>;
-    'data-loaded': CustomEvent<{ type: string; data: any }>;
+    'data-loaded': CustomEvent<{ type: string; data: unknown }>;
   }
 
   // Add event listener with type safety
@@ -158,16 +173,16 @@ declare global {
   interface AppError extends Error {
     code?: string;
     status?: number;
-    details?: Record<string, any>;
+    details?: Record<string, unknown>;
   }
 
   // Logger Interface
   interface Logger {
-    log(message: string, data?: any): void;
-    info(message: string, data?: any): void;
-    warn(message: string, data?: any): void;
-    error(message: string, error?: Error, data?: any): void;
-    debug(message: string, data?: any): void;
+    log(message: string, data?: unknown): void;
+    info(message: string, data?: unknown): void;
+    warn(message: string, data?: unknown): void;
+    error(message: string, error?: Error, data?: unknown): void;
+    debug(message: string, data?: unknown): void;
   }
 
   // Storage Interface

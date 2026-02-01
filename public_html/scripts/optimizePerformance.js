@@ -330,7 +330,7 @@ class PerformanceOptimizer {
     console.log('✅ Critical CSS generation completed');
   }
 
-  extractCriticalCSS(html: string): string {
+  extractCriticalCSS(html) {
     // Simplified critical CSS extraction
     // In production, use a proper tool like Penthouse
     
@@ -394,8 +394,8 @@ class PerformanceOptimizer {
     console.log('✅ Performance report generated');
   }
 
-  findFiles(directory: string, pattern: string | RegExp): string[] {
-    const files: string[] = [];
+  findFiles(directory, pattern) {
+    const files = [];
     
     if (!fs.existsSync(directory)) {
       return files;
@@ -417,7 +417,7 @@ class PerformanceOptimizer {
     return files;
   }
 
-  formatBytes(bytes: number): string {
+  formatBytes(bytes) {
     if (bytes < 1024) return `${bytes} B`;
     if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(2)} KB`;
     return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;

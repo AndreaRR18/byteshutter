@@ -158,7 +158,7 @@ class Router {
     await this.loadPage('article', { slug });
   }
 
-  private async loadPage(pageName: string, data: Record<string, any> = {}): Promise<void> {
+  private async loadPage(pageName: string, data: Record<string, unknown> = {}): Promise<void> {
     try {
       // Load page content
       const response = await fetch(`${this.basePath}/pages/${pageName}.html`);
@@ -269,7 +269,7 @@ const router = new Router();
 
 // Export for other modules
 if (typeof window !== 'undefined') {
-  (window as any).router = router;
+  (window as { router?: Router }).router = router;
 }
 
 export { Router, router };

@@ -326,7 +326,7 @@ const performanceService = new PerformanceService();
 
 // Export for other modules
 if (typeof window !== 'undefined') {
-  (window as any).performanceService = performanceService;
+  (window as { performanceService?: PerformanceService }).performanceService = performanceService;
 }
 
 export { PerformanceService, performanceService };

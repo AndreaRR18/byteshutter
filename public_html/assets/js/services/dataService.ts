@@ -9,7 +9,7 @@ interface DataServiceOptions {
 
 class DataService {
   private options: DataServiceOptions;
-  private cache: Map<string, { data: any; timestamp: number }>;
+  private cache: Map<string, { data: unknown; timestamp: number }>;
 
   constructor(options: DataServiceOptions = {}) {
     this.options = {
@@ -22,7 +22,7 @@ class DataService {
     this.cache = new Map();
   }
 
-  private log(message: string, data?: any): void {
+  private log(message: string, data?: unknown): void {
     if (this.options.debug) {
       console.log(`[DataService] ${message}`, data || '');
     }
@@ -134,7 +134,7 @@ const dataService = new DataService();
 
 // Export for other modules
 if (typeof window !== 'undefined') {
-  (window as any).dataService = dataService;
+  (window as { dataService?: DataService }).dataService = dataService;
 }
 
 export { DataService, dataService };

@@ -228,7 +228,7 @@ class App {
     });
   }
 
-  public static async fetchData(url: string): Promise<any> {
+  public static async fetchData<T>(url: string): Promise<T> {
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -241,7 +241,7 @@ class App {
     }
   }
 
-  public static formatDate(dateString: string, format: string = 'MMMM d, yyyy'): string {
+  public static formatDate(dateString: string): string {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {
       year: 'numeric',

@@ -71,10 +71,10 @@ describe('Router', () => {
   });
   
   it('should handle route change events', () => {
-    let eventDispatched = false;
+    let routeChangeCalled = false;
     
     window.addEventListener('route-change', () => {
-      eventDispatched = true;
+      routeChangeCalled = true;
     });
     
     // This would normally be called by navigation
@@ -83,5 +83,6 @@ describe('Router', () => {
     
     // Event should be dispatched during route handling
     // Note: This is a simplified test - actual route handling would require more setup
+    expect(routeChangeCalled).toBe(true);
   });
 });

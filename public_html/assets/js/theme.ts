@@ -82,7 +82,7 @@ const themeManager = new ThemeManager();
 
 // Export for other modules
 if (typeof window !== 'undefined') {
-  (window as any).themeManager = themeManager;
+  (window as { themeManager?: ThemeManager }).themeManager = themeManager;
 }
 
 export { ThemeManager, themeManager };

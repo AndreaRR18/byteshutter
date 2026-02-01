@@ -6,7 +6,7 @@ import { JSDOM } from 'jsdom';
 
 // Set up JSDOM environment
 const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
-global.window = dom.window as any;
+global.window = dom.window as unknown as Window & typeof globalThis;
 global.document = dom.window.document;
 global.navigator = dom.window.navigator;
 
@@ -91,8 +91,8 @@ global.testUtils = {
     element.dispatchEvent(event);
   },
   
-  mockFetch: (data: any) => {
-    global.fetch = async (url: string) => ({
+  mockFetch: (data: unknown) => {
+    global.fetch = async () => ({
       ok: true,
       json: async () => data,
       text: async () => JSON.stringify(data)
@@ -105,15 +105,13 @@ global.testUtils = {
 };
 
 declare global {
-  namespace NodeJs {
-    interface Global {
-      testUtils: {
-        createElement: (html: string) => HTMLElement;
-        triggerEvent: (element: HTMLElement, eventName: string) => void;
-        mockFetch: (data: any) => void;
-        restoreFetch: () => void;
-      };
-    }
+  interface Global {
+    testUtils: {
+      createElement: (html: string) => HTMLElement;
+      triggerEvent: (element: HTMLElement, eventName: string) => void;
+      mockFetch: (data: unknown) => void;
+      restoreFetch: () => void;
+    };
   }
 }
 

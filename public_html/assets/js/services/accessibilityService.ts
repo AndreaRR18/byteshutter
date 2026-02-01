@@ -276,7 +276,7 @@ const accessibilityService = new AccessibilityService();
 
 // Export for other modules
 if (typeof window !== 'undefined') {
-  (window as any).accessibilityService = accessibilityService;
+  (window as { accessibilityService?: AccessibilityService }).accessibilityService = accessibilityService;
 }
 
 export { AccessibilityService, accessibilityService };

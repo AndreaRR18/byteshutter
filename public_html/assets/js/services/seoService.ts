@@ -387,7 +387,7 @@ const seoService = new SEOService();
 
 // Export for other modules
 if (typeof window !== 'undefined') {
-  (window as any).seoService = seoService;
+  (window as { seoService?: SEOService }).seoService = seoService;
 }
 
 export { SEOService, seoService };

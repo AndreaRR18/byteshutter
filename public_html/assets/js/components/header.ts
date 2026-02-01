@@ -57,7 +57,7 @@ class HeaderComponent {
       this.updateThemeIcon();
       
       // Listen for theme changes
-      window.addEventListener('theme-change', (e: CustomEvent) => {
+      window.addEventListener('theme-change', () => {
         this.updateThemeIcon();
       });
     }
@@ -76,11 +76,10 @@ class HeaderComponent {
 
   private setupNavigation(): void {
     this.navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
+      link.addEventListener('click', () => {
         // Handle client-side navigation
         const href = link.getAttribute('href');
         if (href && href.startsWith('/')) {
-          e.preventDefault();
           if (window.router) {
             window.router.navigate(href);
           }

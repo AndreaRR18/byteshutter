@@ -185,26 +185,14 @@ class Router {
   showError() {
     const pageContent = document.getElementById('page-content');
     if (pageContent) {
-      pageContent.innerHTML = '
-        <div class="error">
-          <h2>Error Loading Page</h2>
-          <p>Sorry, there was an error loading this page.</p>
-          <button onclick="window.router.navigate('/')" class="btn">Go to Home</button>
-        </div>
-      ';
+      pageContent.innerHTML = '<div class="error"><h2>Error Loading Page</h2><p>Sorry, there was an error loading this page.</p><button onclick="window.router.navigate(\'/\')" class="btn">Go to Home</button></div>';
     }
   }
 
   show404() {
     const pageContent = document.getElementById('page-content');
     if (pageContent) {
-      pageContent.innerHTML = '
-        <div class="error">
-          <h2>404 - Page Not Found</h2>
-          <p>The page you're looking for doesn't exist.</p>
-          <button onclick="window.router.navigate('/')" class="btn">Go to Home</button>
-        </div>
-      ';
+      pageContent.innerHTML = '<div class="error"><h2>404 - Page Not Found</h2><p>The page you\'re looking for doesn\'t exist.</p><button onclick="window.router.navigate(\'/\')" class="btn">Go to Home</button></div>';
     }
   }
 
