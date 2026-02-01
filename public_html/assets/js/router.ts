@@ -19,9 +19,53 @@ class Router {
   private notFoundHandler: ((path: string) => Promise<void>) | null;
 
   constructor(options: RouterOptions = {}) {
-    this.basePath = options.basePath || '';
+    // Auto-detect base path from script location if not provided
+    this.basePath = options.basePath || this.detectBasePath();
+    console.log(`[Router] Constructor - basePath: ${this.basePath}`);
     this.notFoundHandler = options.notFoundHandler || null;
     this.init();
+  }
+  
+  private detectBasePath(): string {
+    // Try to detect base path from the current script location
+    try {
+      // Check if we're running in a browser environment
+      if (typeof document !== 'undefined') {
+        // Look for our script in the document
+        const scripts = document.getElementsByTagName('script');
+        for (let i = 0; i < scripts.length; i++) {
+          const src = scripts[i].src;
+          if (src.includes('main.js') || src.includes('router.ts')) {
+            // Extract the base path from the script URL
+            const scriptPath = new URL(src, document.baseURI).pathname;
+            const basePath = scriptPath.substring(0, scriptPath.lastIndexOf('/'));
+            return basePath.replace(/\/assets\/js$/, '');
+          }
+        }
+      }
+    } catch (error) {
+      console.warn('Could not auto-detect base path:', error);
+    }
+    
+    // Fallback to empty string or check for common base paths
+    return this.checkCommonBasePaths() || '';
+  }
+  
+  private checkCommonBasePaths(): string | null {
+    // Check for common base paths in the current URL
+    const path = window.location.pathname;
+    
+    // Check if we're in a /byteshutter/ subdirectory
+    if (path.startsWith('/byteshutter/')) {
+      return '/byteshutter';
+    }
+    
+    // Check if we're in a /dist/ subdirectory
+    if (path.startsWith('/dist/')) {
+      return '/dist';
+    }
+    
+    return null;
   }
 
   private init(): void {
@@ -31,8 +75,8 @@ class Router {
     this.addRoute('/articles', this.loadArticlesPage);
     this.addRoute('/articles/:slug', this.loadArticlePage);
     
-    // Handle initial route
-    window.addEventListener('DOMContentLoaded', () => this.handleRoute());
+    // Handle initial route (will be called by main app)
+    // window.addEventListener('DOMContentLoaded', () => this.handleRoute());
     
     // Handle navigation
     window.addEventListener('popstate', () => this.handleRoute());
@@ -56,16 +100,21 @@ class Router {
 
   public async handleRoute(): Promise<void> {
     const path = window.location.pathname.replace(this.basePath, '');
+    console.log(`[Router] Handling route for path: ${path}`);
+    
     const route = this.findMatchingRoute(path);
+    console.log(`[Router] Found route:`, route);
     
     if (route) {
       this.currentRoute = route;
+      console.log(`[Router] Current route set to:`, this.currentRoute);
       
       // Show loading state
       this.showLoading();
       
       try {
         // Execute route handler
+        console.log(`[Router] Executing route handler for ${path}`);
         await route.handler(path);
         
         // Update active navigation
@@ -160,50 +209,78 @@ class Router {
 
   private async loadPage(pageName: string, data: Record<string, unknown> = {}): Promise<void> {
     try {
-      // Load page content
-      const response = await fetch(`${this.basePath}/pages/${pageName}.html`);
-      
-      if (!response.ok) {
-        throw new Error(`Failed to load ${pageName} page: ${response.status}`);
+      const pageContent = document.getElementById('page-content');
+      if (!pageContent) {
+        throw new Error('Page content container not found');
       }
       
-      const html = await response.text();
-      const pageContent = document.getElementById('page-content');
+      // Show loading state
+      pageContent.innerHTML = '<div class="loading">Loading...</div>';
       
-      if (pageContent) {
+      // Simple page loading - try to fetch the page HTML
+      try {
+        // Try different base paths
+        const basePaths = ['', this.basePath, '/byteshutter'];
+        let response = null;
+        
+        for (const base of basePaths) {
+          try {
+            const url = `${base}/pages/${pageName}.html`;
+            console.log(`[Router] Trying to load page from: ${url}`);
+            response = await fetch(url);
+            if (response.ok) {
+              console.log(`[Router] Successfully loaded page from: ${url}`);
+              break;
+            }
+          } catch (error) {
+            console.log(`[Router] Failed to load from ${base}:`, error.message);
+          }
+        }
+        
+        if (!response || !response.ok) {
+          throw new Error(`Could not load ${pageName} page from any location`);
+        }
+        
+        const html = await response.text();
         pageContent.innerHTML = html;
         
-        // Load page-specific CSS
-        const cssLink = document.createElement('link');
-        cssLink.rel = 'stylesheet';
-        cssLink.href = `${this.basePath}/assets/css/${pageName}.css`;
-        cssLink.id = `css-${pageName}`;
+        // Load CSS if it exists
+        try {
+          const cssResponse = await fetch(`${this.basePath}/assets/css/${pageName}.css`);
+          if (cssResponse.ok) {
+            const cssLink = document.createElement('link');
+            cssLink.rel = 'stylesheet';
+            cssLink.href = `${this.basePath}/assets/css/${pageName}.css`;
+            document.head.appendChild(cssLink);
+          }
+        } catch (cssError) {
+          console.log(`[Router] CSS not found for ${pageName}, using global styles`);
+        }
         
-        // Remove previous page CSS
-        const oldCss = document.getElementById(`css-${this.currentRoute?.path.split('/')[1] || 'home'}`);
-        if (oldCss) oldCss.remove();
-        
-        document.head.appendChild(cssLink);
-        
-        // Load page-specific JS
-        const jsScript = document.createElement('script');
-        jsScript.type = 'module';
-        jsScript.src = `${this.basePath}/assets/js/pages/${pageName}.js`;
-        jsScript.id = `js-${pageName}`;
-        
-        // Remove previous page JS
-        const oldJs = document.getElementById(`js-${this.currentRoute?.path.split('/')[1] || 'home'}`);
-        if (oldJs) oldJs.remove();
-        
-        document.body.appendChild(jsScript);
+        // Load JS if it exists
+        try {
+          const jsResponse = await fetch(`${this.basePath}/assets/js/pages/${pageName}.js`);
+          if (jsResponse.ok) {
+            const jsScript = document.createElement('script');
+            jsScript.type = 'module';
+            jsScript.src = `${this.basePath}/assets/js/pages/${pageName}.js`;
+            document.body.appendChild(jsScript);
+          }
+        } catch (jsError) {
+          console.log(`[Router] JS not found for ${pageName}, page will work without it`);
+        }
         
         // Dispatch page load event
         window.dispatchEvent(new CustomEvent('page-load', {
           detail: { pageName, data }
         }));
+        
+      } catch (error) {
+        console.error(`[Router] Error loading ${pageName}:`, error);
+        this.showError();
       }
     } catch (error) {
-      console.error(`Error loading ${pageName} page:`, error);
+      console.error(`[Router] Fatal error loading ${pageName}:`, error);
       this.showError();
     }
   }

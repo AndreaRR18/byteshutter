@@ -130,4 +130,9 @@ document.addEventListener('DOMContentLoaded', () => {
 // Export for testing
 export { HeaderComponent };
 
+// Make HeaderComponent available globally
+if (typeof window !== 'undefined') {
+  (window as any).HeaderComponent = HeaderComponent;
+}
+
 export type { HeaderOptions };

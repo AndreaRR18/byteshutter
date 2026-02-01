@@ -1,0 +1,49 @@
+{
+  "currentlyReading": {
+    "id": "ai-engineer-handbook",
+    "title": "AI Engineer Handbook",
+    "author": "Various Authors",
+    "image": "/images/book_cover/ai_engineer_book_cover.jpg",
+    "description": "Exploring the latest advancements in artificial intelligence and machine learning for software engineers.",
+    "publishedDate": "2023-01-15",
+    "categories": ["AI", "Machine Learning", "Software Engineering"]
+  },
+  "recentlyRead": [
+    {
+      "id": "the-pragmatic-programmer",
+      "title": "The Pragmatic Programmer",
+      "author": "Andrew Hunt, David Thomas",
+      "image": "/images/book_cover/the_pragmatic_programmer_book_cover.jpg",
+      "description": "Classic software development book covering practical techniques and best practices.",
+      "publishedDate": "1999-10-30",
+      "categories": ["Software Development", "Best Practices", "Programming"]
+    },
+    {
+      "id": "philosophy-software-design",
+      "title": "A Philosophy of Software Design",
+      "author": "John Ousterhout",
+      "image": "/images/book_cover/philosophy_software_designer_book_cover.jpg",
+      "description": "Explores the fundamental principles of good software design and architecture.",
+      "publishedDate": "2018-04-03",
+      "categories": ["Software Design", "Architecture", "Computer Science"]
+    },
+    {
+      "id": "clean-code",
+      "title": "Clean Code: A Handbook of Agile Software Craftsmanship",
+      "author": "Robert C. Martin",
+      "image": "/images/book_cover/clean_code_book_cover.jpg",
+      "description": "Guide to writing clean, maintainable, and professional code.",
+      "publishedDate": "2008-08-01",
+      "categories": ["Software Development", "Code Quality", "Best Practices"]
+    },
+    {
+      "id": "designing-data-intensive-applications",
+      "title": "Designing Data-Intensive Applications",
+      "author": "Martin Kleppmann",
+      "image": "/images/book_cover/designing_data_intensive_applications_book_cover.jpg",
+      "description": "Comprehensive guide to building scalable and reliable data systems.",
+      "publishedDate": "2017-03-16",
+      "categories": ["Databases", "Distributed Systems", "Software Architecture"]
+    }
+  ]
+}

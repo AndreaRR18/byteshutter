@@ -5,6 +5,15 @@ import { themeManager } from './theme';
 import { performanceService } from './services/performanceService';
 import { accessibilityService } from './services/accessibilityService';
 import { seoService } from './services/seoService';
+import './components/header';
+import { router } from './router';
+
+// Extend Window interface to include HeaderComponent
+declare global {
+  interface Window {
+    HeaderComponent?: any;
+  }
+}
 
 interface AppOptions {
   autoInit?: boolean;
@@ -20,7 +29,7 @@ class App {
       debug: false,
       ...options
     };
-    
+
     if (this.options.autoInit) {
       this.init();
     }
@@ -31,17 +40,20 @@ class App {
       if (this.options.debug) {
         console.log('Initializing ByteShutter HTML/CSS app...');
       }
-      
+
       // Initialize components
       await this.loadHeader();
       await this.loadFooter();
-      
+
+      // Initialize router and handle initial route
+      this.initRouter();
+
       // Set up event listeners
       this.setupEventListeners();
-      
+
       // Initialize utilities
       this.initUtilities();
-      
+
       if (this.options.debug) {
         console.log('ByteShutter HTML/CSS app initialized successfully');
       }
@@ -59,21 +71,21 @@ class App {
       if (response.ok) {
         const html = await response.text();
         const headerContainer = document.getElementById('header-container');
-        
+
         if (headerContainer) {
           headerContainer.innerHTML = html;
-          
+
           // Load header CSS
           const cssLink = document.createElement('link');
           cssLink.rel = 'stylesheet';
           cssLink.href = '/assets/css/header.css';
           document.head.appendChild(cssLink);
-          
-          // Load header JS
-          const jsScript = document.createElement('script');
-          jsScript.type = 'module';
-          jsScript.src = '/assets/js/components/header.js';
-          document.body.appendChild(jsScript);
+
+          // Header functionality is already bundled in main.js, no need to load separately
+          // Initialize header component if it exists
+          if (window.HeaderComponent) {
+            new window.HeaderComponent();
+          }
         }
       }
     } catch (error) {
@@ -87,25 +99,39 @@ class App {
       if (response.ok) {
         const html = await response.text();
         const footerContainer = document.getElementById('footer-container');
-        
+
         if (footerContainer) {
           footerContainer.innerHTML = html;
-          
+
           // Load footer CSS
           const cssLink = document.createElement('link');
           cssLink.rel = 'stylesheet';
           cssLink.href = '/assets/css/footer.css';
           document.head.appendChild(cssLink);
-          
-          // Load footer JS
-          const jsScript = document.createElement('script');
-          jsScript.type = 'module';
-          jsScript.src = '/assets/js/components/footer.js';
-          document.body.appendChild(jsScript);
+
+          // Footer doesn't have JavaScript functionality, so no need to load footer.js
         }
       }
     } catch (error) {
       console.error('Error loading footer:', error);
+    }
+  }
+
+  private initRouter(): void {
+    try {
+      // Ensure router is available
+      if (window.router) {
+        // Handle initial route
+        window.router.handleRoute();
+        
+        if (this.options.debug) {
+          console.log('Router initialized and handling initial route');
+        }
+      } else {
+        console.error('Router not found on window object');
+      }
+    } catch (error) {
+      console.error('Error initializing router:', error);
     }
   }
 
@@ -117,14 +143,14 @@ class App {
         themeManager.toggleTheme();
       }
     });
-    
+
     // Route change events
     window.addEventListener('route-change', (e: CustomEvent) => {
       if (this.options.debug) {
         console.log('Route changed:', e.detail);
       }
     });
-    
+
     // Theme change events
     window.addEventListener('theme-change', (e: CustomEvent) => {
       if (this.options.debug) {
@@ -136,16 +162,16 @@ class App {
   private initUtilities(): void {
     // Initialize lazy loading for images
     this.initLazyLoading();
-    
+
     // Set up error handling
     this.setupErrorHandling();
-    
+
     // Initialize performance optimizations
     this.initPerformanceOptimizations();
-    
+
     // Initialize accessibility features
     this.initAccessibility();
-    
+
     // Initialize SEO
     this.initSEO();
   }
@@ -155,54 +181,54 @@ class App {
     const lazyImages = document.querySelectorAll('img[data-src]');
     const lazyIframes = document.querySelectorAll('iframe[data-src]');
     const lazyVideos = document.querySelectorAll('video[data-src]');
-    
+
     lazyImages.forEach(img => performanceService.lazyLoadElement(img));
     lazyIframes.forEach(iframe => performanceService.lazyLoadElement(iframe));
     lazyVideos.forEach(video => performanceService.lazyLoadElement(video));
   }
-  
+
   private initPerformanceOptimizations(): void {
     // Optimize images
     performanceService.optimizeImages();
-    
+
     // Optimize fonts
     performanceService.optimizeFonts();
-    
+
     // Optimize critical CSS (would be handled by build process)
     performanceService.optimizeCriticalCSS();
-    
+
     if (this.options.debug) {
       console.log('Performance optimizations initialized');
     }
   }
-  
+
   private initAccessibility(): void {
     // Run accessibility checks
     const accessibilityReport = accessibilityService.checkAccessibility();
-    
+
     if (this.options.debug) {
       console.log('Accessibility Report:', accessibilityReport);
     }
-    
+
     // Auto-fix accessibility issues
     accessibilityService.setDebug(this.options.debug);
-    
+
     if (this.options.debug) {
       console.log('Accessibility features initialized');
     }
   }
-  
+
   private initSEO(): void {
     // Run SEO checks
     const seoReport = seoService.checkSEO();
-    
+
     if (this.options.debug) {
       console.log('SEO Report:', seoReport);
     }
-    
+
     // Auto-generate SEO tags
     seoService.setDebug(this.options.debug);
-    
+
     if (this.options.debug) {
       console.log('SEO features initialized');
     }
@@ -213,7 +239,7 @@ class App {
     window.addEventListener('error', (event) => {
       console.error('Global error:', event.error);
     });
-    
+
     // Unhandled promise rejections
     window.addEventListener('unhandledrejection', (event) => {
       console.error('Unhandled rejection:', event.reason);

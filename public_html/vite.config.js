@@ -13,6 +13,11 @@ export default defineConfig(({ mode }) => {
           about: resolve(__dirname, 'pages/about.html'),
           articles: resolve(__dirname, 'pages/articles.html'),
           article: resolve(__dirname, 'pages/article.html'),
+          // Include page-specific JS files
+          'pages/home': resolve(__dirname, 'assets/js/pages/home.ts'),
+          'pages/about': resolve(__dirname, 'assets/js/pages/about.ts'),
+          'pages/articles': resolve(__dirname, 'assets/js/pages/articles.ts'),
+          'pages/article': resolve(__dirname, 'assets/js/pages/article.ts'),
         },
         output: {
           // Keep asset names consistent
@@ -25,6 +30,10 @@ export default defineConfig(({ mode }) => {
       minify: true,
       // Enable CSS code splitting
       cssCodeSplit: true,
+      // Copy data files to dist
+      copyPublicDir: true,
+      // Ensure data directory is copied
+      assetsDir: 'assets',
     },
     
     server: {

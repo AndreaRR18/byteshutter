@@ -1,0 +1,37 @@
+{
+  "articles": [
+    {
+      "id": "mastering-swiftui",
+      "slug": "mastering-swiftui",
+      "title": "Mastering SwiftUI: Building Beautiful iOS Apps",
+      "excerpt": "Discover advanced techniques for creating stunning iOS applications with SwiftUI, including state management, animations, and custom view modifiers.",
+      "content": "# Mastering SwiftUI: Building Beautiful iOS Apps\n\nSwiftUI has revolutionized iOS development by providing a declarative approach to building user interfaces. In this comprehensive guide, we'll explore advanced techniques that will take your SwiftUI skills to the next level.\n\n## State Management\n\nOne of the most powerful aspects of SwiftUI is its state management system. Let's look at different approaches:\n\n### @State\n```swift\nstruct CounterView: View {\n    @State private var count = 0\n    \n    var body: some View {\n        VStack {\n            Text("Count: \(count)")\n            Button("Increment") { count += 1 }\n        }\n    }\n}\n```\n\n### @ObservedObject\n```swift\nclass UserSettings: ObservableObject {\n    @Published var username: String = ""\n    @Published var notificationsEnabled: Bool = false\n}\n\nstruct SettingsView: View {\n    @ObservedObject var settings: UserSettings\n    \n    var body: some View {\n        Toggle("Enable Notifications", isOn: $settings.notificationsEnabled)\n    }\n}\n```\n\n## Animations\n\nSwiftUI makes it easy to add beautiful animations to your app:\n\n```swift\nstruct AnimatedView: View {\n    @State private var isExpanded = false\n    \n    var body: some View {\n        VStack {\n            Button("Toggle") {\n                withAnimation(.spring()) {\n                    isExpanded.toggle()\n                }\n            }\n            \n            if isExpanded {\n                Rectangle()\n                    .fill(Color.blue)\n                    .frame(height: 200)\n                    .transition(.scale)\n            }\n        }\n    }\n}\n```\n\n## Custom View Modifiers\n\nCreate reusable view modifiers to keep your code DRY:\n\n```swift\nstruct CardModifier: ViewModifier {\n    func body(content: Content) -> some View {\n        content\n            .padding()\n            .background(Color.white)\n            .cornerRadius(10)\n            .shadow(radius: 5)\n    }\n}\n\nextension View {\n    func cardStyle() -> some View {\n        self.modifier(CardModifier())\n    }\n}\n\n// Usage\nText("Hello, SwiftUI!")\n    .cardStyle()\n```\n\n## Conclusion\n\nSwiftUI provides a powerful and intuitive way to build iOS applications. By mastering these advanced techniques, you can create apps that are not only functional but also beautiful and delightful to use.",
+      "date": "2023-06-15",
+      "readingTime": 8,
+      "tags": ["SwiftUI", "iOS", "Mobile Development"],
+      "featuredImage": "/images/swiftui-feature.jpg"
+    },
+    {
+      "id": "modern-css-techniques",
+      "slug": "modern-css-techniques",
+      "title": "Modern CSS Techniques for Responsive Design",
+      "excerpt": "Explore the latest CSS features including Grid, Flexbox, custom properties, and container queries to build responsive layouts.",
+      "content": "# Modern CSS Techniques for Responsive Design\n\nCSS has evolved significantly in recent years, providing powerful tools for creating responsive layouts. Let's explore some of the most important modern CSS techniques.\n\n## CSS Grid\n\nCSS Grid is a two-dimensional layout system that revolutionizes how we design web pages:\n\n```css\n.container {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n  gap: 20px;\n}\n```\n\n## Flexbox\n\nFlexbox provides a one-dimensional layout model that's perfect for distributing space:\n\n```css\n.nav {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n```\n\n## Custom Properties (CSS Variables)\n\nCSS variables allow you to define reusable values:\n\n```css\n:root {\n  --primary-color: #4CAF50;\n  --spacing-unit: 8px;\n}\n\n.button {\n  background-color: var(--primary-color);\n  padding: calc(var(--spacing-unit) * 2);\n}\n```\n\n## Container Queries\n\nContainer queries allow components to adapt based on their container size:\n\n```css\n.card {\n  container-type: inline-size;\n}\n\n@container (min-width: 400px) {\n  .card-content {\n    display: flex;\n  }\n}\n```\n\n## Responsive Typography\n\nUse clamp() for fluid typography that scales between minimum and maximum sizes:\n\n```css\nh1 {\n  font-size: clamp(1.5rem, 4vw, 2.5rem);\n}\n```\n\n## Conclusion\n\nModern CSS provides powerful tools for creating responsive, maintainable layouts. By mastering these techniques, you can build websites that look great on any device.",
+      "date": "2023-05-28",
+      "readingTime": 12,
+      "tags": ["CSS", "Web Development", "Responsive Design"],
+      "featuredImage": "/images/css-feature.jpg"
+    },
+    {
+      "id": "photography-composition",
+      "slug": "photography-composition",
+      "title": "The Art of Composition in Photography",
+      "excerpt": "Learn the fundamental principles of composition that can transform your photography from ordinary snapshots to compelling visual stories.",
+      "content": "# The Art of Composition in Photography\n\nComposition is the foundation of great photography. Understanding these principles will help you create more impactful and visually appealing images.\n\n## Rule of Thirds\n\nThe rule of thirds is one of the most basic and effective composition techniques:\n\n- Divide your frame into a 3x3 grid\n- Place important elements along the grid lines or at their intersections\n- This creates more balanced and interesting compositions\n\n## Leading Lines\n\nLeading lines guide the viewer's eye through the image:\n\n- Roads, paths, and rivers make excellent leading lines\n- Use lines to draw attention to your main subject\n- Diagonal lines create a sense of movement and dynamism\n\n## Framing\n\nUse natural frames to draw attention to your subject:\n\n- Archways, windows, and tree branches can create frames\n- Framing adds depth and context to your images\n- Experiment with different framing techniques\n\n## Balance and Symmetry\n\nBalanced compositions feel harmonious and pleasing:\n\n- Symmetrical compositions work well for architectural photography\n- Asymmetrical balance can create more dynamic images\n- Pay attention to visual weight and distribution\n\n## Conclusion\n\nMastering composition takes practice and experimentation. The more you shoot, the better you'll become at seeing and creating compelling compositions.",
+      "date": "2023-04-10",
+      "readingTime": 6,
+      "tags": ["Photography", "Composition", "Art"],
+      "featuredImage": "/images/photography-feature.jpg"
+    }
+  ]
+}

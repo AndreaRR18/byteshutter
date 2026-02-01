@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Router Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #page-content {
+      border: 1px solid #ccc;
+      padding: 20px;
+      min-height: 200px;
+    }
+    .loading {
+      color: #666;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>Router Test</h1>
+  <nav>
+    <a href="/">Home</a> | 
+    <a href="/about">About</a> | 
+    <a href="/articles">Articles</a>
+  </nav>
+  
+  <div id="page-content">
+    <!-- Content will be loaded here -->
+  </div>
+
+  <script type="module">
+    // Simple router test
+    class SimpleRouter {
+      constructor() {
+        this.routes = {
+          '/': this.loadHome,
+          '/about': this.loadAbout,
+          '/articles': this.loadArticles
+        };
+        
+        // Handle initial route
+        this.handleRoute();
+        
+        // Handle navigation
+        window.addEventListener('popstate', () => this.handleRoute());
+        
+        // Intercept link clicks
+        document.addEventListener('click', (e) => {
+          const target = e.target;
+          if (target.tagName === 'A' && !target.target) {
+            e.preventDefault();
+            const href = target.getAttribute('href');
+            if (href) {
+              history.pushState({}, '', href);
+              this.handleRoute();
+            }
+          }
+        });
+      }
+      
+      async handleRoute() {
+        const path = window.location.pathname;
+        const handler = this.routes[path];
+        
+        if (handler) {
+          await handler.call(this, path);
+        } else {
+          this.show404();
+        }
+      }
+      
+      async loadHome() {
+        await this.loadPage('home');
+      }
+      
+      async loadAbout() {
+        await this.loadPage('about');
+      }
+      
+      async loadArticles() {
+        await this.loadPage('articles');
+      }
+      
+      async loadPage(pageName) {
+        const pageContent = document.getElementById('page-content');
+        if (pageContent) {
+          pageContent.innerHTML = '<div class="loading">Loading...</div>';
+          
+          try {
+            const response = await fetch(`/pages/${pageName}.html`);
+            if (response.ok) {
+              const html = await response.text();
+              pageContent.innerHTML = html;
+            } else {
+              pageContent.innerHTML = `<div class="error">Failed to load ${pageName} page</div>`;
+            }
+          } catch (error) {
+            pageContent.innerHTML = `<div class="error">Error loading ${pageName} page: ${error.message}</div>`;
+          }
+        }
+      }
+      
+      show404() {
+        const pageContent = document.getElementById('page-content');
+        if (pageContent) {
+          pageContent.innerHTML = '<div class="error">404 - Page Not Found</div>';
+        }
+      }
+    }
+    
+    // Initialize router
+    new SimpleRouter();
+  </script>
+</body>
+</html>
