@@ -1,15 +1,16 @@
 # ByteShutter
 
-ByteShutter is a modern, responsive blog website built with React, TypeScript, and Vite. The site features articles about web development, iOS development, Swift, SwiftUI, and responsive design principles.
+ByteShutter is a modern, responsive blog website built with HTML, CSS, and TypeScript. The site features articles about web development, iOS development, Swift, SwiftUI, and responsive design principles.
 
 ## Features
 
-- **Modern Tech Stack**: Built with React 19, TypeScript, and Vite for fast development and optimal performance
+- **Modern Tech Stack**: Built with HTML5, CSS3, TypeScript, and Vite for fast development and optimal performance
 - **Markdown-Powered**: Articles are written in Markdown format and automatically converted to JSON for the frontend
 - **Responsive Design**: Fully responsive layout that works seamlessly on desktop and mobile devices
 - **Dark/Light Theme**: Built-in theme switching capability
-- **Fast Navigation**: Client-side routing with React Router for smooth page transitions
+- **Fast Navigation**: Client-side routing for smooth page transitions
 - **Type-Safe**: Full TypeScript implementation for better developer experience and code reliability
+- **No Framework Overhead**: Pure HTML/CSS/JS implementation without React or other frameworks
 
 ## Running Locally
 
@@ -38,7 +39,7 @@ To run the website in development mode with hot reloading:
 npm run dev
 ```
 
-The site will be available at `http://localhost:5173` (or the next available port).
+The site will be available at `http://localhost:3000` (or the next available port).
 
 ### Building for Production
 
@@ -50,8 +51,8 @@ npm run build
 
 This command will:
 1. Convert all markdown articles in the `articles/` folder to JSON format
-2. Build the React application for production
-3. Output the built files to the `dist/` directory
+2. Build the HTML/CSS/JS application for production
+3. Output the built files to the `public_html/dist/` directory
 
 ### Preview Production Build
 
@@ -63,19 +64,24 @@ npm run preview
 
 ### Other Available Scripts
 
-- `npm test` - Run the test suite with Vitest
+- `npm test` - Run the test suite with Vitest (tests the HTML version)
 - `npm run lint` - Check code quality with ESLint
 - `npm run convert` - Manually convert markdown articles to JSON format
+- `npm run lint:html` - Lint only the HTML version code
 
 ## Project Structure
 
 ```
 byteshutter/
 ├── articles/          # Markdown articles
-├── src/              # React application source code
+├── public_html/       # HTML/CSS/JS application source code
+│   ├── assets/        # JavaScript, CSS, and images
+│   ├── components/    # HTML components
+│   ├── pages/         # HTML pages
+│   ├── tests/         # Test suite
+│   └── ...           # Other assets
 ├── scripts/          # Build scripts for article conversion
-├── public/           # Static assets and generated JSON data
-└── dist/             # Production build output
+└── public/           # Static assets and generated JSON data
 ```
 
 ## Adding New Articles

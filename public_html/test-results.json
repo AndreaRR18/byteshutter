@@ -1,0 +1,306 @@
+{
+  "numTotalTestSuites": 6,
+  "numPassedTestSuites": 6,
+  "numFailedTestSuites": 0,
+  "numPendingTestSuites": 0,
+  "numTotalTests": 24,
+  "numPassedTests": 24,
+  "numFailedTests": 0,
+  "numPendingTests": 0,
+  "numTodoTests": 0,
+  "startTime": 1769963505255,
+  "success": true,
+  "testResults": [
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "DataService"
+          ],
+          "fullName": " DataService should fetch data from endpoint",
+          "status": "passed",
+          "title": "should fetch data from endpoint",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "DataService"
+          ],
+          "fullName": " DataService should cache fetched data",
+          "status": "passed",
+          "title": "should cache fetched data",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "DataService"
+          ],
+          "fullName": " DataService should handle fetch errors gracefully",
+          "status": "passed",
+          "title": "should handle fetch errors gracefully",
+          "duration": 4,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "DataService"
+          ],
+          "fullName": " DataService should return cached data on fetch failure",
+          "status": "passed",
+          "title": "should return cached data on fetch failure",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "DataService"
+          ],
+          "fullName": " DataService should clear cache when requested",
+          "status": "passed",
+          "title": "should clear cache when requested",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "DataService"
+          ],
+          "fullName": " DataService should handle books data fetching",
+          "status": "passed",
+          "title": "should handle books data fetching",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "DataService"
+          ],
+          "fullName": " DataService should handle articles data fetching",
+          "status": "passed",
+          "title": "should handle articles data fetching",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "DataService"
+          ],
+          "fullName": " DataService should find article by slug",
+          "status": "passed",
+          "title": "should find article by slug",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "DataService"
+          ],
+          "fullName": " DataService should return null for non-existent article",
+          "status": "passed",
+          "title": "should return null for non-existent article",
+          "duration": 0,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1769963505727,
+      "endTime": 1769963505732,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/andrea/Documents/Sites/byteshutter/public_html/tests/dataService.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "Router"
+          ],
+          "fullName": " Router should initialize with default routes",
+          "status": "passed",
+          "title": "should initialize with default routes",
+          "duration": 5,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Router"
+          ],
+          "fullName": " Router should add custom routes",
+          "status": "passed",
+          "title": "should add custom routes",
+          "duration": 2,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Router"
+          ],
+          "fullName": " Router should match exact routes",
+          "status": "passed",
+          "title": "should match exact routes",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Router"
+          ],
+          "fullName": " Router should match dynamic routes",
+          "status": "passed",
+          "title": "should match dynamic routes",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Router"
+          ],
+          "fullName": " Router should handle 404 for unknown routes",
+          "status": "passed",
+          "title": "should handle 404 for unknown routes",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Router"
+          ],
+          "fullName": " Router should extract route parameters correctly",
+          "status": "passed",
+          "title": "should extract route parameters correctly",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Router"
+          ],
+          "fullName": " Router should update active navigation",
+          "status": "passed",
+          "title": "should update active navigation",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "Router"
+          ],
+          "fullName": " Router should handle route change events",
+          "status": "passed",
+          "title": "should handle route change events",
+          "duration": 1,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1769963505695,
+      "endTime": 1769963505706,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/andrea/Documents/Sites/byteshutter/public_html/tests/router.test.ts"
+    },
+    {
+      "assertionResults": [
+        {
+          "ancestorTitles": [
+            "",
+            "ThemeManager"
+          ],
+          "fullName": " ThemeManager should initialize with default theme",
+          "status": "passed",
+          "title": "should initialize with default theme",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ThemeManager"
+          ],
+          "fullName": " ThemeManager should toggle theme correctly",
+          "status": "passed",
+          "title": "should toggle theme correctly",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ThemeManager"
+          ],
+          "fullName": " ThemeManager should persist theme in localStorage",
+          "status": "passed",
+          "title": "should persist theme in localStorage",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ThemeManager"
+          ],
+          "fullName": " ThemeManager should detect system theme preference",
+          "status": "passed",
+          "title": "should detect system theme preference",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ThemeManager"
+          ],
+          "fullName": " ThemeManager should apply theme to document",
+          "status": "passed",
+          "title": "should apply theme to document",
+          "duration": 1,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ThemeManager"
+          ],
+          "fullName": " ThemeManager should dispatch theme change events",
+          "status": "passed",
+          "title": "should dispatch theme change events",
+          "duration": 0,
+          "failureMessages": []
+        },
+        {
+          "ancestorTitles": [
+            "",
+            "ThemeManager"
+          ],
+          "fullName": " ThemeManager should handle theme methods correctly",
+          "status": "passed",
+          "title": "should handle theme methods correctly",
+          "duration": 5,
+          "failureMessages": []
+        }
+      ],
+      "startTime": 1769963505717,
+      "endTime": 1769963505725,
+      "status": "passed",
+      "message": "",
+      "name": "/Users/andrea/Documents/Sites/byteshutter/public_html/tests/theme.test.ts"
+    }
+  ]
+}

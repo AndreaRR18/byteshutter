@@ -159,13 +159,13 @@ declare global {
       listener: (event: AppEventMap[K]) => void,
       options?: boolean | AddEventListenerOptions
     ): void;
-    
+
     removeEventListener<K extends keyof AppEventMap>(
       type: K,
       listener: (event: AppEventMap[K]) => void,
       options?: boolean | EventListenerOptions
     ): void;
-    
+
     dispatchEvent<K extends keyof AppEventMap>(event: AppEventMap[K]): boolean;
   }
 
@@ -200,7 +200,7 @@ declare global {
     remove(key: string): Promise<void>;
     clear(): Promise<void>;
   }
-  
+
   // Performance Metrics Interface
   interface PerformanceMetrics {
     fcp: number; // First Contentful Paint
@@ -220,7 +220,7 @@ declare global {
     value?: number;
     processingStart?: number;
   }
-  
+
   interface Performance {
     memory?: {
       usedJSHeapSize: number;
@@ -228,22 +228,22 @@ declare global {
       jsHeapSizeLimit: number;
     };
   }
-  
+
   interface CSSStyleDeclaration {
     fontDisplay?: string;
   }
-  
+
   interface HTMLElement {
     loading?: string;
   }
-  
+
   // Accessibility Report Interface
   interface AccessibilityReport {
     issues: string[];
     warnings: string[];
     passed: string[];
   }
-  
+
   // SEO Report Interface
   interface SEOReport {
     issues: string[];
@@ -252,4 +252,4 @@ declare global {
   }
 }
 
-export {};
+export { ThemeChangeEvent };

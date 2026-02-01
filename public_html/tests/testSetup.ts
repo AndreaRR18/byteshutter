@@ -2,7 +2,21 @@
 // Configures the testing environment
 
 import { expect } from 'vitest';
+// @ts-ignore - jsdom doesn't have type declarations
 import { JSDOM } from 'jsdom';
+
+// Extend global type to include our test utilities
+declare global {
+  var window: Window & typeof globalThis;
+  var document: Document;
+  var navigator: Navigator;
+  var testUtils: {
+    createElement: (html: string) => HTMLElement;
+    triggerEvent: (element: HTMLElement, eventName: string) => void;
+    mockFetch: (data: unknown) => void;
+    restoreFetch: () => void;
+  };
+}
 
 // Set up JSDOM environment
 const dom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
@@ -13,7 +27,7 @@ global.navigator = dom.window.navigator;
 // Mock localStorage
 const localStorageMock = (() => {
   let store: Record<string, string> = {};
-  
+
   return {
     getItem: (key: string) => store[key] || null,
     setItem: (key: string, value: string) => {
@@ -56,13 +70,13 @@ expect.extend({
         pass: false
       };
     }
-    
+
     return {
       message: () => `expected ${element} not to be in DOM`,
       pass: true
     };
   },
-  
+
   toHaveClass(element: HTMLElement, className: string) {
     if (!element.classList.contains(className)) {
       return {
@@ -70,7 +84,7 @@ expect.extend({
         pass: false
       };
     }
-    
+
     return {
       message: () => `expected ${element} not to have class ${className}`,
       pass: true
@@ -85,12 +99,12 @@ global.testUtils = {
     template.innerHTML = html;
     return template.content.firstElementChild as HTMLElement;
   },
-  
+
   triggerEvent: (element: HTMLElement, eventName: string) => {
     const event = new Event(eventName, { bubbles: true });
     element.dispatchEvent(event);
   },
-  
+
   mockFetch: (data: unknown) => {
     global.fetch = async () => ({
       ok: true,
@@ -98,9 +112,10 @@ global.testUtils = {
       text: async () => JSON.stringify(data)
     }) as Response;
   },
-  
+
   restoreFetch: () => {
-    delete global.fetch;
+    // @ts-ignore - We need to delete the mock fetch to restore original
+    delete (global as any).fetch;
   }
 };
 

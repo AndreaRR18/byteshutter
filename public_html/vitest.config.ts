@@ -13,7 +13,6 @@ export default defineConfig({
 
     // Coverage
     coverage: {
-      provider: 'v8',
       reporter: ['text', 'json', 'html'],
       reportsDirectory: resolve(__dirname, 'coverage'),
       include: ['assets/js/**/*.ts'],
@@ -32,12 +31,6 @@ export default defineConfig({
     reporters: ['default', 'json'],
     outputFile: resolve(__dirname, 'test-results.json'),
 
-    // Watch mode
-    watch: {
-      enabled: true,
-      exclude: ['**/node_modules/**', '**/dist/**']
-    },
-
     // Aliases
     alias: {
       '@': resolve(__dirname, './'),
@@ -47,7 +40,6 @@ export default defineConfig({
 
     // TypeScript
     typecheck: {
-      enabled: true,
       tsconfig: resolve(__dirname, 'tsconfig.json')
     }
   }

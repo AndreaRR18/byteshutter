@@ -4,46 +4,33 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "test": "vitest",
+    "test": "cd public_html && npm test",
     "convert": "npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts",
-    "dev": "vite",
-    "build": "npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts && vite build",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
-    "lint:fix": "eslint . --ext .ts,.tsx,.js,.jsx --fix",
-    "lint:react": "eslint src/ --ext .ts,.tsx,.js,.jsx",
+    "dev": "cd public_html && npm run dev",
+    "build": "npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts && cd public_html && npm run build",
+    "lint": "eslint . --ext .ts,.js",
+    "lint:fix": "eslint . --ext .ts,.js --fix",
     "lint:html": "eslint public_html/ --ext .ts,.js",
-    "lint:all": "npm run lint:react && npm run lint:html",
-    "preview": "npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts && vite build && vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
+    "preview": "npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts && cd public_html && npm run preview",
+    "deploy": "npm run build && cd public_html && npm run deploy"
   },
   "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-markdown": "^10.1.0",
-    "react-router-dom": "^7.9.6",
-    "remark-gfm": "^4.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.3.0",
+
     "@types/node": "^22.15.30",
-    "@types/react": "^19.2.6",
-    "@types/react-dom": "^19.2.3",
+
     "@typescript-eslint/eslint-plugin": "^8.54.0",
     "@typescript-eslint/parser": "^8.54.0",
-    "@vitejs/plugin-react": "^4.4.1",
-    "@vitest/ui": "^3.1.4",
+
+
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-import": "^2.32.0",
+
     "eslint-plugin-prettier": "^5.5.5",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "gh-pages": "^6.3.0",
-    "globals": "^16.0.0",
-    "gray-matter": "^4.0.3",
+
+
     "jsdom": "^26.1.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.30.1",

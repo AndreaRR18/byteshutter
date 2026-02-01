@@ -19,7 +19,18 @@ class ThemeManager {
 
   private init(): void {
     // Initialize theme from localStorage or system preference
-    const savedTheme = localStorage.getItem(this.storageKey) as 'light' | 'dark' | null;
+    let savedTheme: 'light' | 'dark' | null = null;
+    
+    try {
+      // Check if localStorage is available and functional
+      if (typeof localStorage !== 'undefined' && 
+          typeof localStorage.getItem === 'function') {
+        savedTheme = localStorage.getItem(this.storageKey) as 'light' | 'dark' | null;
+      }
+    } catch (error) {
+      console.warn('localStorage not available, using system theme:', error);
+    }
+    
     const systemTheme = this.systemThemeMedia.matches ? 'dark' : 'light';
     this.currentTheme = savedTheme || systemTheme;
     
@@ -28,8 +39,14 @@ class ThemeManager {
     
     // Set up system theme change listener
     this.systemThemeMedia.addEventListener('change', (e) => {
-      if (!localStorage.getItem(this.storageKey)) {
-        this.applyTheme(e.matches ? 'dark' : 'light');
+      try {
+        if (typeof localStorage !== 'undefined' && 
+            typeof localStorage.getItem === 'function' &&
+            !localStorage.getItem(this.storageKey)) {
+          this.applyTheme(e.matches ? 'dark' : 'light');
+        }
+      } catch (error) {
+        console.warn('Could not check localStorage for system theme change:', error);
       }
     });
   }
@@ -40,12 +57,19 @@ class ThemeManager {
     document.documentElement.classList.remove('light', 'dark');
     document.documentElement.classList.add(theme);
     
-    // Save preference if not system default
+    // Save preference if not system default and localStorage is available
     const systemTheme = this.systemThemeMedia.matches ? 'dark' : 'light';
-    if (theme !== systemTheme) {
-      localStorage.setItem(this.storageKey, theme);
-    } else {
-      localStorage.removeItem(this.storageKey);
+    try {
+      if (typeof localStorage !== 'undefined' && 
+          typeof localStorage.setItem === 'function') {
+        if (theme !== systemTheme) {
+          localStorage.setItem(this.storageKey, theme);
+        } else {
+          localStorage.removeItem(this.storageKey);
+        }
+      }
+    } catch (error) {
+      console.warn('Could not save theme preference to localStorage:', error);
     }
     
     // Dispatch theme change event
