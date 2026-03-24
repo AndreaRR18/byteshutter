@@ -5,7 +5,7 @@ import { ArticleFeedDTO } from "./ArticleFeedDTO";
 import { ArticleDetailDTO } from "./ArticleDetailDTO";
 
 const articlesDir = path.join(process.cwd(), "articles");
-const outputDir = path.join(process.cwd(), "public", "data");
+const outputDir = path.join(process.cwd(), "data");
 
 interface FrontmatterData {
   title?: string;
