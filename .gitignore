@@ -24,3 +24,8 @@ data/
 *.sln
 *.sw?
 .claude/settings.local.json
+
+# Compiled browser TypeScript output
+js/theme.js
+js/articles.js
+js/article.js
