@@ -88,15 +88,15 @@
 }
 
 [data-theme="dark"] {
-    --bg-primary:    #1e1a12;
-    --bg-secondary:  #2a2318;
-    --text-primary:  #e8dfc8;
-    --text-secondary:#9a9080;
-    --text-muted:    #7a6a4a;
+    --bg-primary:    #111010;
+    --bg-secondary:  #1a1918;
+    --text-primary:  #f0ebe0;
+    --text-secondary:#b8b0a0;
+    --text-muted:    #7a7268;
     --accent:        #c8a060;
     --accent-link:   #c8a060;
-    --border:        #3a3020;
-    --border-dashed: #4a4030;
+    --border:        #2e2c28;
+    --border-dashed: #3a3830;
 }
 
 /* -------------------------------------------------------------
