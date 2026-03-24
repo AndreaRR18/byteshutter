@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Articles - ByteShutter</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Articles about web development, iOS development, Swift, SwiftUI, and more by Andrea Rinaldi">
+  <meta name="keywords" content="web development, iOS, Swift, SwiftUI, programming articles">
+  <meta name="author" content="Andrea Rinaldi">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Articles - ByteShutter">
+  <meta property="og:description" content="Articles about web development, iOS development, Swift, SwiftUI, and more">
+  <meta property="og:url" content="https://andrearr18.github.io/byteshutter/articles.html">
+
+  <!-- Prevent theme flash -->
+  <script>
+    (function() {
+      const s = localStorage.getItem('theme');
+      const p = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const t = s || p;
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.classList.add(t);
+    })();
+  </script>
+
+  <link rel="stylesheet" href="./css/main.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="./index.html" class="logo">byteshutter</a>
+      <div class="nav-links">
+        <a href="./articles.html" class="nav-link active">Articles</a>
+        <a href="./about.html" class="nav-link">About</a>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch theme"></button>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <div id="articles-list">
+      <!-- Content loaded by articles.js -->
+      <div class="loading-skeleton">
+        <div class="skeleton-card">
+          <div class="skeleton-title"></div>
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text short"></div>
+          <div class="skeleton-date"></div>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton-title"></div>
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text short"></div>
+          <div class="skeleton-date"></div>
+        </div>
+        <div class="skeleton-card">
+          <div class="skeleton-title"></div>
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text short"></div>
+          <div class="skeleton-date"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-text">&copy; <span id="year"></span> byteshutter. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="./js/theme.js"></script>
+  <script type="module" src="./js/articles.js"></script>
+</body>
+</html>

@@ -1,15 +1,14 @@
 # ByteShutter
 
-ByteShutter is a modern, responsive blog website built with React, TypeScript, and Vite. The site features articles about web development, iOS development, Swift, SwiftUI, and responsive design principles.
+ByteShutter is a modern, responsive blog website built with plain HTML, CSS, and JavaScript. The site features articles about web development, iOS development, Swift, SwiftUI, and responsive design principles.
 
 ## Features
 
-- **Modern Tech Stack**: Built with React 19, TypeScript, and Vite for fast development and optimal performance
+- **No Build Step**: Plain HTML/CSS/JS — no framework, no bundler
 - **Markdown-Powered**: Articles are written in Markdown format and automatically converted to JSON for the frontend
 - **Responsive Design**: Fully responsive layout that works seamlessly on desktop and mobile devices
 - **Dark/Light Theme**: Built-in theme switching capability
-- **Fast Navigation**: Client-side routing with React Router for smooth page transitions
-- **Type-Safe**: Full TypeScript implementation for better developer experience and code reliability
+- **Hash-Based Routing**: Fast client-side navigation using URL hash fragments
 
 ## Running Locally
 
@@ -32,13 +31,13 @@ npm install
 
 ### Development
 
-To run the website in development mode with hot reloading:
+To convert articles and serve the site locally on port 3000:
 
 ```bash
 npm run dev
 ```
 
-The site will be available at `http://localhost:5173` (or the next available port).
+The site will be available at `http://localhost:3000`.
 
 ### Building for Production
 
@@ -49,33 +48,47 @@ npm run build
 ```
 
 This command will:
-1. Convert all markdown articles in the `articles/` folder to JSON format
-2. Build the React application for production
-3. Output the built files to the `dist/` directory
-
-### Preview Production Build
-
-To preview the production build locally:
-
-```bash
-npm run preview
-```
+1. Compile TypeScript browser scripts to `js/`
+2. Convert all markdown articles in the `articles/` folder to JSON format
+3. Copy all site files to the `dist/` directory
 
 ### Other Available Scripts
 
-- `npm test` - Run the test suite with Vitest
-- `npm run lint` - Check code quality with ESLint
 - `npm run convert` - Manually convert markdown articles to JSON format
+- `npm run compile` - Compile TypeScript browser scripts to `js/`
+
+## CI/CD & Deployment
+
+### Deployment
+
+Merging to `main` automatically deploys the site to GitHub Pages.
+
+### Releasing a New Version
+
+Tag a commit with a semantic version to create a GitHub Release with an auto-generated changelog:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
 
 ## Project Structure
 
 ```
 byteshutter/
-├── articles/          # Markdown articles
-├── src/              # React application source code
-├── scripts/          # Build scripts for article conversion
-├── public/           # Static assets and generated JSON data
-└── dist/             # Production build output
+├── articles/          # Markdown source files for blog posts
+├── css/               # Stylesheets
+├── js/                # Compiled browser JavaScript (generated)
+├── src/
+│   └── ts/            # TypeScript source for browser scripts
+├── data/              # Generated JSON data from articles
+├── images/            # Static image assets
+├── scripts/           # Build scripts for article conversion
+├── index.html         # Home page
+├── articles.html      # Articles listing page
+├── article.html       # Article detail page
+├── about.html         # About page
+└── dist/              # Production build output
 ```
 
 ## Adding New Articles

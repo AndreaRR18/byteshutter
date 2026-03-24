@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ByteShutter</title>
+
+  <!-- SEO Meta Tags (updated by article.js) -->
+  <meta name="description" content="ByteShutter - Article">
+  <meta name="author" content="Andrea Rinaldi">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ByteShutter">
+
+  <!-- Prevent theme flash -->
+  <script>
+    (function() {
+      const s = localStorage.getItem('theme');
+      const p = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const t = s || p;
+      document.documentElement.setAttribute('data-theme', t);
+      document.documentElement.classList.add(t);
+    })();
+  </script>
+
+  <link rel="stylesheet" href="./css/main.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header class="header">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="./index.html" class="logo">byteshutter</a>
+      <div class="nav-links">
+        <a href="./articles.html" class="nav-link active">Articles</a>
+        <a href="./about.html" class="nav-link">About</a>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Switch theme"></button>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Loading skeleton -->
+    <div id="article-skeleton" class="article-content">
+      <div class="skeleton-header">
+        <div class="skeleton-title-lg"></div>
+        <div class="skeleton-meta"></div>
+      </div>
+      <div class="skeleton-content">
+        <div class="skeleton-paragraph">
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text short"></div>
+        </div>
+        <div class="skeleton-paragraph">
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text short"></div>
+        </div>
+        <div class="skeleton-paragraph">
+          <div class="skeleton-text"></div>
+          <div class="skeleton-text short"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Error state (hidden by default) -->
+    <div id="article-error" class="article-not-found" style="display:none;">
+      <h1>Article not found</h1>
+      <p id="article-error-msg">The article you're looking for could not be loaded.</p>
+      <a href="./articles.html" class="back-link">← More Articles</a>
+    </div>
+
+    <!-- Article content (hidden until loaded) -->
+    <div id="article-content-wrapper" class="article-content" style="display:none;">
+      <article class="article">
+
+        <div class="article-header">
+          <h1 id="article-title" class="article-title"></h1>
+          <div class="article-meta">
+            <time id="article-date" class="article-date"></time>
+            <span id="article-read-time" class="read-time"></span>
+          </div>
+          <div id="article-tags" class="article-tags"></div>
+        </div>
+
+        <div id="article-body" class="article-body"></div>
+
+        <footer class="article-footer">
+          <a href="./articles.html" class="back-link">← More Articles</a>
+        </footer>
+
+      </article>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p class="footer-text">&copy; <span id="year"></span> byteshutter. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="./js/theme.js"></script>
+  <script src="./js/vendor/marked.min.js"></script>
+  <script type="module" src="./js/article.js"></script>
+</body>
+</html>

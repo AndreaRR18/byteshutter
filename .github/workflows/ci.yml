@@ -11,15 +11,21 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "24"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Lint code
-        run: npm run lint
+      - name: Type-check TypeScript
+        run: npx tsc -p tsconfig.browser.json --noEmit
+
+      - name: Convert articles to JSON
+        run: npm run convert
+
+      - name: Build site
+        run: npm run build

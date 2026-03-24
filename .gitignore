@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+data/
 
 # Editor directories and files
 .vscode/*
@@ -23,3 +24,8 @@ dist-ssr
 *.sln
 *.sw?
 .claude/settings.local.json
+
+# Compiled browser TypeScript output
+js/theme.js
+js/articles.js
+js/article.js
