@@ -364,7 +364,7 @@ a:focus-visible,
 }
 
 .skeleton-card {
-    border-bottom: 1px solid var(--border);
+    border-bottom: var(--border-divider);
     padding: var(--space-xl) 0;
     animation: pulse 1.5s ease-in-out infinite;
 }
@@ -372,7 +372,7 @@ a:focus-visible,
 .skeleton-title {
     height: 1.5rem;
     background-color: var(--bg-secondary);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-minimal);
     margin-bottom: var(--space-md);
     width: 70%;
 }
@@ -380,7 +380,7 @@ a:focus-visible,
 .skeleton-text {
     height: 1rem;
     background-color: var(--bg-secondary);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-minimal);
     margin-bottom: var(--space-sm);
 }
 
@@ -391,7 +391,7 @@ a:focus-visible,
 .skeleton-date {
     height: 0.875rem;
     background-color: var(--bg-secondary);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-minimal);
     width: 8rem;
 }
 
@@ -610,7 +610,7 @@ main {
    6. Footer (from src/Footer/Footer.module.css)
    ------------------------------------------------------------- */
 .footer {
-    border-top: 1px solid var(--border);
+    border-top: var(--border-solid);
     background-color: var(--bg-primary);
     padding: var(--space-2xl) 0;
     margin-top: auto;
@@ -1022,7 +1022,7 @@ main {
 .skeleton-header {
     text-align: left;
     padding-bottom: var(--space-2xl);
-    border-bottom: 1px solid var(--border);
+    border-bottom: var(--border-divider);
     margin-bottom: var(--space-2xl);
 }
 
@@ -1492,27 +1492,30 @@ main {
 }
 
 /* -------------------------------------------------------------
-   11. Tag Component (from src/components/Tag/Tag.module.css)
+   11. Tag Component
    ------------------------------------------------------------- */
 .tag {
     display: inline-block;
-    padding: var(--space-xs) var(--space-sm);
-    border: 1px solid;
-    border-radius: var(--radius-full);
-    font-size: 0.75rem;
+    padding: 0.1em var(--space-sm);
+    border: 1px dashed var(--border-dashed);
+    border-radius: 0;
+    font-family: var(--font-ui);
+    font-size: var(--font-size-kicker);
     font-weight: 500;
-    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-kicker);
+    color: var(--text-muted);
     text-decoration: none;
-    transition: all var(--transition-fast);
     white-space: nowrap;
     user-select: none;
+    transition: none;
 }
 
 /* Divider */
 .divider {
     border: none;
-    border-top: 1px solid var(--border);
-    margin: var(--space-lg) 0;
+    border-top: var(--border-divider);
+    margin: var(--space-xl) 0;
     height: 0;
     width: 100%;
 }
