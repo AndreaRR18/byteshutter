@@ -54,6 +54,7 @@ This command will:
 ### Other Available Scripts
 
 - `npm run convert` - Manually convert markdown articles to JSON format
+- `npm run compile` - Compile TypeScript browser scripts to `js/`
 
 ## CI/CD & Deployment
 
@@ -76,7 +77,9 @@ git push origin v1.0.0
 byteshutter/
 ├── articles/          # Markdown source files for blog posts
 ├── css/               # Stylesheets
-├── js/                # JavaScript files (articles.js, article.js, theme.js)
+├── js/                # Compiled browser JavaScript (generated)
+├── src/
+│   └── ts/            # TypeScript source for browser scripts
 ├── data/              # Generated JSON data from articles
 ├── images/            # Static image assets
 ├── scripts/           # Build scripts for article conversion
