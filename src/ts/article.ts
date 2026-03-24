@@ -26,34 +26,10 @@ function formatDate(iso: string): string {
   });
 }
 
-function getTagBgColor(text: string): string {
-  let hash = 0;
-  for (let i = 0; i < text.length; i++) {
-    const char = text.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash = hash & hash;
-  }
-  const hue = Math.abs(hash) % 360;
-  return 'hsl(' + hue + ', 65%, 85%)';
-}
-
-function getTagTextColor(text: string): string {
-  let hash = 0;
-  for (let i = 0; i < text.length; i++) {
-    const char = text.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash = hash & hash;
-  }
-  const hue = Math.abs(hash) % 360;
-  return 'hsl(' + hue + ', 65%, 35%)';
-}
-
 function buildTagsHtml(tags: string[] | undefined): string {
   if (!tags || tags.length === 0) return '';
   return tags.map(function (t: string): string {
-    const bg = getTagBgColor(t);
-    const fg = getTagTextColor(t);
-    return '<span class="tag" style="background-color:' + bg + ';color:' + fg + ';border-color:' + fg + '">#' + t + '</span>';
+    return '<span class="tag">' + t + '</span>';
   }).join('');
 }
 
@@ -118,6 +94,16 @@ async function loadArticle(): Promise<void> {
 
     const readTimeEl = document.getElementById('article-read-time');
     if (readTimeEl) readTimeEl.textContent = readTime + ' min read';
+
+    const kickerEl = document.getElementById('article-kicker');
+    if (kickerEl) {
+      const kickerTag = article.tags && article.tags.length > 0
+        ? article.tags[0].toUpperCase()
+        : '';
+      kickerEl.textContent = kickerTag
+        ? kickerTag + ' · ' + readTime + ' min read'
+        : readTime + ' min read';
+    }
 
     const tagsEl = document.getElementById('article-tags');
     if (tagsEl) tagsEl.innerHTML = buildTagsHtml(article.tags);
