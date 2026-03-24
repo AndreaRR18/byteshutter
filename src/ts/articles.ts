@@ -102,3 +102,5 @@ async function loadArticles(): Promise<void> {
 }
 
 document.addEventListener('DOMContentLoaded', loadArticles);
+
+export {};
