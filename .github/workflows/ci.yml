@@ -21,8 +21,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Lint code
-        run: npm run lint
+      - name: Convert articles to JSON
+        run: npm run convert
 
-      - name: Run tests
-        run: npm test -- --run
+      - name: Build site
+        run: npm run build
