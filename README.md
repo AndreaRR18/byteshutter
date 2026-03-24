@@ -67,6 +67,27 @@ npm run preview
 - `npm run lint` - Check code quality with ESLint
 - `npm run convert` - Manually convert markdown articles to JSON format
 
+## CI/CD & Releases
+
+### Continuous Integration
+
+Every branch push runs the CI workflow, which:
+1. Lints the code with ESLint
+2. Runs the full test suite with Vitest
+
+### Deployment
+
+Merging to `main` automatically deploys the site to GitHub Pages. The build process converts markdown articles to JSON before deploying.
+
+### Releasing a New Version
+
+Tag a commit with a semantic version to create a GitHub Release with an auto-generated changelog:
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
 ## Project Structure
 
 ```
