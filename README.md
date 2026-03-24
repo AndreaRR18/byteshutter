@@ -48,8 +48,9 @@ npm run build
 ```
 
 This command will:
-1. Convert all markdown articles in the `articles/` folder to JSON format
-2. Copy all site files to the `dist/` directory
+1. Compile TypeScript browser scripts to `js/`
+2. Convert all markdown articles in the `articles/` folder to JSON format
+3. Copy all site files to the `dist/` directory
 
 ### Other Available Scripts
 

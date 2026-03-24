@@ -1,4 +1,8 @@
-/* Article detail for ByteShutter - requires marked.js loaded before this script */
+/* Article detail for ByteShutter
+ * marked.min.js is loaded as a classic (non-module) script in article.html,
+ * which guarantees it executes before any deferred module scripts (including this one).
+ * Do NOT add type="module" to the marked.min.js script tag in article.html.
+ */
 
 // marked v15+ API: options are passed directly to parse(), setOptions() is removed
 declare const marked: {
