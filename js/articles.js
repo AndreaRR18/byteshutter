@@ -42,7 +42,7 @@ function buildTagsHtml(tags) {
 function buildCard(article) {
   var tagsHtml = buildTagsHtml(article.tags);
   var dateStr = article.created_at ? formatDate(article.created_at) : '';
-  return '<a href="./article.html?slug=' + encodeURIComponent(article.slug) + '" class="post-card-link">' +
+  return '<a href="./article.html#' + article.slug + '" class="post-card-link">' +
     '<article class="post-card">' +
       '<time class="post-date" datetime="' + (article.created_at || '') + '">' + dateStr + '</time>' +
       '<h2 class="post-title">' + article.title + '</h2>' +

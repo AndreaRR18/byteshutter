@@ -63,8 +63,7 @@ function injectStructuredData(article) {
 }
 
 async function loadArticle() {
-  var params = new URLSearchParams(window.location.search);
-  var slug = params.get('slug');
+  var slug = window.location.hash.slice(1);
 
   if (!slug) {
     showError('No article slug specified.');
