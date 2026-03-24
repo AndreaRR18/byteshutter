@@ -1,6 +1,18 @@
 /* Articles list for ByteShutter */
 
-function formatDate(iso) {
+interface ArticleFeed {
+  title: string;
+  excerpt: string;
+  created_at: string;
+  slug: string;
+  tags?: string[];
+}
+
+interface ArticlesFeedResponse {
+  articles: ArticleFeed[];
+}
+
+function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -8,7 +20,7 @@ function formatDate(iso) {
   });
 }
 
-function getTagBgColor(text) {
+function getTagBgColor(text: string): string {
   let hash = 0;
   for (let i = 0; i < text.length; i++) {
     const char = text.charCodeAt(i);
@@ -19,7 +31,7 @@ function getTagBgColor(text) {
   return 'hsl(' + hue + ', 65%, 85%)';
 }
 
-function getTagTextColor(text) {
+function getTagTextColor(text: string): string {
   let hash = 0;
   for (let i = 0; i < text.length; i++) {
     const char = text.charCodeAt(i);
@@ -30,18 +42,18 @@ function getTagTextColor(text) {
   return 'hsl(' + hue + ', 65%, 35%)';
 }
 
-function buildTagsHtml(tags) {
+function buildTagsHtml(tags: string[] | undefined): string {
   if (!tags || tags.length === 0) return '';
-  return tags.map(function(t) {
-    var bg = getTagBgColor(t);
-    var fg = getTagTextColor(t);
+  return tags.map(function (t: string): string {
+    const bg = getTagBgColor(t);
+    const fg = getTagTextColor(t);
     return '<span class="tag" style="background-color:' + bg + ';color:' + fg + ';border-color:' + fg + '">#' + t + '</span>';
   }).join('');
 }
 
-function buildCard(article) {
-  var tagsHtml = buildTagsHtml(article.tags);
-  var dateStr = article.created_at ? formatDate(article.created_at) : '';
+function buildCard(article: ArticleFeed): string {
+  const tagsHtml = buildTagsHtml(article.tags);
+  const dateStr = article.created_at ? formatDate(article.created_at) : '';
   return '<a href="./article.html#' + article.slug + '" class="post-card-link">' +
     '<article class="post-card">' +
       '<time class="post-date" datetime="' + (article.created_at || '') + '">' + dateStr + '</time>' +
@@ -52,7 +64,7 @@ function buildCard(article) {
   '</a>';
 }
 
-function showSkeleton(container) {
+function showSkeleton(container: HTMLElement): void {
   container.innerHTML =
     '<div class="loading-skeleton">' +
       '<div class="skeleton-card"><div class="skeleton-title"></div><div class="skeleton-text"></div><div class="skeleton-text short"></div><div class="skeleton-date"></div></div>' +
@@ -61,15 +73,17 @@ function showSkeleton(container) {
     '</div>';
 }
 
-async function loadArticles() {
-  var container = document.getElementById('articles-list');
+async function loadArticles(): Promise<void> {
+  const container = document.getElementById('articles-list');
+  if (!container) return;
+
   showSkeleton(container);
 
   try {
-    var res = await fetch('./data/articles.json');
+    const res = await fetch('./data/articles.json');
     if (!res.ok) throw new Error('Failed to load articles (' + res.status + ')');
-    var data = await res.json();
-    var articles = data.articles || [];
+    const data: ArticlesFeedResponse = await res.json();
+    const articles = data.articles || [];
 
     if (articles.length === 0) {
       container.innerHTML = '<div class="empty-state"><p>No articles yet.</p></div>';
@@ -78,10 +92,11 @@ async function loadArticles() {
 
     container.innerHTML = articles.map(buildCard).join('');
   } catch (e) {
+    const msg = e instanceof Error ? e.message : 'An unexpected error occurred.';
     container.innerHTML =
       '<div class="error-state">' +
         '<h2>Failed to load articles</h2>' +
-        '<p>' + (e.message || 'An unexpected error occurred.') + '</p>' +
+        '<p>' + msg + '</p>' +
       '</div>';
   }
 }
