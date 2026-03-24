@@ -926,7 +926,7 @@ main {
    ------------------------------------------------------------- */
 .article-card {
     padding: var(--space-xl) 0;
-    border-bottom: 1px solid var(--border);
+    border-bottom: var(--border-divider);
     transition: all var(--transition-fast);
 }
 
@@ -953,21 +953,34 @@ main {
 .post-card {
     display: block;
     padding: var(--space-xl) 0;
-    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+.post-kicker {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: var(--font-size-kicker);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-kicker);
+    color: var(--accent);
+    margin-bottom: var(--space-xs);
 }
 
 .post-date {
     display: block;
-    font-size: var(--font-size-small);
-    color: var(--text-secondary);
+    font-size: var(--font-size-kicker);
+    color: var(--text-muted);
     margin-bottom: var(--space-md);
     font-weight: 400;
     text-align: left;
+    font-family: var(--font-ui);
 }
 
 .post-title {
+    font-family: var(--font-heading);
     font-size: 1.875rem;
-    font-weight: 600;
+    font-weight: 700;
     line-height: 1.25;
     color: var(--text-primary);
     margin: 0 0 var(--space-lg) 0;
@@ -976,6 +989,7 @@ main {
 }
 
 .post-excerpt {
+    font-family: var(--font-body);
     font-size: var(--font-size-body);
     line-height: 1.625;
     color: var(--text-secondary);
@@ -1015,7 +1029,7 @@ main {
 .skeleton-title-lg {
     height: 2.5rem;
     background-color: var(--bg-secondary);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-minimal);
     margin: 0 0 var(--space-lg) 0;
     width: 80%;
     animation: pulse 1.5s ease-in-out infinite;
@@ -1024,7 +1038,7 @@ main {
 .skeleton-meta {
     height: 1rem;
     background-color: var(--bg-secondary);
-    border-radius: var(--radius-sm);
+    border-radius: var(--radius-minimal);
     margin: 0;
     width: 200px;
     animation: pulse 1.5s ease-in-out infinite;
@@ -1064,10 +1078,22 @@ main {
 .article-header {
     text-align: left;
     padding-bottom: var(--space-2xl);
-    border-bottom: 1px solid var(--border);
+    border-bottom: var(--border-divider);
+}
+
+.article-kicker {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: var(--font-size-kicker);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-kicker);
+    color: var(--accent);
+    margin-bottom: var(--space-sm);
 }
 
 .article-title {
+    font-family: var(--font-heading);
     font-size: var(--font-size-h1);
     font-weight: var(--font-weight-h1);
     line-height: var(--line-height-h1);
@@ -1140,7 +1166,7 @@ main {
 }
 
 .article-body a {
-    color: var(--accent);
+    color: var(--accent-link);
     text-decoration: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 2px;
@@ -1154,10 +1180,10 @@ main {
 .article-body blockquote {
     margin: var(--space-lg) 0;
     padding: var(--space-lg);
-    border-left: 4px solid var(--accent);
-    background-color: var(--bg-secondary);
+    border-left: 3px solid var(--accent);
     font-style: italic;
     color: var(--text-secondary);
+    font-family: var(--font-body);
 }
 
 .article-body blockquote p {
@@ -1167,29 +1193,24 @@ main {
 .article-body img {
     max-width: 100%;
     height: auto;
-    border-radius: var(--radius-md);
+    border-radius: 0;
     margin: var(--space-lg) 0;
-    box-shadow: var(--shadow-card);
     display: block;
     object-fit: cover;
-    transition: transform 0.2s ease;
-}
-
-.article-body img:hover {
-    transform: scale(1.02);
 }
 
 .article-footer {
     padding-top: var(--space-2xl);
-    border-top: 1px solid var(--border);
+    border-top: var(--border-divider);
     text-align: left;
 }
 
 .back-link {
     display: inline-flex;
     align-items: flex-start;
-    color: var(--accent);
-    text-decoration: none;
+    color: var(--accent-link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
     font-weight: 500;
     transition: color var(--transition-fast);
 }

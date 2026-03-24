@@ -20,46 +20,28 @@ function formatDate(iso: string): string {
   });
 }
 
-function getTagBgColor(text: string): string {
-  let hash = 0;
-  for (let i = 0; i < text.length; i++) {
-    const char = text.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash = hash & hash;
-  }
-  const hue = Math.abs(hash) % 360;
-  return 'hsl(' + hue + ', 65%, 85%)';
-}
-
-function getTagTextColor(text: string): string {
-  let hash = 0;
-  for (let i = 0; i < text.length; i++) {
-    const char = text.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash = hash & hash;
-  }
-  const hue = Math.abs(hash) % 360;
-  return 'hsl(' + hue + ', 65%, 35%)';
-}
-
 function buildTagsHtml(tags: string[] | undefined): string {
   if (!tags || tags.length === 0) return '';
   return tags.map(function (t: string): string {
-    const bg = getTagBgColor(t);
-    const fg = getTagTextColor(t);
-    return '<span class="tag" style="background-color:' + bg + ';color:' + fg + ';border-color:' + fg + '">#' + t + '</span>';
+    return '<span class="tag">' + t + '</span>';
   }).join('');
 }
 
 function buildCard(article: ArticleFeed): string {
+  const kickerTag = article.tags && article.tags.length > 0
+    ? article.tags[0].toUpperCase()
+    : '';
   const tagsHtml = buildTagsHtml(article.tags);
   const dateStr = article.created_at ? formatDate(article.created_at) : '';
   return '<a href="./article.html#' + article.slug + '" class="post-card-link">' +
     '<article class="post-card">' +
-      '<time class="post-date" datetime="' + (article.created_at || '') + '">' + dateStr + '</time>' +
+      (kickerTag ? '<span class="post-kicker">' + kickerTag + '</span>' : '') +
       '<h2 class="post-title">' + article.title + '</h2>' +
       '<p class="post-excerpt">' + article.excerpt + '</p>' +
-      (tagsHtml ? '<div class="post-tags">' + tagsHtml + '</div>' : '') +
+      '<div class="post-meta">' +
+        '<time class="post-date" datetime="' + (article.created_at || '') + '">' + dateStr + '</time>' +
+        (tagsHtml ? '<div class="post-tags">' + tagsHtml + '</div>' : '') +
+      '</div>' +
     '</article>' +
   '</a>';
 }
