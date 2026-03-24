@@ -1,43 +1,13 @@
 {
   "name": "byteshutter",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
   "scripts": {
-    "test": "vitest",
     "convert": "npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts",
-    "dev": "vite",
-    "build": "npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts && vite build",
-    "lint": "eslint .",
-    "preview": "npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts && vite build && vite preview",
-    "deploy": "npm run build && gh-pages -d dist"
-  },
-  "dependencies": {
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "react-markdown": "^10.1.0",
-    "react-router-dom": "^7.9.6",
-    "remark-gfm": "^4.0.1"
+    "dev": "npm run convert && npx serve . -p 3000",
+    "build": "npm run convert && mkdir -p dist && cp -r index.html articles.html article.html about.html favicon.svg .nojekyll css js images data dist/"
   },
   "devDependencies": {
-    "@eslint/js": "^9.25.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.3.0",
-    "@types/node": "^22.15.30",
-    "@types/react": "^19.2.6",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^4.4.1",
-    "@vitest/ui": "^3.1.4",
-    "eslint": "^9.25.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "gh-pages": "^6.3.0",
-    "globals": "^16.0.0",
     "gray-matter": "^4.0.3",
-    "jsdom": "^26.1.0",
-    "typescript": "~5.8.3",
-    "typescript-eslint": "^8.30.1",
-    "vite": "^7.2.4",
-    "vitest": "^3.1.4"
+    "tsx": "^4.19.2"
   }
 }
