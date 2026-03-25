@@ -117,3 +117,138 @@ The build process (`npm run build`) automatically:
 - Run the markdown converter when working with articles
 - Test changes with `npm run dev` before building
 - This is a personal project, so changes should align with the existing personal/portfolio nature
+
+---
+
+## Editorial Line & Content Guidelines
+
+This section defines the identity, voice, and standards of ByteShutter's articles. Use it every time you help write, review, outline, or improve a blog post for this site.
+
+### Author Identity
+
+**Name:** Andrea Rinaldi
+**Role:** Senior iOS developer (primary), with web development background
+**Location:** Italy
+**Main languages:** Swift, Kotlin
+**Primary stack:** SwiftUI, UIKit, Jetpack Compose
+**Philosophy:** Pragmatic engineering, clean design, lifelong learning, storytelling as a craft
+
+Andrea is a software engineer with deep mobile expertise. He values the open-source and learning community, reads technical books seriously (The Pragmatic Programmer, A Philosophy of Software Design), and is interested in how AI and LLMs are changing software abstraction. He also has a creative side — documentary photography — which informs how he approaches narrative and structure.
+
+---
+
+### Target Audience
+
+Articles are written for **intermediate-to-senior developers** who already know how to code and want to go deeper. Do not over-explain basic syntax. Do not assume familiarity with niche or internal tooling unless the article is explicitly about it.
+
+Assume the reader:
+- Writes Swift or another modern language professionally
+- Is comfortable with type systems, optionals, generics, async/await
+- Reads official documentation and wants to understand *why*, not just *how*
+
+---
+
+### Article Language
+
+All articles are written in **English**. The English is precise, formal, and idiomatic — academic but not dry. Avoid filler phrases. Avoid colloquialisms in article body text (casual tone is reserved for the homepage and About page, not for articles).
+
+---
+
+### Tone & Voice
+
+| Context | Tone |
+|---|---|
+| Articles | Formal, authoritative, educational, clear |
+| Homepage / About | Warm, personal, self-deprecating, casual |
+| Code comments | Concise, practical |
+
+For articles specifically:
+- **Authoritative but not arrogant** — explain things as if teaching a talented colleague, not lecturing a student
+- **Precise** — use exact terminology; never say "stuff" or "things" in a technical context
+- **Bridge theory and practice** — ground abstract concepts in concrete Swift examples
+- **No fluff** — every sentence should earn its place; avoid preambles like "In this article, we will..."
+- **Comparative when useful** — when a concept applies across languages (Swift, Kotlin, Haskell, etc.), comparing implementations deepens the reader's understanding
+
+---
+
+### Content Pillars
+
+Articles on ByteShutter fall into these categories:
+
+1. **Swift & iOS Development** *(primary)* — deep dives into Swift language features, iOS frameworks (SwiftUI, UIKit), architecture patterns, state management (Flow library), operators, generics, concurrency, etc.
+2. **Programming Fundamentals** — language-agnostic concepts (operators, type systems, abstraction, design principles) with Swift as the main implementation lens
+3. **Software Design & Architecture** — patterns, clean code, pragmatic approaches to building maintainable systems
+4. **Tooling & Workflow** — Xcode, CI/CD, GitHub Actions, SPM, build pipelines
+
+Topics to **avoid** in articles (they belong on the homepage, not in posts):
+- Book summaries or reviews (those go in the homepage "books" section)
+- Photography commentary
+- Pure opinion pieces without technical substance
+
+---
+
+### Article Structure
+
+Every article should follow this structure:
+
+```
+1. Title (clear, specific — not clickbait)
+2. Excerpt / intro paragraph (2–4 sentences, factual hook, states what the reader will learn)
+3. Conceptual foundation (definitions, context, why this matters)
+4. Core content (organized with H2/H3 headings, progressing from simple to complex)
+5. Code examples (inline for snippets, fenced blocks with language tag for longer examples)
+6. Advanced considerations or edge cases
+7. Conclusion / summary (brief, actionable takeaway — no padding)
+8. References (official docs, relevant papers or articles)
+```
+
+Articles **may be part of a series**. If so, note the series and link to related parts in the intro.
+
+---
+
+### Code Examples
+
+- **Language:** Swift is the default. Use other languages (Kotlin, Python, Haskell) only when making cross-language comparisons
+- **Format:** Always use fenced Markdown code blocks with language identifier (` ```swift `)
+- **Quality:** All code must be syntactically correct and reflect current Swift/iOS best practices. Do not use deprecated APIs. Do not use pseudocode without clearly labeling it as such
+- **Comments:** Add inline comments to explain non-obvious lines; do not over-comment obvious code
+- **Length:** Prefer focused, minimal examples that demonstrate one concept at a time
+
+---
+
+### Publication Model
+
+ByteShutter publishes **slowly and deliberately** — depth over frequency. A single article can take weeks to get right. This means:
+
+- Never sacrifice accuracy for speed
+- Each article should be comprehensive enough to stand on its own as a reference
+- Quality bar: comparable to a well-edited engineering blog (e.g., Swift by Sundell, objc.io, NSHipster)
+
+---
+
+### Available Skills for Article Work
+
+When working on articles for this blog, always use the available Claude skills:
+
+- **`tech-article-reviewer`** — use this to review, improve, or proofread any draft article. It evaluates technical accuracy, clarity, style, and structure with severity-rated feedback and produces a revised version
+- **`idea-brainstorm`** — use this when exploring potential new article topics, validating ideas, or stress-testing an outline before committing to writing it
+
+---
+
+### Frontmatter Template
+
+When creating a new article file in `articles/`:
+
+```markdown
+---
+title: "Article Title"
+excerpt: "One or two sentences that accurately describe what the reader will learn. No hype."
+created_at: YYYY-MM-DD
+tags: ["swift", "ios", "relevant-tag"]
+---
+```
+
+**Tags conventions:**
+- Use lowercase, hyphen-separated slugs
+- Always include the primary language or platform (`swift`, `ios`, `typescript`, `web`)
+- Add topic tags as needed (`state-management`, `operators`, `concurrency`, `swiftui`, `architecture`)
