@@ -25,6 +25,8 @@ byteshutter/
 ├── js/                # Compiled JS output + vendor scripts (js/vendor/)
 ├── images/            # Static image assets
 ├── data/              # Generated JSON articles (gitignored, created at build time)
+├── rules/             # Style and code guidelines (blog, typescript)
+├── docs/              # Specs and implementation plans (docs/superpowers/)
 ├── *.html             # HTML pages (index, articles, article, about)
 └── dist/              # Production build output (gitignored, created at build time)
 ```
@@ -82,6 +84,7 @@ The build process (`npm run build`) automatically:
 - **Gitignored generated files**: `js/theme.js`, `js/articles.js`, `js/article.js`, `data/`, `dist/`
 - **Vendor scripts**: `js/vendor/` — tracked in git (e.g. `marked.min.js`)
 - **File Extensions**: `.ts` for all TypeScript, `.html` for pages
+- **Guidelines**: See `rules/typescript-guidelines.md` for TypeScript patterns and `rules/blog_style_guidelines.md` for visual design conventions
 
 ## Important Context
 
