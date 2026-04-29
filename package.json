@@ -4,12 +4,14 @@
   "scripts": {
     "compile": "tsc -p tsconfig.browser.json",
     "convert": "npx tsx scripts/ConvertArticlesToJSON/convertArticlesToJson.ts",
-    "dev": "npm run compile && npm run convert && npx serve . -p 3000",
-    "build": "npm run compile && npm run convert && mkdir -p dist && cp -r index.html articles.html article.html about.html favicon.svg .nojekyll css js images data dist/"
+    "inject": "npx tsx scripts/InjectComponents/injectComponents.ts",
+    "prepare": "node scripts/prepareTemplates.js",
+    "dev": "npm run prepare && npm run compile && npm run convert && npm run inject && npx serve . -p 3000",
+    "build": "npm run prepare && npm run compile && npm run convert && npm run inject && mkdir -p dist && cp -r index.html articles.html article.html about.html favicon.svg .nojekyll css js images data dist/"
   },
   "devDependencies": {
     "gray-matter": "^4.0.3",
-    "tsx": "^4.19.2",
-    "typescript": "^6.0.2"
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
   }
 }
