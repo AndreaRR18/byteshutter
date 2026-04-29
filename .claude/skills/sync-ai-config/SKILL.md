@@ -1,18 +1,18 @@
 ---
 name: sync-ai-config
-description: Sync CLAUDE.MD and AGENTS.md so they stay identical. Use after updating either file. Accepts optional argument: "claude" (CLAUDE.MD is source) or "agents" (AGENTS.md is source).
+description: Copy one file over the other to keep CLAUDE.md and AGENTS.md identical. Use after updating either file. Accepts optional argument: "claude" (CLAUDE.md is source) or "agents" (AGENTS.md is source).
 ---
 
 # Sync AI Config Files
 
-`CLAUDE.MD` (Claude Code) and `AGENTS.md` (Mistral) must stay identical.
+`CLAUDE.md` (Claude Code) and `AGENTS.md` (Mistral) must stay identical.
 This skill overwrites the destination file with the source file's content.
 
 ## Steps
 
 1. **Determine the source of truth**
-   - Argument `claude` → source = `CLAUDE.MD`, destination = `AGENTS.md`
-   - Argument `agents` → source = `AGENTS.md`, destination = `CLAUDE.MD`
+   - Argument `claude` → source = `CLAUDE.md`, destination = `AGENTS.md`
+   - Argument `agents` → source = `AGENTS.md`, destination = `CLAUDE.md`
    - No argument → ask the user: "Which file is the source of truth? (claude / agents)"
 
 2. **Read the source file** using the Read tool
@@ -26,4 +26,9 @@ This skill overwrites the destination file with the source file's content.
 
 - Never modify content while syncing — this is a pure copy operation
 - Always read the source file fresh before writing — do not rely on memory
-- If either file does not exist, stop and tell the user
+- If the **source** file does not exist, stop and tell the user. A missing destination file is normal — just write it.
+- If the argument is anything other than `claude` or `agents`, treat it as if no argument was given and ask the user.
+
+## Path Resolution
+
+All paths are relative to the repository root. Resolve with `git rev-parse --show-toplevel` if needed.
