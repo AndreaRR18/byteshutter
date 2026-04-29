@@ -29,5 +29,12 @@ data/
 js/theme.js
 js/articles.js
 js/article.js
+
+# Generated HTML files (from templates/)
+/index.html
+/about.html
+/articles.html
+/article.html
+
 .superpowers/
 .worktrees/
