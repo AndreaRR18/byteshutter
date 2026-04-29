@@ -126,7 +126,8 @@ function processPage(pageName: string): string {
 
   // Replace placeholders in the template
   htmlContent = htmlContent
-    .replace('<!-- HEAD -->\n  <title><!-- TITLE --></title>', `<title>${pageConfig.title}</title>\n  ${processedHead.trim()}`)
+    .replace('<!-- HEAD -->', processedHead.trim())
+    .replace('<title><!-- TITLE --></title>', `<title>${pageConfig.title}</title>`)
     .replace('<!-- HEADER -->', processedHeader)
     .replace('<!-- FOOTER -->', footer);
 
@@ -136,32 +137,25 @@ function processPage(pageName: string): string {
 // Main function
 function main() {
   const pages = ['index.html', 'about.html', 'articles.html', 'article.html'];
-  
-  // First, copy templates to root if they don't exist
-  for (const pageName of pages) {
-    const templatePath = path.resolve('.', 'templates', pageName);
-    const outputPath = path.resolve('.', pageName);
-    
-    if (!fs.existsSync(outputPath)) {
-      if (fs.existsSync(templatePath)) {
-        fs.copyFileSync(templatePath, outputPath);
-        console.log(`  Copied template: ${pageName}`);
-      }
-    }
-  }
-  
+
+  let hasError = false;
+
   for (const pageName of pages) {
     try {
       console.log(`Processing: ${pageName}`);
       const processed = processPage(pageName);
-      
-      // Write to root directory
+
       const outputPath = path.resolve('.', pageName);
       fs.writeFileSync(outputPath, processed);
       console.log(`  Generated: ${pageName}`);
     } catch (error) {
       console.error(`  Error processing ${pageName}:`, error instanceof Error ? error.message : error);
+      hasError = true;
     }
+  }
+
+  if (hasError) {
+    process.exit(1);
   }
 
   console.log('\nComponent injection complete!');
