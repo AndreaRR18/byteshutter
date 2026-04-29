@@ -55,6 +55,8 @@ const config: Record<string, PageConfig> = {
     twitterTitle: 'Articles - ByteShutter',
     activeNav: 'articles'
   },
+  // article.html uses placeholder SEO values — article.js overwrites title, description,
+  // og:title, og:description, and og:url at runtime after loading the article JSON.
   'article.html': {
     title: 'ByteShutter',
     description: 'ByteShutter - Article',
@@ -79,7 +81,7 @@ function loadComponent(filePath: string): string {
 function replaceTemplateVariables(content: string, replacements: Record<string, string>): string {
   for (const [key, value] of Object.entries(replacements)) {
     const template = `{{${key}}}`;
-    content = content.replace(new RegExp(template, 'g'), value);
+    content = content.split(template).join(value);
   }
   return content;
 }
