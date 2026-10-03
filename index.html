@@ -36,9 +36,8 @@
   <link rel="preload" href="./fonts/lora-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./css/tokens.css" />
   <link rel="stylesheet" href="./css/main.css" />
-  <link rel="stylesheet" href="./css/legacy.css" />
 </head>
-<body class="legacy-layout">
+<body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <header class="header">
@@ -54,127 +53,144 @@
 
   <main id="main-content">
 
-    <!-- Hero Section -->
-    <div class="landing-hero">
-      <h1>Hey there, web surfer! Welcome to this little corner of the internet.</h1>
-      <div class="hero-image">
-        <img src="./images/highlighted/hero_image.jpg" alt="Hero - Tech and Photography" />
-      </div>
-      <p class="landing-description">
+    <!-- Hero -->
+    <section class="hero wrap" aria-labelledby="hero-title">
+      <p class="label label--accent">Code · Cameras · Books</p>
+      <h1 id="hero-title" class="hero-title">
+        Hey there, web surfer!
+        <span class="hero-title-sub">Welcome to this little corner of the internet.</span>
+      </h1>
+      <p class="hero-note">
         No analytics, no tracking, just a private place to explore.<br>
         Rest, read articles, see some photos, and share your thoughts only if you want to.
       </p>
-    </div>
+      <figure class="hero-art vf">
+        <img src="./images/highlighted/hero_image.jpg" alt="Illustration of a film camera next to a laptop on a desk, with the sea and orange hills outside the window" width="3014" height="1223" />
+      </figure>
+    </section>
 
-    <!-- About Me Section -->
-    <div class="landing-section">
-      <h2>About Me</h2>
-      <div class="landing-about-content">
-        <p>
-          By the way, I'm Andrea, nice to meet you! If you're curious about me,
-          there's a whole section on my background. But if you're too lazy to
-          read that, well, now you know my name!
-        </p>
+    <!-- 01 Latest writing -->
+    <section class="home-section wrap reveal" aria-labelledby="latest-title">
+      <header class="section-head">
+        <span class="section-index" aria-hidden="true">01</span>
+        <h2 id="latest-title">Latest writing</h2>
+        <a class="section-link label" href="./articles.html">All articles →</a>
+      </header>
+      <div id="latest-writing" class="frame-list" aria-live="polite">
+        <p class="state-message">Developing the latest frames…</p>
       </div>
-    </div>
+    </section>
 
-    <!-- Currently Reading Section -->
-    <div class="landing-section">
-      <h2>Currently Reading</h2>
-      <div class="currently-reading">
-        <div class="book-card">
-          <div class="book-cover">
-            <img src="./images/book_cover/ai_engineer_book_cover.jpg" alt="AI Engineering book cover" />
-          </div>
-          <div class="book-info">
-            <h3>AI Engineering: Building Applications with Foundation Models</h3>
-            <p class="book-author">by Chip Huyen</p>
-            <p class="book-note">
-              Why I'm reading it: We're living in the age of AI, so who am I to skip a book on the subject?
-            </p>
-          </div>
+    <!-- 02 Highlighted photo -->
+    <section class="home-section wrap reveal" aria-labelledby="photo-title">
+      <header class="section-head">
+        <span class="section-index" aria-hidden="true">02</span>
+        <h2 id="photo-title">Highlighted photo</h2>
+      </header>
+      <div class="filmstrip">
+        <figure class="film-frame vf">
+          <img src="./images/highlighted/orange_pattern.jpg" alt="A row of orange rental bikes knocked over on a city street while a runner jogs past" width="3036" height="1708" loading="lazy" />
+        </figure>
+      </div>
+      <div class="photo-meta">
+        <p class="label">NIKON D3100 · 2024-02-13</p>
+        <p class="photo-note">Orange, who will fix this mess?</p>
+      </div>
+    </section>
+
+    <!-- 03 Books -->
+    <section class="home-section wrap reveal" aria-labelledby="books-title">
+      <header class="section-head">
+        <span class="section-index" aria-hidden="true">03</span>
+        <h2 id="books-title">Books</h2>
+      </header>
+
+      <article class="reading-card">
+        <figure class="reading-cover vf">
+          <img src="./images/book_cover/ai_engineer_book_cover.jpg" alt="AI Engineering book cover" loading="lazy" />
+        </figure>
+        <div class="reading-info">
+          <p class="label label--accent">Currently reading</p>
+          <h3>AI Engineering: Building Applications with Foundation Models</h3>
+          <p class="reading-author">by Chip Huyen</p>
+          <p class="reading-note">
+            Why I'm reading it: We're living in the age of AI, so who am I to skip a book on the subject?
+          </p>
         </div>
-      </div>
-    </div>
+      </article>
 
-    <!-- Recently Read Section -->
-    <div class="landing-section">
-      <h2>Recently Read</h2>
-      <div class="recently-read">
-        <div class="book-grid">
+      <h3 class="label shelf-title">Recently read</h3>
+      <ul class="shelf">
+        <li class="shelf-item">
+          <figure class="shelf-cover vf">
+            <img src="./images/book_cover/the_pragmatic_programmer_book_cover.jpg" alt="The Pragmatic Programmer cover" loading="lazy" />
+          </figure>
+          <h4>The Pragmatic Programmer</h4>
+          <p class="shelf-author">David Thomas &amp; Andrew Hunt</p>
+          <details class="shelf-review">
+            <summary>About the book</summary>
+            <p>The Pragmatic Programmer: From Journeyman to Master is a book about computer programming and software engineering, written by Andrew Hunt and David Thomas and published in October 1999.</p>
+          </details>
+        </li>
+        <li class="shelf-item">
+          <figure class="shelf-cover vf">
+            <img src="./images/book_cover/philosophy_software_designer_book_cover.jpg" alt="A Philosophy of Software Design cover" loading="lazy" />
+          </figure>
+          <h4>A Philosophy of Software Design</h4>
+          <p class="shelf-author">John Ousterhout</p>
+          <details class="shelf-review">
+            <summary>About the book</summary>
+            <p>"A Philosophy of Software Design" by John Ousterhout offers timeless principles for creating clean, maintainable code. It emphasizes deep modules, managing complexity, and thoughtful abstractions, making it a must-read for developers aiming to write better software.</p>
+          </details>
+        </li>
+        <li class="shelf-item">
+          <figure class="shelf-cover vf">
+            <img src="./images/book_cover/oneThousandNineHundredEightyFourBookCover.jpg" alt="1984 cover" loading="lazy" />
+          </figure>
+          <h4>1984</h4>
+          <p class="shelf-author">George Orwell</p>
+          <details class="shelf-review">
+            <summary>About the book</summary>
+            <p>George Orwell's 1984 is a dystopian masterpiece exploring themes of totalitarianism, surveillance, and the manipulation of truth. Set in a bleak future, it follows Winston Smith as he struggles against an oppressive regime that seeks to control every aspect of life.</p>
+          </details>
+        </li>
+      </ul>
+    </section>
 
-          <div class="mini-book-card">
-            <img src="./images/book_cover/the_pragmatic_programmer_book_cover.jpg" alt="The Pragmatic Programmer cover" />
-            <h4>The Pragmatic Programmer</h4>
-            <p class="mini-book-author">David Thomas &amp; Andrew Hunt</p>
-            <p class="mini-book-review">
-              The Pragmatic Programmer: From Journeyman to Master is a book about computer programming and software engineering, written by Andrew Hunt and David Thomas and published in October 1999.
-            </p>
-          </div>
+    <!-- 04 Interesting articles -->
+    <section class="home-section wrap reveal" aria-labelledby="links-title">
+      <header class="section-head">
+        <span class="section-index" aria-hidden="true">04</span>
+        <h2 id="links-title">Interesting articles</h2>
+      </header>
+      <ul class="link-list">
+        <li>
+          <a href="https://blog.pragmaticengineer.com/stack-overflow-is-almost-dead/" target="_blank" rel="noopener noreferrer">Stack overflow is almost dead</a>
+          <p class="link-note">Thanks for helping me to start my journey!</p>
+        </li>
+        <li>
+          <a href="https://tidyfirst.substack.com/p/canon-tdd" target="_blank" rel="noopener noreferrer">Canon TDD</a>
+          <p class="link-note">It might take a mental shift, but it can be worth it!</p>
+        </li>
+        <li>
+          <a href="https://martinfowler.com/articles/2025-nature-abstraction.html" target="_blank" rel="noopener noreferrer">LLMs bring new nature of abstraction</a>
+          <p class="link-note">LLMs are really transforming software development with non-determinism, marking a shift as big as moving from assembly to high-level languages.</p>
+        </li>
+      </ul>
+    </section>
 
-          <div class="mini-book-card">
-            <img src="./images/book_cover/philosophy_software_designer_book_cover.jpg" alt="A Philosophy of Software Design cover" />
-            <h4>A Philosophy of Software Design</h4>
-            <p class="mini-book-author">John Ousterhout</p>
-            <p class="mini-book-review">
-              "A Philosophy of Software Design" by John Ousterhout offers timeless principles for creating clean, maintainable code. It emphasizes deep modules, managing complexity, and thoughtful abstractions, making it a must-read for developers aiming to write better software.
-            </p>
-          </div>
-
-          <div class="mini-book-card">
-            <img src="./images/book_cover/oneThousandNineHundredEightyFourBookCover.jpg" alt="1984 cover" />
-            <h4>1984</h4>
-            <p class="mini-book-author">George Orwell</p>
-            <p class="mini-book-review">
-              George Orwell's 1984 is a dystopian masterpiece exploring themes of totalitarianism, surveillance, and the manipulation of truth. Set in a bleak future, it follows Winston Smith as he struggles against an oppressive regime that seeks to control every aspect of life.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <!-- Interesting Articles Section -->
-    <div class="landing-section">
-      <h2>Interesting Articles</h2>
-      <div class="landing-articles-list">
-        <ul>
-          <li>
-            <a href="https://blog.pragmaticengineer.com/stack-overflow-is-almost-dead/" target="_blank" rel="noopener noreferrer">
-              Stack overflow is almost dead
-            </a>
-            <span> - Thanks for helping me to start my journey!</span>
-          </li>
-          <li>
-            <a href="https://tidyfirst.substack.com/p/canon-tdd" target="_blank" rel="noopener noreferrer">
-              Canon TDD
-            </a>
-            <span> - It might take a mental shift, but it can be worth it!</span>
-          </li>
-          <li>
-            <a href="https://martinfowler.com/articles/2025-nature-abstraction.html" target="_blank" rel="noopener noreferrer">
-              LLMs bring new nature of abstraction
-            </a>
-            <span>
-              - LLMs are really transforming software development with non-determinism, marking a shift as big as moving from assembly to high-level languages.
-            </span>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- Highlighted Photo Section -->
-    <div class="landing-section">
-      <h2>Highlighted Photo</h2>
-      <div class="highlighted-photo">
-        <div class="photo-container">
-          <img src="./images/highlighted/orange_pattern.jpg" alt="Highlighted photography work" />
-        </div>
-        <div class="photo-info">
-          <p>Orange, who will fix this mess?</p>
-        </div>
-      </div>
-    </div>
+    <!-- 05 About -->
+    <section class="home-section wrap reveal" aria-labelledby="about-title">
+      <header class="section-head">
+        <span class="section-index" aria-hidden="true">05</span>
+        <h2 id="about-title">About me</h2>
+      </header>
+      <p class="about-teaser">
+        By the way, I'm Andrea, nice to meet you! If you're curious about me,
+        there's <a href="./about.html">a whole section on my background</a>. But if you're too lazy to
+        read that, well, now you know my name!
+      </p>
+    </section>
 
   </main>
 
@@ -186,5 +202,6 @@
   </footer>
 
   <script type="module" src="./js/theme.js"></script>
+  <script type="module" src="./js/home.js"></script>
 </body>
 </html>

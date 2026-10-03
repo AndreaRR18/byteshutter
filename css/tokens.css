@@ -74,6 +74,7 @@
     --border:          #2e2822;   /* decorative dividers */
     --border-strong:   #6b6355;   /* outlines of interactive components */
     --film:            #0b0908;   /* film-strip base (dark in both themes) */
+    --film-hole:       #2b2520;   /* sprocket holes cut into the film */
     --header-bg:       color-mix(in srgb, var(--bg-primary) 88%, transparent);
     --grain-opacity:   0.07;
 
@@ -157,6 +158,7 @@
     --accent-contrast: #f3ecdc;
     --border:          #d6cdb6;
     --border-strong:   #8f8573;
+    --film-hole:       #f3ecdc;
     --grain-opacity:   0.05;
 }
 

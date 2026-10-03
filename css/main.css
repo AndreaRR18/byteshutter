@@ -613,4 +613,393 @@ body.page-article::before {
     }
 }
 
-/* @@next-section — page sections are appended below this marker by Tasks 3–5 */
+/* -------------------------------------------------------------
+   6. Frame rows (home "Latest writing" and the articles list)
+   ------------------------------------------------------------- */
+.frame-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.frame-row {
+    --vf-inset: 0.25rem;
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr) auto;
+    gap: var(--space-lg);
+    align-items: start;
+    padding: var(--space-xl) var(--space-md);
+    border-bottom: 1px solid var(--border);
+    color: inherit;
+}
+
+.frame-row:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+.frame-no {
+    padding-top: 0.35em;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+}
+
+.frame-body {
+    min-width: 0;
+}
+
+.frame-body .label {
+    margin-bottom: var(--space-sm);
+}
+
+.frame-title {
+    margin: 0 0 var(--space-sm);
+    font-size: var(--font-size-h3);
+    transition: color var(--transition-fast);
+}
+
+.frame-row:hover .frame-title,
+.frame-row:focus-visible .frame-title {
+    color: var(--accent);
+}
+
+.frame-excerpt {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+.frame-arrow {
+    padding-top: 0.2em;
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    transition: color var(--transition-fast);
+}
+
+.frame-row:hover .frame-arrow,
+.frame-row:focus-visible .frame-arrow {
+    color: var(--accent);
+}
+
+.frame-row--empty .frame-no,
+.frame-row--empty .frame-title {
+    color: var(--text-muted);
+}
+
+.frame-row--empty .frame-title {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-small);
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+@media (max-width: 767px) {
+    .frame-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+        padding: var(--space-lg) var(--space-sm);
+    }
+
+    .frame-arrow {
+        display: none;
+    }
+}
+
+/* -------------------------------------------------------------
+   7. Home
+   ------------------------------------------------------------- */
+.hero {
+    padding-top: var(--space-3xl);
+    padding-bottom: var(--space-2xl);
+}
+
+.hero-title {
+    margin: var(--space-md) 0 var(--space-xl);
+    font-size: var(--font-size-display);
+    line-height: var(--line-height-display);
+    letter-spacing: -0.035em;
+}
+
+.hero-title-sub {
+    color: var(--text-muted);
+}
+
+.hero-note {
+    max-width: 52ch;
+    margin-bottom: var(--space-2xl);
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+}
+
+.hero-art {
+    --vf-inset: 1rem;
+    margin: 0;
+}
+
+.hero-art img {
+    width: 100%;
+}
+
+.home-section {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+}
+
+.section-head {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-md);
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--border);
+}
+
+.section-head h2 {
+    margin: 0;
+}
+
+.section-index {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-label);
+    letter-spacing: var(--tracking-label);
+    color: var(--accent);
+}
+
+.section-link {
+    margin-left: auto;
+    color: var(--accent);
+    white-space: nowrap;
+}
+
+/* Photo: film strip */
+.filmstrip {
+    position: relative;
+    display: flex;
+    gap: var(--space-md);
+    padding: 2.25rem var(--space-lg);
+    overflow-x: auto;
+    background-color: var(--film);
+}
+
+.filmstrip::before,
+.filmstrip::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 0.75rem;
+    pointer-events: none;
+    background: repeating-linear-gradient(90deg, var(--film-hole) 0 0.875rem, transparent 0.875rem 1.75rem);
+}
+
+.filmstrip::before {
+    top: 0.75rem;
+}
+
+.filmstrip::after {
+    bottom: 0.75rem;
+}
+
+.film-frame {
+    --vf-inset: 0.75rem;
+    flex: 0 0 auto;
+    width: min(100%, 52rem);
+    margin: 0;
+}
+
+.film-frame img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.photo-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-sm) var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.photo-note {
+    margin: 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* Books */
+.reading-card {
+    display: grid;
+    grid-template-columns: 12rem minmax(0, 1fr);
+    gap: var(--space-xl);
+    align-items: center;
+    padding-bottom: var(--space-2xl);
+}
+
+.reading-cover {
+    --vf-inset: 0.5rem;
+    margin: 0;
+}
+
+.reading-cover img,
+.shelf-cover img {
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+}
+
+.reading-info h3 {
+    margin: var(--space-sm) 0;
+}
+
+.reading-author,
+.shelf-author {
+    margin-bottom: var(--space-md);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-small);
+    color: var(--text-muted);
+}
+
+.reading-note {
+    color: var(--text-secondary);
+}
+
+.shelf-title {
+    margin: 0 0 var(--space-lg);
+}
+
+.shelf {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(10rem, 13rem));
+    justify-content: start;
+    gap: var(--space-xl) var(--space-lg);
+}
+
+.shelf-item {
+    margin: 0;
+}
+
+.shelf-cover {
+    --vf-inset: 0.5rem;
+    margin: 0;
+}
+
+.shelf-item h4 {
+    margin: var(--space-md) 0 var(--space-xs);
+    line-height: 1.25;
+}
+
+.shelf-author {
+    margin-bottom: var(--space-sm);
+}
+
+.shelf-review summary {
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-label);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.shelf-review summary::-webkit-details-marker {
+    display: none;
+}
+
+.shelf-review summary::after {
+    content: " +";
+}
+
+.shelf-review[open] summary::after {
+    content: " –";
+}
+
+.shelf-review p {
+    margin-top: var(--space-sm);
+    font-size: var(--font-size-small);
+    color: var(--text-secondary);
+}
+
+/* Links */
+.link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.link-list li {
+    margin: 0;
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.link-list a {
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h4);
+    font-weight: var(--font-weight-heading);
+}
+
+.link-list a::after {
+    content: " ↗";
+    font-family: var(--font-mono);
+    font-weight: 400;
+}
+
+.link-note {
+    max-width: 60ch;
+    margin: var(--space-xs) 0 0;
+    color: var(--text-secondary);
+}
+
+.about-teaser {
+    max-width: 40ch;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 767px) {
+    .hero {
+        padding-top: var(--space-2xl);
+    }
+
+    .hero-art img {
+        min-height: 12.5rem;
+        object-fit: cover;
+        object-position: 38% center;
+    }
+
+    .filmstrip {
+        padding: 1.75rem var(--space-sm);
+    }
+
+    .filmstrip::before {
+        top: 0.5rem;
+    }
+
+    .filmstrip::after {
+        bottom: 0.5rem;
+    }
+
+    .reading-card {
+        grid-template-columns: 1fr;
+    }
+
+    .reading-cover {
+        max-width: 12rem;
+    }
+
+    .shelf {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-lg) var(--space-md);
+    }
+}
+
+/* @@next-section — page sections are appended below this marker by Tasks 4–5 */
