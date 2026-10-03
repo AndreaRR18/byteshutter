@@ -27,6 +27,36 @@ function applyTheme(t: Theme): void {
   }
 }
 
+interface ViewTransitionLike {
+  finished: Promise<unknown>;
+}
+
+type DocumentWithTransitions = Document & {
+  startViewTransition?: (update: () => void) => ViewTransitionLike;
+};
+
+/** Switches theme with an iris reveal from the toggle where the browser supports view transitions. */
+function switchTheme(next: Theme, origin: HTMLElement | null): void {
+  const doc = document as DocumentWithTransitions;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (typeof doc.startViewTransition !== 'function' || reduceMotion) {
+    applyTheme(next);
+    return;
+  }
+
+  const root = document.documentElement;
+  if (origin) {
+    const rect = origin.getBoundingClientRect();
+    root.style.setProperty('--iris-x', Math.round(rect.left + rect.width / 2) + 'px');
+    root.style.setProperty('--iris-y', Math.round(rect.top + rect.height / 2) + 'px');
+  }
+
+  root.classList.add('theme-vt');
+  const cleanup = function (): void { root.classList.remove('theme-vt'); };
+  doc.startViewTransition(function (): void { applyTheme(next); }).finished.then(cleanup, cleanup);
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   applyTheme(getInitialTheme());
 
@@ -34,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (btn) {
     btn.addEventListener('click', function () {
       const current = document.documentElement.getAttribute('data-theme') || 'light';
-      applyTheme(current === 'dark' ? 'light' : 'dark');
+      switchTheme(current === 'dark' ? 'light' : 'dark', btn);
     });
   }
 

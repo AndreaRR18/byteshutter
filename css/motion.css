@@ -1,0 +1,98 @@
+/* =============================================================
+   ByteShutter — Motion ("Darkroom")
+   Everything here is progressive enhancement: delete this file and
+   the site still works. Animate transform, opacity and clip-path only.
+   ============================================================= */
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Cross-document page transitions: header stays put, content crossfades */
+    @view-transition {
+        navigation: auto;
+    }
+
+    .header {
+        view-transition-name: site-header;
+    }
+
+    ::view-transition-old(root),
+    ::view-transition-new(root) {
+        animation-duration: 200ms;
+    }
+
+    /* Viewfinder brackets snap in */
+    .vf-hover::after {
+        transition:
+            opacity 120ms ease-out,
+            transform 180ms var(--ease-snap);
+    }
+
+    /* Aperture toggle turns when the theme changes */
+    .theme-toggle svg {
+        transition: transform 450ms var(--ease-snap);
+    }
+
+    /* Aperture iris reveal for the theme switch (class added by theme.ts) */
+    .theme-vt body {
+        transition: none;
+    }
+
+    .theme-vt::view-transition-old(root),
+    .theme-vt::view-transition-new(root) {
+        animation: none;
+        mix-blend-mode: normal;
+    }
+
+    .theme-vt::view-transition-new(root) {
+        animation: iris-open 520ms var(--ease-snap) both;
+    }
+}
+
+@keyframes iris-open {
+    from {
+        clip-path: circle(0 at var(--iris-x, 50%) var(--iris-y, 50%));
+    }
+
+    to {
+        clip-path: circle(150vmax at var(--iris-x, 50%) var(--iris-y, 50%));
+    }
+}
+
+/* Scroll-driven: reading progress and section reveals */
+@supports (animation-timeline: scroll()) {
+    @media (prefers-reduced-motion: no-preference) {
+        .read-progress {
+            display: block;
+            transform: scaleX(0);
+            animation: read-progress linear both;
+            animation-timeline: scroll(root block);
+        }
+
+        .reveal {
+            animation: reveal linear both;
+            animation-timeline: view();
+            animation-range: entry 0% entry 30%;
+        }
+    }
+}
+
+@keyframes read-progress {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+@keyframes reveal {
+    from {
+        opacity: 0;
+        transform: translateY(1.5rem);
+    }
+
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
