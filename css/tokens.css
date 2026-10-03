@@ -1,0 +1,176 @@
+/* =============================================================
+   ByteShutter — Design Tokens ("Darkroom")
+   Dark is the signature theme and the default; [data-theme="light"]
+   is the paper variant. Colour contrast is checked by:
+       npm run check:contrast
+   (that script reads only the hex values in the two theme blocks).
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   Fonts — self-hosted, SIL Open Font License (see fonts/LICENSE-*.txt)
+   ------------------------------------------------------------- */
+@font-face {
+    font-family: 'Bricolage Grotesque';
+    src: url('../fonts/bricolage-grotesque-latin-wght-normal.woff2') format('woff2');
+    font-weight: 200 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('../fonts/lora-latin-400-normal.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('../fonts/lora-latin-600-normal.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lora';
+    src: url('../fonts/lora-latin-400-italic.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../fonts/jetbrains-mono-latin-400-normal.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../fonts/jetbrains-mono-latin-600-normal.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* -------------------------------------------------------------
+   Dark theme (signature, default)
+   ------------------------------------------------------------- */
+:root {
+    color-scheme: dark;
+
+    /* --- COLOUR --- */
+    --bg-primary:      #14110f;   /* warm ink */
+    --bg-secondary:    #1d1915;   /* surfaces: code, skeletons */
+    --text-primary:    #f1e9d8;   /* paper */
+    --text-secondary:  #cdc4b1;
+    --text-muted:      #a39a88;   /* labels, metadata */
+    --accent:          #ff6b1f;   /* safelight orange — the only loud colour */
+    --accent-contrast: #14110f;   /* text on accent fills */
+    --border:          #2e2822;   /* decorative dividers */
+    --border-strong:   #6b6355;   /* outlines of interactive components */
+    --film:            #0b0908;   /* film-strip base (dark in both themes) */
+    --header-bg:       color-mix(in srgb, var(--bg-primary) 88%, transparent);
+    --grain-opacity:   0.07;
+
+    /* --- TYPOGRAPHY --- */
+    --font-heading: 'Bricolage Grotesque', 'Helvetica Neue', Arial, sans-serif;
+    --font-body:    'Lora', Georgia, 'Times New Roman', serif;
+    --font-mono:    'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+    --font-size-display: clamp(2.75rem, 1.5rem + 5.5vw, 5rem);
+    --font-size-h1:      clamp(2.25rem, 1.5rem + 3.2vw, 3.75rem);
+    --font-size-h2:      clamp(1.625rem, 1.25rem + 1.6vw, 2.5rem);
+    --font-size-h3:      clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+    --font-size-h4:      1.125rem;
+    --font-size-body:    1.0625rem;
+    --font-size-small:   0.875rem;
+    --font-size-label:   0.75rem;
+
+    --font-weight-heading: 700;
+
+    --line-height-display: 1.02;
+    --line-height-h1:      1.08;
+    --line-height-h2:      1.15;
+    --line-height-h3:      1.25;
+    --line-height-body:    1.7;
+    --line-height-small:   1.5;
+
+    --tracking-label: 0.06em;
+
+    /* --- SPACING (8px scale) --- */
+    --space-xs:  0.25rem;
+    --space-sm:  0.5rem;
+    --space-md:  1rem;
+    --space-lg:  1.5rem;
+    --space-xl:  2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+
+    /* --- LAYOUT --- */
+    --max-width-wide:             1100px;
+    --max-width-article:          65ch;
+    --max-width-content:          768px;
+    --padding-horizontal-desktop: 2rem;
+    --padding-horizontal-mobile:  1rem;
+    --section-spacing:            4rem;
+    --header-height:              64px;
+
+    /* --- VIEWFINDER (corner brackets) --- */
+    --vf-size:   1.25rem;
+    --vf-weight: 2px;
+    --vf-inset:  0.75rem;
+    --vf-color:  var(--accent);
+
+    /* --- MOTION --- */
+    --transition-fast:  160ms ease;
+    --transition-theme: 200ms ease;
+    --ease-snap:        cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    /* --- SHAPE --- */
+    --radius-full: 9999px;
+}
+
+@media (max-width: 767px) {
+    :root {
+        --font-size-body: 1rem;
+        --header-height:  56px;
+    }
+}
+
+/* -------------------------------------------------------------
+   Light theme ("paper")
+   ------------------------------------------------------------- */
+[data-theme="light"] {
+    color-scheme: light;
+
+    --bg-primary:      #f3ecdc;
+    --bg-secondary:    #ebe3cf;
+    --text-primary:    #17130f;
+    --text-secondary:  #3d362b;
+    --text-muted:      #6b6253;
+    --accent:          #b03a0a;
+    --accent-contrast: #f3ecdc;
+    --border:          #d6cdb6;
+    --border-strong:   #8f8573;
+    --grain-opacity:   0.05;
+}
+
+/* -------------------------------------------------------------
+   LEGACY ALIASES — only for css/legacy.css; removed in Task 5
+   ------------------------------------------------------------- */
+:root {
+    --accent-link:      var(--accent);
+    --border-dashed:    var(--border);
+    --border-solid:     1px solid var(--border);
+    --border-divider:   1px solid var(--border);
+    --font-ui:          var(--font-mono);
+    --font-size-kicker: var(--font-size-label);
+    --tracking-kicker:  var(--tracking-label);
+    --transition-base:  300ms ease-out;
+    --radius-minimal:   0;
+}
