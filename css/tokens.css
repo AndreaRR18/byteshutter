@@ -173,4 +173,5 @@
     --tracking-kicker:  var(--tracking-label);
     --transition-base:  300ms ease-out;
     --radius-minimal:   0;
+    --font-weight-h1:   var(--font-weight-heading);
 }

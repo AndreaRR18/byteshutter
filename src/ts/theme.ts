@@ -2,13 +2,10 @@
 
 type Theme = 'dark' | 'light';
 
-const MOON_SVG = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-</svg>`;
-
-const SUN_SVG = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-  <circle cx="12" cy="12" r="5" />
-  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+const APERTURE_SVG = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <circle cx="12" cy="12" r="10" />
+  <path d="M12 16.5L8.1 14.25L8.1 9.75L12 7.5L15.9 9.75L15.9 14.25Z" />
+  <path d="M12 16.5L5.97 19.98M8.1 14.25L2.07 10.77M8.1 9.75V2.79M12 7.5L18.03 4.02M15.9 9.75L21.93 13.23M15.9 14.25V21.21" />
 </svg>`;
 
 function getInitialTheme(): Theme {
@@ -25,7 +22,7 @@ function applyTheme(t: Theme): void {
 
   const btn = document.getElementById('theme-toggle');
   if (btn) {
-    btn.innerHTML = t === 'dark' ? SUN_SVG : MOON_SVG;
+    btn.innerHTML = APERTURE_SVG;
     btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   }
 }
