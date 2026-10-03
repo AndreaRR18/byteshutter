@@ -115,7 +115,6 @@
     /* --- LAYOUT --- */
     --max-width-wide:             1100px;
     --max-width-article:          65ch;
-    --max-width-content:          768px;
     --padding-horizontal-desktop: 2rem;
     --padding-horizontal-mobile:  1rem;
     --section-spacing:            4rem;
@@ -160,20 +159,4 @@
     --border-strong:   #8f8573;
     --film-hole:       #f3ecdc;
     --grain-opacity:   0.05;
-}
-
-/* -------------------------------------------------------------
-   LEGACY ALIASES — only for css/legacy.css; removed in Task 5
-   ------------------------------------------------------------- */
-:root {
-    --accent-link:      var(--accent);
-    --border-dashed:    var(--border);
-    --border-solid:     1px solid var(--border);
-    --border-divider:   1px solid var(--border);
-    --font-ui:          var(--font-mono);
-    --font-size-kicker: var(--font-size-label);
-    --tracking-kicker:  var(--tracking-label);
-    --transition-base:  300ms ease-out;
-    --radius-minimal:   0;
-    --font-weight-h1:   var(--font-weight-heading);
 }

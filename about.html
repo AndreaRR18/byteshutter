@@ -32,9 +32,8 @@
   <link rel="preload" href="./fonts/lora-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./css/tokens.css" />
   <link rel="stylesheet" href="./css/main.css" />
-  <link rel="stylesheet" href="./css/legacy.css" />
 </head>
-<body class="legacy-layout">
+<body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <header class="header">
@@ -49,15 +48,15 @@
   </header>
 
   <main id="main-content">
-    <div class="about-container">
-      <div class="about-content">
+    <div class="wrap about-content">
 
-        <div class="about-header">
+        <header class="about-header">
+          <p class="label label--accent">About</p>
           <h1>Hello, I'm Andrea!</h1>
-          <div class="about-subtitle">
+          <p class="about-subtitle">
             Nice to meet you, and thank you for being interested in who I am.
-          </div>
-        </div>
+          </p>
+        </header>
 
         <div class="about-body">
 
@@ -81,13 +80,13 @@
                   my career, and it continues to do so.
                 </p>
               </div>
-              <div class="intro-image">
+              <figure class="intro-image vf">
                 <img
                   src="./images/about/me_thinker.jpg"
                   alt="Andrea - Tech and Photography"
                   class="profile-image"
                 />
-              </div>
+              </figure>
             </div>
 
             <div class="personality-section">
@@ -137,100 +136,18 @@
               reasons that I'd like to discuss if you ever text me.
             </p>
 
-            <div class="skills-grid">
-
-              <div class="skill-category">
-                <h3>Languages</h3>
-                <ul>
-                  <li>Swift</li>
-                  <li>Kotlin</li>
-                </ul>
-              </div>
-
-              <div class="skill-category">
-                <h3>Frameworks</h3>
-                <ul>
-                  <li>SwiftUI</li>
-                  <li>UIKit</li>
-                  <li>Jetpack Compose</li>
-                </ul>
-              </div>
-
-              <div class="skill-category">
-                <h3>Development Environment</h3>
-                <ul>
-                  <li>Xcode</li>
-                  <li>Android Studio</li>
-                </ul>
-              </div>
-
-              <div class="skill-category">
-                <h3>Version Control</h3>
-                <ul>
-                  <li>Git</li>
-                  <li>GitHub</li>
-                  <li>GitLab</li>
-                </ul>
-              </div>
-
-              <div class="skill-category">
-                <h3>Dependencies</h3>
-                <ul>
-                  <li>Swift Package Manager</li>
-                  <li>Gradle</li>
-                  <li>Carthage</li>
-                  <li>CocoaPods</li>
-                  <li>Maven</li>
-                </ul>
-              </div>
-
-              <div class="skill-category">
-                <h3>Networking</h3>
-                <ul>
-                  <li>URLSession</li>
-                  <li>Alamofire</li>
-                  <li>Retrofit</li>
-                  <li>OkHttp</li>
-                </ul>
-              </div>
-
-              <div class="skill-category">
-                <h3>Testing</h3>
-                <ul>
-                  <li>XCTest</li>
-                  <li>JUnit</li>
-                  <li>Espresso</li>
-                  <li>Mockito</li>
-                </ul>
-              </div>
-
-              <div class="skill-category">
-                <h3>Database</h3>
-                <ul>
-                  <li>Core Data</li>
-                  <li>Realm</li>
-                  <li>Room</li>
-                </ul>
-              </div>
-
-              <div class="skill-category">
-                <h3>Analytics</h3>
-                <ul>
-                  <li>Sentry</li>
-                  <li>Firebase Analytics</li>
-                </ul>
-              </div>
-
-              <div class="skill-category">
-                <h3>CI/CD</h3>
-                <ul>
-                  <li>Xcode Cloud</li>
-                  <li>Fastlane</li>
-                  <li>GitHub Actions</li>
-                </ul>
-              </div>
-
-            </div>
+            <dl class="spec-sheet">
+              <div class="spec-row"><dt>Languages</dt><dd><ul class="spec-list"><li>Swift</li><li>Kotlin</li></ul></dd></div>
+              <div class="spec-row"><dt>Frameworks</dt><dd><ul class="spec-list"><li>SwiftUI</li><li>UIKit</li><li>Jetpack Compose</li></ul></dd></div>
+              <div class="spec-row"><dt>Development Environment</dt><dd><ul class="spec-list"><li>Xcode</li><li>Android Studio</li></ul></dd></div>
+              <div class="spec-row"><dt>Version Control</dt><dd><ul class="spec-list"><li>Git</li><li>GitHub</li><li>GitLab</li></ul></dd></div>
+              <div class="spec-row"><dt>Dependencies</dt><dd><ul class="spec-list"><li>Swift Package Manager</li><li>Gradle</li><li>Carthage</li><li>CocoaPods</li><li>Maven</li></ul></dd></div>
+              <div class="spec-row"><dt>Networking</dt><dd><ul class="spec-list"><li>URLSession</li><li>Alamofire</li><li>Retrofit</li><li>OkHttp</li></ul></dd></div>
+              <div class="spec-row"><dt>Testing</dt><dd><ul class="spec-list"><li>XCTest</li><li>JUnit</li><li>Espresso</li><li>Mockito</li></ul></dd></div>
+              <div class="spec-row"><dt>Database</dt><dd><ul class="spec-list"><li>Core Data</li><li>Realm</li><li>Room</li></ul></dd></div>
+              <div class="spec-row"><dt>Analytics</dt><dd><ul class="spec-list"><li>Sentry</li><li>Firebase Analytics</li></ul></dd></div>
+              <div class="spec-row"><dt>CI/CD</dt><dd><ul class="spec-list"><li>Xcode Cloud</li><li>Fastlane</li><li>GitHub Actions</li></ul></dd></div>
+            </dl>
           </div>
 
           <!-- Philosophy Section -->
@@ -278,19 +195,18 @@
 
             <div class="contact-links">
               <a href="mailto:aikido.violin6i@icloud.com" class="contact-link">
-                <span>📧 Email</span>
+                <span>Email</span>
               </a>
               <a href="https://github.com/AndreaRR18" class="contact-link" target="_blank" rel="noopener noreferrer">
-                <span>🐙 GitHub</span>
+                <span>GitHub</span>
               </a>
               <a href="https://www.linkedin.com/in/andrea-rinaldi-707322b7/" class="contact-link" target="_blank" rel="noopener noreferrer">
-                <span>💼 LinkedIn</span>
+                <span>LinkedIn</span>
               </a>
             </div>
           </div>
 
         </div>
-      </div>
     </div>
   </main>
 

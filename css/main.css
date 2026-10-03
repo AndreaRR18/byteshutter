@@ -1247,4 +1247,198 @@ body.page-article::before {
     }
 }
 
-/* @@next-section — the About section is appended below this marker by Task 5 */
+/* -------------------------------------------------------------
+   10. About
+   ------------------------------------------------------------- */
+.about-header {
+    padding: var(--space-3xl) 0 var(--space-2xl);
+}
+
+.about-header h1 {
+    margin: var(--space-md) 0 var(--space-lg);
+    font-size: var(--font-size-display);
+    line-height: var(--line-height-display);
+    letter-spacing: -0.035em;
+}
+
+.about-subtitle {
+    max-width: 40ch;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+}
+
+.about-section {
+    padding: var(--space-2xl) 0;
+    border-top: 1px solid var(--border);
+}
+
+.about-section:first-child {
+    border-top: 0;
+    padding-top: 0;
+}
+
+.about-section h2 {
+    margin-bottom: var(--space-lg);
+}
+
+.intro-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 18rem;
+    gap: var(--space-2xl);
+    align-items: start;
+    margin-bottom: var(--space-2xl);
+}
+
+.intro-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.intro-text p,
+.personality-section p {
+    margin: 0;
+}
+
+.intro-image {
+    --vf-inset: 0.75rem;
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-xl));
+    margin: 0;
+}
+
+.profile-image {
+    width: 100%;
+    height: auto;
+}
+
+.personality-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    padding: var(--space-lg) 0 var(--space-lg) var(--space-lg);
+    border-left: 3px solid var(--accent);
+}
+
+.personality-section strong {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.inline-link {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* Spec sheet: key/value rows */
+.spec-sheet {
+    margin: var(--space-xl) 0 0;
+    border-top: 1px solid var(--border-strong);
+}
+
+.spec-row {
+    display: grid;
+    grid-template-columns: 14rem minmax(0, 1fr);
+    gap: var(--space-md);
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.spec-row dt {
+    font-family: var(--font-mono);
+    font-size: var(--font-size-label);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--accent);
+}
+
+.spec-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs) 0;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.spec-list li {
+    margin: 0;
+    color: var(--text-secondary);
+}
+
+.spec-list li:not(:last-child)::after {
+    content: "·";
+    margin: 0 var(--space-sm);
+    color: var(--text-muted);
+}
+
+.about-section blockquote {
+    max-width: 36ch;
+    margin: var(--space-xl) 0;
+    padding: 0 0 0 var(--space-lg);
+    font-family: var(--font-heading);
+    font-size: var(--font-size-h3);
+    font-style: normal;
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+
+.contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+}
+
+.contact-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 9rem;
+    min-height: 2.75rem;
+    padding: var(--space-md) var(--space-lg);
+    border: 1px solid var(--border-strong);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-label);
+    font-weight: 600;
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--text-primary);
+    transition:
+        color var(--transition-fast),
+        border-color var(--transition-fast);
+}
+
+.contact-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    text-decoration: none;
+}
+
+@media (max-width: 767px) {
+    .about-header {
+        padding-top: var(--space-2xl);
+    }
+
+    .intro-section {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .intro-image {
+        position: static;
+        order: -1;
+        max-width: 14rem;
+    }
+
+    .spec-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-xs);
+    }
+
+    .contact-link {
+        flex: 1 1 8rem;
+    }
+}
