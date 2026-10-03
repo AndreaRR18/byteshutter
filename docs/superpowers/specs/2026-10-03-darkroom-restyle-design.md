@@ -144,3 +144,14 @@ All motion is progressive enhancement, wrapped in `prefers-reduced-motion: no-pr
 - **Font files must be downloaded** (Bricolage Grotesque, Lora, JetBrains Mono — all SIL OFL). This is done in step 1 from the fonts' official sources; licence files are kept alongside the woff2s.
 - **Kitsch risk.** The camera motif is limited to five named elements and kept off article prose; additions beyond them need a reason.
 - **Old rules are being retired.** Until step 7 lands, the `byteshutter-consistency` skill still describes the Semafor system and will contradict the new CSS.
+
+## 11. Implementation notes (deviations from the draft)
+
+- **Hero layout:** the hero illustration is a 2.46:1 panorama, so the hero is a stacked composition (label, headline, note, then the full-width illustration) instead of two columns; two columns would have cropped the artwork.
+- **Shared TypeScript module:** `src/ts/feed.ts` (feed fetch, frame numbers, date format, row markup, HTML escaping) is shared by `home.ts`, `articles.ts` and `article.ts`.
+- **Books:** each recently-read book keeps its full description inside a native `<details>` ("About the book") so the row stays compact without losing copy; on phones the shelf is two columns.
+- **About:** the "What I Do" skill cards became a semantic `<dl>` spec sheet; the emoji on the three contact links were removed to match the mono labels.
+- **Film strip:** sprocket holes use their own `--film-hole` token (a lighter tone in dark mode) because holes in the page colour were nearly invisible on the near-black film.
+- **Light accent contrast:** verified with `npm run check:contrast`.
+- **Temporary `css/legacy.css`:** existed only while pages were converted; deleted in the About-page commit.
+- **Not changed:** `images/highlighted/hero_image.jpg` is a 5.2 MB PNG saved with a `.jpg` extension; optimising it is recommended but out of scope here.

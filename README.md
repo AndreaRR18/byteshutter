@@ -7,7 +7,8 @@ ByteShutter is a modern, responsive blog website built with plain HTML, CSS, and
 - **No Build Step**: Plain HTML/CSS/JS — no framework, no bundler
 - **Markdown-Powered**: Articles are written in Markdown format and automatically converted to JSON for the frontend
 - **Responsive Design**: Fully responsive layout that works seamlessly on desktop and mobile devices
-- **Dark/Light Theme**: Built-in theme switching capability
+- **Dark/Light Theme**: Dark-first "Darkroom" design with a paper-coloured light mode and an aperture theme toggle
+- **Self-hosted fonts**: No third-party requests; the site keeps its "no tracking" promise
 - **Hash-Based Routing**: Fast client-side navigation using URL hash fragments
 
 ## Running Locally

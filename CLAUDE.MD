@@ -21,8 +21,9 @@ byteshutter/
 ├── src/ts/            # TypeScript source files (compiled to js/)
 ├── scripts/           # Build scripts
 │   └── ConvertArticlesToJSON/  # Markdown to JSON conversion
-├── css/               # Static stylesheets
+├── css/               # Stylesheets: tokens.css, main.css, motion.css
 ├── js/                # Compiled JS output + vendor scripts (js/vendor/)
+├── fonts/             # Self-hosted woff2 fonts + licences
 ├── images/            # Static image assets
 ├── data/              # Generated JSON articles (gitignored, created at build time)
 ├── rules/             # Style and code guidelines (blog, typescript)
@@ -76,14 +77,15 @@ Articles are managed through a markdown-to-JSON pipeline:
 The build process (`npm run build`) automatically:
 1. Compiles `src/ts/*.ts` → `js/*.js` via `tsc -p tsconfig.browser.json`
 2. Converts all markdown articles → `data/*.json` via the conversion script
-3. Copies all files to `dist/`: HTML pages, `css/`, `js/`, `images/`, `data/`, `favicon.svg`, `.nojekyll`
+3. Copies all files to `dist/`: HTML pages, `css/`, `js/`, `fonts/`, `images/`, `data/`, `favicon.svg`, `.nojekyll`
 
 ## Code Conventions
 
 - **TypeScript files**: `src/ts/*.ts` — compiled to `js/*.ts`, strict mode enabled
-- **Gitignored generated files**: `js/theme.js`, `js/articles.js`, `js/article.js`, `data/`, `dist/`
+- **Gitignored generated files**: `js/theme.js`, `js/articles.js`, `js/article.js`, `js/home.js`, `js/feed.js`, `data/`, `dist/`
 - **Vendor scripts**: `js/vendor/` — tracked in git (e.g. `marked.min.js`)
 - **File Extensions**: `.ts` for all TypeScript, `.html` for pages
+- **Design**: "Darkroom" — dark-first, ink/paper/orange, viewfinder motif, frame-numbered articles. See the `byteshutter-consistency` skill (`.claude/skills/`) for tokens and rules
 - **Guidelines**: See `rules/typescript-guidelines.md` for TypeScript patterns and `rules/blog_style_guidelines.md` for visual design conventions
 
 ## Important Context
@@ -119,4 +121,6 @@ The build process (`npm run build`) automatically:
 - There is no framework — DOM manipulation is done directly in TypeScript
 - Run the markdown converter when working with articles
 - Test changes with `npm run dev` before building
+- Never add third-party requests (fonts, CDNs, analytics) — the site promises "no analytics, no tracking"; fonts are self-hosted in `fonts/`
+- Run `npm run check:contrast` after changing any colour in `css/tokens.css`
 - This is a personal project, so changes should align with the existing personal/portfolio nature
