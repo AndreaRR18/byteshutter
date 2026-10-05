@@ -4,6 +4,8 @@
  * Do NOT add type="module" to the marked.min.js script tag in article.html.
  */
 
+import { escapeHtml, fetchArticleFeed, formatShortDate, frameLabel, frameNumbers } from './feed.js';
+
 // marked v15+ API: options are passed directly to parse(), setOptions() is removed
 declare const marked: {
   parse(src: string, options?: { gfm?: boolean; breaks?: boolean }): string;
@@ -18,18 +20,10 @@ interface ArticleDetail {
   content: string;
 }
 
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-}
-
 function buildTagsHtml(tags: string[] | undefined): string {
   if (!tags || tags.length === 0) return '';
   return tags.map(function (t: string): string {
-    return '<span class="tag">' + t + '</span>';
+    return '<span class="tag">' + escapeHtml(t) + '</span>';
   }).join('');
 }
 
@@ -56,6 +50,56 @@ function injectStructuredData(article: ArticleDetail): void {
   document.head.appendChild(ld);
 }
 
+/** "No. 01" for this article, or '' if the feed cannot be loaded. */
+async function resolveFrameLabel(slug: string): Promise<string> {
+  try {
+    const number = frameNumbers(await fetchArticleFeed()).get(slug);
+    return number === undefined ? '' : frameLabel(number);
+  } catch {
+    return '';
+  }
+}
+
+/** Puts the code language (from marked's language-* class) on the <pre> for the CSS label. */
+function labelCodeBlocks(root: HTMLElement): void {
+  root.querySelectorAll<HTMLElement>('pre > code').forEach(function (code: HTMLElement): void {
+    const match = /(?:^|\s)language-([\w+#-]+)/.exec(code.className);
+    const pre = code.parentElement;
+    if (match && pre) pre.setAttribute('data-lang', match[1]);
+  });
+}
+
+/** Wraps each image in <figure><div class="vf">…</div><figcaption>…</figcaption></figure>. */
+function frameImages(root: HTMLElement): void {
+  root.querySelectorAll<HTMLImageElement>('img').forEach(function (img: HTMLImageElement): void {
+    const caption = img.getAttribute('title') || img.getAttribute('alt') || '';
+    const parent = img.parentElement;
+    const onlyChild =
+      parent !== null &&
+      parent.tagName === 'P' &&
+      parent.children.length === 1 &&
+      (parent.textContent || '').trim() === '';
+    const host: Element = onlyChild && parent ? parent : img;
+
+    const figure = document.createElement('figure');
+    figure.className = 'article-figure';
+    const frame = document.createElement('div');
+    frame.className = 'vf';
+
+    host.replaceWith(figure);
+    img.loading = 'lazy';
+    frame.appendChild(img);
+    figure.appendChild(frame);
+
+    if (caption) {
+      const figcaption = document.createElement('figcaption');
+      figcaption.className = 'label';
+      figcaption.textContent = caption;
+      figure.appendChild(figcaption);
+    }
+  });
+}
+
 async function loadArticle(): Promise<void> {
   const slug = window.location.hash.slice(1);
 
@@ -65,7 +109,10 @@ async function loadArticle(): Promise<void> {
   }
 
   try {
-    const res = await fetch('./data/' + encodeURIComponent(slug) + '.json');
+    const [res, frame] = await Promise.all([
+      fetch('./data/' + encodeURIComponent(slug) + '.json'),
+      resolveFrameLabel(slug)
+    ]);
     if (!res.ok) throw new Error('Article not found (' + res.status + ')');
     const article: ArticleDetail = await res.json();
 
@@ -88,7 +135,7 @@ async function loadArticle(): Promise<void> {
 
     const dateEl = document.getElementById('article-date');
     if (dateEl && article.created_at) {
-      dateEl.textContent = formatDate(article.created_at);
+      dateEl.textContent = formatShortDate(article.created_at);
       dateEl.setAttribute('datetime', article.created_at);
     }
 
@@ -97,12 +144,8 @@ async function loadArticle(): Promise<void> {
 
     const kickerEl = document.getElementById('article-kicker');
     if (kickerEl) {
-      const kickerTag = article.tags && article.tags.length > 0
-        ? article.tags[0].toUpperCase()
-        : '';
-      kickerEl.textContent = kickerTag
-        ? kickerTag + ' · ' + readTime + ' min read'
-        : readTime + ' min read';
+      const kickerTag = article.tags && article.tags.length > 0 ? article.tags[0] : '';
+      kickerEl.textContent = [frame, kickerTag].filter(Boolean).join(' · ');
     }
 
     const tagsEl = document.getElementById('article-tags');
@@ -111,6 +154,8 @@ async function loadArticle(): Promise<void> {
     const bodyEl = document.getElementById('article-body');
     if (bodyEl && article.content) {
       bodyEl.innerHTML = marked.parse(article.content, { gfm: true, breaks: false });
+      labelCodeBlocks(bodyEl);
+      frameImages(bodyEl);
     }
 
   } catch (e) {

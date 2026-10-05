@@ -29,5 +29,7 @@ data/
 js/theme.js
 js/articles.js
 js/article.js
+js/home.js
+js/feed.js
 .superpowers/
 .worktrees/

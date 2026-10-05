@@ -2,13 +2,10 @@
 
 type Theme = 'dark' | 'light';
 
-const MOON_SVG = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-</svg>`;
-
-const SUN_SVG = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-  <circle cx="12" cy="12" r="5" />
-  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+const APERTURE_SVG = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  <circle cx="12" cy="12" r="10" />
+  <path d="M12 16.5L8.1 14.25L8.1 9.75L12 7.5L15.9 9.75L15.9 14.25Z" />
+  <path d="M12 16.5L5.97 19.98M8.1 14.25L2.07 10.77M8.1 9.75V2.79M12 7.5L18.03 4.02M15.9 9.75L21.93 13.23M15.9 14.25V21.21" />
 </svg>`;
 
 function getInitialTheme(): Theme {
@@ -25,9 +22,39 @@ function applyTheme(t: Theme): void {
 
   const btn = document.getElementById('theme-toggle');
   if (btn) {
-    btn.innerHTML = t === 'dark' ? SUN_SVG : MOON_SVG;
+    btn.innerHTML = APERTURE_SVG;
     btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   }
+}
+
+interface ViewTransitionLike {
+  finished: Promise<unknown>;
+}
+
+type DocumentWithTransitions = Document & {
+  startViewTransition?: (update: () => void) => ViewTransitionLike;
+};
+
+/** Switches theme with an iris reveal from the toggle where the browser supports view transitions. */
+function switchTheme(next: Theme, origin: HTMLElement | null): void {
+  const doc = document as DocumentWithTransitions;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (typeof doc.startViewTransition !== 'function' || reduceMotion) {
+    applyTheme(next);
+    return;
+  }
+
+  const root = document.documentElement;
+  if (origin) {
+    const rect = origin.getBoundingClientRect();
+    root.style.setProperty('--iris-x', Math.round(rect.left + rect.width / 2) + 'px');
+    root.style.setProperty('--iris-y', Math.round(rect.top + rect.height / 2) + 'px');
+  }
+
+  root.classList.add('theme-vt');
+  const cleanup = function (): void { root.classList.remove('theme-vt'); };
+  doc.startViewTransition(function (): void { applyTheme(next); }).finished.then(cleanup, cleanup);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -37,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (btn) {
     btn.addEventListener('click', function () {
       const current = document.documentElement.getAttribute('data-theme') || 'light';
-      applyTheme(current === 'dark' ? 'light' : 'dark');
+      switchTheme(current === 'dark' ? 'light' : 'dark', btn);
     });
   }
 

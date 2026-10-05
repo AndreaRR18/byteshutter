@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg?v=2" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Articles - ByteShutter</title>
 
@@ -28,17 +28,18 @@
     })();
   </script>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Bodoni:ital,wght@0,700;1,400&family=Lora:wght@400;600&display=swap">
+  <link rel="preload" href="./fonts/bricolage-grotesque-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/lora-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./css/tokens.css" />
   <link rel="stylesheet" href="./css/main.css" />
+  <link rel="stylesheet" href="./css/motion.css" />
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <header class="header">
     <nav class="nav" aria-label="Main navigation">
-      <a href="./index.html" class="logo">byteshutter</a>
+      <a href="./index.html" class="logo"><span class="logo-mark vf" aria-hidden="true"></span>byteshutter</a>
       <div class="nav-links">
         <a href="./articles.html" class="nav-link active">Articles</a>
         <a href="./about.html" class="nav-link">About</a>
@@ -48,26 +49,33 @@
   </header>
 
   <main id="main-content">
-    <div id="articles-list">
-      <!-- Content loaded by articles.js -->
-      <div class="loading-skeleton">
-        <div class="skeleton-card">
-          <div class="skeleton-title"></div>
-          <div class="skeleton-text"></div>
-          <div class="skeleton-text short"></div>
-          <div class="skeleton-date"></div>
-        </div>
-        <div class="skeleton-card">
-          <div class="skeleton-title"></div>
-          <div class="skeleton-text"></div>
-          <div class="skeleton-text short"></div>
-          <div class="skeleton-date"></div>
-        </div>
-        <div class="skeleton-card">
-          <div class="skeleton-title"></div>
-          <div class="skeleton-text"></div>
-          <div class="skeleton-text short"></div>
-          <div class="skeleton-date"></div>
+    <div class="wrap">
+      <header class="page-head">
+        <p class="label label--accent">The archive</p>
+        <h1>Articles</h1>
+        <p class="page-lede">Everything I've written, newest frame first.</p>
+      </header>
+      <div id="articles-list" class="frame-list" aria-live="polite">
+        <!-- Content loaded by articles.js -->
+        <div class="loading-skeleton">
+          <div class="skeleton-card">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+            <div class="skeleton-date"></div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+            <div class="skeleton-date"></div>
+          </div>
+          <div class="skeleton-card">
+            <div class="skeleton-title"></div>
+            <div class="skeleton-text"></div>
+            <div class="skeleton-text short"></div>
+            <div class="skeleton-date"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -75,7 +83,8 @@
 
   <footer class="footer">
     <div class="footer-content">
-      <p class="footer-text">&copy; <span id="year"></span> byteshutter. All rights reserved.</p>
+      <p class="footer-text">&copy; <span id="year"></span> byteshutter</p>
+      <p class="footer-text">No analytics. No tracking.</p>
     </div>
   </footer>
 

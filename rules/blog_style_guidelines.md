@@ -1,242 +1,35 @@
-# Personal Blog Style Guidelines
+# ByteShutter Style Guidelines ("Darkroom")
 
-## Core Design Philosophy
+## Philosophy
+- One pun, one motif: *byte* + *shutter* → the viewfinder.
+- Dark-first: ink background, paper text, one safelight-orange accent.
+- Personality in the chrome, calm in the prose: article pages stay a quiet reading column.
+- Plain HTML, CSS and TypeScript. No framework, no bundler, no third-party requests.
 
-### Minimalism First
-- Remove all non-essential elements
-- Every component must serve a purpose
-- White space is a design feature, not empty space
-- Content hierarchy through typography, not decoration
+## Colour (dark / light)
+| Token | Dark | Light |
+|---|---|---|
+| `--bg-primary` | `#14110f` | `#f3ecdc` |
+| `--text-primary` | `#f1e9d8` | `#17130f` |
+| `--text-muted` | `#a39a88` | `#6b6253` |
+| `--accent` | `#ff6b1f` | `#b03a0a` |
 
-### Readability Priority
-- Text legibility over visual flair
-- Comfortable reading experience on all devices
-- Consistent vertical rhythm
-- Optimal line length (45-75 characters)
-
-## Color Scheme & Theming
-
-### Dark Mode (Primary)
-```css
---bg-primary: #0a0a0a
---bg-secondary: #1a1a1a
---text-primary: #ffffff
---text-secondary: #a0a0a0
---accent: #3b82f6
---border: #2a2a2a
-```
-
-### Light Mode Support
-```css
---bg-primary: #ffffff
---bg-secondary: #f8f9fa
---text-primary: #1a1a1a
---text-secondary: #6b7280
---accent: #2563eb
---border: #e5e7eb
-```
-
-### Theme Implementation
-- Use CSS custom properties for all colors
-- Single toggle switches entire theme
-- Respect user's system preference by default
-- Smooth transitions between themes (200ms)
+Run `npm run check:contrast` after any change (text/accent >= 4.5:1, UI boundaries >= 3:1).
 
 ## Typography
+Bricolage Grotesque (headings, display), Lora (body), JetBrains Mono (labels, metadata, frame numbers, code). Self-hosted from `fonts/`. Fluid sizes via `--font-size-*`; body 17px desktop / 16px mobile, line-height 1.7, article measure 65ch.
 
-### Font Stack
-```css
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 
-             'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 
-             sans-serif;
-```
+## Layout
+Wide container 1100px (`.wrap`); article column 65ch. Section rhythm 4rem. Square corners everywhere except the round theme toggle.
 
-### Hierarchy
-- **H1**: 2.5rem, 700 weight, 1.2 line-height
-- **H2**: 2rem, 600 weight, 1.3 line-height  
-- **H3**: 1.5rem, 600 weight, 1.4 line-height
-- **H4**: 1.25rem, 500 weight, 1.4 line-height
-- **Body**: 1rem, 400 weight, 1.6 line-height
-- **Small**: 0.875rem, 400 weight, 1.5 line-height
+## Signature elements
+Viewfinder corners (`.vf`), frame numbers (`No. 01`), mono labels (`.label`), film strip for photos, aperture theme toggle, light film grain (off on article pages).
 
-### Code Typography
-```css
-font-family: 'SF Mono', Monaco, 'Cascadia Code', 
-             'Roboto Mono', Consolas, monospace;
-```
-
-## Layout Structure
-
-### Grid System
-- Max content width: 768px
-- Horizontal padding: 2rem desktop, 1rem mobile
-- Vertical spacing: 4rem between sections
-- Article content: 65ch max-width for optimal readability
-
-### Navigation
-- Fixed header with transparent background
-- Minimal navigation items (Home, Articles, About)
-- Search functionality (if needed)
-- Theme toggle button
-- Mobile hamburger menu below 768px
-
-### Article Layout
-```
-[Header - Fixed]
-[Hero/Title Area]
-[Article Metadata]
-[Content with TOC]
-[Footer]
-```
-
-## Content Presentation
-
-### Article Cards
-- Title, excerpt, date, read time
-- No thumbnails unless essential
-- Hover effects: subtle scale (1.02) + shadow
-- Clean date formatting: "Jan 15, 2024"
-
-### Article Pages
-- Article title (H1)
-- Metadata: Date, read time, tags
-- Table of contents for long articles
-- Progressive reading indicator
-- Social sharing (minimal icons)
-
-### Code Blocks
-- Syntax highlighting with subtle colors
-- Line numbers for blocks >10 lines
-- Copy button on hover
-- Language indicator
-- Horizontal scroll on mobile
-
-### Images
-- Lazy loading implementation
-- Responsive with max-width: 100%
-- Caption support below images
-- Click to expand for detailed images
-- Alt text mandatory for accessibility
-
-## Responsive Design
-
-### Breakpoints
-```css
-/* Mobile */
-@media (max-width: 767px)
-
-/* Tablet */
-@media (min-width: 768px) and (max-width: 1023px)
-
-/* Desktop */
-@media (min-width: 1024px)
-```
-
-### Mobile Optimizations
-- Touch-friendly tap targets (44px minimum)
-- Readable text without zooming
-- Simplified navigation
-- Optimized image sizes
-- Faster loading times
-
-## Performance Guidelines
-
-### Bundle Optimization
-- Code splitting by route
-- Lazy load non-critical components
-- Tree shaking for unused code
-- Minimize external dependencies
-
-### Image Optimization
-- WebP format with fallbacks
-- Multiple sizes for responsive images
-- Compression without quality loss
-- Preload hero images
-
-### Loading Strategy
-- Critical CSS inlined
-- Non-critical CSS deferred
-- Font loading optimization
-- Progressive enhancement
+## Motion
+`motion.css` only; `prefers-reduced-motion: no-preference`; `transform`/`opacity`/`clip-path`. View transitions between pages, iris reveal on theme switch, scroll-driven reading progress and section reveals.
 
 ## Accessibility
+Skip link, landmarks, visible focus (2px accent outline), alt text, 44px touch targets, reduced-motion support, no information by colour alone.
 
-### WCAG Compliance
-- 4.5:1 contrast ratio minimum
-- Keyboard navigation support
-- Screen reader compatibility
-- Focus indicators visible
-- Semantic HTML structure
-
-### Implementation
-- Alt text for all images
-- ARIA labels for interactive elements
-- Skip navigation links
-- Proper heading hierarchy
-- Color not the sole information indicator
-
-## Animation & Interactions
-
-### Subtle Animations
-- Page transitions: 300ms ease-out
-- Hover effects: 200ms ease
-- Loading states with skeleton screens
-- Smooth scrolling for anchor links
-
-### Micro-interactions
-- Button hover/focus states
-- Link underline animations
-- Form input focus effects
-- Theme toggle animation
-
-## Content Guidelines
-
-### Markdown Support
-- Standard markdown syntax
-- Code syntax highlighting
-- Table support
-- Custom callout blocks
-- Math notation (if needed)
-
-### Front Matter Structure
-```yaml
----
-title: "Article Title"
-date: "2024-01-15"
-excerpt: "Brief description"
-tags: ["react", "typescript"]
-readTime: 5
-published: true
----
-```
-
-### SEO Optimization
-- Semantic HTML structure
-- Meta descriptions from excerpts
-- Open Graph tags
-- JSON-LD structured data
-- Sitemap generation
-
-## Technical Implementation
-
-### Component Architecture
-- Atomic design principles
-- Reusable UI components
-- Custom hooks for common logic
-- TypeScript for type safety
-
-### Routing Strategy
-- Hash-based routing for GitHub Pages
-- Clean URLs when possible
-- 404 page for invalid routes
-- Breadcrumb navigation
-
-### Build Process
-- TypeScript compilation
-- CSS processing and minification
-- Asset optimization
-- Static file generation for GitHub Pages
-
----
-
-*Remember: Every element should enhance readability and user experience. When in doubt, choose simplicity over complexity.*
+## Content
+Markdown articles with frontmatter (`title`, `excerpt`, `created_at`, `tags`) converted by `npm run convert`; hash routing `article.html#slug`; GFM rendered client-side by `marked.js`.
