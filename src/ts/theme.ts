@@ -2,11 +2,58 @@
 
 type Theme = 'dark' | 'light';
 
-const APERTURE_SVG = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+interface IrisState {
+  /** Circumradius of the aperture hexagon; smaller means a more closed shutter. */
+  hexRadius: number;
+  /** Simulated shutter speed shown next to the iris. */
+  shutterValue: string;
+}
+
+const IRIS_STATE: Record<Theme, IrisState> = {
+  dark: { hexRadius: 2, shutterValue: '1/1000' },
+  light: { hexRadius: 7, shutterValue: '1/8' },
+};
+
+function formatCoord(value: number): string {
+  return String(Math.round(value * 100) / 100);
+}
+
+/** Builds the aperture icon: a six-blade iris whose opening scales with hexRadius. */
+function apertureSvg(hexRadius: number): string {
+  const center = 12;
+  const outer = 10;
+  const vertices: Array<[number, number]> = [];
+  const blades: Array<[number, number]> = [];
+
+  for (let k = 0; k < 6; k++) {
+    const angle = ((90 + k * 60) * Math.PI) / 180;
+    const vx = center + hexRadius * Math.cos(angle);
+    const vy = center + hexRadius * Math.sin(angle);
+    vertices.push([vx, vy]);
+
+    // Each blade edge runs from a hexagon vertex, parallel to the next vertex's
+    // radius, out to the outer ring.
+    const bladeAngle = ((90 + (k + 1) * 60) * Math.PI) / 180;
+    const length = -hexRadius / 2 + Math.sqrt(outer * outer - 0.75 * hexRadius * hexRadius);
+    blades.push([vx + length * Math.cos(bladeAngle), vy + length * Math.sin(bladeAngle)]);
+  }
+
+  const hexPath =
+    'M' + vertices.map(function (p) { return formatCoord(p[0]) + ' ' + formatCoord(p[1]); }).join('L') + 'Z';
+  const bladePath = blades
+    .map(function (p, i) {
+      const v = vertices[i];
+      return 'M' + formatCoord(v[0]) + ' ' + formatCoord(v[1]) +
+        'L' + formatCoord(p[0]) + ' ' + formatCoord(p[1]);
+    })
+    .join('');
+
+  return `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
   <circle cx="12" cy="12" r="10" />
-  <path d="M12 16.5L8.1 14.25L8.1 9.75L12 7.5L15.9 9.75L15.9 14.25Z" />
-  <path d="M12 16.5L5.97 19.98M8.1 14.25L2.07 10.77M8.1 9.75V2.79M12 7.5L18.03 4.02M15.9 9.75L21.93 13.23M15.9 14.25V21.21" />
+  <path d="${hexPath}" />
+  <path d="${bladePath}" />
 </svg>`;
+}
 
 function getInitialTheme(): Theme {
   const saved = localStorage.getItem('theme');
@@ -22,7 +69,10 @@ function applyTheme(t: Theme): void {
 
   const btn = document.getElementById('theme-toggle');
   if (btn) {
-    btn.innerHTML = APERTURE_SVG;
+    const iris = IRIS_STATE[t];
+    btn.innerHTML =
+      apertureSvg(iris.hexRadius) +
+      `<span class="theme-toggle-value">${iris.shutterValue}</span>`;
     btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
   }
 }
