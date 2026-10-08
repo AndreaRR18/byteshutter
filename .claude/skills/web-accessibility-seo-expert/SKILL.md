@@ -1,534 +1,107 @@
+---
+name: web-accessibility-seo-expert
+description: "Accessibility (WCAG 2.2) and SEO for ByteShutter's static, hash-routed site: auditing the HTML pages, landmarks, keyboard and screen-reader behaviour, contrast, meta/Open Graph/JSON-LD tags, sitemap and indexing limits. Use for any accessibility review or search-visibility task."
+---
+
 # Web Accessibility & SEO Expert
 
-You are an expert in web accessibility (a11y) and search engine optimization (SEO) for the ByteShutter blog. Your role is to ensure the site is usable by everyone and discoverable by search engines.
+You make ByteShutter usable by everyone and discoverable by search engines. The site is **static HTML + compiled TypeScript** hosted on GitHub Pages at `https://andrearr18.github.io/byteshutter/`. There is no React, Vite, JSX or build-time rendering, so everything below is plain HTML, CSS and DOM code.
 
-## Accessibility Principles (WCAG 2.1)
+Design tokens and component rules live in `byteshutter-consistency`; general HTML/CSS rules in `html-standards` and `css-standards`.
 
-Accessibility is not optional — it's foundational. Follow these core principles:
+## What Already Exists (do not regress)
 
-1. **Perceivable**: Information must be presentable to users in ways they can perceive
-2. **Operable**: UI components must be operable by all users
-3. **Understandable**: Information and UI operation must be understandable
-4. **Robust**: Content must be robust enough to work with various technologies
+- `lang="en"`, `<meta charset>`, viewport, a skip link first in `<body>`, `<main id="main-content">`, `<nav aria-label="Main navigation">`
+- Section landmarks labelled with `aria-labelledby`; one `<h1>` per page; list renderers take a `headingLevel` (2 or 3) so the outline stays ordered
+- Theme toggle (`#theme-toggle`) gets its `aria-label` updated by `theme.ts` on every switch
+- `aria-live="polite"` on the dynamic article lists (`#latest-writing`, `#articles-list`)
+- Article page: loading skeleton, error state, `<time id="article-date">` with a `datetime` attribute
+- Visible `:focus-visible` outlines (2px accent), 44px touch targets, reduced-motion gating (all animation in `motion.css`)
+- Contrast checked by `npm run check:contrast` (text and accent ≥ 4.5:1, UI boundaries ≥ 3:1, both themes)
+- Images: meaningful `alt`, lazy loading, framed `<figure>` with caption for article images
+- Self-hosted, preloaded fonts; no third-party requests
 
-## Semantic HTML
+## Accessibility Checklist (WCAG 2.2 AA)
 
-### Use the Right Elements
+**Structure**
+- Use native elements (`button` for actions, `a[href]` for navigation); ARIA only to fill gaps, and never to change native semantics
+- Keep heading levels in order; labels must name what a region contains
+- Mark the current page link with `aria-current="page"` if the nav shows one
 
-Always use semantic HTML5 elements:
+**Keyboard and focus**
+- Everything operable by keyboard, in visual order; no positive `tabindex`
+- Never remove an outline without a replacement of ≥ 3:1 contrast
+- Focus must not be hidden behind fixed or sticky UI (WCAG 2.4.11)
+- Pointer targets ≥ 24px by WCAG 2.2; this site uses 44px
 
-```html
-<!-- Good -->
-<header>
-  <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
-    </ul>
-  </nav>
-</header>
+**Dynamic content** (everything rendered by `home.ts`, `articles.ts`, `article.ts`)
+```typescript
+// Update a polite live region once, with the finished content
+const list = document.getElementById('articles-list');
+if (list) list.innerHTML = rows.join('');          // container already has aria-live="polite"
 
-<main>
-  <article>
-    <h1>Article Title</h1>
-    <section>
-      <h2>Section Title</h2>
-      <p>Content...</p>
-    </section>
-  </article>
-</main>
-
-<footer>
-  <p>&copy; 2025 ByteShutter</p>
-</footer>
-
-<!-- Bad -->
-<div class="header">
-  <div class="nav">
-    <div><a href="/">Home</a></div>
-  </div>
-</div>
+// Errors should be announced
+errorEl.setAttribute('role', 'alert');
 ```
+- Update `document.title` when content changes (the article page does)
+- Do not move focus on load unless the user triggered it
 
-### Document Structure
+**Images and media**
+- Informative image → descriptive `alt`; decorative → `alt=""`; complex image → caption or nearby text
+- Icon-only buttons need an accessible name (`aria-label`) and `aria-hidden="true"` on the SVG
+- No autoplay media; captions for video
 
-- One `<h1>` per page (usually the page title)
-- Heading hierarchy must be logical (don't skip levels)
-- Use `<main>` for primary content
-- Use `<nav>` for navigation
-- Use `<article>` for blog posts
-- Use `<aside>` for sidebars/related content
+**Colour and motion**
+- Never convey meaning by colour alone (links keep an underline or other cue)
+- Run `npm run check:contrast` after touching `css/tokens.css`
+- Motion is progressive enhancement behind `prefers-reduced-motion: no-preference`; the theme switch falls back to an instant change
 
-## ARIA (Accessible Rich Internet Applications)
+## SEO
 
-### When to Use ARIA
+### Per-page head (what each page should have)
 
-ARIA should supplement HTML, not replace it:
+- Unique `<title>` and `<meta name="description">` (about 150–160 characters)
+- `og:type`, `og:title`, `og:description`, `og:url` (absolute URL under `https://andrearr18.github.io/byteshutter/`), plus `twitter:card`
+- `<link rel="canonical" href="…">` with the absolute URL
 
-1. **First Rule of ARIA**: If you can use native HTML, do it
-2. **Second Rule**: Don't change native semantics unless necessary
-3. **Third Rule**: All interactive ARIA controls must be keyboard accessible
+`article.ts` rewrites `document.title`, the meta description, and injects a `BlogPosting` JSON-LD block (`headline`, `datePublished`, `author`, `keywords`) after loading the article. These run in the browser only.
 
-### Common ARIA Patterns
+### Known gaps (verify before relying on them)
 
-```tsx
-// Buttons
-<button aria-label="Close dialog">×</button>
+- No page declares `og:image` / `twitter:image`, although `twitter:card` is `summary_large_image`, so shared links show no preview image
+- No `<link rel="canonical">` on any page
+- No `sitemap.xml`; and `robots.txt` is only honoured at a host root (`andrearr18.github.io/robots.txt`), which a project site under `/byteshutter/` cannot serve. A sitemap can live at `/byteshutter/sitemap.xml` and be submitted in Search Console
+- The JSON-LD exists only after JavaScript runs; static HTML has none
 
-// Links that look like buttons
-<a href="/signup" role="button">Sign Up</a>
+### Hash routing and indexing
 
-// Navigation
-<nav aria-label="Main navigation">
-  <ul>...</ul>
-</nav>
+Articles live at `article.html#slug`. Search engines ignore the fragment, so every article shares one URL (`article.html`) and its content is only visible to crawlers that run JavaScript. Per-article indexing would need static per-article pages generated at build time (for example `articles/<slug>.html` produced by `convertArticlesToJson.ts`, plus those paths in the `build` `cp` list and a sitemap). Propose that as a design change; do not slip it into an unrelated task, and keep the "no framework, no third-party" rules.
 
-// Skip links
-<a href="#main-content" className="skip-link">
-  Skip to main content
-</a>
+### Performance counts as SEO
 
-// Live regions for dynamic content
-<div aria-live="polite" aria-atomic="true">
-  {statusMessage}
-</div>
+- Fonts: self-hosted WOFF2, preloaded, `font-display: swap`
+- Images: `loading="lazy"` below the fold, intrinsic `width`/`height`, WebP/JPEG at sensible sizes (the `hero_image.jpg` is large — check before adding more)
+- Ship no extra JavaScript; each page loads only `theme.js` plus its own module
 
-// Loading states
-<button aria-busy="true">
-  Loading...
-</button>
+### Content
 
-// Expanded/collapsed states
-<button
-  aria-expanded={isOpen}
-  aria-controls="dropdown-menu"
->
-  Menu
-</button>
-<div id="dropdown-menu" hidden={!isOpen}>
-  {/* Menu items */}
-</div>
-```
-
-## Keyboard Navigation
-
-### Essential Requirements
-
-All interactive elements must be keyboard accessible:
-
-- **Tab**: Move forward through interactive elements
-- **Shift + Tab**: Move backward
-- **Enter/Space**: Activate buttons and links
-- **Escape**: Close dialogs and dropdowns
-- **Arrow keys**: Navigate within components (menus, tabs)
-
-### Focus Management
-
-```tsx
-// Visible focus indicators (don't remove outline)
-button:focus-visible {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
-}
-
-// Programmatic focus management
-const dialogRef = useRef<HTMLDialogElement>(null);
-
-const openDialog = () => {
-  dialogRef.current?.showModal();
-  // Focus first interactive element
-  dialogRef.current?.querySelector('button')?.focus();
-};
-
-// Focus trap for modals
-const handleKeyDown = (e: KeyboardEvent) => {
-  if (e.key === 'Escape') {
-    closeDialog();
-  }
-};
-```
-
-### Skip Links
-
-Provide skip links for keyboard users:
-
-```tsx
-// At the very top of the page
-<a href="#main-content" className={styles.skipLink}>
-  Skip to main content
-</a>
-
-// CSS
-.skipLink {
-  position: absolute;
-  top: -40px;
-  left: 0;
-  background: #000;
-  color: white;
-  padding: 8px;
-  text-decoration: none;
-  z-index: 100;
-}
-
-.skipLink:focus {
-  top: 0;
-}
-```
-
-## Images and Media
-
-### Alt Text Best Practices
-
-```tsx
-// Informative images
-<img
-  src={getImageUrl("tutorial/screenshot.png")}
-  alt="Xcode interface showing SwiftUI preview with a red button component"
-/>
-
-// Decorative images
-<img
-  src={getImageUrl("decorative-pattern.svg")}
-  alt=""
-  aria-hidden="true"
-/>
-
-// Complex images (charts, diagrams)
-<figure>
-  <img
-    src={getImageUrl("architecture-diagram.png")}
-    alt="Application architecture diagram"
-  />
-  <figcaption>
-    Detailed description of the architecture showing
-    three layers: presentation, business logic, and data.
-  </figcaption>
-</figure>
-
-// Icons with text
-<button>
-  <svg aria-hidden="true">...</svg>
-  <span>Save</span>
-</button>
-
-// Icons without text
-<button aria-label="Save document">
-  <svg aria-hidden="true">...</svg>
-</button>
-```
-
-### Video/Audio
-
-```tsx
-// Provide captions and transcripts
-<video controls>
-  <source src="video.mp4" type="video/mp4" />
-  <track kind="captions" src="captions.vtt" srclang="en" label="English" />
-  Your browser doesn't support video.
-</video>
-```
-
-## Forms and Validation
-
-### Accessible Forms
-
-```tsx
-// Labels are required
-<label htmlFor="email">Email Address</label>
-<input
-  type="email"
-  id="email"
-  name="email"
-  required
-  aria-describedby="email-help"
-/>
-<span id="email-help">We'll never share your email.</span>
-
-// Error states
-<label htmlFor="password">Password</label>
-<input
-  type="password"
-  id="password"
-  aria-invalid={hasError}
-  aria-describedby="password-error"
-/>
-{hasError && (
-  <span id="password-error" role="alert">
-    Password must be at least 8 characters
-  </span>
-)}
-
-// Fieldsets for grouped inputs
-<fieldset>
-  <legend>Contact Preferences</legend>
-  <label>
-    <input type="checkbox" name="email" />
-    Email
-  </label>
-  <label>
-    <input type="checkbox" name="sms" />
-    SMS
-  </label>
-</fieldset>
-```
-
-## Color and Contrast
-
-### Contrast Ratios (WCAG AA)
-
-- Normal text: 4.5:1 minimum
-- Large text (18pt+/14pt+ bold): 3:1 minimum
-- UI components and graphics: 3:1 minimum
-
-### Don't Rely on Color Alone
-
-```tsx
-// Bad: Only color indicates error
-<input style={{ borderColor: 'red' }} />
-
-// Good: Color + icon + text
-<div>
-  <input
-    aria-invalid="true"
-    aria-describedby="error-msg"
-    style={{ borderColor: 'red' }}
-  />
-  <span id="error-msg" role="alert">
-    ❌ Invalid email format
-  </span>
-</div>
-```
-
-## SEO Best Practices for React/Vite
-
-### Meta Tags (react-helmet-async)
-
-ByteShutter should implement meta tags for each page:
-
-```tsx
-import { Helmet } from 'react-helmet-async';
-
-const BlogPost = ({ article }) => (
-  <>
-    <Helmet>
-      <title>{article.title} | ByteShutter</title>
-      <meta name="description" content={article.excerpt} />
-
-      {/* Open Graph */}
-      <meta property="og:type" content="article" />
-      <meta property="og:title" content={article.title} />
-      <meta property="og:description" content={article.excerpt} />
-      <meta property="og:url" content={`https://byteshutter.com/blog/${article.slug}`} />
-      <meta property="og:image" content={article.image} />
-
-      {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={article.title} />
-      <meta name="twitter:description" content={article.excerpt} />
-      <meta name="twitter:image" content={article.image} />
-
-      {/* Article specific */}
-      <meta property="article:published_time" content={article.created_at} />
-      <meta property="article:author" content="Andrea Rinaldi" />
-      {article.tags.map(tag => (
-        <meta property="article:tag" content={tag} key={tag} />
-      ))}
-    </Helmet>
-
-    {/* Content */}
-  </>
-);
-```
-
-### Structured Data (JSON-LD)
-
-Add structured data for rich snippets:
-
-```tsx
-const BlogPostSchema = ({ article }) => {
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": article.title,
-    "description": article.excerpt,
-    "datePublished": article.created_at,
-    "author": {
-      "@type": "Person",
-      "name": "Andrea Rinaldi",
-      "url": "https://byteshutter.com/about"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "ByteShutter",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://byteshutter.com/logo.png"
-      }
-    },
-    "keywords": article.tags.join(", "),
-    "articleBody": article.content
-  };
-
-  return (
-    <script type="application/ld+json">
-      {JSON.stringify(schema)}
-    </script>
-  );
-};
-```
-
-### URL Structure
-
-Use clean, descriptive URLs:
-
-```
-✅ byteshutter.com/blog/building-swiftui-layouts
-❌ byteshutter.com/blog?id=123
-❌ byteshutter.com/article_123.html
-```
-
-### Performance = SEO
-
-Google considers page speed as a ranking factor:
-
-- Use `.webp` for images with fallbacks
-- Implement lazy loading for images
-- Code split with React.lazy
-- Minimize JavaScript bundle size
-- Use Vite's build optimizations
-
-```tsx
-// Lazy loading images
-<img
-  src={getImageUrl("photo.jpg")}
-  loading="lazy"
-  alt="Description"
-/>
-
-// Responsive images
-<img
-  src={getImageUrl("photo.jpg")}
-  srcSet={`
-    ${getImageUrl("photo-400.jpg")} 400w,
-    ${getImageUrl("photo-800.jpg")} 800w,
-    ${getImageUrl("photo-1200.jpg")} 1200w
-  `}
-  sizes="(max-width: 600px) 400px, (max-width: 1200px) 800px, 1200px"
-  alt="Description"
-/>
-```
-
-### Sitemap and robots.txt
-
-Ensure proper sitemap generation:
-
-```xml
-<!-- public/sitemap.xml -->
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://byteshutter.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://byteshutter.com/blog/article-slug</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-</urlset>
-```
-
-```
-# public/robots.txt
-User-agent: *
-Allow: /
-Sitemap: https://byteshutter.com/sitemap.xml
-```
-
-## Mobile Responsiveness
-
-Mobile-friendly sites rank higher:
-
-```css
-/* Mobile-first approach */
-.container {
-  padding: 1rem;
-}
-
-@media (min-width: 768px) {
-  .container {
-    padding: 2rem;
-  }
-}
-
-/* Touch targets (minimum 44x44px) */
-button, a {
-  min-height: 44px;
-  min-width: 44px;
-}
-
-/* Responsive typography */
-h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-}
-```
+- Article `title` (50–60 characters) and `excerpt` (≤ 160) feed the title and description, so write them as search snippets; see `blog-article-expert`
+- Internal links use descriptive text and relative paths
 
 ## Testing Checklist
 
-### Accessibility Testing
-
-- [ ] Test with screen reader (VoiceOver on Mac, NVDA on Windows)
-- [ ] Navigate entire site with keyboard only
-- [ ] Check color contrast with WebAIM Contrast Checker
-- [ ] Validate HTML (W3C Validator)
-- [ ] Run Lighthouse accessibility audit
-- [ ] Test with browser zoom at 200%
-- [ ] Verify all images have appropriate alt text
-- [ ] Check focus indicators are visible
-- [ ] Ensure form validation is accessible
-- [ ] Test with JavaScript disabled (graceful degradation)
-
-### SEO Testing
-
-- [ ] Verify meta tags on all pages
-- [ ] Check title tags are unique and descriptive
-- [ ] Confirm canonical URLs are set
-- [ ] Test social media previews (Facebook, Twitter)
-- [ ] Validate structured data (Google Rich Results Test)
-- [ ] Check mobile-friendliness (Google Mobile-Friendly Test)
-- [ ] Run Lighthouse SEO audit
-- [ ] Verify robots.txt and sitemap.xml
-- [ ] Check page load speed (Core Web Vitals)
-- [ ] Ensure all links work (no 404s)
-
-## Common Issues to Avoid
-
-1. **Missing alt text**: Every `<img>` needs alt (empty string for decorative)
-2. **Poor heading hierarchy**: Don't skip heading levels
-3. **Div soup**: Use semantic HTML elements
-4. **No keyboard access**: All interactive elements must be keyboard accessible
-5. **Missing labels**: Every form input needs a label
-6. **Low contrast**: Text must meet WCAG contrast ratios
-7. **Auto-playing media**: Don't auto-play video/audio
-8. **Missing page titles**: Every route needs a unique title
-9. **Duplicate content**: Use canonical URLs
-10. **Slow load times**: Optimize images and code splitting
+- [ ] Keyboard-only pass through each page, both themes
+- [ ] VoiceOver (macOS, Safari) reads landmarks, headings, the theme button state and dynamic lists sensibly
+- [ ] Zoom to 200% and test at 375 / 768 / 1024 px: no horizontal scroll, nothing clipped
+- [ ] `prefers-reduced-motion: reduce` shows no animation and the same layout
+- [ ] `npm run check:contrast` passes
+- [ ] Lighthouse accessibility and SEO audits on a built copy (`npm run build`, then serve `dist/`)
+- [ ] HTML validates (W3C validator); JSON-LD validates (Google Rich Results Test)
+- [ ] Social preview check once `og:image` exists
 
 ## Resources
 
+- WCAG 2.2 quick reference: https://www.w3.org/WAI/WCAG22/quickref/
+- MDN accessibility: https://developer.mozilla.org/en-US/docs/Web/Accessibility
 - WebAIM: https://webaim.org/
-- WCAG Guidelines: https://www.w3.org/WAI/WCAG21/quickref/
-- MDN Accessibility: https://developer.mozilla.org/en-US/docs/Web/Accessibility
-- Google SEO Guide: https://developers.google.com/search/docs
-- Lighthouse: Built into Chrome DevTools
-
-## ByteShutter-Specific Considerations
-
-Since ByteShutter is a static React site (SPA):
-- Consider pre-rendering for better SEO
-- Use react-helmet-async for dynamic meta tags
-- Implement proper client-side routing with meaningful URLs
-- Add loading states for better UX
-- Ensure markdown content is properly rendered as semantic HTML
-
-Remember: Accessibility benefits everyone, not just users with disabilities. Good accessibility makes for good UX, and good UX leads to better SEO. These practices compound to create a better web.
+- Google Search Central: https://developers.google.com/search/docs

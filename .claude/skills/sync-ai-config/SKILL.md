@@ -1,33 +1,38 @@
 ---
 name: sync-ai-config
-description: Copy one file over the other to keep CLAUDE.md and AGENTS.md identical. Use after updating either file. Accepts optional argument: "claude" (CLAUDE.md is source) or "agents" (AGENTS.md is source).
+description: "Keep CLAUDE.md and AGENTS.md identical by copying one over the other. Use after editing either file. The user names the source: claude (CLAUDE.md is source) or agents (AGENTS.md is source)."
+argument-hint: "claude | agents"
 ---
 
 # Sync AI Config Files
 
-`CLAUDE.md` (Claude Code) and `AGENTS.md` (Mistral) must stay identical.
+`CLAUDE.md` (read by Claude Code) and `AGENTS.md` (read by Mistral Vibe and other agents) must stay identical.
 This skill overwrites the destination file with the source file's content.
 
 ## Steps
 
-1. **Determine the source of truth**
-   - Argument `claude` → source = `CLAUDE.md`, destination = `AGENTS.md`
-   - Argument `agents` → source = `AGENTS.md`, destination = `CLAUDE.md`
-   - No argument → ask the user: "Which file is the source of truth? (claude / agents)"
+1. **Determine the source of truth** from the user's argument or message
+   - `claude` → source = `CLAUDE.md`, destination = `AGENTS.md`
+   - `agents` → source = `AGENTS.md`, destination = `CLAUDE.md`
+   - Anything else, or nothing → ask the user: "Which file is the source of truth? (claude / agents)"
 
-2. **Read the source file** using the Read tool
+2. **Check the source exists** (`test -f <source>`)
 
-3. **Overwrite the destination file** with the exact same content using the Write tool
-   - Do NOT summarise or paraphrase — copy byte-for-byte
+3. **Copy it byte-for-byte** with the shell, from the repository root:
+   ```bash
+   cp CLAUDE.md AGENTS.md   # source = claude
+   cp AGENTS.md CLAUDE.md   # source = agents
+   ```
+   Do NOT retype, summarise or paraphrase the content.
 
-4. **Confirm**: output one line: `Synced <source-path> → <destination-path>`
+4. **Verify**: `cmp CLAUDE.md AGENTS.md` must print nothing
+
+5. **Confirm**: output one line: `Synced <source-path> → <destination-path>`
 
 ## Rules
 
 - Never modify content while syncing — this is a pure copy operation
-- Always read the source file fresh before writing — do not rely on memory
-- If the **source** file does not exist, stop and tell the user. A missing destination file is normal — just write it.
-- If the argument is anything other than `claude` or `agents`, treat it as if no argument was given and ask the user.
+- If the **source** file does not exist, stop and tell the user. A missing destination file is normal — just copy it.
 
 ## Path Resolution
 

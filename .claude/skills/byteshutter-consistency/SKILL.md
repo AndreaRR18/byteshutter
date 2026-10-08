@@ -1,6 +1,6 @@
 ---
 name: byteshutter-consistency
-description: ByteShutter-specific design system rules: the "Darkroom" aesthetic (camera + code), design tokens, typography, viewfinder motif, motion, dark/light themes, breakpoints, and what NOT to do. Invoke before adding or modifying any HTML/CSS in this project.
+description: 'ByteShutter-specific design system rules: the "Darkroom" aesthetic (camera + code), design tokens, typography, viewfinder motif, motion, dark/light themes, breakpoints, and what NOT to do. Invoke before adding or modifying any HTML/CSS in this project.'
 ---
 
 # ByteShutter Design Consistency — "Darkroom"

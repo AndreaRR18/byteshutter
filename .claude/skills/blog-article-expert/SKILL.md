@@ -1,6 +1,25 @@
+---
+name: blog-article-expert
+description: "Create, edit and review ByteShutter blog articles (Markdown files in articles/): frontmatter, slugs, tags, SEO excerpts, images, code blocks and the convert-to-JSON step. Use whenever the task touches an article."
+---
+
 # Blog Article Expert
 
 You are an expert in creating and managing blog articles for the ByteShutter blog. Your role is to help maintain high-quality, well-structured markdown articles that follow best practices.
+
+## How the Site Treats an Article
+
+Know what the pipeline does with your Markdown before writing it:
+
+- **Slug** is derived from `title` (lowercased, every run of non-alphanumerics becomes `-`). The URL is `article.html#<slug>` and the data file is `data/<slug>.json`. **Renaming a title changes the URL**, and two titles that slugify the same fail the build.
+- **Validation**: `npm run convert` fails if `title`, `excerpt` or `created_at` is missing/invalid, or if `tags` is not an array. Fix the message it prints rather than working around it.
+- **Frame number** (`No. 01`): the oldest article by `created_at` is 1; numbers are computed in the browser from the feed, so an older `created_at` renumbers the rest.
+- **Kicker**: the *first* tag is shown next to the date on cards and the article header, so put the main topic first.
+- **Title and excerpt** become the page `<title>` and meta description at runtime (title, date and tags also feed the JSON-LD `BlogPosting`). The page renders the title as the `<h1>`, so the body starts at `##`.
+- **Read time** is computed from the word count (200 words per minute).
+- **Code blocks** show their language as a label, so always give the fence a language (` ```swift `).
+- **Images** are wrapped in a framed `<figure>` and lazy-loaded; the Markdown title (`![alt](./images/x.jpg "Caption")`) becomes the visible caption, falling back to the alt text.
+- **Dates** are formatted in UTC (`06 MAY 2020`), so use plain `YYYY-MM-DD`.
 
 ## Article Structure Best Practices
 
@@ -10,7 +29,7 @@ Every article MUST include proper frontmatter with the following fields:
 - `title`: Clear, descriptive title (50-60 characters optimal for SEO)
 - `excerpt`: Compelling summary (150-160 characters, used for meta descriptions)
 - `created_at`: Date in YYYY-MM-DD format
-- `tags`: Array of relevant, lowercase tags (3-5 tags recommended)
+- `tags`: Array of relevant, lowercase tags (3-5 tags recommended; the converter only requires an array if present)
 
 Example:
 ```markdown
@@ -27,7 +46,7 @@ tags: ["swiftui", "ios", "responsive-design", "mobile"]
 1. **Structure**: Use clear hierarchy with H2 (##) for main sections and H3 (###) for subsections
 2. **Introduction**: Start with a compelling hook that explains what the reader will learn
 3. **Code Examples**: Use properly formatted code blocks with language identifiers
-4. **Images**: Reference images using relative paths, include descriptive alt text in your mind
+4. **Images**: Store files under `images/` and reference them with `./images/<name>` paths (article pages live at the site root). Always write descriptive alt text, add a Markdown title when the image needs a visible caption, and keep files small (compress, prefer WebP/JPEG)
 5. **Links**: Use descriptive anchor text, prefer inline links over bare URLs
 6. **Conclusion**: End with key takeaways or call-to-action
 
@@ -69,13 +88,14 @@ When creating or reviewing articles, verify:
 
 1. Determine the topic and target audience
 2. Research keywords and related articles
-3. Create the markdown file in `articles/` directory
+3. Create the markdown file in `articles/` directory (kebab-case filename, e.g. `swiftui-animations.md`; the filename is not the slug)
 4. Write frontmatter with optimized title and excerpt
 5. Structure content with clear headings
 6. Include code examples and explanations
 7. Add relevant tags
-8. Run `npm run convert` to generate JSON
-9. Verify the article appears correctly on the site
+8. Run `npm run convert` to generate JSON (`data/` is gitignored and rebuilt on every build — never commit it)
+9. Verify with `npm run dev`: the article appears on the home page and `articles.html`, and `article.html#<slug>` renders it
+10. Check the image paths, code labels and caption rendering in both themes
 
 ### Updating Existing Articles
 
@@ -88,7 +108,7 @@ When creating or reviewing articles, verify:
 ### Tag Management
 
 Maintain consistency in tagging:
-- Use existing tags when applicable
+- Check `articles/` for the tags already in use and reuse them
 - Create new tags only when necessary
 - Keep tags lowercase and hyphenated
 - Common tags: `swift`, `swiftui`, `ios`, `react`, `typescript`, `web-development`, `mobile`, `responsive-design`, `testing`

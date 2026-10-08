@@ -1,5 +1,26 @@
 # TypeScript Guidelines for Robust & Testable Code
 
+## ByteShutter Specifics (these win over the general reference below)
+
+ByteShutter has no framework and no bundler. Browser code lives in `src/ts/` and is compiled by `tsc -p tsconfig.browser.json` to ES modules in `js/`; Node scripts in `scripts/` run with `tsx` and are not type-checked. See the `typescript-master` skill for the full picture.
+
+- **Strict config already on**: `strict`, `noUnusedLocals`, `noUnusedParameters`, target/module `ES2020`, libs `ES2020` + `DOM`. Delete unused code rather than silencing the compiler
+- **Imports** between browser modules use the `.js` extension (`from './feed.js'`); a file with no imports/exports ends with `export {};`
+- **DOM lookups are nullable**: guard with `if (el)` or use `querySelector<HTMLElementType>()`; avoid `!` and `as`
+- **Fetched JSON**: describe it with an interface, check `res.ok`, and use `unknown` plus a type guard if the shape is not ours
+- **Feature detection** for newer browser APIs uses an intersection type (`Document & { startViewTransition?: … }`), never `any`
+- **HTML strings**: pass every metadata value through `escapeHtml()` (in `feed.ts`) before `innerHTML`
+- **Globals from vendor scripts** (`marked`) get an ambient `declare const`
+- **New page script**: add `js/<name>.js` to `.gitignore` and load it with `<script type="module">`
+- **Style**: browser files use `function` callbacks with explicit types and string-built markup; Node scripts use arrows and template literals. Match the file you are in
+- **No classes, dependency injection, enums or Result wrappers** unless the code already uses them: the browser code is small functions over the DOM. Use string literal unions (`type Theme = 'dark' | 'light'`)
+- `src/Gallery/` and `src/Utils/` are unused legacy files; do not extend them
+- **Check**: `npm run compile` (CI runs the same `tsc` config), then `npm run build`
+
+## General Reference
+
+The sections below are general TypeScript guidance. The server-style examples (repositories, services, environment config) are illustrative only and do not describe this codebase.
+
 ## Type Safety
 
 ### Strict Configuration

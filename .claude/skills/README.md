@@ -1,157 +1,89 @@
-# ByteShutter Claude Skills
+# ByteShutter Agent Skills
 
-This directory contains custom Claude Code skills tailored for the ByteShutter blog development. These skills provide best practices, guidelines, and expert knowledge for maintaining and improving the blog.
+Project skills for the ByteShutter blog: a vanilla HTML/CSS/TypeScript site (no framework, no bundler) with a "Darkroom" design, Markdown articles converted to JSON at build time, and hash-routed article pages. Each skill encodes how this repo works so changes stay consistent.
+
+The skills follow the [Agent Skills](https://agentskills.io) format and work in both **Claude Code** and **Mistral Vibe**.
 
 ## Available Skills
 
-### 1. blog-article-expert
+| Skill | Use it when |
+|---|---|
+| [`byteshutter-consistency`](byteshutter-consistency/SKILL.md) | Before adding or changing any HTML/CSS: Darkroom tokens, viewfinder motif, motion, dark/light themes, breakpoints, what not to do |
+| [`css-standards`](css-standards/SKILL.md) | Before writing or reviewing CSS: specificity, naming, Grid/Flexbox, custom properties, dark mode, performance |
+| [`html-standards`](html-standards/SKILL.md) | Before writing or reviewing HTML: semantics, WCAG 2.2, responsive images, document hygiene |
+| [`blog-article-expert`](blog-article-expert/SKILL.md) | Creating or editing articles in `articles/`: frontmatter, slugs, frame numbers, images, tags |
+| [`typescript-master`](typescript-master/SKILL.md) | TypeScript in `src/ts/` and `scripts/`: typing the DOM and fetched JSON, `tsconfig` questions, type errors |
+| [`code-reviewer`](code-reviewer/SKILL.md) | Reviewing a diff or PR: type safety, XSS, project conventions, build/CI impact |
+| [`web-accessibility-seo-expert`](web-accessibility-seo-expert/SKILL.md) | Accessibility audits and SEO for the static, hash-routed site |
+| [`open-pr`](open-pr/SKILL.md) | Pushing the current branch and opening a GitHub pull request (`/open-pr [title]`) |
+| [`sync-ai-config`](sync-ai-config/SKILL.md) | After editing `CLAUDE.md` or `AGENTS.md`: copies one over the other so they stay identical |
 
-Expert in creating and managing blog articles with proper structure, SEO optimization, and content quality.
+## Using Skills in Each Agent
 
-**Use when:**
-- Creating new blog articles
-- Reviewing or updating existing articles
-- Optimizing article metadata (title, excerpt, tags)
-- Ensuring content follows best practices
-- Managing article frontmatter
+Both agents load a skill automatically when the task matches its `description`, and both let you call one by name:
 
-**Key features:**
-- Frontmatter validation
-- SEO optimization guidelines
-- Content structure best practices
-- Tag management
-- Article quality checklist
+| | Claude Code | Mistral Vibe |
+|---|---|---|
+| Project context file | `CLAUDE.md` | `AGENTS.md` |
+| Skills directory it reads | `.claude/skills/` | `.agents/skills/` (or `.vibe/skills/`) |
+| Invoke explicitly | `/byteshutter-consistency` | `/byteshutter-consistency` |
 
-**Example usage:**
-```
-/skill blog-article-expert
-Create a new article about building animations in SwiftUI
-```
+Vibe only loads project skills and `AGENTS.md` from a **trusted folder**; accept the trust prompt the first time you run `vibe` here.
 
-### 2. react-component-expert
+Skills can be combined. A new page, for example, calls for `byteshutter-consistency`, `html-standards` and `css-standards`.
 
-Expert in building React components using modern React 19, TypeScript, and Vite best practices.
+## Layout: One Source, Two Paths
 
-**Use when:**
-- Creating new React components
-- Refactoring existing components
-- Implementing TypeScript types
-- Optimizing component performance
-- Following ByteShutter component patterns
-
-**Key features:**
-- TypeScript best practices
-- React 19 patterns
-- Performance optimization
-- CSS Modules usage
-- Component structure guidelines
-- Testing considerations
-
-**Example usage:**
-```
-/skill react-component-expert
-Build a new card component for displaying book recommendations
-```
-
-### 3. web-accessibility-seo-expert
-
-Expert in web accessibility (WCAG 2.1) and SEO optimization for React/Vite applications.
-
-**Use when:**
-- Auditing components for accessibility
-- Implementing ARIA patterns
-- Optimizing for search engines
-- Adding meta tags and structured data
-- Improving keyboard navigation
-- Checking color contrast and semantics
-
-**Key features:**
-- WCAG 2.1 compliance guidelines
-- Semantic HTML best practices
-- ARIA patterns and usage
-- SEO optimization (meta tags, structured data)
-- Keyboard navigation
-- Performance considerations
-- Testing checklists
-
-**Example usage:**
-```
-/skill web-accessibility-seo-expert
-Review the About page for accessibility issues and add proper SEO meta tags
-```
-
-## How to Use Skills
-
-Skills are invoked using the `/skill` command in Claude Code:
+`.claude/skills/` is the real directory. `.agents/skills` is a **symlink** to it (`../.claude/skills`), because Vibe does not read `.claude/`. Edit skills under `.claude/skills/`; never keep two copies.
 
 ```
-/skill <skill-name>
-<your task or question>
+.claude/skills/<name>/SKILL.md     ← real files (Claude Code reads here)
+.agents/skills -> ../.claude/skills ← symlink (Vibe reads here)
 ```
 
-Or reference them in your prompt:
+## Writing a Portable Skill
 
+Each skill is a directory with a `SKILL.md` (exactly that spelling: Linux and CI are case-sensitive) that starts with YAML frontmatter:
+
+```markdown
+---
+name: skill-name
+description: "What it does and when to use it. Quote this value."
+---
 ```
-Using the react-component-expert skill, help me create a responsive navigation component
-```
 
-## Skill Organization
+Rules that keep it working in both agents:
 
-Each skill is organized in its own directory with a `SKILL.md` file containing:
-- Expert role definition
-- Core principles and best practices
-- Code examples and patterns
-- Checklists and guidelines
-- ByteShutter-specific conventions
-- Testing considerations
-- Common pitfalls to avoid
+- **Valid YAML.** Vibe parses frontmatter strictly. A description containing `: ` (colon + space), `#` or a leading quote must be wrapped in quotes, otherwise Vibe skips the skill
+- **`name`** is required, lowercase letters, digits and hyphens only, at most 64 characters, and equal to the directory name
+- **`description`** is required and at most 1024 characters. Say what the skill does *and when to use it*; it is what both agents match against
+- **Optional fields** both understand: `license`, `compatibility`, `metadata`, `user-invocable`, `disable-model-invocation`. `argument-hint` is Claude-only and harmless in Vibe
+- **No tool allow-lists.** `allowed-tools` uses different tool names in each agent (`Bash` vs `bash`, `Read` vs `read_file`), so leave it out
+- **No agent-specific tool names in the body.** Write "run `npm run compile`" or "read the file", not "use the Bash tool"
+- **No `$ARGUMENTS` placeholders.** Say "if the user gave a title, use it": Claude appends arguments to the skill and Vibe adds them as extra instructions
+- **Slash commands are skills.** Vibe has no `.claude/commands/` equivalent, so command-style workflows (like `open-pr`) live here
 
-## Best Practices for Using Skills
+## Related AI Files
 
-1. **Be Specific**: Provide clear context about what you're building or fixing
-2. **Reference Existing Code**: Mention specific files or components when applicable
-3. **Ask for Checklists**: Request validation checklists for comprehensive reviews
-4. **Combine Skills**: Multiple skills can be used together for complex tasks
-5. **Iterate**: Use skills iteratively to refine and improve code
-
-## Skill Development
-
-These skills were developed based on:
-- Official React 19 and TypeScript documentation
-- WCAG 2.1 accessibility guidelines
-- Modern SEO best practices for 2025
-- ByteShutter's existing codebase patterns
-- Community best practices from repositories like:
-  - [awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills)
-  - [claudekit-skills](https://github.com/mrgoonie/claudekit-skills)
-  - [claude-skills](https://github.com/alirezarezvani/claude-skills)
+- [`CLAUDE.md`](../../CLAUDE.md) and [`AGENTS.md`](../../AGENTS.md): project context for AI agents. They must stay identical; run `sync-ai-config` after editing either.
+- [`rules/`](../../rules): `blog_style_guidelines.md` (Darkroom summary) and `typescript-guidelines.md`.
+- [`docs/superpowers/`](../../docs/superpowers): design specs and implementation plans (history of the Darkroom restyle).
 
 ## Maintenance
 
-Skills should be updated as:
-- New React/TypeScript versions are adopted
-- ByteShutter's architecture evolves
-- Web standards and best practices change
-- New patterns emerge in the codebase
+Update the affected skill when:
 
-## Contributing
+- the build, tsconfig or CI changes (`package.json`, `tsconfig*.json`, `.github/workflows/`)
+- design tokens or components change (`css/tokens.css`, `byteshutter-consistency`)
+- the article pipeline changes (`scripts/ConvertArticlesToJSON/`, `src/ts/feed.ts`, `src/ts/article.ts`)
 
-When improving skills:
-1. Keep instructions clear and actionable
-2. Include code examples that match ByteShutter's style
-3. Reference official documentation
-4. Add checklists for validation
-5. Update this README when adding new skills
+When adding a skill: create `.claude/skills/<name>/SKILL.md` with frontmatter, add a row to the table above and to the skills table in `CLAUDE.md`, then run `sync-ai-config`. The symlink picks it up for Vibe automatically.
 
 ## Resources
 
-- [Claude Agent SDK Documentation](https://platform.claude.com/docs/en/agent-sdk/skills)
-- [Agent Skills Overview](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)
-- [React Documentation](https://react.dev)
+- [Agent Skills format](https://agentskills.io)
+- [Claude Code skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview)
+- [Mistral Vibe skills](https://docs.mistral.ai/vibe/code/cli/skills)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
-- [WCAG Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
+- [WCAG 2.2 quick reference](https://www.w3.org/WAI/WCAG22/quickref/)
 - [MDN Web Docs](https://developer.mozilla.org/)
-
----
-
-**Note**: These skills are specifically tailored for ByteShutter's tech stack (React 19, TypeScript, Vite, CSS Modules) and content focus (iOS/Swift, web development, photography). Adapt as needed for other projects.

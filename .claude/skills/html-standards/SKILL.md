@@ -1,11 +1,13 @@
 ---
 name: html-standards
-description: Apply authoritative HTML best practices: semantic structure, accessibility (WCAG 2.2), performance, responsive images, and document hygiene. Invoke before writing or reviewing any HTML.
+description: "Apply authoritative HTML best practices: semantic structure, accessibility (WCAG 2.2), performance, responsive images, and document hygiene. Invoke before writing or reviewing any HTML."
 ---
 
 # HTML Standards
 
 Reference this skill before writing or reviewing any HTML in this project. Apply every applicable rule — skip only rules that genuinely don't apply to the element at hand.
+
+General rules only: where `byteshutter-consistency` is more specific (page skeleton, class names, relative paths, no third-party requests), that skill wins. Load both for any ByteShutter HTML.
 
 ## Document Structure
 
@@ -13,7 +15,7 @@ Reference this skill before writing or reviewing any HTML in this project. Apply
 - `<meta charset="utf-8">` must be the **first** tag in `<head>`
 - Always include `<meta name="viewport" content="width=device-width, initial-scale=1">`
 - Use `lang` attribute on `<html>`: `<html lang="en">`
-- Omit `type` attribute on `<script>` and `<link rel="stylesheet">` — not needed in HTML5
+- Omit `type` attribute on classic `<script>` and `<link rel="stylesheet">` — not needed in HTML5. Keep `type="module"` on the compiled `js/*.js` entry points
 - Use lowercase for all tags, attributes, and attribute values
 - Use double quotes for all attribute values
 
@@ -52,18 +54,17 @@ Reference this skill before writing or reviewing any HTML in this project. Apply
   ```
 - Use `<picture>` with `<source type="image/webp">` to serve WebP with JPEG/PNG fallback
 - Use `loading="lazy"` on below-the-fold images; never on hero/above-fold images
-- Let CSS control image sizing — avoid hardcoded `width`/`height` attributes on responsive images
+- Give images intrinsic `width` and `height` attributes where known, and let CSS keep them fluid (`max-width: 100%; height: auto`) — this reserves space and prevents layout shift
 - Use `object-fit: cover` in CSS for fixed-dimension image containers
 
 ## Performance
 
-- Mark non-critical scripts with `defer` or `async`; never block parsing with `<script>` in `<head>`
+- Mark non-critical scripts with `defer` or `async` (`type="module"` is deferred by default); never block parsing with a classic `<script>` in `<head>`. The small inline theme script that sets `data-theme` before first paint is the one deliberate exception
 - Preload critical fonts:
   ```html
-  <link rel="preload" href="font.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./fonts/lora-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   ```
-- Use `<link rel="preconnect">` for third-party font/asset domains (Google Fonts, CDNs)
-- Load Google Fonts with `display=swap` in the URL: `?display=swap`
+- Fonts and scripts are self-hosted: no `preconnect`, Google Fonts, CDN or analytics tags (the site promises "no analytics, no tracking")
 
 ## Code Hygiene
 
