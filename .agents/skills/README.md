@@ -16,16 +16,15 @@ The skills follow the [Agent Skills](https://agentskills.io) format and work in 
 | [`code-reviewer`](code-reviewer/SKILL.md) | Reviewing a diff or PR: type safety, XSS, project conventions, build/CI impact |
 | [`web-accessibility-seo-expert`](web-accessibility-seo-expert/SKILL.md) | Accessibility audits and SEO for the static, hash-routed site |
 | [`open-pr`](open-pr/SKILL.md) | Pushing the current branch and opening a GitHub pull request (`/open-pr [title]`) |
-| [`sync-ai-config`](sync-ai-config/SKILL.md) | After editing `CLAUDE.md` or `AGENTS.md`: copies one over the other so they stay identical |
 
 ## Using Skills in Each Agent
 
 Both agents load a skill automatically when the task matches its `description`, and both let you call one by name:
 
-| | Claude Code | Mistral Vibe |
+| | Mistral Vibe | Claude Code |
 |---|---|---|
-| Project context file | `CLAUDE.md` | `AGENTS.md` |
-| Skills directory it reads | `.claude/skills/` | `.agents/skills/` (or `.vibe/skills/`) |
+| Project context file | `AGENTS.md` (real content) | `CLAUDE.md` (one line: `@AGENTS.md`) |
+| Skills directory it reads | `.agents/skills/` (real files) | `.claude/skills/` (symlink) |
 | Invoke explicitly | `/byteshutter-consistency` | `/byteshutter-consistency` |
 
 Vibe only loads project skills and `AGENTS.md` from a **trusted folder**; accept the trust prompt the first time you run `vibe` here.
@@ -34,11 +33,13 @@ Skills can be combined. A new page, for example, calls for `byteshutter-consiste
 
 ## Layout: One Source, Two Paths
 
-`.claude/skills/` is the real directory. `.agents/skills` is a **symlink** to it (`../.claude/skills`), because Vibe does not read `.claude/`. Edit skills under `.claude/skills/`; never keep two copies.
+`.agents/skills/` holds the real files. `.claude/skills` is a **symlink** to it (`../.agents/skills`), because Claude Code does not read `.agents/`. Edit skills under `.agents/skills/`; never keep two copies. The same goes for instructions: write them in `AGENTS.md`, and `CLAUDE.md` just imports it.
 
 ```
-.claude/skills/<name>/SKILL.md     ← real files (Claude Code reads here)
-.agents/skills -> ../.claude/skills ← symlink (Vibe reads here)
+.agents/skills/<name>/SKILL.md      ← real files (Vibe reads here)
+.claude/skills -> ../.agents/skills ← symlink (Claude Code reads here)
+AGENTS.md                           ← real instructions
+CLAUDE.md                           ← "@AGENTS.md"
 ```
 
 ## Writing a Portable Skill
@@ -65,7 +66,7 @@ Rules that keep it working in both agents:
 
 ## Related AI Files
 
-- [`CLAUDE.md`](../../CLAUDE.md) and [`AGENTS.md`](../../AGENTS.md): project context for AI agents. They must stay identical; run `sync-ai-config` after editing either.
+- [`AGENTS.md`](../../AGENTS.md): the project instructions. [`CLAUDE.md`](../../CLAUDE.md) contains only `@AGENTS.md`, which Claude Code expands, so there is nothing to keep in sync.
 - [`rules/`](../../rules): `blog_style_guidelines.md` (Darkroom summary) and `typescript-guidelines.md`.
 - [`docs/superpowers/`](../../docs/superpowers): design specs and implementation plans (history of the Darkroom restyle).
 
@@ -77,7 +78,7 @@ Update the affected skill when:
 - design tokens or components change (`css/tokens.css`, `byteshutter-consistency`)
 - the article pipeline changes (`scripts/ConvertArticlesToJSON/`, `src/ts/feed.ts`, `src/ts/article.ts`)
 
-When adding a skill: create `.claude/skills/<name>/SKILL.md` with frontmatter, add a row to the table above and to the skills table in `CLAUDE.md`, then run `sync-ai-config`. The symlink picks it up for Vibe automatically.
+When adding a skill: create `.agents/skills/<name>/SKILL.md` with frontmatter, then add a row to the table above and to the skills table in `AGENTS.md`. The `.claude/skills` symlink picks it up for Claude Code automatically.
 
 ## Resources
 

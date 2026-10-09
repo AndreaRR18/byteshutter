@@ -31,11 +31,11 @@ byteshutter/
 ├── data/              # Generated JSON articles (gitignored, created at build time)
 ├── rules/             # Style and code guidelines (blog, typescript)
 ├── docs/              # Specs and implementation plans (docs/superpowers/{specs,plans})
-├── .claude/skills/    # Project skills (real files, read by Claude Code)
-├── .agents/skills     # Symlink to ../.claude/skills (read by Mistral Vibe)
+├── .agents/skills/    # Project skills — the real files (read by Mistral Vibe)
+├── .claude/skills     # Symlink to ../.agents/skills (read by Claude Code)
 ├── .github/workflows/ # ci.yml, deploy.yml, release.yml
-├── CLAUDE.md          # Read by Claude Code; identical to AGENTS.md — keep in sync (see Notes)
-├── AGENTS.md          # Read by Mistral Vibe and other agents
+├── AGENTS.md          # Project instructions — the single source of truth (this file)
+├── CLAUDE.md          # One line, `@AGENTS.md`, so Claude Code loads this file
 ├── *.html             # HTML pages (index, articles, article, about)
 └── dist/              # Production build output (gitignored, created at build time)
 ```
@@ -111,12 +111,12 @@ A new top-level HTML page or asset directory must be added to the `cp` list in `
 - **Vendor scripts**: `js/vendor/` — tracked in git (e.g. `marked.min.js`)
 - **File Extensions**: `.ts` for all TypeScript, `.html` for pages
 - **Escaping**: anything from article metadata inserted with `innerHTML` goes through `escapeHtml()` from `feed.ts`
-- **Design**: "Darkroom" — dark-first, ink/paper/orange, viewfinder motif, frame-numbered articles. See the `byteshutter-consistency` skill (`.claude/skills/`) for tokens and rules
+- **Design**: "Darkroom" — dark-first, ink/paper/orange, viewfinder motif, frame-numbered articles. See the `byteshutter-consistency` skill (`.agents/skills/`) for tokens and rules
 - **Guidelines**: See `rules/typescript-guidelines.md` for TypeScript patterns and `rules/blog_style_guidelines.md` for visual design conventions
 
 ## Project Skills
 
-This repo is set up for both Claude Code and Mistral Vibe. Skills live in `.claude/skills/<name>/SKILL.md` (Claude Code reads that path; Vibe reads the `.agents/skills` symlink to it). Both agents load a skill when its description matches, and both run one by name with `/<skill-name>`. The index and the rules for writing portable skills are in `.claude/skills/README.md`.
+This repo is set up for both Mistral Vibe and Claude Code. The real files live in `.agents/skills/<name>/SKILL.md` (Vibe reads that path); `.claude/skills` is a symlink to it for Claude Code, and `CLAUDE.md` only imports this file. Both agents load a skill when its description matches, and both run one by name with `/<skill-name>`. The index and the rules for writing portable skills are in `.agents/skills/README.md`.
 
 | Skill | Use it when |
 |---|---|
@@ -127,7 +127,6 @@ This repo is set up for both Claude Code and Mistral Vibe. Skills live in `.clau
 | `code-reviewer` | Reviewing a diff or PR in this repo |
 | `web-accessibility-seo-expert` | Accessibility or SEO work on pages |
 | `open-pr` | Pushing the current branch and opening a GitHub pull request (`/open-pr [title]`) |
-| `sync-ai-config` | After editing `CLAUDE.md` or `AGENTS.md` |
 
 Skill rules that keep them portable: `SKILL.md` with valid, quoted YAML frontmatter (`name` equal to the directory name), no `allowed-tools`, no agent-specific tool names in the body. Mistral Vibe loads project skills and `AGENTS.md` only from a trusted folder.
 
@@ -168,7 +167,7 @@ Skill rules that keep them portable: `SKILL.md` with valid, quoted YAML frontmat
 - Never add third-party requests (fonts, CDNs, analytics) — the site promises "no analytics, no tracking"; fonts are self-hosted in `fonts/`
 - Run `npm run check:contrast` after changing any colour in `css/tokens.css`
 - Never commit generated output (`js/*.js` except `js/vendor/`, `data/`, `dist/`)
-- `CLAUDE.md` and `AGENTS.md` must stay identical: edit one, then run the `sync-ai-config` skill (`claude` or `agents` = the file you edited)
-- Edit skills only under `.claude/skills/`; `.agents/skills` is a symlink to it, so never create a second copy
-- Keep file names exact: `CLAUDE.md`, `AGENTS.md`, `SKILL.md` (CI and Linux are case-sensitive)
+- Edit project instructions only in `AGENTS.md`. `CLAUDE.md` must stay a single `@AGENTS.md` line (Claude Code expands the import); never copy content into it
+- Edit skills only under `.agents/skills/`. `.claude/skills` is a symlink to it, so never create a second copy
+- Keep file names exact: `AGENTS.md`, `CLAUDE.md`, `SKILL.md` (CI and Linux are case-sensitive)
 - This is a personal project, so changes should align with the existing personal/portfolio nature

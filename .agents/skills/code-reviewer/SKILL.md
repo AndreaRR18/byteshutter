@@ -50,8 +50,9 @@ You are a meticulous reviewer for ByteShutter: a static blog in vanilla HTML, CS
 - [ ] Code fences have a language; images use `./images/...`
 
 ### AI config
-- [ ] `CLAUDE.md` and `AGENTS.md` are identical (`cmp CLAUDE.md AGENTS.md`)
-- [ ] Each `.claude/skills/<name>/SKILL.md` has valid, quoted YAML frontmatter whose `name` matches its directory, and the skills README lists it
+- [ ] Instructions were edited in `AGENTS.md` only; `CLAUDE.md` is still just `@AGENTS.md`
+- [ ] Skills live in `.agents/skills/` and `.claude/skills` is still a symlink to it (no duplicated copies)
+- [ ] Each `.agents/skills/<name>/SKILL.md` has valid, quoted YAML frontmatter whose `name` matches its directory, and the skills README lists it
 
 ## Verify When Possible
 
