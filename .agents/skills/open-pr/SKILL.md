@@ -1,12 +1,12 @@
 ---
-description: Push the current branch and open a pull request on GitHub. Optional argument overrides the PR title.
-argument-hint: [optional PR title]
-allowed-tools: Bash, Read
+name: open-pr
+description: "Push the current branch and open a GitHub pull request with the gh CLI. Use when the user asks to open, create or raise a PR. An optional PR title can follow the command."
+argument-hint: "[optional PR title]"
 ---
 
 # Open Pull Request
 
-Push the current branch to origin and create a GitHub pull request.
+Push the current branch to origin and create a GitHub pull request. Needs `git` and an authenticated `gh` CLI.
 
 ## Steps
 
@@ -23,7 +23,7 @@ Push the current branch to origin and create a GitHub pull request.
    ```
 
 4. **Determine the PR title**
-   - If `$ARGUMENTS` is provided, use it as the title
+   - If the user gave a title with the command, use it as the title
    - Otherwise, use the most recent commit subject as the title
 
 5. **Build the PR body** from the commit log since the branch diverged from main:
